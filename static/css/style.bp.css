@@ -1,0 +1,41 @@
+    * {
+    box-sizing: border-box;
+    }
+    body {
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #333333;
+	background-color: #E8E8E8;
+	}
+    #main {
+    display: flex;
+    min-height: calc(100vh - 40vh);
+    }
+    #main > article {
+    flex: 1;
+    }
+    #main > nav,
+    #main > aside {
+    flex: 0 0 20vw;
+    background: white;
+    }
+    #main > nav {
+    order: -1;
+    }
+    header, footer, article, nav, aside {
+    padding: 1em;
+    }
+    header {
+    background: #E8E8E8; 
+    height: 15vh;
+    color: navy;
+    }
+    article {
+	background: white;
+    }
+    footer {
+	position: relative; 
+	left: 0 ; right: 0; bottom: 0; 
+	background: #E8E8E8;
+	height: 5vh;
+    }

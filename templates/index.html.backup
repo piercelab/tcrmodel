@@ -1,0 +1,155 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+<script type="text/javascript" src="{{ url_for('static', filename='tcrmodeling_external.js') }}"></script>
+
+<style> 
+#panel, #flip, #panel2, #flip2 {
+    padding: 2px;
+    text-align: left;
+    background-color: #F8F8F8;
+    border: solid 1px #c3c3c3;
+}
+#panel, #panel2{
+    padding: 5px;
+    display: none;
+}
+</style>
+<style type="text/css">
+form {
+   position: relative;
+   display: inline-block;
+}
+form textarea {
+    min-width: 140px;
+}
+form p {
+    margin: 0;
+    padding: 0;
+    display: block;
+    text-align: right;
+}
+</style>
+<style>
+.tab {
+    overflow: hidden;
+    background-color: #F8F8F8;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.tab button:hover {
+    background-color: royalblue;
+}
+
+.tab button.active {
+    text-decoration: underline;
+    background-color: #ccc;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+</style>
+
+{% endblock %}
+{% block title %}{% endblock %}
+{% block article %}
+
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Enter TCR sequence</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Generate from germline genes</button>
+</div>
+
+<form name="submitjob" action="{{ url_for('submitjob') }}" method="post" id="formid">
+  <div id="London" class="tabcontent">
+    TCR &alpha; chain:
+     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+        title="Enter T cell receptor alpha chain amino acid sequence">?</button> <br>
+	<textarea NAME="alphachain" type="text" id="achain" COLS=60 ROWS=5></textarea>
+    <br><br>
+    TCR &beta; chain:
+	 <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+        title="Enter T cell receptor beta chain amino acid sequence">?</button><br>
+    <textarea NAME="betachain" type="text" id="bchain" COLS=60 ROWS=5></textarea>
+    <br>
+    <input type="submit"  style="float: left;" value="Submit"> 
+    <input type="reset"  style="float: left;" value="Reset">
+    <button type="button" id="btn1" style="float: right;">Load example sequences: F26 TCR</button>
+	<br><br><a href="{{ url_for('static', filename='example/index.html') }}">Example output: F26 TCR</a>
+	<br><br>
+    <div id="flip"><u>Advanced options:</u></div>
+    <div id="panel">
+      <br>
+      <input type="checkbox" name="lm" value="looprem"> Remodel CDR3 loops<br>
+      <input type="checkbox" name="lr" value="loopref"> Refine CDR3 loops<br>
+      <br>
+      PDB templates to exclude: <input type="text" name="pdbblacklist">
+      <br><br>
+      Percent ID cutoff to exclude templates: <input type="number" min="1" max="100" step="1" value="100" name="simcutoff">
+      <br><br>
+      <input type="submit" value="Submit">
+      <input type="reset" value="Reset">
+    </div>
+  </div>
+</form>
+<form name"=testsubmit" action="{{ url_for('testsubmit') }}" method="post" id="formid2">
+  <div id="Paris" class="tabcontent">
+    TCR &alpha; chain:<br>
+    <select name="aspecies">
+      <option value="" >Species</option>
+      <option value="human" selected >HomoSapiens</option>
+      <option value="mouse">MusMusculus</option>
+    </select> 
+    <select name="trav" id="trav"></select> 
+    <select name="traj" id="traj"></select> 
+    <br>
+    CDR3 sequence<input type="text" name="acdr" id="acdr"><br>
+    <textarea NAME="alphachain" type="text" id="alphachain" COLS=60 ROWS=5></textarea>
+    <br><br>
+    TCR &beta; chain:<br>
+    <select name="bspecies">
+      <option value="" >Species</option>
+      <option value="human" selected >HomoSapiens</option>
+      <option value="mouse">MusMusculus</option>
+    </select> 
+    <select name="trbv" id="trbv"></select> 
+    <select name="trbj" id="trbj"></select>
+    <br>
+    CDR3 sequence<input type="text" name="bcdr" id ="bcdr"><br>
+    <textarea NAME="betachain" type="text" id="betachain" COLS=60 ROWS=5></textarea>
+    <br>
+    <input type="submit"  style="float: left;" value="Submit" id="submitid2"> 
+    <input type="reset"  style="float: left;" value="Reset" id="resetid2">
+    <p><button type="button" id="loadbtn" style="float: right;">Generate TCR sequences</button></p>
+    <br><br>
+    <div id="flip2"><u>Advanced options</u></div>
+    <div id="panel2">
+      <br>
+      <input type="checkbox" name="lm" value="looprem"> Remodel CDR3 loops<br>
+      <input type="checkbox" name="lr" value="loopref"> Refine CDR3 loops<br>
+      <br>
+      PDB Blacklist : <input type="text" name="pdbblacklist">
+      <br><br>
+      Cut-off to ignore similar templates : <input type="number" min="1" max="100" step="1" value="100" name="simcutoff">
+      <br><br>
+      <input type="submit" value="Submit" id="submitid2">
+      <input type="reset" value="Reset" id="resetid2">
+    </div>
+  </div>
+</form>  
+
+{% endblock %}
+

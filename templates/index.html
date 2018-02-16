@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+<script type="text/javascript" src="{{ url_for('static', filename='js/tcrmodeling_external.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index_forms.css') }}">
+{% endblock %}
+{% block title %}TCRmodel{% endblock %}
+{% block article %}
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen"><strong>Enter TCR sequence</strong></button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')"><strong>Generate from germline genes</strong></button>
+</div>
+<div id="London" class="tabcontent">
+  <form name="submitjob" action="{{ url_for('submitjob') }}" method="post" id="formid">
+    <div style="line-height:5px;"><br></div>
+    TCR &alpha; chain:
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Enter T cell receptor alpha chain amino acid sequence">?</button>
+    <br>
+    <div style="line-height:5px;"><br></div>
+    <textarea NAME="alphachain" type="text" id="achain" COLS=60 ROWS=4></textarea>
+    <br><span id="trav_id" class="genedisplay"></span><br><br>
+    TCR &beta; chain:
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Enter T cell receptor beta chain amino acid sequence">?</button>
+    <br>
+    <div style="line-height:5px;"><br></div>
+    <textarea NAME="betachain" type="text" id="bchain" COLS=60 ROWS=4></textarea>
+    <br><span id="trbv_id" class="genedisplay"></span><br><br>
+    <input type="submit"  style="float: left;" value="Submit"> 
+    <input type="reset"  style="float: left;" value="Reset" id="reset1">
+    <br><br>
+    <a href="#" id="btn1">Example input: 3993 KRAS_G12D TCR</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/26516200">(reference)</a>
+    <br>
+    <div style="line-height:5px;"><br></div>
+    <a href={{ url_for('rtcrex', jobid = 'TCRRAK_180212_121715' ) }}>Example output: 3993 KRAS_G12D TCR</a>
+    <br><br>
+    <div id="flip"><u>Advanced options:</u></div>
+    <div id="panel">
+      <br>
+      <input type="checkbox" name="lm" value="looprem"> Remodel CDR3 loops<br>
+      <input type="checkbox" name="lr" value="loopref"> Refine CDR3 loops<br>
+      <br>
+      PDB templates to exclude: <input type="text" name="pdbblacklist" value="None" >
+      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+	      title="Enter PDB ID's separated by comma">?</button>
+      <br>
+      <br>
+      Percent ID cutoff to exclude templates: <input type="number" min="1" max="100" step="1" value="100" name="simcutoff">
+      <br><br>
+      <input type="submit" value="Submit">
+      <input type="reset" value="Reset" id="reset1">
+    </div>
+  </form>
+</div>
+
+<div id="Paris" class="tabcontent">
+  <form name"=testsubmit" action="{{ url_for('testsubmit') }}" method="post" id="formid2">
+    TCR &alpha; chain:
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Select T cell receptor alpha chain species and germline genes">?</button>
+    <br>
+    <div style="line-height:2px;"><br></div>
+    <select name="aspecies" id="aspecies" onchange="AGeneSelection()">
+      <option value="" disabled >Species</option>
+      <option value="human" selected >Human</option>
+      <option value="mouse">Mouse</option>
+    </select> 
+    <select name="trav" id="trav"></select> 
+    <select name="traj" id="traj"></select> 
+    <br>
+    <div style="line-height:2px;"><br></div>
+    CDR3 sequence <input type="text" name="acdr" id="acdr">
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Enter CDR3 alpha amino acid sequence">?</button>
+    <br>
+    <div style="line-height:2px;"><br></div>
+    <textarea NAME="alphachain" type="text" id="alphachain" COLS=60 ROWS=4></textarea>
+    <br><br>
+    TCR &beta; chain:
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Select T cell receptor beta chain species and germline genes">?</button>
+    <br>
+    <div style="line-height:2px;"><br></div>
+    <select name="bspecies" id="bspecies" onchange="BGeneSelection()">
+      <option value="" disabled >Species</option>
+      <option value="human" selected >Human</option>
+      <option value="mouse">Mouse</option>
+    </select> 
+    <select name="trbv" id="trbv"></select> 
+    <select name="trbj" id="trbj"></select>
+    <br>
+    <div style="line-height:2px;"><br></div>
+    CDR3 sequence <input type="text" name="bcdr" id ="bcdr">
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Enter CDR3 beta amino acid sequence">?</button>
+    <br>
+    <div style="line-height:2px;"><br></div>
+    <textarea NAME="betachain" type="text" id="betachain" COLS=60 ROWS=4></textarea>
+    <br>
+    <input type="submit"  style="float: left;" value="Submit" id="submitid2"> 
+    <input type="reset"  style="float: left;" value="Reset" id="resetid2">
+    <P class="gen_button"><button type="button" id="loadbtn" style="float: right;">Generate TCR sequences</button></p>
+    <br><br>
+    <a href="#" id="btn2">Example input: F26 Flu_M1 TCR</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/28423320">(reference)</a>
+    <br>
+    <div style="line-height:5px;"><br></div>
+    <a href={{ url_for('rtcrex', jobid = 'TCRWAS_180212_122015' ) }}>Example output: F26 Flu_M1 TCR</a>
+    <br><br>
+    <div id="flip2"><u>Advanced options:</u></div>
+    <div id="panel2">
+      <br>
+      <input type="checkbox" name="lm" value="looprem"> Remodel CDR3 loops<br>
+      <input type="checkbox" name="lr" value="loopref"> Refine CDR3 loops<br>
+	<br>
+	PDB templates to exclude: <input type="text" name="pdbblacklist" value="None" >
+	<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+		title="Enter PDB ID's separated by comma">?</button>
+	<br><br>
+	Cut-off to ignore similar templates : <input type="number" min="1" max="100" step="1" value="100" name="simcutoff">
+	<br><br>
+	<input type="submit" value="Submit" id="submitid2">
+	<input type="reset" value="Reset" id="resetid2">
+      </div>
+  </form>  
+</div>  
+
+{% endblock %}
+

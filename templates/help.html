@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+
+{% endblock %}
+{% block title %}: Help{% endblock %}
+{% block article %}
+
+<h2>TCRmodel Help</h2>
+<a href="#Submission">Submission</a><br>
+<a href="#Results">Results</a><br>
+<a name="Submission"><h3>Submission</h3></a>
+TCR sequences for modeling can be submitted as amino acid sequences for alpha and beta chains, encompassing at minimum the TCR variable domains. The TCRmodel server will automatically identify germline genes in the input sequences, if there is an exact match in the database.<br><br>Alternatively, users can specify germline gene and CDR3 loop sequences, and generate the full TCR variable domain sequences using the "Generate TCR Sequences" button. <br>
+<br>
+Users can optionally exclude closely related structures as templates for modeling (for benchmarking), and can additionally have Rosetta perform extensive sampling of loops through "Refine" or "Remodel" kinetmatic closure sampling. These additional refinement steps generally improve modeling performance when related CDR3 templates are not available, but will increase processing time. By default, grafted and relaxed TCR models are returned within one minute.
+<a name="Results"><h3>Results</h3></a>
+After submission of TCR sequences, the results page will provide the parsed CDR loop sequences and identified templates to the user. When modeling completes, the results page will be automatically updated. The completed results page includes three main sections:
+<br><br>
+1) An interactive viewer showing the modeled TCR structure, downloadable model coordinates, and the model amino acid sequence:<br>
+<center><img src="{{ url_for('static', filename='image/results_struct_seq.png') }}"  alt="Structure Results" style="width:500px;"></center>
+<br>
+2) Sequence alignments between model and template TCR structures:<br>
+<center><img src="{{ url_for('static', filename='image/results_alignment.png') }}"  alt="Alignment Results" style="width:500px;"></center>
+<br>
+Alignment information is shown immediately after job submission while waiting for completion as well.<br><br>
+3) Sequences of TCR CDR loops and templates in parseable plain text format:<br>
+<center><img src="{{ url_for('static', filename='image/results_sequences.png') }}"  alt="Sequences Results" style="width:450px;"></center>
+<br>
+<br>An example of a results page is <a href={{ url_for('rtcrex', jobid = 'TCRRAK_180212_121715' ) }}>here</a>. Users can view models using an interactive <a href={{ url_for('viewmodel', jobid = 'TCRRAK_180212_121715' ) }}>full window viewer</a>, accessible from the results page.
+{% endblock %}
+

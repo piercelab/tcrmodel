@@ -1,0 +1,116 @@
+#outer-wrap {
+    max-width: 79vw;
+    height : 42vh;
+    overflow: hidden;
+    padding: 5px;
+    margin: 5px;
+}
+#viewer-wrap {
+    float: left;
+    width: 35vw;
+    height : 40vh;
+    outline: 0.5px solid navy;
+    outline-offset: 2px;
+}
+#spacing-wrap {
+    float: left;
+    width : 1vw;
+    height : 40vh;
+}
+#download-wrap {
+    float: left;
+    width: 30vw;
+    height : 40vh;
+    //border:1px solid blue;
+}
+#statusmsg{
+    margin: 0;
+    padding : 0px;
+}
+#clear {
+    clear: both;
+}
+#vwr {
+    width : 35vw;
+    height : 40vh;
+    padding : 0px;
+    margin-right : 50%;
+    //outline: 1px solid blue;
+    //outline-offset: 1px;
+}
+#vwr pickedatom {
+    position absolute;
+    font-weight:bold;
+}
+.static-label {
+    position:absolute;
+    background: #0000;
+    text-align:right;
+    z-index: 1;
+    font-weight:bold;
+}
+#selector {
+    //top:10px;
+  //left:10px;
+  margin-right : 50%;
+  box-shadow: 2px 2px 5px #888888;
+  border-radius:8px;
+  position:absolute;
+  background-color:#fafafa;
+  padding:0px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#ccc;
+}
+#selector ul {
+    padding:0px;
+}
+#selector ul li {
+    margin-left:5px;
+    margin-right:5px;
+    margin-bottom:5px;
+    list-style:none;
+    cursor: pointer;
+    color:#393
+}
+#selector ul li:hover {
+    color:#994444;
+}
+#selector h1 {
+    font-weight:normal;
+    font-size:12pt;
+}
+
+
+
+#sele-panel {
+    width : 8vw;
+    margin-right : 50%;
+    box-shadow: 2px 2px 5px #888888;
+    border-radius:8px;
+    position:absolute;
+    background-color:#fafafa;
+    padding:0px;
+    border-style:solid;
+    border-width:1px;
+    border-color:#ccc;
+    font-size:2vh;
+}
+#sele-panel ul {
+    padding:0px;
+}
+#sele-panel ul li {
+    margin-left:5px;
+    margin-right:5px;
+    margin-bottom:5px;
+    list-style:none;
+    cursor: pointer;
+    color:#393
+}
+#sele-panel ul li:hover {
+    color:#994444;
+}
+#sele-panel h1 {
+    margin-left:5px;
+    font-weight:normal;
+}

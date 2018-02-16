@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box; 
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#main {
+    display: flex;
+    flex: 1;
+}
+#main > article {
+    flex: 1;
+    background: #F8F8F8;
+    overflow: scroll;
+}
+#main > nav {
+    flex: 0 0 20vw;
+    background: #FFFFFF;
+}
+#main > nav {
+    order: -1;
+}
+.navIMG {
+    max-width: calc(20vw - 1vw);
+}
+header, footer {
+    background: #E8E8E8;
+    height: 20vh;
+    width: 100%;
+    flex-flow: row wrap;
+}
+header, footer, article, nav {
+    padding: 1em;
+}
+
+toph1 {
+    font-size: 7vh;
+    font-weight: 600;
+    line-height: 100%;
+    text-align: center; 
+    color: navy;
+}
+bottomh1 {
+    font-size: 3vh;
+    font-weight: 400;
+    line-height: 300%;
+    text-align: center; 
+    color: navy;
+}

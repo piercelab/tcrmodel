@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='table-style.css') }}">
+<style>
+table {
+  width:100%;
+}
+</style>
+{% endblock %}
+
+{% block title %}TCR Modeling Server{% endblock %}
+{% block article %}
+
+<h4><span><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>Your job is submitted</span></h4>
+
+<h4>Your job id is {{ jobid }}</h4>
+<h4>Please wait for the results to appear in this browser window.<BR>
+  You may reload or refresh the browser at any time.<BR>
+  You may bookmark this page to view your results later if you wish.</h4>
+
+<h3>Templates</h3>
+<table class="alitable">
+  <tr>
+    <th>TCR segment</th>
+    <th colspan="2">Template Alignment</th>
+  </tr>
+
+  <tr>
+    <td style="text-align:center"><span class="tcrcolor">CDR1&alpha;</span></td>
+    <td nowrap class="inptcr noborder" style="text-align:right">
+      <span>Input :</span>
+      <br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.acdr1_tmplt_pdbid }}">{{ tj.acdr1_tmplt_pdb }}</a> :</span>
+      <br>
+      <br>
+    </td>
+    <td class="noborder" style="text-align:left">
+      <p class="ali inptcr">
+	<span class="t1ali aaseqali">{{ tj.aseq_cdr1 }}</span>
+        <br>
+	<span class="t2ali aaseqali">{{ tj.acdr1_tmplt_seq }}</span>
+        <br>
+	<span class="ast"></span>
+      </p>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td style="text-align:center" border="1"><span class="tcrcolor">CDR2&alpha;</span></td>
+    <td nowrap class="inptcr noborder" style="text-align:right" border="none!important">
+      <span>Input :</span>
+      <br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.acdr2hv4_tmplt_pdbid }}">{{ tj.acdr2hv4_tmplt_pdb }}</a> :</span>
+      <br>
+      <br>
+    </td>
+    <td class="noborder" style="text-align:left">
+      <p class="ali inptcr">
+	<span class="t1ali aaseqali">{{ tj.aseq_cdr2hv4 }}</span>
+        <br>
+	<span class="t2ali aaseqali">{{ tj.acdr2hv4_tmplt_seq }}</span>
+        <br>
+	<span class="ast"></span>
+      </p>
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="text-align:center" border="1"><span class="tcrcolor">CDR3&alpha;</span></td>
+    <td nowrap class="inptcr noborder" style="text-align:right" border="none!important">
+      <span>Input :</span>
+      <br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.acdr3_tmplt_pdbid }}">{{ tj.acdr3_tmplt_pdb }}</a> :</span>
+      <br>
+      <br>
+    </td>
+    <td class="noborder" style="text-align:left">
+      <p class="ali inptcr">
+	<span class="t1ali aaseqali">{{ tj.aseq_cdr3 }}</span>
+	<br>
+	<span class="t2ali aaseqali">{{ tj.acdr3_tmplt_seq }}</span>
+	<br>
+	<span class="ast"></span>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center"><span class="tcrcolor">CDR1&beta;</span></td>
+    <td nowrap class="inptcr noborder" style="text-align:right">
+      <span>Input :</span>
+      <br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.bcdr1_tmplt_pdbid }}">{{ tj.bcdr1_tmplt_pdb }}</a> :</span>
+      <br>
+      <br>
+    </td>
+    <td class="noborder" style="text-align:left">
+      <p class="ali inptcr">
+	<span class="t1ali aaseqali">{{ tj.bseq_cdr1 }}</span>
+        <br>
+	<span class="t2ali aaseqali">{{ tj.bcdr1_tmplt_seq }}</span>
+        <br>
+	<span class="ast"></span>
+      </p>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td style="text-align:center"><span class="tcrcolor">CDR2&beta;</span></td>
+    <td nowrap class="inptcr noborder" style="text-align:right">
+      <span>Input :</span>
+      <br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.bcdr2hv4_tmplt_pdbid }}">{{ tj.bcdr2hv4_tmplt_pdb }}</a> :</span>
+      <br>
+      <br>
+    </td>
+    <td class="noborder" style="text-align:left">
+      <p class="ali inptcr">
+	<span class="t1ali aaseqali">{{ tj.bseq_cdr2hv4 }}</span>
+        <br>
+	<span class="t2ali aaseqali">{{ tj.bcdr2hv4_tmplt_seq }}</span>
+        <br>
+	<span class="ast"></span>
+      </p>
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="text-align:center"><span class="tcrcolor">CDR3&beta;</span></td>
+    <td nowrap class="inptcr noborder" style="text-align:right">
+      <span>Input :</span>
+      <br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.bcdr3_tmplt_pdbid }}">{{ tj.bcdr3_tmplt_pdb }}</a> :</span>
+      <br>
+      <br>
+    </td>
+    <td class="noborder" style="text-align:left">
+      <p class="ali inptcr">
+	<span class="t1ali aaseqali">{{ tj.bseq_cdr3 }}</span>
+	<br>
+	<span class="t2ali aaseqali">{{ tj.bcdr3_tmplt_seq }}</span>
+	<br>
+	<span class="ast"></span>
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="text-align:center"><span class="tcrcolor">Orientation</span></td>
+    <td style="text-align:center">
+      <p class="inptcruc">
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.ori_tmplt }}">{{ tj.ori_tmplt }}</a></span>
+      </p>
+    </td>
+  </tr>
+</table>
+
+<meta http-equiv=refresh content="10">
+{% endblock %}

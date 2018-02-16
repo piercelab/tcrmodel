@@ -1,0 +1,95 @@
+.inptcrtable-outter {
+    border:1px solid #dddddd;
+    overflow-x: scroll;
+}
+.inptcrtable {
+    table-layout: fixed;
+    margin:0px auto 0px auto;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-collapse: collapse;
+}
+.inptcrtable th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+.inptcrtable td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+.tcrcolor {
+    color: black;
+    font-weight: bold;
+}
+.tmpltcolor {
+    color: cornflowerblue;
+}
+.cdr{
+ border-bottom: 2px dotted grey;
+}
+.inptcr {
+    font-family: monospace;
+    font-size: 20px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 300;
+    line-height: 20px;
+}
+.inptcruc {
+    font-family: monospace;
+    font-size: 20px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 300;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+.inptcrachain {
+    color: red;
+}
+.inptcrbchain {
+    color: blue;
+}
+.firstcol{
+width: 80px;
+}
+.alitable-outter {
+    border:1px solid #dddddd;
+    overflow-x: scroll;
+}
+.alitable {
+    width: 100%;
+    border:1px solid #dddddd;
+    table-layout: auto;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-collapse: collapse;
+}
+.alitable tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.alitable td {
+    border: 1px solid #dddddd;
+    padding: 1px;
+}
+td.noborder {
+    border: none;
+}
+.alitable th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+.alitable tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.ast {
+    vertical-align: middle;
+    line-height: 20px;
+    height: 15px;
+}
+.tcrcontainer {
+    width: auto;
+    overflow-wrap: break-word;
+}
+

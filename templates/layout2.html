@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block head %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      window.jQuery || document.write('<script src="{{
+						    url_for('static', filename='js/jquery-3.2.1.js') }}">\x3C/script>')
+      </script>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}"> 
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/table-style.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/aa_colors.css') }}">
+      <script type="text/javascript" src="{{ url_for('static', filename='js/aa_funcs.js') }}"></script>
+      <title>{% block title %}TCRmodel Server{% endblock %}</title>
+      <script type=text/javascript>
+	$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+      </script>
+
+      <style>
+	jobidsearch {
+	white-space: nowrap;
+	position : relative;
+	text-align: center;
+	}
+	.jobidinput{
+	border:1px solid navy;
+	font-size: 10pt;
+	height: 30px;
+	}
+	/* Popup container - can be anything you want */
+	.popup {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	}
+	/* The actual popup */
+	.popup .popuptext {
+	visibility: hidden;
+	width: 360px;
+	background-color: #E8E8E8;
+	color: navy;
+	text-align: center;
+	border-radius: 6px;
+	padding: 8px 0;
+	position: absolute;
+	z-index: 1;
+	bottom: 125%;
+	left: 50%;
+	margin-left: -80px;
+	}
+	/* Popup arrow */
+	.popup .popuptext::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #555 transparent transparent transparent;
+	}
+	/* Toggle this class - hide and show the popup */
+	.popup .show {
+	visibility: visible;
+	-webkit-animation: fadeIn 1s;
+	animation: fadeIn 1s;
+	}
+	/* Add animation (fade in the popup) */
+	@-webkit-keyframes fadeIn {
+	from {opacity: 0;} 
+	to {opacity: 1;}
+	}
+	@keyframes fadeIn {
+	from {opacity: 0;}
+	to {opacity:1 ;}
+	}
+      </style>
+      <script>
+	function myFunction() {
+	var popup = document.getElementById("myPopup");
+	popup.classList.toggle("show");
+	}
+      </script>
+      {% endblock %}
+
+  </head>
+  <body>
+    <div class="container">
+      <header>
+	<br><toph1>TCRmodel</toph1>
+	<br>
+	<bottomh1>Automated high resolution modeling of T cell receptors</bottomh1>
+      </header>
+      <nav>
+	<center><img src="{{ url_for('static', filename='image/tcr_model_logo.png') }}"  alt="Logo" style="width:150px;"></center><br>
+	<h3 style="text-align:center"><a href="{{ url_for('index') }}">Home</a></h3>
+	<h3 style="text-align:center"><a href="{{ url_for('about') }}">About</a></h3>
+	<h3 style="text-align:center"><a href="{{ url_for('help') }}">Help</a></h3>
+	<h3 style="text-align:center"><a href="{{ url_for('links') }}">Links</a></h3>
+	<br>
+	<center>
+	  <form action="{{ url_for('searchid') }}" method="post">
+            <jobidsearch>
+              <i class="fa fa-search" aria-hidden="true"></i>
+              <input class="jobidinput" type="text" id="jobidinput" size="16" name="jobidinput" placeholder="Search Job ID">
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+                      title="Enter Job ID to retrieve results. Results are stored on the server for 30 days.">?</button>
+            </jobidsearch>
+	  </form>
+	</center>
+      </nav>
+      <article>
+	{% block article %}
+	{% endblock %}
+      </article>
+      <footer>
+	<center>
+	  <br>
+	  Template database last updated: 2/1/2018<br><br>
+	  <div class="footerIMG">
+	  <a href="http://www.rosettacommons.org" target="_blank">
+	    <img src="{{ url_for('static', filename='image/rosettacommons_logo.png') }}"  alt="RosLogo" style="width:150px;">
+	  </a>
+	  &nbsp&nbsp&nbsp&nbsp&nbsp
+	  <a href="http://www.ibbr.umd.edu" target="_blank">
+	    <img src="{{ url_for('static', filename='image/ibbr_logo.png') }}"  alt="Logo" style="width:200px;">
+	  </a>
+	  <div>
+	</center>
+      </footer>
+      
+    </div>
+    
+  </body>
+</html>

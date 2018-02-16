@@ -1,0 +1,392 @@
+{% extends "layout.html" %}
+{% block title %}TCR Model{% endblock %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='table-style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='aa_colors.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='aa_funcs.js') }}"></script>
+<style>
+#outer-wrap {
+  width : 721px;
+  height : 451px;
+
+  }
+
+#download-wrap {
+float: left;
+  width : 200px;
+  height : 451px;
+}
+
+#spacing-wrap {
+float: left;
+  width : 20px;
+  height : 451px;
+}
+
+#viewer-wrap {
+float: left;
+  width : 501px;
+  height : 451px;
+  border-width:0.5px;
+  border-style:solid;
+  border-color:navy;
+}
+
+#clear {
+    clear: both;
+}
+
+#vwr {
+  width : 500px;
+  height : 450px;
+  padding : 0px;
+  margin-right : 50%;
+}
+
+    .static-label {
+    position:absolute;
+    background: #0000;
+    text-align:right;
+    z-index: 1;
+    font-weight:bold;
+    }
+    #selector {
+      //top:10px;
+      //left:10px;
+      margin-right : 50%;
+      box-shadow: 2px 2px 5px #888888;
+      border-radius:8px;
+      position:absolute;
+      background-color:#fafafa;
+      padding:0px;
+      border-style:solid;
+      border-width:1px;
+      border-color:#ccc;
+    }
+    #selector ul {
+      padding:0px;
+    }
+
+    #selector ul li {
+      margin-left:5px;
+      margin-right:5px;
+      margin-bottom:5px;
+      list-style:none;
+      cursor: pointer;
+      color:#393
+    }
+
+    #selector ul li:hover {
+      color:#994444;
+    }
+    #selector h1 {
+      font-weight:normal;
+      font-size:12pt;
+    }
+     #vwr pickedatom {
+      position absolute;
+      font-weight:bold;
+    }
+
+#inptcrdiv{
+  width:1400px;
+}
+
+table {
+  width:100%;
+}
+
+</style>
+
+{% endblock %}
+
+{% block article %}
+
+
+<h4>Modeling completed</h4>
+<div id=outer-wrap>
+  <div id=viewer-wrap>
+    <div id=selector>
+      <h1>View</h1>
+      <ul>
+	<li id=cartoon>Cartoon</li>                 
+	<li id=lines>Sticks</li>
+	<li id=cdr3lines>CDR3 Sticks</li>
+      </ul>
+    </div> 
+    <div id=vwr></div>
+  </div>
+  <div id=spacing-wrap></div>
+  <div id=download-wrap>
+    <br><br><br>
+    <a href="{{ url_for('viewmodel', jobid=rtcrjobid) }}"><h4>Full model viewer</h4></a>
+    <h4><a href={{ modelfname }} download>Download PDB file</a></h4>
+  </div>
+  <div id="clear"></div>
+</div>
+
+<br><br>
+
+
+<div id="inptcrdiv">
+  <table class="seqtable">
+    <tr>
+      <td class="firstcol"><strong>TCR &alpha; chain</strong></td>
+    </tr>
+    <tr>
+      <td><span class="inptcr inptcrachain">
+	  {{ tj.a_fw1 }}<span class="cdr" id="acdr1">{{ tj.aseq_cdr1 }}</span>{{ tj.a_fw2 }}<span class="cdr" id="acdr2hv4">{{ tj.aseq_cdr2hv4 }}</span>{{ tj.a_fw3 }}<span class="cdr" id="acdr3">{{ tj.aseq_cdr3 }}</span>{{ tj.a_fw4 }}
+      </span></td>
+    </tr>
+    <tr>
+      <td class="firstcol"><strong>TCR &beta; chain</strong></td>
+    </tr>
+    <tr>
+      <td><span class="inptcr inptcrbchain">
+	  {{ tj.b_fw1 }}<span class="cdr" id="bcdr1">{{ tj.bseq_cdr1 }}</span>{{ tj.b_fw2 }}<span class="cdr" id="bcdr2hv4">{{ tj.bseq_cdr2hv4 }}</span>{{ tj.b_fw3 }}<span class="cdr" id="bcdr3">{{ tj.bseq_cdr3 }}</span>{{ tj.b_fw4 }}
+      </span></td>
+    </tr>
+  </table>
+</div>
+
+<br>
+
+<h4>TCR &alpha; chain</h4>
+<table class="alitable">
+  <tr>
+    <th>TCR segment</th>
+    <th>Template</th>
+    <th>Alignment</th>
+  </tr>
+
+  <tr>
+    <td style="text-align:center"><span class="tcrcolor">CDR1</span></td>
+    <td nowrap class="inptcr noborder" style="text-align:right">
+      <span>Input :</span>
+      <br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.acdr1_tmplt_pdbid }}">{{ tj.acdr1_tmplt_pdb }}</a> :</span>
+      <br><br>
+      <br>
+    </td>
+    <td class="noborder" style="text-align:left">
+      <p class="ali inptcr">
+	<span class="t1ali aaseqali">{{ tj.aseq_cdr1 }}</span>
+        <br>
+	<span class="t2ali aaseqali">{{ tj.acdr1_tmplt_seq }}</span>
+        <br><br>
+	<span class="ast"></span>
+      </p>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td style="text-align:center" border="1"><span class="tcrcolor">CDR2</span></td>
+    <td nowrap class="inptcr noborder" style="text-align:right" border="none!important">
+      <span>Input :</span>
+      <br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.acdr2hv4_tmplt_pdbid }}">{{ tj.acdr2hv4_tmplt_pdb }}</a> :</span>
+      <br><br>
+      <br>
+    </td>
+    <td class="noborder" style="text-align:left">
+      <p class="ali inptcr">
+	<span class="t1ali aaseqali">{{ tj.aseq_cdr2hv4 }}</span>
+        <br>
+	<span class="t2ali aaseqali">{{ tj.acdr2hv4_tmplt_seq }}</span>
+        <br><br>
+	<span class="ast"></span>
+      </p>
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="text-align:center" border="1"><span class="tcrcolor">CDR3</span></td>
+    <td nowrap class="inptcr noborder" style="text-align:right" border="none!important">
+      <span>Input :</span>
+      <br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.acdr3_tmplt_pdbid }}">{{ tj.acdr3_tmplt_pdb }}</a> :</span>
+      <br><br>
+      <br>
+    </td>
+    <td class="noborder" style="text-align:left">
+      <p class="ali inptcr">
+	<span class="t1ali aaseqali">{{ tj.aseq_cdr3 }}</span>
+	<br>
+	<span class="t2ali aaseqali">{{ tj.acdr3_tmplt_seq }}</span>
+	<br><br>
+	<span class="ast"></span>
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="text-align:center"><span class="tcrcolor">Orientation</span></td>
+    <td style="text-align:center">
+      <p class="inptcr">
+	<span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.ori_tmplt }}">{{ tj.ori_tmplt_Apdb }}</a></span>
+      </p>
+    </td>
+  </tr>
+</table>
+
+<BR><BR>
+
+<h4>TCR &beta; chain</h4>
+<table class="alitable">
+  <tr>
+    <th>TCR segment</th>
+    <th>Template</th>
+    <th>Alignment</th>
+  </tr>
+  <tr>
+    <td style="text-align:center"><span class="tcrcolor">CDR1</span></td>
+    <td nowrap class="inptcr noborder" style="text-align:right">
+      <span>Input :</span>
+      <br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.bcdr1_tmplt_pdbid }}">{{ tj.bcdr1_tmplt_pdb }}</a> :</span>
+      <br><br>
+      <br>
+    </td>
+    <td class="noborder" style="text-align:left">
+      <p class="ali inptcr">
+	<span class="t1ali aaseqali">{{ tj.bseq_cdr1 }}</span>
+        <br>
+	<span class="t2ali aaseqali">{{ tj.bcdr1_tmplt_seq }}</span>
+        <br><br>
+	<span class="ast"></span>
+      </p>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td style="text-align:center"><span class="tcrcolor">CDR2</span></td>
+    <td nowrap class="inptcr noborder" style="text-align:right">
+      <span>Input :</span>
+      <br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.bcdr2hv4_tmplt_pdbid }}">{{ tj.bcdr2hv4_tmplt_pdb }}</a> :</span>
+      <br><br>
+      <br>
+    </td>
+    <td class="noborder" style="text-align:left">
+      <p class="ali inptcr">
+	<span class="t1ali aaseqali">{{ tj.bseq_cdr2hv4 }}</span>
+        <br>
+	<span class="t2ali aaseqali">{{ tj.bcdr2hv4_tmplt_seq }}</span>
+        <br><br>
+	<span class="ast"></span>
+      </p>
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="text-align:center"><span class="tcrcolor">CDR3</span></td>
+    <td nowrap class="inptcr noborder" style="text-align:right">
+      <span>Input :</span>
+      <br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.bcdr3_tmplt_pdbid }}">{{ tj.bcdr3_tmplt_pdb }}</a> :</span>
+      <br><br>
+      <br>
+    </td>
+    <td class="noborder" style="text-align:left">
+      <p class="ali inptcr">
+	<span class="t1ali aaseqali">{{ tj.bseq_cdr3 }}</span>
+	<br>
+	<span class="t2ali aaseqali">{{ tj.bcdr3_tmplt_seq }}</span>
+	<br><br>
+	<span class="ast"></span>
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="text-align:center"><span class="tcrcolor">Orientation</span></td>
+    <td style="text-align:center">
+      <p class="inptcr">
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.ori_tmplt }}">{{ tj.ori_tmplt_Bpdb }}</a></span>
+      </p>
+    </td>
+  </tr>
+</table>
+
+
+<br>
+<br>
+<h3>TCR segments</h3>
+<span class="inptcr">
+TCR &alpha; chain sequence :
+{{ tj.aseq_vdomain }}
+<br>
+TCR &beta; chain sequence :
+{{ tj.bseq_vdomain }}
+<br>
+TCR &alpha; chain variable domain :
+{{ tj.aseq_vdomain }}
+<br>
+TCR &beta; chain variable domain :
+{{ tj.bseq_vdomain }}
+<br>
+TCR &alpha; chain framework sequence :
+{{ tj.aseq_fw }}
+<br>
+TCR &beta; chain framework sequence :
+ {{ tj.bseq_fw }}
+<br>
+CDR1&alpha; : {{ tj.aseq_cdr1 }}
+<br>
+CDR1&beta; : {{ tj.bseq_cdr1 }}
+<br>
+CDR2hv4&alpha; : {{ tj.aseq_cdr2hv4 }}
+<br>
+CDR2hv4&beta; : {{ tj.bseq_cdr2hv4 }}
+<br>
+CDR3&alpha; : {{ tj.aseq_cdr3 }}
+<br>
+CDR3&beta; : {{ tj.bseq_cdr3 }}
+</span>
+<br>
+<h3>TCR templates</h3>
+<span class="inptcr">
+CDR1&alpha; template pdb : {{ tj.acdr1_tmplt_pdb }}
+<br>
+CDR1&alpha; template seq : {{ tj.acdr1_tmplt_seq }}
+<br>
+
+CDR2HV4&alpha; template pdb : {{ tj.acdr2hv4_tmplt_pdb }}
+<br>
+CDR2HV4&alpha; template seq : {{ tj.acdr2hv4_tmplt_seq }}
+<br>
+
+CDR3&alpha; template pdb : {{ tj.acdr3_tmplt_pdb }}
+<br>
+CDR3&alpha; template seq : {{ tj.acdr3_tmplt_seq }}
+<br>
+
+CDR1&beta; template pdb : {{ tj.bcdr1_tmplt_pdb }}
+<br>
+CDR1&beta; template seq : {{ tj.bcdr1_tmplt_seq }}
+<br>
+
+CDR2HV4&beta; template pdb : {{ tj.bcdr2hv4_tmplt_pdb }}
+<br>
+CDR2HV4&beta; template seq : {{ tj.bcdr2hv4_tmplt_seq }}
+<br>
+
+CDR3&beta; template pdb : {{ tj.bcdr3_tmplt_pdb }}
+<br>
+CDR3&beta; template seq : {{ tj.bcdr3_tmplt_seq }}
+<br>
+Orientation template : {{ tj.ori_tmplt }}
+</span>
+<br>
+<br>
+
+<script type="text/javascript" src="{{ url_for('static',filename='bio-pv.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='tcr_viewer.js') }}"></script>
+<script>
+var modelfname = {{ modelfname|tojson }}
+</script>
+
+{% endblock %}

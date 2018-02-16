@@ -1,0 +1,16 @@
+.A, .V, .F, .P, .M, .I, .L, .W {
+    color: red;
+}
+
+.D, .E {
+    color: blue;
+}
+
+.R, .K {
+    color: fuchsia;
+}
+
+.S, .T, .Y, .H, .C, .N, .G, .Q {
+    color: green;
+}
+

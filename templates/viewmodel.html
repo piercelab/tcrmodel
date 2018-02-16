@@ -1,0 +1,41 @@
+{% extends "test.html" %}
+ {% block head %}
+{{ super() }}
+<script type="text/javascript" src="{{ url_for('static',filename='js/bio-pv.min.js') }}"></script>
+{% endblock %}
+{% block title %}TCR Modeling Server{% endblock %}
+{% block article %}
+<h4 style="text-align:center"><a href="{{ url_for('rtcr', jobid=jobid) }}">JOB ID : {{ jobid }}</a></H4>
+<style>
+#viewer {
+  border-width:1px;
+  border-style:solid;
+  border-color:#eee;
+  padding : 0px;
+  width : 450px;
+  height : 450px;
+  margin-left : auto; margin-right: auto;
+}
+#viewer-wrap {
+  text-align:center;
+  width: 100%;
+}
+</style>
+
+<div id=viewer-wrap>
+  <div id=viewer></div>
+</div>
+
+<script type=text/javascript>
+  var parent = document.getElementById('viewer');
+  var viewer = pv.Viewer(parent,
+  { width : 450, height : 450, antialias : true });
+  var cdrfname = "{{ modelfname }}";
+  pv.io.fetchPdb(cdrfname, function(structure) {
+  viewer.on('viewerReady', function() { 
+  viewer.cartoon('protein', structure, { color: pv.color.byChain() } ); 
+  viewer.autoZoom();
+  });
+  });
+  </script>
+{% endblock %}

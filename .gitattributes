@@ -1,0 +1,5 @@
+*pdb_seqres.txt;[[:space:]]*pdb_seqres.txt.old filter=lfs diff=lfs merge=lfs -text
+update/tcr_template_structures/rcsb_update/backup_220316/pdb_seqres.txt.old filter=lfs diff=lfs merge=lfs -text
+update/tcr_template_structures/rcsb_update/backup_220316/pdb_seqres.txt filter=lfs diff=lfs merge=lfs -text
+update/tcr_template_structures/rcsb_update/pdb_seqres.txt filter=lfs diff=lfs merge=lfs -text
+update/tcr_template_structures/rcsb_update/pdb_seqres.txt.old filter=lfs diff=lfs merge=lfs -text

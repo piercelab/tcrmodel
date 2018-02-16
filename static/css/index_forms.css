@@ -1,0 +1,78 @@
+#panel, #flip, #panel2, #flip2 {
+    padding: 2px;
+    text-align: left;
+    background-color: #F8F8F8;
+    border: solid 1px #c3c3c3;
+    width: 90%;
+}
+
+#panel, #panel2 {
+    padding: 2px;
+    display: none;
+}
+
+form {
+   position: relative;
+   display: block;
+}
+form textarea {
+    width: 90%;
+    min-width: 140px;
+}
+form p {
+    margin: 0;
+    padding: 0;
+    display: block;
+    text-align: right;
+}
+
+.gen_button {
+    width: 90%;
+}
+.tab {
+    overflow: hidden;
+    background-color: #F8F8F8;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.tab button:hover {
+    background-color: royalblue;
+}
+
+.tab button.active {
+    text-decoration: underline;
+    background-color: #ccc;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+
+.genedisplay {
+        font-size:small;
+        color:navy;
+}
+
+
+jobidsearch {
+    white-space: nowrap;
+    position : relative;
+    text-align: center;
+    }
+.jobidinput{
+    border:1px solid navy;
+    font-size: 10pt;
+    height: 30px;
+    }
