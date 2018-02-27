@@ -52,8 +52,8 @@ def links():
 def test():
    return render_template("test.html")
 
-@app.route('/processjob/<aseq>/<bseq>/<simil_cutoff>/<loopref_checked>/<looprem_checked>/<pdb_blacklist>')
-def processjob(aseq,bseq,simil_cutoff,loopref_checked,looprem_checked,pdb_blacklist):
+@app.route('/processjob/<aseq>/<bseq>/<loopref_checked>/<pdb_blacklist>')
+def processjob(aseq,bseq,loopref_checked,pdb_blacklist):
    if (aseq and bseq):
     #remove everying but characters from input string
       aseq=''.join(i for i in aseq if i.isalpha())
@@ -63,8 +63,8 @@ def processjob(aseq,bseq,simil_cutoff,loopref_checked,looprem_checked,pdb_blackl
    else:
       errormsg = "No input TCR sequence"
       return render_template("error.html", errormsg=errormsg)
-   aregexres = assign_CDRs_using_REGEX_webserver_version(aseq, "A")
-   bregexres = assign_CDRs_using_REGEX_webserver_version(bseq, "B")
+   aregexres = assign_CDRs_using_REGEX_webserver_2version(aseq, "A")
+   bregexres = assign_CDRs_using_REGEX_webserver_2version(bseq, "B")
 
    if (not aregexres):
       errormsg = "No TCR sequence identified from the Alpha chain input"
@@ -95,7 +95,8 @@ def processjob(aseq,bseq,simil_cutoff,loopref_checked,looprem_checked,pdb_blackl
       for i in range(0, len(bseq), 60):
          bseq_file.write(bseq[i:i+60]+'\n')
 
-   rtcrcommand = "-mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s -template_similarity_cutoff %s "  % (aseq,bseq,simil_cutoff) 
+   #rtcrcommand = "-mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s -template_similarity_cutoff %s "  % (aseq,bseq,simil_cutoff) 
+   rtcrcommand = "-mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s "  % (aseq,bseq) 
 
    if pdb_blacklist:
       pdb_blacklist = pdb_blacklist.split(',')
@@ -104,6 +105,7 @@ def processjob(aseq,bseq,simil_cutoff,loopref_checked,looprem_checked,pdb_blackl
             ignore_list_file.write(ignorepdb+'\n')
             rtcrcommand += "-ignore_list ignore_list.txt "
 
+   looprem_checked = "no";
    if (looprem_checked == "yes"):
       rtcrcommand += "-remodel_tcr_cdr3_loops "
    if (loopref_checked == "yes"):
@@ -115,38 +117,47 @@ def processjob(aseq,bseq,simil_cutoff,loopref_checked,looprem_checked,pdb_blackl
       send_job_to_ibbr_cluster(uniquedirname,rtcrcommand)
       #send_job_to_local_server(uniquedirname,rtcrcommand)
 
-
    #find template for rendering in html
    #create tcr json file with template and sequence details
    tcrdata['jobid'] = uniquedirname
    tcrdata['aseq_vdomain'] = aregexres.groups()[0]
    tcrdata['bseq_vdomain'] = bregexres.groups()[0]
+   
    tcrdata['a_fw1'] = aregexres.groups()[1]
    tcrdata['a_fw2'] = aregexres.groups()[3]
    tcrdata['a_fw3'] = aregexres.groups()[5]
    tcrdata['a_fw4'] = aregexres.groups()[7]
    aseq_fw = aregexres.groups()[1] + aregexres.groups()[3] + aregexres.groups()[5] + aregexres.groups()[7]
    tcrdata['aseq_fw'] = aseq_fw
-
-   multidb = glob.glob(tmplt_db_seq+"*_TCR_FW.fasta")
+   multidb = glob.glob(tmplt_db_seq+"*_TCR1_FW.fasta")
    afw_tmplt = score_alignment_from_fasta_files_list( aseq_fw, multidb, None, pdb_blacklist )
-   tcrdata['afw_tmplt_pdb'] = str(afw_tmplt[1].id)[:6].upper()
-   tcrdata['afw_tmplt_pdbid'] = str(afw_tmplt[1].id)[:4].upper()
-   tcrdata['afw_tmplt_seq'] = str(afw_tmplt[1].seq)
+   if all(afw_tmplt):
+      tcrdata['afw_tmplt_pdb'] = str(afw_tmplt[1].id)[:6].upper()
+      tcrdata['afw_tmplt_pdbid'] = str(afw_tmplt[1].id)[:4].upper()
+      tcrdata['afw_tmplt_seq'] = str(afw_tmplt[1].seq)
+   else:
+      errormsg = "No Template found for TCR Alpha Framework segment"
+      return render_template("error.html", errormsg=errormsg)
+
    tcrdata['b_fw1'] = bregexres.groups()[1]
    tcrdata['b_fw2'] = bregexres.groups()[3]
    tcrdata['b_fw3'] = bregexres.groups()[5]
    tcrdata['b_fw4'] = bregexres.groups()[7]
    bseq_fw = bregexres.groups()[1] + bregexres.groups()[3] + bregexres.groups()[5] + bregexres.groups()[7]
    tcrdata['bseq_fw'] = bseq_fw
-   multidb = glob.glob(tmplt_db_seq+"*_TCR_FW.fasta")
+   multidb = glob.glob(tmplt_db_seq+"*_TCR1_FW.fasta")
    bfw_tmplt = score_alignment_from_fasta_files_list( bseq_fw, multidb, None, pdb_blacklist )
-   tcrdata['bfw_tmplt_pdb'] = str(bfw_tmplt[1].id)[:6].upper()
-   tcrdata['bfw_tmplt_seq'] = str(bfw_tmplt[1].seq)
+   if all(bfw_tmplt):
+      tcrdata['bfw_tmplt_pdb'] = str(bfw_tmplt[1].id)[:6].upper()
+      tcrdata['bfw_tmplt_pdbid'] = str(bfw_tmplt[1].id)[:4].upper()
+      tcrdata['bfw_tmplt_seq'] = str(bfw_tmplt[1].seq)
+   else:
+      errormsg = "No Template found for TCR Beta Framework segment"
+      return render_template("error.html", errormsg=errormsg)
 
-   orientation_template_file = tmplt_db_seq+"TCR_ORIENTATION.seq"
+   orientation_template_file = tmplt_db_seq+"TCR1_ORIENTATION.seq"
    ori_tmplt = find_orientation_template(aseq_fw.strip(), bseq_fw.strip(), orientation_template_file)
-   if ori_tmplt:
+   if all(ori_tmplt):
       tcrdata['ori_tmplt'] = str(ori_tmplt[0])[:4].upper()
       tcrdata['ori_tmplt_Apdb'] = str(ori_tmplt[0])[:6]
       tcrdata['ori_tmplt_Bpdb'] = str(ori_tmplt[1])[:6]
@@ -156,7 +167,7 @@ def processjob(aseq,bseq,simil_cutoff,loopref_checked,looprem_checked,pdb_blackl
 
    aseq_cdr1 = aregexres.groups()[2]
    tcrdata['aseq_cdr1'] = aseq_cdr1
-   multidb = glob.glob(tmplt_db_seq+"*_TCR_CDR1_*.fasta")
+   multidb = glob.glob(tmplt_db_seq+"*_TCR1_CDR1_*.fasta")
    acdr1_tmplt = score_alignment_from_fasta_files_list( aseq_cdr1, multidb, None, pdb_blacklist )
    if all(acdr1_tmplt):
       tcrdata['acdr1_tmplt_pdb'] = str(acdr1_tmplt[1].id)[:6].upper()
@@ -168,7 +179,7 @@ def processjob(aseq,bseq,simil_cutoff,loopref_checked,looprem_checked,pdb_blackl
 
    aseq_cdr2hv4 = aregexres.groups()[4]
    tcrdata['aseq_cdr2hv4'] = aseq_cdr2hv4
-   multidb = glob.glob(tmplt_db_seq+"*_TCR_CDR2HV4_*.fasta")
+   multidb = glob.glob(tmplt_db_seq+"*_TCR1_CDR2HV4_*.fasta")
    acdr2hv4_tmplt = score_alignment_from_fasta_files_list( aseq_cdr2hv4, multidb, None, pdb_blacklist )
    if all(acdr2hv4_tmplt):
       tcrdata['acdr2hv4_tmplt_pdb'] = str(acdr2hv4_tmplt[1].id)[:6].upper()
@@ -180,7 +191,7 @@ def processjob(aseq,bseq,simil_cutoff,loopref_checked,looprem_checked,pdb_blackl
 
    aseq_cdr3 = aregexres.groups()[6]
    tcrdata['aseq_cdr3'] = aseq_cdr3
-   multidb = glob.glob(tmplt_db_seq+"*_TCR_CDR3_*.fasta")
+   multidb = glob.glob(tmplt_db_seq+"*_TCR1_CDR3_*.fasta")
    acdr3_tmplt = score_alignment_from_fasta_files_list( aseq_cdr3, multidb, None, pdb_blacklist )
    if all(acdr3_tmplt):
       tcrdata['acdr3_tmplt_pdb'] = str(acdr3_tmplt[1].id)[:6].upper()
@@ -191,7 +202,7 @@ def processjob(aseq,bseq,simil_cutoff,loopref_checked,looprem_checked,pdb_blackl
       return render_template("error.html", errormsg=errormsg)
 
    bseq_cdr1 = bregexres.groups()[2]
-   multidb = glob.glob(tmplt_db_seq+"*_TCR_CDR1_*.fasta")
+   multidb = glob.glob(tmplt_db_seq+"*_TCR1_CDR1_*.fasta")
    bcdr1_tmplt = score_alignment_from_fasta_files_list( bseq_cdr1, multidb, None, pdb_blacklist )
    tcrdata['bseq_cdr1'] = bseq_cdr1
    if all(bcdr1_tmplt):
@@ -203,7 +214,7 @@ def processjob(aseq,bseq,simil_cutoff,loopref_checked,looprem_checked,pdb_blackl
       return render_template("error.html", errormsg=errormsg)
 
    bseq_cdr2hv4 = bregexres.groups()[4]
-   multidb = glob.glob(tmplt_db_seq+"*_TCR_CDR2HV4_*.fasta")
+   multidb = glob.glob(tmplt_db_seq+"*_TCR1_CDR2HV4_*.fasta")
    bcdr2hv4_tmplt = score_alignment_from_fasta_files_list( bseq_cdr2hv4, multidb, None, pdb_blacklist )
    tcrdata['bseq_cdr2hv4'] = bseq_cdr2hv4
    if all(bcdr2hv4_tmplt):
@@ -215,7 +226,7 @@ def processjob(aseq,bseq,simil_cutoff,loopref_checked,looprem_checked,pdb_blackl
       return render_template("error.html", errormsg=errormsg)
 
    bseq_cdr3 = bregexres.groups()[6]
-   multidb = glob.glob(tmplt_db_seq+"*_TCR_CDR3_*.fasta")
+   multidb = glob.glob(tmplt_db_seq+"*_TCR1_CDR3_*.fasta")
    bcdr3_tmplt = score_alignment_from_fasta_files_list( bseq_cdr3, multidb, None, pdb_blacklist )
    tcrdata['bseq_cdr3'] = bseq_cdr3
    if all(bcdr3_tmplt):
@@ -286,12 +297,12 @@ def submitjob():
    bseq = request.form['betachain']
    if not (aseq or bseq):
       return render_template("error.html", errormsg="No TCR sequence entered!")
-   simil_cutoff = request.form.get('simcutoff')
+   #simil_cutoff = request.form.get('simcutoff')
    pdb_blacklist = request.form.get('pdbblacklist')
    loopref_checked = "yes" if (request.form.get("lr"))else "no"
-   looprem_checked = "yes" if (request.form.get("lr"))else "no"
+   #looprem_checked = "yes" if (request.form.get("lr"))else "no"
    #uniquedirname = processjob(aseq,bseq,simil_cutoff,loopref_checked,looprem_checked,pdb_blacklist)
-   return redirect(url_for('processjob', aseq=aseq,bseq=bseq,simil_cutoff=simil_cutoff,loopref_checked=loopref_checked,looprem_checked=looprem_checked,pdb_blacklist=pdb_blacklist))
+   return redirect(url_for('processjob', aseq=aseq,bseq=bseq,loopref_checked=loopref_checked,pdb_blacklist=pdb_blacklist))
 
 def renumber_tcrpdb_by_aho_number(outpdb):
    outpdb_orig = 'tcrmodel.pdb.orig'
@@ -539,13 +550,11 @@ def testsubmit():
       bcdr = request.form['bcdr']
    else:
       return render_template("error.html", errormsg="CDR3 sequence for beta chain not entered!")
-   simil_cutoff = request.form.get('simcutoff')
    pdb_blacklist = request.form.get('pdbblacklist')
    loopref_checked = "yes" if (request.form.get("lr"))else "no"
-   looprem_checked = "yes" if (request.form.get("lm"))else "no"
    aseq =  trav+acdr.upper()+traj
    bseq =  trbv+bcdr.upper()+trbj
-   return redirect(url_for('processjob', aseq=aseq,bseq=bseq,simil_cutoff=simil_cutoff,loopref_checked=loopref_checked,looprem_checked=looprem_checked,pdb_blacklist=pdb_blacklist))
+   return redirect(url_for('processjob', aseq=aseq,bseq=bseq,loopref_checked=loopref_checked,pdb_blacklist=pdb_blacklist))
 
 if __name__ == '__main__':
    #app.run(debug = True)

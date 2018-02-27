@@ -1,0 +1,11 @@
+#!/bin/sh
+#PBS -V
+#PBS -S /bin/sh
+#PBS -N RosettaTCR
+#PBS -l nodes=1:ppn=1,walltime=72:00:00,mem=512mb
+cd $PBS_O_WORKDIR
+rundir=${PWD##*/}
+/home/gowthamanr/Rosetta/main/source/bin/tcr.linuxgccrelease -mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha AQSVTQLDSQVPVFEEAPVELRCNYSSSVSVYLFWYVQYPNQGLQLLLKYLSGSTLVESINGFEAEFNKSQTSFHLRKPSVHISDTAEYFCAVGGSQGNLIFGKGTKLSVKP -beta DGGITQSPKYLFRKEGQNVTLSCEQNLNHDAMYWYRQDPGQGLRLIYYSQIVNDFQKGDIAEGYSVSREKKESFPLTVTSAQKNPTAFYLCASSIRSSYEQYFGPGTRLTVT -ignore_list ignore_list.txt  > res.out 
+if test -f res.out ; then scp res.out ragul@piercelab.ibbr.umd.edu:/www/piercelab/tcrmodel_runs/$rundir/res.out ;fi
+if test -f tcrmodel.pdb ; then scp tcrmodel.pdb ragul@piercelab.ibbr.umd.edu:/www/piercelab/tcrmodel_runs/$rundir/tcrmodel.pdb ;fi
+if ! test -f tcrmodel.pdb ; then echo ERROR > tcr.fail; scp tcr.fail ragul@piercelab.ibbr.umd.edu:/www/piercelab/tcrmodel_runs/$rundir/tcr.fail ;fi

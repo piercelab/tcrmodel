@@ -147,8 +147,8 @@ $("#btn1").click(function () {
 $("#btn2").click(function () {
 	$("#aspecies").prop('selectedIndex', 1);
 	$("#bspecies").prop('selectedIndex', 1);
-	$("#acdr").val("AVGGSQGNLI");
-	$("#bcdr").val("ASSIRSSYEQY");
+	$("#acdr").val("CAVGGSQGNLIF");
+	$("#bcdr").val("CASSIRSSYEQYF");
 	$('select#trav option:contains("TRAV8-6*01")').prop('selected',true);
 	$('select#traj option:contains("TRAJ42*01")').prop('selected',true);
 	$('select#trbv option:contains("TRBV19*01")').prop('selected',true);

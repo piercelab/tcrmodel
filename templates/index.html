@@ -27,18 +27,17 @@
     <div style="line-height:5px;"><br></div>
     <textarea NAME="betachain" type="text" id="bchain" COLS=60 ROWS=4></textarea>
     <br><span id="trbv_id" class="genedisplay"></span><br><br>
-    <input type="submit"  style="float: left;" value="Submit"> 
-    <input type="reset"  style="float: left;" value="Reset" id="reset1">
+    <input type="submit"  style="float: left;" value="Submit" class="buttonfont">
+    <input type="reset"  style="float: left;" value="Reset" id="reset1" class="buttonfont buttonclear">
     <br><br>
     <a href="#" id="btn1">Example input: 3993 KRAS_G12D TCR</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/26516200">(reference)</a>
     <br>
     <div style="line-height:5px;"><br></div>
-    <a href={{ url_for('rtcrex', jobid = 'TCRRAK_180212_121715' ) }}>Example output: 3993 KRAS_G12D TCR</a>
+    <a href={{ url_for('rtcrex', jobid = 'TCRPNM_180227_113149' ) }}>Example output: 3993 KRAS_G12D TCR</a>
     <br><br>
     <div id="flip"><u>Advanced options:</u></div>
     <div id="panel">
       <br>
-      <input type="checkbox" name="lm" value="looprem"> Remodel CDR3 loops<br>
       <input type="checkbox" name="lr" value="loopref"> Refine CDR3 loops<br>
       <br>
       PDB templates to exclude: <input type="text" name="pdbblacklist" value="None" >
@@ -46,10 +45,8 @@
 	      title="Enter PDB ID's separated by comma">?</button>
       <br>
       <br>
-      Percent ID cutoff to exclude templates: <input type="number" min="1" max="100" step="1" value="100" name="simcutoff">
-      <br><br>
-      <input type="submit" value="Submit">
-      <input type="reset" value="Reset" id="reset1">
+      <input type="submit" value="Submit" class="buttonfont">
+      <input type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
     </div>
   </form>
 </div>
@@ -98,29 +95,27 @@
     <div style="line-height:2px;"><br></div>
     <textarea NAME="betachain" type="text" id="betachain" COLS=60 ROWS=4></textarea>
     <br>
-    <input type="submit"  style="float: left;" value="Submit" id="submitid2"> 
-    <input type="reset"  style="float: left;" value="Reset" id="resetid2">
+    <div style="line-height:5px;"><br></div>
+    <input type="submit"  style="float: left;" value="Submit" id="submitid2" class="buttonfont"> 
+    <input type="reset"  style="float: left;" value="Reset" id="resetid2" class="buttonfont buttonclear">
     <P class="gen_button"><button type="button" id="loadbtn" style="float: right;">Generate TCR sequences</button></p>
     <br><br>
     <a href="#" id="btn2">Example input: F26 Flu_M1 TCR</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/28423320">(reference)</a>
     <br>
     <div style="line-height:5px;"><br></div>
-    <a href={{ url_for('rtcrex', jobid = 'TCRWAS_180212_122015' ) }}>Example output: F26 Flu_M1 TCR</a>
+    <a href={{ url_for('rtcrex', jobid = 'TCR5FQ_180227_113345' ) }}>Example output: F26 Flu_M1 TCR</a>
     <br><br>
     <div id="flip2"><u>Advanced options:</u></div>
     <div id="panel2">
       <br>
-      <input type="checkbox" name="lm" value="looprem"> Remodel CDR3 loops<br>
       <input type="checkbox" name="lr" value="loopref"> Refine CDR3 loops<br>
 	<br>
 	PDB templates to exclude: <input type="text" name="pdbblacklist" value="None" >
 	<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
 		title="Enter PDB ID's separated by comma">?</button>
 	<br><br>
-	Cut-off to ignore similar templates : <input type="number" min="1" max="100" step="1" value="100" name="simcutoff">
-	<br><br>
-	<input type="submit" value="Submit" id="submitid2">
-	<input type="reset" value="Reset" id="resetid2">
+	<input type="submit" value="Submit" id="submitid2" class="buttonfont">
+	<input type="reset" value="Reset" id="resetid2" class="buttonfont buttonclear">
       </div>
   </form>  
 </div>  

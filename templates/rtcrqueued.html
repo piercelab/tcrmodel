@@ -2,6 +2,7 @@
 {% block head %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='table-style.css') }}">
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 <style>
 table {
   width:100%;
@@ -11,9 +12,7 @@ table {
 
 {% block title %}TCR Modeling Server{% endblock %}
 {% block article %}
-
-<h4><span><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>Your job is submitted</span></h4>
-
+<h4><span><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> Your job is submitted</span></h4>
 <h4>Your job id is {{ jobid }}</h4>
 <h4>Please wait for the results to appear in this browser window.<BR>
   You may reload or refresh the browser at any time.<BR>

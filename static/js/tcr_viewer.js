@@ -210,10 +210,6 @@ window.onresize = function(event) {
     document.addEventListener('DOMContentLoaded', tcr);
 
 
-$('#tmplt_ori').click(function() {
-	alert("hi");
-    });
-
 $(document).ready(function() {
 
 	function show_afw(){

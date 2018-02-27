@@ -25,9 +25,6 @@
 .tmpltcolor {
     color: cornflowerblue;
 }
-.cdr{
- border-bottom: 2px dotted grey;
-}
 .inptcr {
     font-family: monospace;
     font-size: 20px;
@@ -93,3 +90,67 @@ td.noborder {
     overflow-wrap: break-word;
 }
 
+.tooltip {
+    position: relative;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext1 {
+    font-size: 15px;
+    line-height: normal;
+    font-style: normal;
+    font-weight: normal;
+    visibility: hidden;
+    width: 200px;
+    background-color: #E8E8E8;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 3px 0;
+    position: absolute;
+    z-index: 1;
+    top: 150%;
+    left: 50%;
+    margin-left: -100px;
+}
+.tooltip .tooltiptext1::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;/* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+.tooltip .tooltiptext2 {
+    font-size: 15px;
+    line-height: normal;
+    font-style: normal;
+    font-weight: normal;
+    visibility: hidden;
+    width: 200px;
+    background-color: #E8E8E8;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 3px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -100px;
+}
+.tooltip .tooltiptext2::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+.tooltip:hover .tooltiptext1, .tooltip:hover .tooltiptext2 {
+    visibility: visible;
+}

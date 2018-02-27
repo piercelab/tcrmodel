@@ -76,3 +76,11 @@ jobidsearch {
     font-size: 10pt;
     height: 30px;
     }
+
+.buttonfont {
+    font-size: 15px;
+}
+
+.buttonclear{
+ margin-left:10px;
+}
