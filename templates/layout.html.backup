@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <title>{% block title %}TCRmodel Server{% endblock %}</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      window.jQuery || document.write('<script src="{{
+						    url_for('static', filename='js/jquery-3.2.1.js') }}">\x3C/script>')
+      </script>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/index_forms.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/table-style.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/aa_colors.css') }}">
+      <script type="text/javascript" src="{{ url_for('static', filename='js/aa_funcs.js') }}"></script>    
+      <script type=text/javascript>
+	$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+      </script>
+      {% endblock %}
+  </head>
+  <body>
+    <header>
+      <center>
+	<toph1>TCRmodel</toph1>
+	<br>
+	<bottomh1>Automated high resolution modeling of T cell receptors</bottomh1>
+      </center>
+    </header>
+    <div id="main">
+      <article>{% block article %}{% endblock %}</article>
+      <nav>
+	<center>
+	  <img class="navIMG" src="{{ url_for('static', filename='image/tcr_model_logo.png') }}" alt="Logo">
+	</center>
+	<br>
+	<h3 style="text-align:center"><a href="{{ url_for('index') }}">Home</a></h3>
+	<h3 style="text-align:center"><a href="{{ url_for('about') }}">About</a></h3>
+	<h3 style="text-align:center"><a href="{{ url_for('help') }}">Help</a></h3>
+	<h3 style="text-align:center"><a href="{{ url_for('links') }}">Links</a></h3>
+	<br>
+	<center>
+	  <form action="{{ url_for('searchid') }}" method="post">
+	    <jobidsearch>
+	      <i class="fa fa-search" aria-hidden="true"></i>
+	      <input class="jobidinput" type="text" id="jobidinput" size="16" name="jobidinput" placeholder="Search Job ID">
+	      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+		      title="Enter Job ID to retrieve results. Results are stored on the server for 30 days.">?</button>
+	    </jobidsearch>
+	  </form>
+	</center>
+      </nav>
+    </div>
+    <footer>
+      <center>
+	Template database last updated: 3/1/2018<br><br>
+	<a href="http://www.rosettacommons.org" target="_blank">
+	  <img src="{{ url_for('static', filename='image/rosettacommons_logo.png') }}"  alt="RosLogo" style="width:150px;">
+	</a>
+	&nbsp&nbsp&nbsp&nbsp&nbsp
+	<a href="http://www.ibbr.umd.edu" target="_blank">
+	  <img src="{{ url_for('static', filename='image/ibbr_logo.png') }}"  alt="Logo" style="width:200px;">
+	</a>
+      </center>
+    </footer>
+  </body>
+</html>
