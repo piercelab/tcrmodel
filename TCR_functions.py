@@ -172,13 +172,13 @@ def assign_CDRs_using_REGEX_webserver_version(seq, tag):
 
 def assign_CDRs_using_REGEX_webserver_2version(seq, tag):
     import re
-    tcra_regex_1 = "^[A-Z]*(([A-Z]{19})(C[A-Z]{1,19}W)([A-Z]{11}[L|I|V])([A-Z]{1,36})([L|I|F][A-Z]{12}Y[A-Z])([C|W][A-Z]{1,32}[F|W])(G[A-Z]G[A-Z]{6}))[A-Z]*"
-    tcra_regex_2 = "^[A-Z]*(([A-Z]{19})(C[A-Z]{1,19}W)([A-Z]{10}[L|I|V])([A-Z]{1,36})([L|I|F][A-Z]{12}Y[A-Z])([C|W][A-Z]{1,32}[F|W])(G[A-Z]G[A-Z]{6}))[A-Z]*"
+    tcra_regex_1 = "^[A-Z]*(([A-Z]{19}C)([A-Z]{1,19})(W[A-Z]{11}[L|I|V])([A-Z]{1,36})([L|I|F][A-Z]{12}Y[A-Z])([C|W][A-Z]{1,32}[F|W])(G[A-Z]G[A-Z]{6}))[A-Z]*"
+    tcra_regex_2 = "^[A-Z]*(([A-Z]{19}C)([A-Z]{1,19})(W[A-Z]{10}[L|I|V])([A-Z]{1,36})([L|I|F][A-Z]{12}Y[A-Z])([C|W][A-Z]{1,32}[F|W])(G[A-Z]G[A-Z]{6}))[A-Z]*"
     tcra_regexList = [tcra_regex_1,tcra_regex_2]
-    tcrb_regex_1 = "^[A-Z]*(([A-Z]{2}Q[A-Z]{16})(C[A-Z]{1,19}W)([A-Z]{11}[L|I|M])([A-Z]{1,36})([L|M][A-Z]{12})(C[A-Z]C[A-Z]{1,32}F)(G[A-Z]G[A-Z]{2}L[A-Z]{3}))[A-Z]*"
+    tcrb_regex_1 = "^[A-Z]*(([A-Z]{2}Q[A-Z]{16}C)([A-Z]{1,19})(W[A-Z]{11}[L|I|M])([A-Z]{1,36})([L|M][A-Z]{12})(C[A-Z]C[A-Z]{1,32}F)(G[A-Z]G[A-Z]{2}L[A-Z]{3}))[A-Z]*"
     #for pdb 3to4
-    tcrb_regex_2 = "^[A-Z]*(([A-Z]{2}Q[A-Z]{16})(C[A-Z]{1,19}W)([A-Z]{11}[L|I|M])([A-Z]{1,31}DTELR)(L[A-Z]{12})(C[A-Z]{1,32}F)(G[A-Z]G[A-Z]{2}L[A-Z]{3}))[A-Z]*"
-    tcrb_regex_3 = "^[A-Z]*(([A-Z]{2}Q[A-Z]{16})(C[A-Z]{1,19}W)([A-Z]{11}[L|I|M])([A-Z]{1,36})([L|M][A-Z]{14})(C[A-Z]{1,32}F)(G[A-Z]G[A-Z]{2}L[A-Z]{3}))[A-Z]*"
+    tcrb_regex_2 = "^[A-Z]*(([A-Z]{2}Q[A-Z]{16}C)([A-Z]{1,19})(W[A-Z]{11}[L|I|M])([A-Z]{1,31}DTELR)(L[A-Z]{12})(C[A-Z]{1,32}F)(G[A-Z]G[A-Z]{2}L[A-Z]{3}))[A-Z]*"
+    tcrb_regex_3 = "^[A-Z]*(([A-Z]{2}Q[A-Z]{16}C)([A-Z]{1,19})(W[A-Z]{11}[L|I|M])([A-Z]{1,36})([L|M][A-Z]{14})(C[A-Z]{1,32}F)(G[A-Z]G[A-Z]{2}L[A-Z]{3}))[A-Z]*"
     tcrb_regexList = [tcrb_regex_1,tcrb_regex_2,tcrb_regex_3]
     if tag == 'A': tcr_regexList = tcra_regexList;
     if tag == 'B': tcr_regexList = tcrb_regexList;

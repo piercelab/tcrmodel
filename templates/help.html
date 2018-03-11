@@ -17,15 +17,15 @@ Users can optionally exclude closely related structures as templates for modelin
 After submission of TCR sequences, the results page will provide the parsed CDR loop sequences and identified templates to the user. When modeling completes, the results page will be automatically updated. The completed results page includes three main sections:
 <br><br>
 1) An interactive viewer showing the modeled TCR structure, downloadable model coordinates, and the model amino acid sequence:<br>
-<center><img src="{{ url_for('static', filename='image/results_struct_seq.png') }}"  alt="Structure Results" style="width:500px;"></center>
-<br>
+<br><center><img src="{{ url_for('static', filename='image/results_struct_seq.png') }}"  alt="Structure Results" style="width:500px;"></center>
+<br><br>
 2) Sequence alignments between model and template TCR structures:<br>
-<center><img src="{{ url_for('static', filename='image/results_alignment.png') }}"  alt="Alignment Results" style="width:500px;"></center>
+<br><center><img src="{{ url_for('static', filename='image/results_alignment.png') }}"  alt="Alignment Results" style="width:500px;"></center>
 <br>
-Alignment information is shown immediately after job submission while waiting for completion as well.<br><br>
-3) Sequences of TCR CDR loops and templates in parseable plain text format:<br>
-<center><img src="{{ url_for('static', filename='image/results_sequences.png') }}"  alt="Sequences Results" style="width:450px;"></center>
+Alignment information is also shown immediately after job submission while waiting for completion.<br><br>
+3) Sequences of TCR CDR loops and templates in parsable plain text format:<br>
+<br><center><img src="{{ url_for('static', filename='image/results_sequences.png') }}"  alt="Sequences Results" style="width:450px;"></center>
 <br>
-<br>An example of a results page is <a href={{ url_for('rtcrex', jobid = 'TCRPNM_180227_113149' ) }}>here</a>. Users can view models using an interactive <a href={{ url_for('viewmodel', jobid = 'TCRPNM_180227_113149' ) }}>full window viewer</a>, accessible from the results page.
+<br>An example of a results page is <a href={{ url_for('rtcrex', jobid = 'TCRH90_180301_195621' ) }}>here</a>. Users can view models using an interactive <a href={{ url_for('viewmodel', jobid = 'TCRH90_180301_195621' ) }}>full window viewer</a>, accessible from the results page.
 {% endblock %}
 

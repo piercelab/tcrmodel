@@ -96,7 +96,7 @@ def processjob(aseq,bseq,loopref_checked,pdb_blacklist):
          bseq_file.write(bseq[i:i+60]+'\n')
 
    #rtcrcommand = "-mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s -template_similarity_cutoff %s "  % (aseq,bseq,simil_cutoff) 
-   rtcrcommand = "-mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s "  % (aseq,bseq) 
+   rtcrcommand = "-mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s -minimize_model "  % (aseq,bseq) 
 
    if pdb_blacklist:
       pdb_blacklist = pdb_blacklist.split(',')
@@ -506,15 +506,19 @@ def searchid():
          return render_template("error.html", errormsg="Job ID not found")
       outpdb = os.path.join(rundir_path,str(jobid),'tcrmodel.pdb')
       errorfile = os.path.join(rundir_path,str(jobid),'tcr.fail')
+      tcrjsonfile = os.path.join(rundir_path,str(jobid),str(jobid)+'.json')
+      if not os.path.isfile(tcrjsonfile):
+         return render_template("error.html", errormsg="Results not found")
+      with open(tcrjsonfile) as json_data:
+         tcrjsondata = json.load(json_data)
       if os.path.isfile(outpdb):
          outpdb_spath = os.path.join(rundir_spath,str(jobid),'tcrmodel.pdb')
-         tcrjsonfile = os.path.join(rundir_path,str(jobid),str(jobid)+'.json')
-         tcrjsonfile_spath = os.path.join(rundir_spath,str(jobid),str(jobid)+'.json')
-         with open(tcrjsonfile) as json_data:
-            tcrjsondata = json.load(json_data)
          return render_template("rtcrcompleted.html", rtcrjobid = jobid, modelfname=outpdb_spath, tj=tcrjsondata)
       elif os.path.isfile(errorfile):
          return render_template("rtcrfailed.html", rtcrjobid = jobid)
+      else:
+         return redirect(url_for('rtcr', jobid=jobid))
+
       
 @app.route('/testsubmit', methods=['POST', 'GET'])
 def testsubmit():
@@ -555,6 +559,16 @@ def testsubmit():
    aseq =  trav+acdr.upper()+traj
    bseq =  trbv+bcdr.upper()+trbj
    return redirect(url_for('processjob', aseq=aseq,bseq=bseq,loopref_checked=loopref_checked,pdb_blacklist=pdb_blacklist))
+
+@app.route("/DownloadFile/<path:filepath>")
+def DownloadFile (filepath = None):
+   if filepath is None:
+      self.Error(400)
+   try:
+      return send_file(filepath, as_attachment=True)
+   except Exception as e:
+      self.log.exception(e)
+      self.Error(400)
 
 if __name__ == '__main__':
    #app.run(debug = True)

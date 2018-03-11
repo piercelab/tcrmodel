@@ -41,11 +41,11 @@
 	overflow: scroll;
     }
     footer {
-	position: relative; 
-	left: 0 ; right: 0; bottom: 0; 
-	background: #E8E8E8;
-	height: 5vh;
-    }
+    	position: relative;
+        left: 0 ; right: 0; bottom: 0;
+        background: #E8E8E8;
+        height: 5vh;
+	}
 
     #header > headertext {
 	text-align: center; 

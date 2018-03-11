@@ -8,7 +8,7 @@
 <div id=outer-wrap>
   <div id=viewer-wrap>
     <div id=sele-panel>
-      <h1>View</h1>
+      <h3>View</h3>
       <ul>
 	<li id=cartoon>Cartoon</li>                 
 	<li id=lines>Sticks</li>
@@ -21,12 +21,13 @@
   <div id=download-wrap>
     <h4>Status : Modeling completed</h4>
     <h4>Job ID : <a href="{{ url_for('rtcrex', jobid=rtcrjobid) }}">{{ rtcrjobid }}</a></h4>
-    <h4><a href="/tcrmodel_runs/TCRTNT_180205_131413/tcrmodel.pdb" download>Download PDB file</a></h4>
     <a href="{{ url_for('viewmodel', jobid=rtcrjobid) }}"><h4>Full model viewer</h4></a>
+    <h4><a href={{ modelfname }} download>Download PDB file</a></h4>
   </div>
   <div id="clear"></div>
 </div>
 <br>
+<h3>Sequences</h3>
 <div class="inptcrtable-outter">
   <table class="inptcrtable">
     <tr>
@@ -47,6 +48,7 @@
     </tr>
   </table>
 </div>
+<h4>Mouse over sequences above to highlight CDRs in viewer.</h4>
 
 <br><br>
 
