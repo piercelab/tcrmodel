@@ -1,0 +1,184 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-26223249-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-26223249-3');
+</script> -->
+<!-- End:Google Analytics script -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/tcrmodeling_external.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index_forms.css') }}">
+{% endblock %}
+{% block title %}TCRmodel{% endblock %}
+{% block article %}
+<!-- <h1>The site is under maintenance. Please come back later</h1> -->
+<blockquote class="blockquote">
+  <p>Input page for unbound TCR modeling.</p>
+</blockquote>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen"><strong>Enter TCR sequence</strong></button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')" id="opensecondtab"><strong>Generate from germline genes</strong></button>
+  <button class="tablinks" onclick="openCity(event, 'batch')"><strong>Batch submission</strong></button>
+</div>
+<div id="London" class="tabcontent">
+  <form name="tcrmodel_submitjob1" action="{{ url_for('tcrmodel_submitjob1') }}" method="post" id="formid">
+    <div style="line-height:5px;"><br></div>
+    TCR &alpha; chain:
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Enter T cell receptor alpha chain amino acid sequence">?</button>
+    <br>
+    <div style="line-height:5px;"><br></div>
+    <textarea NAME="alphachain" type="text" id="achain" COLS=60 ROWS=4></textarea>
+    <br><span id="trav_id" class="genedisplay"></span><br><br>
+    TCR &beta; chain:
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Enter T cell receptor beta chain amino acid sequence">?</button>
+    <br>
+    <div style="line-height:5px;"><br></div>
+    <textarea NAME="betachain" type="text" id="bchain" COLS=60 ROWS=4></textarea>
+    <br><span id="trbv_id" class="genedisplay"></span><br><br>
+    <input type="submit"  style="float: left;" value="Submit" class="buttonfont">
+    <input type="reset"  style="float: left;" value="Reset" id="reset1" class="buttonfont buttonclear">
+    <br><br>
+    <a href="#" id="btn1">Example input: 3995 KRAS_G12D TCR</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/26516200">(reference)</a>
+    <br>
+    <div style="line-height:5px;"><br></div>
+    <a href={{ url_for('rtcrex', jobid = 'TCRS2XS_180718_160524' ) }}>Example output: 3995 KRAS_G12D TCR</a>
+    <br><br>
+    <div id="flip"><u>Advanced options:</u></div>
+    <div id="panel">
+      <br>
+      <input type="checkbox" name="lr" value="loopref"> Refine CDR3 loops<br>
+      <br>
+      PDB templates to exclude: <input type="text" name="pdbblacklist" value="None" >
+      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+	      title="Enter PDB ID's separated by comma">?</button>
+      <br>
+      <br>
+      <input type="submit" value="Submit" class="buttonfont">
+      <input type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
+    </div>
+  </form>
+</div>
+
+<div id="Paris" class="tabcontent">
+  <form name"=tcrmodel_submitjob2" action="{{ url_for('tcrmodel_submitjob2') }}" method="post" id="formid2">
+    TCR &alpha; chain:
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Select T cell receptor alpha chain species and germline genes">?</button>
+    <br>
+    <div style="line-height:2px;"><br></div>
+    <select name="aspecies" id="aspecies" onchange="AGeneSelection()">
+      <option value="" disabled >Species</option>
+      <option value="human" selected >Human</option>
+      <option value="mouse">Mouse</option>
+    </select> 
+    <select name="trav" id="trav"></select> 
+    <select name="traj" id="traj"></select> 
+    <br>
+    <div style="line-height:2px;"><br></div>
+    CDR3 sequence <input type="text" name="acdr" id="acdr">
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Enter CDR3 alpha amino acid sequence">?</button>
+    <br>
+    <div style="line-height:2px;"><br></div>
+    <textarea NAME="alphachain" type="text" id="alphachain" COLS=60 ROWS=4></textarea>
+    <br><br>
+    TCR &beta; chain:
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Select T cell receptor beta chain species and germline genes">?</button>
+    <br>
+    <div style="line-height:2px;"><br></div>
+    <select name="bspecies" id="bspecies" onchange="BGeneSelection()">
+      <option value="" disabled >Species</option>
+      <option value="human" selected >Human</option>
+      <option value="mouse">Mouse</option>
+    </select> 
+    <select name="trbv" id="trbv"></select> 
+    <select name="trbj" id="trbj"></select>
+    <br>
+    <div style="line-height:2px;"><br></div>
+    CDR3 sequence <input type="text" name="bcdr" id ="bcdr">
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Enter CDR3 beta amino acid sequence">?</button>
+    <br>
+    <div style="line-height:2px;"><br></div>
+    <textarea NAME="betachain" type="text" id="betachain" COLS=60 ROWS=4></textarea>
+    <br>
+    <div style="line-height:5px;"><br></div>
+    <input type="submit"  style="float: left;" value="Submit" id="submitid2" class="buttonfont"> 
+    <input type="reset"  style="float: left;" value="Reset" id="resetid2" class="buttonfont buttonclear">
+    <P class="gen_button"><button type="button" id="loadbtn" style="float: right;">Generate TCR sequences</button></p>
+    <br><br>
+    <a href="#" id="btn2">Example input: F26 Flu_M1 TCR</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/28423320">(reference)</a>
+    <br>
+    <div style="line-height:5px;"><br></div>
+    <a href={{ url_for('rtcrex', jobid = 'TCRSDM6_180718_160348' ) }}>Example output: F26 Flu_M1 TCR</a>
+    <br><br>
+    <div id="flip2"><u>Advanced options:</u></div>
+    <div id="panel2">
+      <br>
+      <input type="checkbox" name="lr" value="loopref"> Refine CDR3 loops<br>
+	<br>
+	PDB templates to exclude: <input type="text" name="pdbblacklist" value="None" >
+	<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+		title="Enter PDB ID's separated by comma">?</button>
+	<br><br>
+	<input type="submit" value="Submit" id="submitid2" class="buttonfont">
+	<input type="reset" value="Reset" id="resetid2" class="buttonfont buttonclear">
+      </div>
+  </form>  
+</div>  
+
+<div id="batch" class="tabcontent">
+  <form action="{{ url_for('batchsubmit') }}" method="post" enctype="multipart/form-data">
+    <div style="line-height:5px;"><br></div>
+    <u>TCR &alpha; chain:</u>
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Upload T cell receptor alpha chain sequnces in FASTA file format">?</button>
+    <br>
+    <div style="line-height:5px;"><br></div>
+    Upload TCR &alpha; chain sequences:
+    <input type="file" name="abatchfile">
+    <br><br>
+    <div style="line-height:5px;"><br></div>
+    <u>TCR &beta; chain:</u>
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+            title="Upload T cell receptor beta chain sequnces in FASTA format file format">?</button>
+    <br>
+    <div style="line-height:5px;"><br></div>
+    Upload TCR &beta; chain sequences:
+    <input type="file" name="bbatchfile">
+    <br><br>
+    <input type="submit" style="float: left;" value="Submit" class="buttonfont">
+    <input type="reset" style="float: left;" value="Reset" class="buttonfont buttonclear">
+    <br><br>
+    Example input: 
+    <a href="/tcrmodel_runs/TCRM6HJ_180422_115746/TCR_Alpha.fasta" download>TCR&alpha;.fasta</a>
+    <a href="/tcrmodel_runs/TCRM6HJ_180422_115746/TCR_Beta.fasta " download>TCR&beta;.fasta</a>
+    <a href="https://www.ncbi.nlm.nih.gov/pubmed/28423320">(reference)</a>
+    <br>
+    <div style="line-height:5px;"><br></div>
+    Example output: <a href={{ url_for('mtcrex', jobid = 'TCRM18G_190312_101922' ) }}>TCRM18G_190312_101922</a>
+    <br><br>
+    <div id="flip3"><u>Advanced options:</u></div>
+    <div id="panel3">
+      <input type="checkbox" name="lr" value="loopref"> Refine CDR3 loops<br>
+      <br>
+      PDB templates to exclude: <input type="text" name="pdbblacklist" value="None" >
+      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true"
+	      title="Enter PDB ID's separated by comma">?</button>
+      <br><br>
+      <input type="submit" value="Submit" class="buttonfont">
+      <input type="reset" value="Reset" class="buttonfont buttonclear">
+      </div>
+  </form>
+</div>
+
+{% endblock %}
+

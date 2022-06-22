@@ -1,16 +1,20 @@
-{% extends "layout.html" %}
+{% extends "test_layout.html" %}
 {% block head %}
 {{ super() }}
 
 {% endblock %}
-{% block title %}: Links{% endblock %}
+{% block title %}TCRmodel: Links{% endblock %}
 {% block article %}
-
-<h2>Links</h2>
-	<a href="https://piercelab.ibbr.umd.edu/tcrdb/">TCR Structure Database</a>: a database of all TCR structures, containing CDR classification, epitope targeting, and other information.<br><br>
-        <a href="https://zlab.umassmed.edu/atlas/web/">ATLAS</a>: a database of T cell receptor mutant affinities and structures.<br><br>
-	<a href="http://www.imgt.org/">IMGT</a>: the immunogenetics database, containing germline gene information, nomenclature, and numbering for T cell receptors and antibodies, as well as other useful information.<br><br>
-	<a href="https://vdjdb.cdr3.net/">VDJdb</a>: a T cell receptor sequence database.<br><br>
-	<a href="http://friedmanlab.weizmann.ac.il/McPAS-TCR/">McPAS-TCR</a>: a database of pathology associated T cell receptor sequences.<br><br>
+<div class="p-3 m-3">
+  <h2>Links</h2>
+  <a href="https://zlab.umassmed.edu/atlas/web/">ATLAS</a>: a database of T cell receptor mutant affinities and structures<br><br>
+  <a href="http://www.imgt.org/">IMGT</a>: the immunogenetics database, containing germline gene information, nomenclature, and numbering for T cell receptors and antibodies, as well as other useful information<br><br>
+  <a href="https://vdjdb.cdr3.net/">VDJdb</a>: a T cell receptor sequence database<br><br>
+  <a href="http://friedmanlab.weizmann.ac.il/McPAS-TCR/">McPAS-TCR</a>: a database of pathology associated T cell receptor sequences<br><br>
+  <a href="http://www.cbs.dtu.dk/services/LYRA/">LYRA</a>: a T cell receptor and antibody structural modeling server<br><br>
+  <h2>Download</h2>
+  Template data set to use with Rosetta TCRmodel protocol<br><br>
+  <a href="{{ url_for('static',filename='downloads/additional_protocol_data.tar.gz') }}" download>Template data ( non-redundant set ) </a><br>
+  <a href="{{ url_for('static',filename='downloads/redundant_template_set.tar.gz') }}" download>Template data ( redundant set )</a>
+</div>
 {% endblock %}
-

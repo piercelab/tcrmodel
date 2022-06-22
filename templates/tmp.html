@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ url_for('static', filename='bootstrap-5.1.0-dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <title>Hello, world!</title>
+   <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+
+
+    
+  </head>
+  <body class="d-flex flex-column h-100">
+    <header class="navbar navbar-light bg-light flex-md-nowrap p-0 ">
+      <div class="navbar-brand col-md-12 col-lg-12 me-0 px-1">
+	<div class="pricing-header p-0 pb-md-1 mx-auto text-center">
+	  <h1 class="display-6 fw-normal">TCRmodel</h1>
+	  <p class="fs-5 text-muted">Automated high resolution modeling of T cell receptors</p>
+	</div>
+      </div>
+    </header>
+<main class="flex-shrink-0">
+    <div class="container-fluid">
+      <div class="row">
+	<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse">
+	  <div class="position-sticky pt-3">
+            <ul class="nav flex-column">
+              <li class="nav-item align-self-center">
+		<a class="nav-link" href="#">
+		  <span data-feather="file"></span>
+		  <img src="{{ url_for('static', filename='image/tcr_model_logo.png') }}" class="img-fluid" alt="TCRmodel Logo">
+		</a>
+              </li>
+              <li class="nav-item align-self-center">
+		<a class="nav-link" href="{{ url_for('index') }}">
+		  <span data-feather="file"></span>
+		  Home
+		</a>
+              </li>
+              <li class="nav-item align-self-center">
+		<a class="nav-link" href="{{ url_for('about') }}">
+		  <span data-feather="file"></span>
+		  About
+		</a>
+              </li>
+              <li class="nav-item align-self-center">
+		<a class="nav-link" href="{{ url_for('help') }}">
+		  <span data-feather="file"></span>
+              Help
+		</a>
+              </li>
+              <li class="nav-item align-self-center">
+		<a class="nav-link" href="{{ url_for('links') }}">
+		  <span data-feather="file"></span>
+		  Links
+		</a>
+              </li>
+            </ul>
+	  </div>
+	</nav>
+	
+	<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 bg-light bg-gradient">
+	  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          </div>
+	  
+	</main>
+      </div>
+    </div>
+
+
+</main>
+    
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container">
+	<center>
+	  <span class="text-muted">Template database last updated: 03/10/2021</span> 
+	  <BR><BR>
+	  <a href="http://www.rosettacommons.org" target="_blank">
+            <img src="{{ url_for('static', filename='image/rosettacommons_logo.png') }}"  alt="RosLogo" style="width:150px;">
+	  </a>
+	  &nbsp&nbsp&nbsp&nbsp&nbsp
+	  <a href="http://www.ibbr.umd.edu" target="_blank">
+            <img src="{{ url_for('static', filename='image/ibbr_logo.png') }}"  alt="Logo" style="width:200px;">
+	  </a>
+	</center>
+      </div>
+    </footer>
+    
+    <link href="{{ url_for('static', filename='bootstrap-5.1.0-dist/js/popper.min.js')}}" >
+    <link href="{{ url_for('static', filename='bootstrap-5.1.0-dist/js/bootstrap.min.js')}}" >
+  </body>
+</html>

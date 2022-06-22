@@ -42,12 +42,25 @@
     line-height: 20px;
     text-transform: uppercase;
 }
+
 .inptcrachain {
     color: red;
 }
 .inptcrbchain {
     color: blue;
 }
+.inppepchain {
+    color: magenta;
+}
+.inpmhcachain {
+    color: darkgreen;
+}
+.inpmhcbchain {
+    color: lightgreen;
+}
+
+
+
 .firstcol{
 width: 80px;
 }

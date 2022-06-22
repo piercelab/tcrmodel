@@ -1,0 +1,9 @@
+    <h4>Status : Completed</h4>
+
+    <h4>Download best scoring PDB file : <a href= "/tcrmodel_runs/{{ jobid }}/{{ bfile }}" download>{{ bfile }}</a></h4>
+    <h4><a href={{ scorefname }} download>Download Score file</a></h4>
+
+    <h4>Download all files</h4>
+    {% for pfile in resfiles %}
+    <h4>Download PDB file : <a href="/tcrmodel_runs/{{ jobid }}/{{ pfile }}" download>{{ pfile }}</a></h4>
+    {% endfor %}

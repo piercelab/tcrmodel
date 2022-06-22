@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      window.jQuery || document.write('<script src="{{
+						    url_for('static', filename='js/jquery-3.6.0.js') }}">\x3C/script>')
+      </script>
+      <script type=text/javascript>
+	$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+      </script>
+      <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      main > .container {
+      padding: 10px 10px 0;
+      }
+    </style>
+    <title>{% block title %}TCRmodel Server{% endblock %}</title>
+    {% block head %}{% endblock %}
+  </head>
+
+  <body class="d-flex flex-column h-100">
+    <header class="py-0 mb-0 border-top border-bottom">
+      <div class="container d-flex flex-wrap justify-content-center">
+	<a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+          <img src="{{ url_for('static', filename='image/tcr_model_logo.png') }}" class="img-fluid img-thumbnail" alt="TCRmodel Logo" style="width:15%; border: 0;">
+	  <span class="fs-4">
+	    <span> <h2>TCRmodel</h2><h6>Automated high resolution modeling of T cell receptors</h6> </span>
+	  </span>
+	</a>
+      </div>
+      <nav class="py-0 bg-light border-top">
+	<div class="container d-flex flex-wrap">
+	  <ul class="nav me-auto m-0">
+            <li class="nav-item">
+	      <a href="{{ url_for('index') }}" class="nav-link link-dark px-2 active" aria-current="page">Home</a>
+	    </li>
+            <li class="nav-item">
+	      <a href="{{ url_for('about') }}" class="nav-link link-dark px-4">About</a>
+	    </li>
+            <li class="nav-item">
+	      <a href="{{ url_for('help') }}" class="nav-link link-dark px-4">Help</a>
+	    </li>
+            <li class="nav-item">
+	      <a href="{{ url_for('links') }}" class="nav-link link-dark px-4">Links</a>
+	    </li>
+	  </ul>
+	  <ul class="nav">
+            <li class="nav-item mt-2">
+		<i class="bi bi-question-circle-fill" data-toggle="tooltip" data-placement="top" title="Enter Job ID to retrieve results. Results are stored on the server for 30 days."></i>
+	    </li>
+	    <li class="nav-item">
+	      <form class="col-12 col-lg-auto mb-3 mb-lg-0" action="{{ url_for('searchid') }}" method="post">
+		<input id="jobidinput" name="jobidinput" type="text" class="form-control p-1 m-1" placeholder="Search Job ID..." aria-label="Search">	
+	      </form>
+	    </li>
+	  </ul>
+	</div>
+      </nav>
+    </header>
+    
+
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+  <div class="container">
+    <article>
+      {% block article %}
+
+      {% set Advopt_btn_s %}
+      <p>
+        <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+	  Advanced options
+        </button>
+      </p>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Refine CDR3 loops
+            </label>
+          </div>
+          <div class = "form-control d-inline-block border-0 ms-0 ps-0">
+            PDB templates to exclude:
+            <i class="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Enter PDB ID's separated by comma"></i>
+            <input  type="text" name="pdbblacklist" value="None" style="width:100px;">
+          </div>
+        </div>
+      </div>
+      {% endset %}
+      
+      
+      {% endblock %}
+    </article>
+  </div>
+</main>
+
+
+<footer class="footer mt-auto py-1 bg-light">
+  <div class="container">
+    <center>
+      <span class="text-muted">Template database last updated: 03/10/2021</span>
+      <BR>
+      <a href="http://www.rosettacommons.org" target="_blank">
+        <img src="{{ url_for('static', filename='image/rosettacommons_logo.png') }}"  alt="RosLogo" style="width:150px;">
+      </a>
+      &nbsp&nbsp&nbsp&nbsp&nbsp
+      <a href="http://www.ibbr.umd.edu" target="_blank">
+        <img src="{{ url_for('static', filename='image/ibbr_logo.png') }}"  alt="Logo" style="width:200px;">
+      </a>
+    </center>
+  </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+
+  </body>
+</html>

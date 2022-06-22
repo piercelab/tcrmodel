@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% block article %}
+{{ super() }}
+<input id="exbtn" type="hidden">
+<script>
+$(document).ready(function(){
+  var aseq = {{ aseq|tojson }}
+  var bseq = {{ bseq|tojson }}
+exs();
+
+function exs() {
+$("#achain").val(aseq);
+$("#bchain").val(bseq);
+$("#achain").keyup();
+$("#bchain").keyup();
+}
+});
+</script>
+
+
+{% endblock %}

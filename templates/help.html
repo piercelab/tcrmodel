@@ -1,31 +1,164 @@
-{% extends "layout.html" %}
+{% extends "test_layout.html" %}
 {% block head %}
 {{ super() }}
 
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+.b-example-divider {
+  height: 1rem;
+  background-color: rgba(0, 0, 0, .1);
+  border: solid rgba(0, 0, 0, .10);
+  border-width: 0.5px 0;
+  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+      @media (min-width: 992px) {
+      .rounded-lg-3 { border-radius: .3rem; }
+      }
+
+      @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+      }
+      }
+    </style>
+
 {% endblock %}
-{% block title %}: Help{% endblock %}
+{% block title %}TCRmodel: Help{% endblock %}
 {% block article %}
 
-<h2>TCRmodel Help</h2>
-<a href="#Submission">Submission</a><br>
-<a href="#Results">Results</a><br>
-<a name="Submission"><h3>Submission</h3></a>
-TCR sequences for modeling can be submitted as amino acid sequences for alpha and beta chains, encompassing at minimum the TCR variable domains. The TCRmodel server will automatically identify germline genes in the input sequences, if there is an exact match in the database.<br><br>Alternatively, users can specify germline gene and CDR3 loop sequences, and generate the full TCR variable domain sequences using the "Generate TCR Sequences" button. <br>
-<br>
-Users can optionally exclude closely related structures as templates for modeling (for benchmarking), and can additionally have Rosetta perform extensive sampling of loops through "Refine" or "Remodel" kinetmatic closure sampling. These additional refinement steps generally improve modeling performance when related CDR3 templates are not available, but will increase processing time. By default, grafted and relaxed TCR models are returned within one minute.
-<a name="Results"><h3>Results</h3></a>
-After submission of TCR sequences, the results page will provide the parsed CDR loop sequences and identified templates to the user. When modeling completes, the results page will be automatically updated. The completed results page includes three main sections:
-<br><br>
-1) An interactive viewer showing the modeled TCR structure, downloadable model coordinates, and the model amino acid sequence:<br>
-<br><center><img src="{{ url_for('static', filename='image/results_struct_seq.png') }}"  alt="Structure Results" style="width:500px;"></center>
-<br><br>
-2) Sequence alignments between model and template TCR structures:<br>
-<br><center><img src="{{ url_for('static', filename='image/results_alignment.png') }}"  alt="Alignment Results" style="width:500px;"></center>
-<br>
-Alignment information is also shown immediately after job submission while waiting for completion.<br><br>
-3) Sequences of TCR CDR loops and templates in parsable plain text format:<br>
-<br><center><img src="{{ url_for('static', filename='image/results_sequences.png') }}"  alt="Sequences Results" style="width:450px;"></center>
-<br>
-<br>An example of a results page is <a href={{ url_for('rtcrex', jobid = 'TCRH90_180301_195621' ) }}>here</a>. Users can view models using an interactive <a href={{ url_for('viewmodel', jobid = 'TCRH90_180301_195621' ) }}>full window viewer</a>, accessible from the results page.
+<div class="container col-xxl-8 px-4 py-5">
+  <h1 class="display-6 fw-normal lh-1 mb-3">Submission</h1>  
+
+  <h4>Input forms</h4>
+  <div class="row flex-lg-row-reverse align-items-start g-5 py-2">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img  src="{{ url_for('static', filename='image/F1.png') }}" class="d-block mx-lg-auto img-fluid border p-0 m-0" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+    </div>
+    <div class="col-lg-6">
+      <p>
+	TCRmodel server can be used to model the unbound TCR structure and TCR structure in complex with peptide-MHC structures. Both Class I and Class II MHC complexes are supported. The main server page has two sections:
+	<ul>
+	  <li>TCR-pMHC complex modeling</li>
+	  <li>Unbound TCR modeling</li>
+	</ul>
+	User can switch between the tabs to choose the input forms for TCR-pMHC modeling and unbound TCR modeling. Example input sequences are provided at the bottom of each form for the user to test it out.
+      </p>
+    </div>
+  </div>
+
+  <BR><BR>  
+  <h4>Input forms: TCR-pMHC complex modeling</h4>
+  <div class="row flex-lg-row-reverse align-items-start g-5 py-2">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img  src="{{ url_for('static', filename='image/F1.png') }}" class="d-block mx-lg-auto img-fluid border" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+    </div>
+    <div class="col-lg-6">
+      <p>
+	The users can provide the input for the TCR-pMHC complex modeling in two ways:
+	<ul>
+	  <li>Enter the sequence in the text box</li>
+	  <li>Select the germline gene from dropdown menu</li>
+	</ul>
+	TCR and pMHC sequences for the complex modeling can be submitted as amino acid sequences for alpha and beta chains  encompassing at minimum the TCR variable domains. The peptide sequence can be submitted and the program will truncate the peptide if needed. The users can choose the MHC sequences for both Class I and Class II by selecting the gene from the dropdown menu. 
+      </p>
+    </div>
+  </div>
+  <BR><BR>
+  <h4>Input forms: Unbound TCR modeling</h4>
+  <div class="row flex-lg-row-reverse align-items-start g-5 py-2">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img  src="{{ url_for('static', filename='image/F2.png') }}" class="d-block mx-lg-auto img-fluid border" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+    </div>
+    <div class="col-lg-6">
+    <p>
+      TCR sequences for modeling can be submitted as amino acid sequences for alpha and beta chains, encompassing at minimum the TCR variable domains. The TCRmodel server will automatically identify germline genes in the input sequences, if there is an exact match in the database.<br><br>Alternatively, users can specify germline gene and CDR3 loop sequences, and generate the full TCR variable domain sequences using the "Generate TCR Sequences" button.
+    </p>
+    </div>
+  </div>
+  
+  <BR><BR>
+  <h4>Advanced options</h4>
+  <div class="row flex-lg-row-reverse align-items-start g-5 py-2">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img  src="{{ url_for('static', filename='image/F3.png') }}" class="d-block mx-lg-auto img-fluid border" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+    </div>
+    <div class="col-lg-6">
+      <p>
+	Users can optionally exclude closely related structures as templates for modeling (for benchmarking), and can optionally have Rosetta perform refinement of modeled CDR3 loops through kinematic closure sampling. These additional refinement steps generally improve modeling performance when related CDR3 templates are not available, but will increase processing time. By default, grafted and relaxed TCR models are returned within one minute.
+      </p>
+    </div>
+  </div>
+  
+  <BR>
+  <div class="b-example-divider"></div>
+  <BR>
+
+  <h1 class="display-6 fw-normal lh-1 mb-3">Results</h1>  
+
+  <h4>Output model & viewer</h4>
+  <div class="row flex-lg-row-reverse align-items-start g-5 py-2">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img  src="{{ url_for('static', filename='image/F4.png') }}" class="d-block mx-lg-auto img-fluid border p-0 m-0" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+    </div>
+    <div class="col-lg-6">
+      <p>
+	After submission of TCR sequences, the results page will provide the parsed CDR loop sequences and identified templates to the user. When modeling completes, the results page will be automatically updated. The result page includes an interactive viewer showing the modeled TCR structure, downloadable model coordinates, and the model amino acid sequence.  The completed results page also includes three different sections: Template information, Sequence alignment and TCR segments. 
+      </p>
+    </div>
+  </div>
+
+  <BR><BR>  
+  <h4>Template information</h4>
+  <div class="row flex-lg-row-reverse align-items-start g-5 py-2">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img  src="{{ url_for('static', filename='image/F5.png') }}" class="d-block mx-lg-auto img-fluid border" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+    </div>
+    <div class="col-lg-6">
+    <p>
+      The templates used for the modeling are provided for all the TCR segments with corresponding PDB and chain id's.
+    </p>
+    </div>
+  </div>
+
+  <BR><BR>
+  <h4>Sequence alignment</h4>
+  <div class="row flex-lg-row-reverse align-items-start g-5 py-2">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img  src="{{ url_for('static', filename='image/F6.png') }}" class="d-block mx-lg-auto img-fluid border" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+    </div>
+    <div class="col-lg-6">
+    <p>
+      Sequence alignments between model and template TCR structures are provided for all the CDR loop sequences.
+    </p>
+    </div>
+  </div>
+  
+  <BR><BR>
+  <h4>Parsed TCR segments</h4>
+  <div class="row flex-lg-row-reverse align-items-start g-5 py-2">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img  src="{{ url_for('static', filename='image/F7.png') }}" class="d-block mx-lg-auto img-fluid border" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+    </div>
+    <div class="col-lg-6">
+      <p>
+	The parsed sequence segments of input TCR sequences are provided in this section. This includes the variable domains, framework segments, CDR1, CDr2, CDR3 loop sequences for both TCR α and β chains. 
+      </p>
+    </div>
+  </div>
+  
+  <BR>
+  <div class="b-example-divider"></div>
+  <BR>
+
+</div>
+
 {% endblock %}
 

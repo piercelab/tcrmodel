@@ -1,0 +1,29 @@
+REMARK   1 secondary structure assigned by dssp
+REMARK   2 dssp output converted by dssp2pdb version 0.03
+SHEET    1   1 1 SER A  10  SER A  13  0
+SHEET    2   2 1 VAL A  19  ASN A  20  0
+SHEET    3   3 1 CYS A  23  SER A  24  0
+SHEET    4   4 1 TYR A  44  GLN A  46  0
+SHEET    5   5 1 PRO A  52  PHE A  54  0
+SHEET    6   6 1 VAL A  71  THR A  72  0
+SHEET    7   7 1 SER A  79  LEU A  80  0
+SHEET    8   8 1 SER A  88  SER A  89  0
+SHEET    9   9 1 SER A  92  LEU A  93  0
+HELIX    1   1 LEU A   98  ASP A  100  1                                   3
+SHEET   10  10 1 ALA A 102  TYR A 105  0
+SHEET   11  11 1 THR A 143  VAL A 147  0
+SHEET   12  12 1 THR B   5  SER B   7  0
+SHEET   13  13 1 HIS B  10  LYS B  13  0
+SHEET   14  14 1 VAL B  19  THR B  20  0
+SHEET   15  15 1 ARG B  22  SER B  24  0
+SHEET   16  16 1 THR B  40  VAL B  41  0
+SHEET   17  17 1 TYR B  44  GLN B  46  0
+SHEET   18  18 1 PHE B  56  TYR B  59  0
+SHEET   19  19 1 GLU B  67  ARG B  71  0
+SHEET   20  20 1 PHE B  78  SER B  79  0
+SHEET   21  21 1 ASN B  92  VAL B  93  0
+HELIX    2   2 LEU B   98  ASP B  100  1                                   3
+SHEET   22  22 1 ALA B 102  LEU B 105  0
+SHEET   23  23 1 ALA B 107  SER B 109  0
+SHEET   24  24 1 THR B 138  PHE B 139  0
+SHEET   25  25 1 THR B 143  VAL B 147  0

@@ -1,0 +1,3 @@
+makeblastdb -in B_TCR_VD.fasta -dbtype 'prot' -title B_TCR_VD -out B_TCR_VD
+makeblastdb -in A_TCR_VD.fasta -dbtype 'prot' -title A_TCR_VD -out A_TCR_VD
+

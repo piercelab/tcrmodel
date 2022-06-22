@@ -37,7 +37,7 @@ function view_cdr3lines() {
 
 function cartoon() {
     viewer.clear();
-    var tcr = structure.select({cnames: 'AB'});
+    var tcr = structure.select({cnames: 'ABCDE'});
     viewer.cartoon('tcr', tcr, { color: pv.color.byChain() } );
 }
 
@@ -75,7 +75,7 @@ function load_tmplt(tmpltfname) {
 function read_tmplt_Acdr1() {
     var tmpltfname = tj.rundir_spath+"/"+jobid+"/"+tj.acdr1_tmplt_pdb+"_Acdr1_tmplt.pdb";
     pv.io.fetchPdb(tmpltfname, function(structure) {
-            var acdr1 = structure.select({ rnumRange : ['24','43'] });
+            var acdr1 = structure.select({ cnames: tj.acdr1_tmplt_pdb_chain, rnumRange : ['24','43'] });
 	    viewer.on('viewerReady', function() {
 		    viewer.cartoon('acdr1', acdr1, { color: pv.color.uniform('green')});
 		});
@@ -85,7 +85,7 @@ function read_tmplt_Acdr1() {
 function read_tmplt_Acdr2() {
     var tmpltfname = tj.rundir_spath+"/"+jobid+"/"+tj.acdr2hv4_tmplt_pdb+"_Acdr2hv4_tmplt.pdb";
     pv.io.fetchPdb(tmpltfname, function(structure) {
-            var acdr2 = structure.select({ rnumRange : ['56','91'] });
+            var acdr2 = structure.select({ cnames: tj.acdr2hv4_tmplt_pdb_chain, rnumRange : ['56','91'] });
 	    viewer.on('viewerReady', function() {
 		    viewer.cartoon('acdr2', acdr2, { color: pv.color.uniform('green')});
 		});
@@ -95,7 +95,7 @@ function read_tmplt_Acdr2() {
 function read_tmplt_Acdr3() {
     var tmpltfname = tj.rundir_spath+"/"+jobid+"/"+tj.acdr3_tmplt_pdb+"_Acdr3_tmplt.pdb";
     pv.io.fetchPdb(tmpltfname, function(structure) {
-            var acdr3 = structure.select({ rnumRange : ['107','139'] });
+            var acdr3 = structure.select({ cnames: tj.acdr3_tmplt_pdb_chain, rnumRange : ['107','139'] });
 	    viewer.on('viewerReady', function() {
 		    viewer.cartoon('acdr3', acdr3, { color: pv.color.uniform('green')});
 		});
@@ -105,7 +105,7 @@ function read_tmplt_Acdr3() {
 function read_tmplt_Bcdr1() {
     var tmpltfname = tj.rundir_spath+"/"+jobid+"/"+tj.bcdr1_tmplt_pdb+"_Bcdr1_tmplt.pdb";
     pv.io.fetchPdb(tmpltfname, function(structure) {
-            var bcdr1 = structure.select({ rnumRange : ['24','43'] });
+            var bcdr1 = structure.select({ cnames: tj.bcdr1_tmplt_pdb_chain, rnumRange : ['24','43'] });
 	    viewer.on('viewerReady', function() {
 		    viewer.cartoon('bcdr1', bcdr1, { color: pv.color.uniform('green')});
 		});
@@ -115,21 +115,19 @@ function read_tmplt_Bcdr1() {
 function read_tmplt_Bcdr2() {
     var tmpltfname = tj.rundir_spath+"/"+jobid+"/"+tj.bcdr2hv4_tmplt_pdb+"_Bcdr2hv4_tmplt.pdb";
     pv.io.fetchPdb(tmpltfname, function(structure) {
-            var bcdr2 = structure.select({ rnumRange : ['56','91'] });
+            var bcdr2 = structure.select({ cnames: tj.bcdr2hv4_tmplt_pdb_chain, rnumRange : ['56','91'] });
 	    viewer.on('viewerReady', function() {
 		    viewer.cartoon('bcdr2', bcdr2, { color: pv.color.uniform('green')});
 		});
 	    
 	});
-    load_tmplt(tmpltfname);
-
 }
 function read_tmplt_Bcdr3() {
     var tmpltfname = tj.rundir_spath+"/"+jobid+"/"+tj.bcdr3_tmplt_pdb+"_Bcdr3_tmplt.pdb";
     pv.io.fetchPdb(tmpltfname, function(structure) {
-            var bcdr3 = structure.select({ rnumRange : ['107','139'] });
+            var bcdr3 = structure.select({ cnames: tj.bcdr3_tmplt_pdb_chain, rnumRange : ['107','139'] });
 	    viewer.on('viewerReady', function() {
-		    viewer.cartoon('bcdr1', bcdr3, { color: pv.color.uniform('green')});
+		    viewer.cartoon('bcdr3', bcdr3, { color: pv.color.uniform('green')});
 		});
 	    
 	});

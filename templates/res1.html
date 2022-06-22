@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.87.0">
+    <title>Sticky Footer Navbar Template · Bootstrap v5.1</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      window.jQuery || document.write('<script src="{{                                                                                                                               
+                                                    url_for('static', filename='js/jquery-3.2.1.js') }}">\x3C/script>')
+      </script>
+      <link href="{{ url_for('static', filename='bootstrap-5.1.0-dist/css/bootstrap.min.css')}}" rel="stylesheet">
+
+<script>
+ var modelfname = {{ modelfname|tojson }}
+</script>
+
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/index_forms.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/aa_colors.css') }}">
+      <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+      </script>
+      <script src='https://cdn.rawgit.com/arose/ngl/v0.10.4-1/dist/ngl.js'></script>
+
+    <!-- Bootstrap core CSS -->
+
+
+ <script type="text/javascript" src="{{ url_for('static', filename='js/tcrpmhcmodeling_external.js') }}"></script>
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/index_forms.css') }}">
+
+
+     <script>
+     $(document).ready(function() {
+      $('.nav-tabs > li > a').click(function(event){
+      event.preventDefault();//stop browser to take action for clicked anchor
+
+      //get displaying tab content jQuery selector
+     var active_tab_selector = $('.nav-tabs > li.active > a').attr('href');
+
+      //find actived navigation and remove 'active' css
+      var actived_nav = $('.nav-tabs > li.active');
+      actived_nav.removeClass('active');
+
+      //add 'active' css into clicked navigation
+      $(this).parents('li').addClass('active');
+
+      //hide displaying tab content
+      $(active_tab_selector).removeClass('active');
+      $(active_tab_selector).addClass('hide');
+
+      //show target tab content
+      var target_tab_selector = $(this).attr('href');
+      $(target_tab_selector).removeClass('hide');
+      $(target_tab_selector).addClass('active');
+       });
+       });
+     </script>
+
+  <style>
+
+         /** Start: to style navigation tab **/
+	      .nav {
+	        margin-bottom: 18px;
+	        margin-left: 0;
+	        list-style: none;
+	      }
+
+	      .nav > li > a {
+	        display: block;
+	      }
+
+	      .nav-tabs{
+	        *zoom: 1;
+	      }
+
+	      .nav-tabs:before,
+	      .nav-tabs:after {
+	        display: table;
+	        content: "";
+	      }
+
+	      .nav-tabs:after {
+	        clear: both;
+	      }
+
+	      .nav-tabs > li {
+	        float: left;
+	      }
+
+	      .nav-tabs > li > a {
+	        padding-right: 12px;
+	        padding-left: 12px;
+	        margin-right: 2px;
+	        line-height: 14px;
+	      }
+
+	      .nav-tabs {
+	        width: 90%; 
+	        border-bottom: 1px solid #ddd;
+	      }
+
+	      .nav-tabs > li {
+	        margin-bottom: -1px;
+	      }
+
+	      .nav-tabs > li > a {
+	        padding-top: 8px;
+	        padding-bottom: 8px;
+	        line-height: 18px;
+	        border: 1px solid transparent;
+	        -webkit-border-radius: 4px 4px 0 0;
+	   -moz-border-radius: 4px 4px 0 0;
+	        border-radius: 4px 4px 0 0;
+	      }
+
+	      .nav-tabs > li > a:hover {
+	        border-color: #eeeeee #eeeeee #dddddd;
+	      }
+
+	      .nav-tabs > .active > a,
+	      .nav-tabs > .active > a:hover {
+	        color: #555555;
+	        cursor: default;
+	        background-color: #ffffff;
+	        border: 1px solid #ddd;
+	        border-bottom-color: transparent;
+	      }
+
+	      li {
+	        line-height: 18px;
+	      }
+
+	      .tab-content.active{
+	  display: block;
+	      }
+
+	      .tab-content.hide{
+	  display: none;
+	      }
+
+
+	      /** End: to style navigation tab **/
+	  </style>
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/sticky-footer-navbar.css')}}" rel="stylesheet">
+  </head>
+  <body class="d-flex flex-column h-100">
+    
+    <header class="navbar navbar-light flex-md-nowrap p-1 bg-success bg-opacity-10">
+	<div class="p-0 mx-auto text-center">
+	  <h1 class="display-6 fw-bolder text-primary">TCRmodel</h1>
+	  <p class="fs-5  text-primary">Automated high resolution modeling of T cell receptors</p>
+      </div>
+    </header>
+    
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+  <div class="container p-0">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse">
+
+
+	<div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item align-self-center">
+	      <a class="nav-link" href="#">
+		<img src="{{ url_for('static', filename='image/tcr_model_logo.png') }}" class="img-fluid" alt="TCRmodel Logo">
+	      </a>
+            </li>
+            <li class="nav-item align-self-center">
+	      <a class="nav-link" href="{{ url_for('index') }}">
+		Home
+	      </a>
+              </li>
+            <li class="nav-item align-self-center">
+	      <a class="nav-link" href="{{ url_for('about') }}">
+		About
+	      </a>
+            </li>
+            <li class="nav-item align-self-center">
+	      <a class="nav-link" href="{{ url_for('help') }}">
+		Help
+	      </a>
+            </li>
+            <li class="nav-item align-self-center">
+	      <a class="nav-link" href="{{ url_for('links') }}">
+		    Links
+	      </a>
+            </li>
+          </ul>
+	</div>
+      </nav>
+      
+      <nav class="col-md-9 ms-sm-auto col-lg-10 px-md-1 p-3 bg-light bg-gradient">
+	<div class="row">
+	  <h4><a href={{ modelfname }} download>Download PDB file</a></h4>
+	  <div style="height: 400px; width=50px">
+	    <div class="my-4 w-75 h-100" id="viewport"></div>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col">
+
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+ <table class="alitable">
+    <tr>
+      <th>TCR segment</th>
+      <th colspan="2">Template Alignment</th>
+    </tr>
+    
+    <tr>
+      <td style="text-align:center"><span class="tcrcolor">CDR1&alpha;</span></td>
+      <td nowrap class="inptcr noborder" style="text-align:right">
+	<span>Input :</span>
+	<br>
+	<span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.acdr1_tmplt_pdbid }}">{{ tj.acdr1_tmplt_pdb }}</a> :</span>
+	<br>
+	<br>
+      </td>
+      <td class="noborder" style="text-align:left">
+	<p class="ali inptcr">
+	    <span class="t1ali aaseqali">{{ tj.aseq_cdr1 }}</span>
+          <br>
+	    <span class="t2ali aaseqali">{{ tj.acdr1_tmplt_seq }}</span>
+          <br>
+	    <span class="ast"></span>
+	    </p>
+    </td>
+    </tr>
+    
+    
+    <tr>
+      <td style="text-align:center" border="1"><span class="tcrcolor">CDR2&alpha;</span></td>
+      <td nowrap class="inptcr noborder" style="text-align:right" border="none!important">
+	<span>Input :</span>
+	<br>
+      <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.acdr2hv4_tmplt_pdbid }}">{{ tj.acdr2hv4_tmplt_pdb }}</a> :</span>
+      <br>
+      <br>
+      </td>
+      <td class="noborder" style="text-align:left">
+	<p class="ali inptcr">
+	    <span class="t1ali aaseqali">{{ tj.aseq_cdr2hv4 }}</span>
+        <br>
+	<span class="t2ali aaseqali">{{ tj.acdr2hv4_tmplt_seq }}</span>
+        <br>
+	<span class="ast"></span>
+	</p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td style="text-align:center" border="1"><span class="tcrcolor">CDR3&alpha;</span></td>
+      <td nowrap class="inptcr noborder" style="text-align:right" border="none!important">
+	<span>Input :</span>
+	<br>
+	<span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.acdr3_tmplt_pdbid }}">{{ tj.acdr3_tmplt_pdb }}</a> :</span>
+	<br>
+      <br>
+      </td>
+      <td class="noborder" style="text-align:left">
+	<p class="ali inptcr">
+	    <span class="t1ali aaseqali">{{ tj.aseq_cdr3_extnd }}</span>
+	      <br>
+	        <span class="t2ali aaseqali">{{ tj.acdr3_tmplt_seq }}</span>
+		  <br>
+		    <span class="ast"></span>
+		    </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center"><span class="tcrcolor">CDR1&beta;</span></td>
+      <td nowrap class="inptcr noborder" style="text-align:right">
+	<span>Input :</span>
+	<br>
+	<span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.bcdr1_tmplt_pdbid }}">{{ tj.bcdr1_tmplt_pdb }}</a> :</span>
+	<br>
+	<br>
+      </td>
+      <td class="noborder" style="text-align:left">
+	<p class="ali inptcr">
+	    <span class="t1ali aaseqali">{{ tj.bseq_cdr1 }}</span>
+          <br>
+	    <span class="t2ali aaseqali">{{ tj.bcdr1_tmplt_seq }}</span>
+          <br>
+	    <span class="ast"></span>
+	    </p>
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td style="text-align:center"><span class="tcrcolor">CDR2&beta;</span></td>
+      <td nowrap class="inptcr noborder" style="text-align:right">
+	<span>Input :</span>
+	<br>
+	<span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.bcdr2hv4_tmplt_pdbid }}">{{ tj.bcdr2hv4_tmplt_pdb }}</a> :</span>
+      <br>
+      <br>
+      </td>
+      <td class="noborder" style="text-align:left">
+	<p class="ali inptcr">
+	    <span class="t1ali aaseqali">{{ tj.bseq_cdr2hv4 }}</span>
+          <br>
+	    <span class="t2ali aaseqali">{{ tj.bcdr2hv4_tmplt_seq }}</span>
+          <br>
+	  <span class="ast"></span>
+	  </p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td style="text-align:center"><span class="tcrcolor">CDR3&beta;</span></td>
+      <td nowrap class="inptcr noborder" style="text-align:right">
+	<span>Input :</span>
+	<br>
+	<span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.bcdr3_tmplt_pdbid }}">{{ tj.bcdr3_tmplt_pdb }}</a> :</span>
+	<br>
+	<br>
+      </td>
+      <td class="noborder" style="text-align:left">
+	<p class="ali inptcr">
+	    <span class="t1ali aaseqali">{{ tj.bseq_cdr3_extnd }}</span>
+	      <br>
+	        <span class="t2ali aaseqali">{{ tj.bcdr3_tmplt_seq }}</span>
+		<br>
+		<span class="ast"></span>
+		</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center"><span class="tcrcolor">TCR orientation</span></td>
+      <td style="text-align:center">
+	<p class="inptcruc">
+	  <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.ori_tmplt }}">{{ tj.ori_tmplt }}</a></span>
+	  </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center"><span class="tcrcolor">TCR-pMHC Orientation</span></td>
+      <td style="text-align:center">
+	<p class="inptcruc">
+	  <span><a target="_blank" href="https://www.rcsb.org/structure/{{ tj.ori_tmplt }}">{{ tj.ori_tmplt }}</a></span>
+	  </p>
+      </td>
+    </tr>
+
+  </table>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+	  </div>
+	</div>
+
+      </nav>
+    </div>
+  </div>
+</main>
+
+
+<footer class="footer mt-auto py-1 p-1 text-dark bg-success bg-opacity-10">
+  <div class="container">
+    <center>
+      <span class="text-muted">Template database last updated: 03/10/2021</span> 
+      <BR>
+      <a href="http://www.rosettacommons.org" target="_blank">
+        <img src="{{ url_for('static', filename='image/rosettacommons_logo.png') }}"  alt="RosLogo" style="width:150px;">
+      </a>
+      &nbsp&nbsp&nbsp&nbsp&nbsp
+      <a href="http://www.ibbr.umd.edu" target="_blank">
+        <img src="{{ url_for('static', filename='image/ibbr_logo.png') }}"  alt="Logo" style="width:200px;">
+      </a>
+    </center>
+  </div>
+</footer>
+
+
+    <link href="{{ url_for('static', filename='bootstrap-5.1.0-dist/js/bootstrap.bundle.min.js')}}" >
+    <script>
+      var modelfname = {{ modelfname|tojson }}
+    </script>
+    <script src="{{ url_for('static', filename = '/js/tcrcomplex1_viewer.js')}}"></script>
+  <script src='https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js'></script>    
+  </body>
+</html>

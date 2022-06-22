@@ -1,0 +1,217 @@
+{% extends "tcrpmhc_layout.html" %}
+{% block head %}
+{{ super() }}
+<script type="text/javascript" src="{{ url_for('static', filename='js/tcrpmhcmodeling_external.js') }}"></script>
+{% endblock %}
+{% block article %}
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Enter sequences</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Generate from germline genes</button>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <form name="tcrpmhc_submitjob" action="{{ url_for('tcrpmhc_submitjob') }}" method="post" id="formid">
+      <div style="line-height:5px;"><br></div>
+      TCR &alpha; chain:
+      <img src="static/bootstrap-5.1.0-dist/icons-1.5.0/icons/question-circle-fill.svg" 
+	   title="Enter T cell receptor alpha chain amino acid sequence">
+      <br>
+      <div style="line-height:5px;"><br></div>
+      <textarea NAME="alphachain" type="text" id="tachain" COLS=60 ROWS=3></textarea>
+      <br><span id="trav_id" class="text-primary fw-light"></span><br>
+      TCR &beta; chain:
+      <img src="static/bootstrap-5.1.0-dist/icons-1.5.0/icons/question-circle-fill.svg" 
+	   title="Enter T cell receptor beta chain amino acid sequence">
+      <br>
+      <div style="line-height:5px;"><br></div>
+      <textarea NAME="betachain" type="text" id="tbchain" COLS=60 ROWS=3></textarea>
+      <br><span id="trbv_id" class="text-primary fw-light"></span><br>
+      Peptide:
+      <img src="static/bootstrap-5.1.0-dist/icons-1.5.0/icons/question-circle-fill.svg" 
+	   title="Enter peptide sequence">
+      <br>
+      <div style="line-height:5px;"><br></div>
+      <textarea NAME="pepchain" type="text" id="pchain" COLS=60 ROWS=1></textarea>
+      <br>
+      <br>
+      <nav>
+	MHC:
+	<div class="nav nav-tabs" id="nav-tab" role="tablist">
+	  <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-mhc1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Class I</button>
+	  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-mhc2" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Class II</button>
+	</div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+	<div class="tab-pane fade show active" id="nav-mhc1" role="tabpanel" aria-labelledby="nav-home-tab">
+	  Enter MHC class I α-chain sequence:<br>
+	  <textarea NAME="mhc1achain" type="text" id="m1achain" COLS=60 ROWS=3></textarea>
+	  <br><br>
+	  <br>
+	  <div style="line-height:5px;"></div>
+	  <input type="submit" value="Submit" class="buttonfont">
+	  <input type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
+	  <br><br>
+	  <a href="#" id="form1btn1">Example input: A6 TCR - HLA-A*02/TAX peptide</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/8906788">(reference)</a>
+	  <div style="line-height:5px;"><br></div>
+	  <a href={{ url_for('res_tcrpmhc', jobid = 'MHC1NJM_210914_095941' ) }}>Example output: A6 TCR - HLA-A*02/TAX peptide</a>
+	</div>
+	<div class="tab-pane fade" id="nav-mhc2" role="tabpanel" aria-labelledby="nav-profile-tab">
+	  Enter MHC class II α-chain sequence<br>
+	  <textarea NAME="mhc2achain" type="text" id="m2achain" COLS=60 ROWS=2></textarea>
+	  <br>
+	  Enter MHC class II β-chain sequence<br>
+	  <textarea NAME="mhc2bchain" type="text" id="m2bchain" COLS=60 ROWS=2></textarea>
+	  <br><br>
+	  <input type="submit" value="Submit" class="buttonfont">
+	  <input type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
+	  <br><br>
+	  <a href="#" id="form1btn2">Example input: SP3.4 TCR - DQ8/gliadin peptide</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/23063329">(reference)</a>
+	  <div style="line-height:5px;"><br></div>
+	  <a href={{ url_for('res_tcrpmhc', jobid = 'MHC299W_210914_100019' ) }}>Example output: SP3.4 TCR - DQ8/gliadin peptide</a>
+	</div>
+      </div>
+      <br>
+      <p>
+	<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+	  Advanced options:
+	</a>
+      </p>
+      <div class="collapse" id="collapseExample">
+	<div class="card card-body">
+	  <div class="card-text">
+	  <input type="checkbox" name="lr" value="loopref"> Refine CDR3 loops<br>
+	  PDB templates to exclude: <input type="text" name="pdbblacklist" value="None">
+	  <img src="static/bootstrap-5.1.0-dist/icons-1.5.0/icons/question-circle-fill.svg" 
+	       title="Enter PDB ID's separated by comma">
+	  <br><br>
+	  <input type="submit" value="Submit" class="buttonfont">
+	  <input type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
+	  </div>
+	</div>
+      </div>
+    </form>
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+    <form name="tcrpmhc_submitjob2" action="{{ url_for('tcrpmhc_submitjob2') }}" method="post" id="formid2">
+      TCR &alpha; chain:
+      <img src="static/bootstrap-5.1.0-dist/icons-1.5.0/icons/question-circle-fill.svg"
+            title="Select T cell receptor alpha chain species and germline genes">
+    <br>
+    <div style="line-height:2px;"><br></div>
+    <select name="aspecies" id="aspecies" onchange="AGeneSelection()">
+      <option value="" disabled >Species</option>
+      <option value="human" selected >Human</option>
+      <option value="mouse">Mouse</option>
+    </select> 
+    <select name="trav" id="trav"></select> 
+    <select name="traj" id="traj"></select> 
+    <br>
+    <div style="line-height:2px;"><br></div>
+    CDR3 sequence <input type="text" name="acdr" id="tacdrseq">
+    <img src="static/bootstrap-5.1.0-dist/icons-1.5.0/icons/question-circle-fill.svg"
+            title="Enter CDR3 alpha amino acid sequence">
+    <br><div style="line-height:5px;"><br></div>
+    <textarea NAME="alphachain" type="text" id="taseq" COLS=60 ROWS=3></textarea>
+    <br><br>
+    TCR &beta; chain:
+<img src="static/bootstrap-5.1.0-dist/icons-1.5.0/icons/question-circle-fill.svg"
+            title="Select T cell receptor beta chain species and germline genes">
+    <br>
+    <div style="line-height:2px;"><br></div>
+    <select name="bspecies" id="bspecies" onchange="BGeneSelection()">
+      <option value="" disabled >Species</option>
+      <option value="human" selected >Human</option>
+      <option value="mouse">Mouse</option>
+    </select> 
+    <select name="trbv" id="trbv"></select> 
+    <select name="trbj" id="trbj"></select>
+    <br>
+    <div style="line-height:2px;"><br></div>
+    CDR3 sequence <input type="text" name="bcdr" id ="tbcdrseq">
+<img src="static/bootstrap-5.1.0-dist/icons-1.5.0/icons/question-circle-fill.svg"
+            title="Enter CDR3 beta amino acid sequence">
+    <br>
+    <div style="line-height:2px;"><br></div>
+    <textarea NAME="betachain" type="text" id="tbseq" COLS=60 ROWS=3></textarea>
+    <BR><BR>
+    Peptide sequence <input type="text" name="pepchain" id="pseq">
+<img src="static/bootstrap-5.1.0-dist/icons-1.5.0/icons/question-circle-fill.svg"
+            title="Enter peptide sequence">
+    <BR><BR>
+      <nav>
+	MHC:
+	<div class="nav nav-tabs" id="nav-tab" role="tablist">
+	  <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav2-mhc1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Class I</button>
+	  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav2-mhc2" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Class II</button>
+	</div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+	<div class="tab-pane fade show active" id="nav2-mhc1" role="tabpanel" aria-labelledby="nav-home-tab">
+	  <BR>
+	  <select name="mhc1speciestype" id="mhc1speciestype" onchange="MHC1SpeciesSelection()">
+	    <option value="" disabled >Species</option>
+	    <option value="human" selected >Human</option>
+	  </select> 
+	  <select name="mhc1a" id="mhc1a"></select> 
+	  <div style="line-height:2px;"><br></div>
+	  <textarea NAME="mhc1aseq" type="text" id="m1aseq" COLS=60 ROWS=3></textarea>
+	  <BR><BR>
+	  <P class="gen_button"><button type="button" id="loadbtn1" style="float: left;">Generate TCR sequences</button></p>
+	  <br>
+	  <input type="submit" value="Submit" class="buttonfont">
+	  <input type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
+	  <br><br>
+	  <a href="#" id="form2btn1">Example input: A6 TCR / HLA-A*02 - TAX Peptide complex</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/8906788">(reference)</a>
+	  <div style="line-height:5px;"><br></div>
+	  <a href={{ url_for('res_tcrpmhc', jobid = 'MHC1P4D_210914_100108' ) }}>Example output: A6 TCR - HLA-A*02/TAX peptide</a>
+	</div>
+	<div class="tab-pane fade" id="nav2-mhc2" role="tabpanel" aria-labelledby="nav-profile-tab">
+	  <BR>
+	  <select name="mhc2speciestype" id="mhc2speciestype" onchange="MHC2SpeciesSelection()">
+	    <option value="" disabled >Species</option>
+	    <option value="human" selected >Human</option>
+	  </select> 
+	  <select name="mhc2a" id="mhc2a"></select> 
+	  <select name="mhc2b" id="mhc2b"></select>
+	  <BR>
+	  <textarea NAME="mhc2aseq" type="text" id="m2aseq" COLS=60 ROWS=2></textarea>
+	  <textarea NAME="mhc2bseq" type="text" id="m2bseq" COLS=60 ROWS=2></textarea>
+	  <BR><BR>
+	  <P class="gen_button"><button type="button" id="loadbtn2" style="float: left;">Generate TCR sequences</button></p>
+	  <BR>
+	  <input type="submit" value="Submit" class="buttonfont">
+	  <input type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
+	  <br><br>
+	  <a href="#" id="form2btn2">Example input: SP3.4 TCR - DQ8/gliadin peptide</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/23063329">(reference)</a>
+	  <div style="line-height:5px;"><br></div>
+	  <a href={{ url_for('res_tcrpmhc', jobid = 'MHC21S7_210914_100141' ) }}>Example output: SP3.4 TCR - DQ8/gliadin peptide</a>
+	</div>
+      </div>
+
+      <p>
+	<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+	  Advanced options:
+	</a>
+      </p>
+      <div class="collapse" id="collapseExample">
+	<div class="card card-body">
+	  <div class="card-text">
+	    <input type="checkbox" name="lr" value="loopref"> Refine CDR3 loops<br>
+	    PDB templates to exclude: <input type="text" name="pdbblacklist" value="None">
+	    <img src="static/bootstrap-5.1.0-dist/icons-1.5.0/icons/question-circle-fill.svg" 
+		 title="Enter PDB ID's separated by comma">
+	    <br><br>
+	    <input type="submit" value="Submit" class="buttonfont">
+	    <input type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
+	  </div>
+	</div>
+      </div>
+    </form>  
+  </div>
+</div>
+
+{% endblock  %}

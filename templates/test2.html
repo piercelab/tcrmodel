@@ -1,0 +1,492 @@
+{% extends "test_layout.html" %}
+{% block head %}
+{{ super() }}
+<script type="text/javascript" src="{{ url_for('static', filename='js/tcrpmhcmodeling_external1.js') }}"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-26223249-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+s  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-26223249-3');
+</script>
+<!-- End:Google Analytics script -->
+
+{% endblock %}
+{% block article %}
+<div class="p-3 m-3">
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item border" role="presentation">
+      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button"  role="tab" aria-controls="pills-home" aria-selected="true">TCR-pMHC complex modeling</button>
+    </li>
+    <li class="nav-item border" role="presentation">
+      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" class="btn-info" role="tab" aria-controls="pills-profile" aria-selected="false">Unbound TCR modeling</button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="pills-tabContent">
+
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+      <nav>
+	<div class="nav nav-tabs" id="nav-tab" role="tablist">
+	  <button class="nav-link active" id="tcrpmhc-sele1-tab" data-bs-toggle="tab" data-bs-target="#tcrpmhc-sele1" type="button" role="tab" aria-controls="tcrpmhc-sele1" aria-selected="true">Enter sequence</button>
+	  <button class="nav-link" id="tcrpmhc-sele2-tab" data-bs-toggle="tab" data-bs-target="#tcrpmhc-sele2" type="button" role="tab" aria-controls="tcrpmhc-sele2" aria-selected="false">Select from gene</button>
+	</div>
+      </nav>
+
+      <div class="tab-content" id="nav-tabContent">
+
+	<div class="tab-pane fade show active" id="tcrpmhc-sele1" role="tabpanel" aria-labelledby="tcrpmhc-sele1-tab">
+	  <form name="tcrpmhc_submitjob1" action="{{ url_for('tcrpmhc_submitjob1') }}" method="post" id="formid2">
+	    <br><div style="line-height:5px;"><br></div>
+	    <div class="input-group" style="width: 80%;">
+	      <div class="input-group-text">
+	        <h6> <p class="text-muted"> Paste your sequence</p> <p class="text-center"><b>TCR &alpha; chain</b></p></h6>
+	      </div>
+	      <textarea class="form-control" NAME="alphachain" type="text" id="tcrachain" ></textarea>
+	      <span id="tcrachain_id" class="genedisplay"></span>
+	    </div>
+            <BR>
+	    <div class="input-group" style="width: 80%;">
+	      <div class="input-group-text">
+		<h6> <p class="text-muted"> Paste your sequence</p> <p class="text-center"><b>TCR &beta; chain</b></p></h6>
+	      </div>
+	      <textarea class="form-control" NAME="betachain" type="text" id="tcrbchain" ></textarea>
+	      <span id="tcrbchain_id" class="genedisplay"></span>
+	    </div>
+	    <br><div style="line-height:5px;"><br></div>
+	    <div class="input-group input-group mb-3" style="width:500px;">
+	      <span class="input-group-text text-muted fw-bold m-0" id="inputGroup-sizing">Enter peptide sequence</span>
+	      <input type="text" class="form-control" name="pepchain" type="text" id="pchain">
+	    </div>
+	    <div style="width: 80%;">
+	      <nav>
+		<p class="text-muted fw-bold m-1">Select MHC gene</p>
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+		  <button class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" data-bs-target="#nav2-mhc1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Class I</button>
+		  <button class="nav-link" id="nav-two-tab" data-bs-toggle="tab" data-bs-target="#nav2-mhc2" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Class II</button>
+		</div>
+	      </nav>
+	    </div>
+	    <div class="tab-content" id="nav-tabContent">
+	      <div class="tab-pane fade show active" id="nav2-mhc1" role="tabpanel" aria-labelledby="nav-one-tab">
+		<div style="line-height:2px;"><br></div>
+		<select name="mhc1speciestype" id="F1_mhc1speciestype" onchange="F1_MHC1SpeciesSelection()">
+		  <option value="" disabled >Species</option>
+		  <option value="human" selected >Human</option>
+		</select> 
+		<select name="mhc1a" id="F1_mhc1a" onchange="F1_MHC1GeneSelection()"></select> 
+		<button type="button" class="btn btn-outline-secondary py-0" data-bs-toggle="collapse" data-bs-target="#mhc1area">Enter sequence</button>
+		<br><div style="line-height:5px;"><br></div>
+		<div class="collapse px-0" id="mhc1area" style="width: 80%;">
+		  <div class="card card-body border-0 my-1 py-1 px-0 ">
+		    <textarea class="form-control py-0" NAME="mhc1aseq" type="text" id="F1_m1aseq"></textarea>
+		  </div>
+		</div>
+		<BR>
+		<p>
+		  <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		    Advanced options
+		  </button>
+		</p>
+		<div class="collapse" id="collapseExample">
+		  <div class="card card-body">
+		    <div class="form-check">
+		      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+		      <label class="form-check-label" for="flexCheckDefault">
+			Refine CDR3 loops
+		      </label>
+		    </div>
+		    <div class = "form-control d-inline-block border-0 ms-0 ps-0">
+		      PDB templates to exclude:
+		      <i class="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Enter PDB ID's separated by comma"></i>
+		      <input  type="text" name="pdbblacklist" value="None" style="width:100px;">
+		    </div>
+		  </div>
+		</div>
+		<div style="line-height:5px;"><br></div>
+		<input class="btn btn-secondary" type="submit" value="Submit" class="buttonfont">
+		<input class="btn btn-secondary" type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
+		<BR><BR>
+		<a href="#" id="ExampleInput1">Example input: A6 TCR / HLA-A*02 - TAX Peptide complex</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/8906788">(reference)</a>
+		<div style="line-height:5px;"><br></div>
+		<a href={{ url_for('res_tcrpmhc', jobid = 'MHC1P4D_210914_100108' ) }}>Example output: A6 TCR - HLA-A*02/TAX peptide</a>
+	      </div>
+	      <div class="tab-pane fade" id="nav2-mhc2" role="tabpanel" aria-labelledby="nav-two-tab">
+		<div style="line-height:2px;"><br></div>
+		<select name="mhc2speciestype" id="mhc2speciestype" onchange="MHC2SpeciesSelection()">
+		  <option value="" disabled >Species</option>
+		  <option value="human" selected >Human</option>
+		</select> 
+		<select name="mhc2a" id="mhc2a" onchange="MHC2GeneSelection()"></select> 
+		<select name="mhc2b" id="mhc2b" onchange="MHC2GeneSelection()"></select>
+		<button type="button" class="btn btn-outline-secondary py-0" data-bs-toggle="collapse" data-bs-target="#mhc2area">Enter sequence</button>
+		<br><div style="line-height:5px;"><br></div>
+		<div class="collapse px-0" id="mhc2area" style="width: 80%;">
+		  <div class="card card-body border-0 my-1 py-1 px-0 ">
+		    <textarea class="form-control py-0" NAME="mhc2aseq" type="text" id="m2aseq"></textarea>
+		    <textarea class="form-control py-0" NAME="mhc2bseq" type="text" id="m2bseq"></textarea>
+		  </div>
+		</div>
+		<BR>
+		<p>
+		  <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		    Advanced options
+		  </button>
+		</p>
+		<div class="collapse" id="collapseExample">
+		  <div class="card card-body">
+		    <div class="form-check">
+		      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+		      <label class="form-check-label" for="flexCheckDefault">
+			Refine CDR3 loops
+		      </label>
+		    </div>
+		    <div class = "form-control d-inline-block border-0 ms-0 ps-0">
+		      PDB templates to exclude:
+		      <i class="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Enter PDB ID's separated by comma"></i>
+		      <input  type="text" name="pdbblacklist" value="None" style="width:100px;">
+		    </div>
+		  </div>
+		</div>
+		<div style="line-height:5px;"><br></div>
+		<input class="btn btn-secondary" type="submit" value="Submit" class="buttonfont">
+		<input class="btn btn-secondary" type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
+		<BR><BR>
+		<a href="#" id="ExBtn2">Example input: SP3.4 TCR - DQ8/gliadin peptide</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/23063329">(reference)</a>
+		<div style="line-height:5px;"><br></div>
+		<a href={{ url_for('res_tcrpmhc', jobid = 'MHC2AEW_210923_114643' ) }}>Example output: SP3.4 TCR - DQ8/gliadin peptide</a>
+		<BR>
+	      </div>
+	    </div>
+	  </form>
+	</div>  
+
+	<div class="tab-pane fade" id="tcrpmhc-sele2" role="tabpanel" aria-labelledby="tcrpmhc-sele2-tab">
+	  <form name="tcrpmhc_submitjob1" action="{{ url_for('tcrpmhc_submitjob1') }}" method="post" id="formid2">
+	    <p class="text-muted fw-bold m-1">TCR &alpha; chain</p>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="aspecies" id="aspecies" onchange="AGeneSelection()" style="width:100px;">
+	      <option value="" disabled>Species</option>
+	      <option value="human" selected>Human</option>
+	      <option value="mouse">Mouse</option>
+	    </select>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="trav" id="trav" style="width:150px;"></select>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="traj" id="traj" style="width:150px;"></select>
+	    <input class="form-control form-control-sm d-inline-block" type="text" placeholder="Enter CDR3 sequence..." name="acdr" id="tacdrseq" style="width:200px;">
+	    <button type="button" class="btn btn-outline-secondary btn-sm" id="loadbtntcra">Enter sequence</button>
+	    <br><div style="line-height:3px;"><br></div>
+	    <textarea class="form-control my-1" NAME="alphachain" type="text" id="taseq" style="width: 80%;"></textarea>
+	    <span id="trav_id" class="text-primary fw-light"></span>
+	    <br><div style="line-height:5px;"><br></div>
+	    <p class="text-muted fw-bold m-1">TCR &beta; chain</p>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="bspecies" id="bspecies" onchange="BGeneSelection()" style="width:100px;">
+	      <option value="" disabled>Species</option>
+	      <option value="human" selected>Human</option>
+	      <option value="mouse">Mouse</option>
+	    </select>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="trbv" id="trbv" style="width:150px;"></select>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="trbj" id="trbj" style="width:150px;"></select>
+	    <input class="form-control form-control-sm d-inline-block" type="text" placeholder="Enter CDR3 sequence..." name="bcdr" id="tbcdrseq" style="width:200px;">
+	    <button type="button" class="btn btn-outline-secondary btn-sm" id="loadbtntcrb">Enter sequence</button>
+	    <br><div style="line-height:3px;"><br></div>
+	    <textarea class="form-control" NAME="betachain" type="text" id="tbseq" style="width: 80%;"></textarea>
+	    <span id="trbv_id" class="text-primary fw-light"></span>
+	    <br><div style="line-height:5px;"><br></div>
+	    <div class="input-group input-group mb-3" style="width:500px;">
+	      <span class="input-group-text text-muted fw-bold m-0" id="inputGroup-sizing">Enter peptide sequence</span>
+	      <input type="text" class="form-control" name="pepchain" type="text" id="pseq">
+	    </div>
+	    <div style="width: 80%;">
+	      <nav>
+		<p class="text-muted fw-bold m-1">Select MHC gene</p>
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+		  <button class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" data-bs-target="#nav2-mhc1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Class I</button>
+		  <button class="nav-link" id="nav-two-tab" data-bs-toggle="tab" data-bs-target="#nav2-mhc2" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Class II</button>
+		</div>
+	      </nav>
+	    </div>
+	    <div class="tab-content" id="nav-tabContent">
+	      <div class="tab-pane fade show active" id="nav2-mhc1" role="tabpanel" aria-labelledby="nav-one-tab">
+		<div style="line-height:2px;"><br></div>
+		<select name="mhc1speciestype" id="mhc1speciestype" onchange="MHC1SpeciesSelection()">
+		  <option value="" disabled >Species</option>
+		  <option value="human" selected >Human</option>
+		</select> 
+		<select name="mhc1a" id="mhc1a" onchange="MHC1GeneSelection()"></select> 
+		<button type="button" class="btn btn-outline-secondary py-0" data-bs-toggle="collapse" data-bs-target="#mhc1area">Enter sequence</button>
+		<br><div style="line-height:5px;"><br></div>
+		<div class="collapse px-0" id="mhc1area" style="width: 80%;">
+		  <div class="card card-body border-0 my-1 py-1 px-0 ">
+		    <textarea class="form-control py-0" NAME="mhc1aseq" type="text" id="m1aseq"></textarea>
+		  </div>
+		</div>
+		<BR>
+		<p>
+		  <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		    Advanced options
+		  </button>
+		</p>
+		<div class="collapse" id="collapseExample">
+		  <div class="card card-body">
+		    <div class="form-check">
+		      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+		      <label class="form-check-label" for="flexCheckDefault">
+			Refine CDR3 loops
+		      </label>
+		    </div>
+		    <div class = "form-control d-inline-block border-0 ms-0 ps-0">
+		      PDB templates to exclude:
+		      <i class="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Enter PDB ID's separated by comma"></i>
+		      <input  type="text" name="pdbblacklist" value="None" style="width:100px;">
+		    </div>
+		  </div>
+		</div>
+		<div style="line-height:5px;"><br></div>
+		<input class="btn btn-secondary" type="submit" value="Submit" class="buttonfont">
+		<input class="btn btn-secondary" type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
+		<BR><BR>
+		<a href="#" id="ExBtn1">Example input: A6 TCR / HLA-A*02 - TAX Peptide complex</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/8906788">(reference)</a>
+		<div style="line-height:5px;"><br></div>
+		<a href={{ url_for('res_tcrpmhc', jobid = 'MHC1P4D_210914_100108' ) }}>Example output: A6 TCR - HLA-A*02/TAX peptide</a>
+	      </div>
+	      <div class="tab-pane fade" id="nav2-mhc2" role="tabpanel" aria-labelledby="nav-two-tab">
+		<div style="line-height:2px;"><br></div>
+		<select name="mhc2speciestype" id="mhc2speciestype" onchange="MHC2SpeciesSelection()">
+		  <option value="" disabled >Species</option>
+		  <option value="human" selected >Human</option>
+		</select> 
+		<select name="mhc2a" id="mhc2a" onchange="MHC2GeneSelection()"></select> 
+		<select name="mhc2b" id="mhc2b" onchange="MHC2GeneSelection()"></select>
+		<button type="button" class="btn btn-outline-secondary py-0" data-bs-toggle="collapse" data-bs-target="#mhc2area">Enter sequence</button>
+		<br><div style="line-height:5px;"><br></div>
+		<div class="collapse px-0" id="mhc2area" style="width: 80%;">
+		  <div class="card card-body border-0 my-1 py-1 px-0 ">
+		    <textarea class="form-control py-0" NAME="mhc2aseq" type="text" id="m2aseq"></textarea>
+		    <textarea class="form-control py-0" NAME="mhc2bseq" type="text" id="m2bseq"></textarea>
+		  </div>
+		</div>
+		<BR>
+		<p>
+		  <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		    Advanced options
+		  </button>
+		</p>
+		<div class="collapse" id="collapseExample">
+		  <div class="card card-body">
+		    <div class="form-check">
+		      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+		      <label class="form-check-label" for="flexCheckDefault">
+			Refine CDR3 loops
+		      </label>
+		    </div>
+		    <div class = "form-control d-inline-block border-0 ms-0 ps-0">
+		      PDB templates to exclude:
+		      <i class="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Enter PDB ID's separated by comma"></i>
+		      <input  type="text" name="pdbblacklist" value="None" style="width:100px;">
+		    </div>
+		  </div>
+		</div>
+		<div style="line-height:5px;"><br></div>
+		<input class="btn btn-secondary" type="submit" value="Submit" class="buttonfont">
+		<input class="btn btn-secondary" type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
+		<BR><BR>
+		<a href="#" id="ExBtn2">Example input: SP3.4 TCR - DQ8/gliadin peptide</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/23063329">(reference)</a>
+		<div style="line-height:5px;"><br></div>
+	      <a href={{ url_for('res_tcrpmhc', jobid = 'MHC2AEW_210923_114643' ) }}>Example output: SP3.4 TCR - DQ8/gliadin peptide</a>
+	      <BR>
+	      </div>
+	    </div>
+	  </form>
+	</div>
+
+      </div>
+    </div>
+    
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+      <nav>
+	<div class="nav nav-tabs" id="nav-tab" role="tablist">
+	  <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Enter TCR sequence</button>
+	  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Select from Germline gene</button>
+	  <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Batch submission</button>
+	</div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+	
+	<div class="tab-pane fade show active p-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+	  <form name="tcrmodel_submitjob1" action="{{ url_for('tcrmodel_submitjob1') }}" method="post" id="formid">
+	    <div class="input-group" style="width: 80%;">
+	      <div class="input-group-text">
+	        <h6> <p class="text-muted"> Paste your sequence</p> <p class="text-center"><b>TCR &alpha; chain</b></p></h6>
+	      </div>
+	      <textarea class="form-control" NAME="alphachain" type="text" id="achain" ></textarea>
+	      <span class="genedisplay" class=" trav_id"></span>
+	    </div>
+            <BR>
+	    <div class="input-group" style="width: 80%;">
+	      <div class="input-group-text">
+		<h6> <p class="text-muted"> Paste your sequence</p> <p class="text-center"><b>TCR &beta; chain</b></p></h6>
+	      </div>
+	      <textarea class="form-control" NAME="betachain" type="text" id="bchain" ></textarea>
+	      <span id="trbv_id" class="genedisplay"></span>
+	    </div>
+	    <BR>  
+	    <p>
+	      <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		Advanced options
+	      </button>
+	    </p>
+	    <div class="collapse" id="collapseExample">
+	      <div class="card card-body">
+		<div class="form-check">
+		  <input class="form-check-input" type="checkbox" name="lr" value="loopref">
+		  <label class="form-check-label" for="flexCheckDefault">
+		    Refine CDR3 loops
+		  </label>
+		</div>
+		<div class = "form-control d-inline-block border-0 ms-0 ps-0">
+		  PDB templates to exclude:
+		  <i class="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Enter PDB ID's separated by comma"></i>
+		  <input  type="text" name="pdbblacklist" value="None" style="width:100px;">
+		</div>
+	      </div>
+	    </div>
+	    <BR>
+	    <input class="btn btn-secondary" type="submit" value="Submit" class="buttonfont">
+	    <input class="btn btn-secondary" type="reset" id="reset1" value="Reset" class="buttonfont buttonclear">
+	  </form>  
+	  <BR>
+	  <a href="#" id="btn1">Example input: 3995 KRAS_G12D TCR</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/26516200">(reference)</a>
+	  <br>
+	  <div style="line-height:5px;"><br></div>
+	  <a href={{ url_for('rtcrex', jobid = 'TCRS2XS_180718_160524' ) }}>Example output: 3995 KRAS_G12D TCR</a>
+	  <br><br>
+	</div>
+	
+	<div class="tab-pane fade p-3" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+	  <form name"=tcrmodel_submitjob2" action="{{ url_for('tcrmodel_submitjob2') }}" method="post" id="formid3">
+	    <p class="text-muted fw-bold m-1">Select TCR &alpha; sequence from gene</p>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_aspecies" id="sele_aspecies" onchange="sele_AGeneSelection()" style="width:100px;">
+	      <option value="" disabled>Species</option>
+	      <option value="human" selected>Human</option>
+	      <option value="mouse">Mouse</option>
+	    </select>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_trav" id="sele_trav" style="width:150px;"></select>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_traj" id="sele_traj" style="width:150px;"></select>
+	    <input class="form-control form-control-sm d-inline-block" type="text" placeholder="Enter CDR3 sequence..." name="sele_acdr" id="sele_tacdrseq" style="width:200px;">
+	    <button type="button" class="btn btn-secondary btn-sm" id="sele_loadbtntcra">Select sequence</button>
+	    <br><div style="line-height:5px;"><br></div>
+	    <div class="input-group" style="width: 80%;">
+	      <textarea class="form-control" NAME="sele_alphachain" type="text" id="sele_taseq" ></textarea>
+	    </div>
+	    <span id="sele_trav_id" class="text-primary fw-light"></span>
+	    <br><div style="line-height:5px;"><br></div>
+	    <p class="text-muted fw-bold m-1">Select TCR &beta; sequence from gene</p>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_bspecies" id="sele_bspecies" onchange="sele_BGeneSelection()" style="width:100px;">
+	      <option value="" disabled>Species</option>
+	      <option value="human" selected>Human</option>
+	      <option value="mouse">Mouse</option>
+	    </select>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_trbv" id="sele_trbv" style="width:150px;"></select>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_trbj" id="sele_trbj" style="width:150px;"></select>
+	    <input class="form-control form-control-sm d-inline-block" type="text" placeholder="Enter CDR3 sequence..." name="sele_bcdr" id="sele_tbcdrseq" style="width:200px;">
+	    <button type="button" class="btn btn-secondary btn-sm" id="sele_loadbtntcrb">Select sequence</button>
+	    <br><div style="line-height:5px;"><br></div>
+	    <div class="input-group" style="width: 80%;">
+	      <textarea class="form-control" NAME="sele_betachain" type="text" id="sele_tbseq" ></textarea>
+	    </div>
+	    <span id="sele_trbv_id" class="text-primary fw-light"></span>
+	    <br><div style="line-height:5px;"><br></div>
+	    <p>
+	      <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		Advanced options
+	      </button>
+	    </p>
+	    <div class="collapse" id="collapseExample">
+	      <div class="card card-body">
+		<div class="form-check">
+		  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+		  <label class="form-check-label" for="flexCheckDefault">
+		    Refine CDR3 loops
+		  </label>
+		</div>
+		<div class = "form-control d-inline-block border-0 ms-0 ps-0">
+		  PDB templates to exclude:
+		  <i class="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Enter PDB ID's separated by comma"></i>
+		  <input  type="text" name="pdbblacklist" value="None" style="width:100px;">
+		</div>
+	      </div>
+	    </div>
+	    <BR>
+	    <input class="btn btn-secondary" type="submit" value="Submit" id="submitid2" class="buttonfont">
+	    <input class="btn btn-secondary" type="reset" value="Reset" id="resetid2" class="buttonfont buttonclear">
+	    <BR><BR>
+	    
+	    <a href="#" id="btn2">Example input: F26 Flu_M1 TCR</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/28423320">(reference)</a>
+	    <br>
+	    <div style="line-height:5px;"><br></div>
+	    <a href={{ url_for('rtcrex', jobid = 'TCRSDM6_180718_160348' ) }}>Example output: F26 Flu_M1 TCR</a>
+	    <BR>
+	  </form> 
+	</div>
+	
+	<div class="tab-pane fade p-3" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+	  <form action="{{ url_for('batchsubmit') }}" method="post" enctype="multipart/form-data">
+	    <div style="line-height:5px;"><br></div>
+	    <u>TCR &alpha; chain:</u>
+	    <i class="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Upload T cell receptor &alpha; chain sequnces in FASTA file format"></i>
+	    <br>
+	    <div style="line-height:5px;"><br></div>
+	    Upload TCR &alpha; chain sequences:
+	    <input type="file" name="abatchfile">
+	    <br><br>
+	    <div style="line-height:5px;"><br></div>
+	    <u>TCR &beta; chain:</u>
+	    <i class="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Upload T cell receptor &beta; chain sequnces in FASTA file format"></i>
+	    <br>
+	    <div style="line-height:5px;"><br></div>
+	    Upload TCR &beta; chain sequences:
+	    <input type="file" name="bbatchfile">
+	    <br><br>
+	    <p>
+	      <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		Advanced options
+	      </button>
+	    </p>
+	    <div class="collapse" id="collapseExample">
+	      <div class="card card-body">
+		<div class="form-check">
+		  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+		  <label class="form-check-label" for="flexCheckDefault">
+		    Refine CDR3 loops
+		  </label>
+		</div>
+		<div class = "form-control d-inline-block border-0 ms-0 ps-0">
+		  PDB templates to exclude:
+		  <i class="bi bi-question-circle" data-toggle="tooltip" data-placement="right" title="Enter PDB ID's separated by comma"></i>
+		  <input  type="text" name="pdbblacklist" value="None" style="width:100px;">
+		</div>
+	      </div>
+	    </div>
+	    <BR>
+	    <input class="btn btn-secondary" type="submit" value="Submit" class="buttonfont">
+	    <input class="btn btn-secondary" type="reset" value="Reset" class="buttonfont buttonclear">
+	    <BR><BR>
+	    Example input: 
+	    <a href="/tcrmodel_runs/TCRM6HJ_180422_115746/TCR_Alpha.fasta" download>TCR&alpha;.fasta</a>
+	    <a href="/tcrmodel_runs/TCRM6HJ_180422_115746/TCR_Beta.fasta " download>TCR&beta;.fasta</a>
+	    <a href="https://www.ncbi.nlm.nih.gov/pubmed/28423320">(reference)</a>
+	    <br>
+	    <div style="line-height:5px;"><br></div>
+	    Example output: <a href={{ url_for('mtcrex', jobid = 'TCRM18G_190312_101922' ) }}>TCRM18G_190312_101922</a>
+	    <br><br>
+	  </form>
+	</div>
+	
+      </div>
+
+    </div>
+    
+  </div>
+  
+</div>
+{% endblock  %}

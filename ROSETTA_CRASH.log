@@ -1,0 +1,42 @@
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+169.tcrcomplexmodeling.5ad8999
+[COMMIT_DATE]: 2021-09-07T10:04:57
+[APPLICATION]: /www/cgi-bin/rosetta/Rosetta/main/source/bin/tcr_complex_model.static.linuxgccrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: GNU/Linux
+[COMPILER]: GCC version "4.9.2 20150212 (Red Hat 4.9.2-6)"
+[STDLIB]: libstdc++ version 20150212
+[START_OPTIONS]
+
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+[0x501ab0f]
+[0x7ec70a3]
+[0x7f7d9fb]
+[0x7f7d5b6]
+[0x40f1ef]
+[0x8484bc4]
+[0x8484e41]
+[0x6d5796]
+
+[END_BACKTRACE]
+
+[FILE]: src/apps/public/tcr/tcr_complex_model.cc
+[LINE]: 84
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Error reading input tcr sequences.
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+

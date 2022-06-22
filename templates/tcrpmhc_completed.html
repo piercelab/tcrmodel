@@ -1,0 +1,366 @@
+{% extends "test_layout.html" %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/aa_colors.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/aa_funcs.js') }}"></script>
+<script src='https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js'></script>
+{% endblock %}
+{% block title %}TCRpMHC model{% endblock %}
+{% block article %}
+<div class="p-3 m-3">
+  <div class="row px-3">
+    <div class="container">
+      <div class="row">
+	<div class="col-8">
+	  <div style="height: 300px;" class="w-70 border border-success" id="nglviewport">
+	    <span class="text-primary fs-6 lh-lg">TCRpMHC model viewer </span>
+	    <div class="float-end">
+	      <button type="button" class="btn btn-outline-primary" onclick="nglCenter()">Center</button>
+	      <div class="btn-group">
+		<button type="button" id="ddpri" class="btn btn-outline-primary dropdown-toggle float-end" data-bs-toggle="dropdown" aria-expanded="false">
+		  Cartoon
+		</button>
+		<ul class="dropdown-menu" id="ddsec">
+		  <li><a class="dropdown-item" href="#">Cartoon</a></li>
+		  <li><a class="dropdown-item" href="#">Spacefill</a></li>
+		  <li><a class="dropdown-item" href="#">Licorice</a></li>
+		  <li><a class="dropdown-item" href="#">Surface</a></li>
+		</ul>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="col-4 py-3">
+	  <p class = "text-start">
+	    Job ID : <a href="{{ url_for('res_tcrpmhc', jobid=jobid) }}">{{ jobid }}</a>
+	    <BR>
+	    Status : Modeling completed
+	  </p>
+	  <h6><a href={{ modelfname }} download>Download PDB file</a></h6>
+	</div>
+      </div>
+    </div>
+    <div class="row p-3">
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+	<div class="accordion-item">
+	  <h2 class="accordion-header" id="flush-headingOne">
+	    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+	      TCRpMHC complex templates
+	    </button>
+	  </h2>
+	  <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+	    <div class="accordion-body">
+	      <table class="table table-striped table-light">
+		<thead>
+		  <tr>
+		    <th>Name</th>
+		    <th>Template PDB</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+		    <th scope="row">Tcr &alpha; CDR1</th>
+		    <td>{{ tj.acdr1_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &alpha; CDR2-HV4</th>
+		    <td>{{ tj.acdr2hv4_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &alpha; CDR3</th>
+		    <td>{{ tj.acdr3_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &alpha; framework</th>
+		    <td>{{ tj.afr_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &alpha; germline</th>
+		    <td>{{ tj.agm_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &beta; CDR1</th>
+		    <td>{{ tj.bcdr1_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &beta; CDR2-HV4</th>
+		    <td>{{ tj.bcdr2hv4_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &beta; CDR3</th>
+		    <td>{{ tj.bcdr3_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &beta; framework</th>
+		    <td>{{ tj.bfr_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &beta; germline</th>
+		    <td>{{ tj.bgm_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Peptide</th>
+		    <td>{{ tj.pep_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">MHC I</th>
+		    <td>{{ tj.mhc1_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">MHC II</th>
+		    <td>{{ tj.mhc2_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">TCR orientation</th>
+		      <td>{{ tj.aori_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">pMHC orientation</th>
+		    <td>{{ tj.pmhc_tmplt_id }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">TCRpMHC orientation</th>
+		    <td>{{ tj.tcrpmhc_tmplt_id }}</td>
+		  </tr>
+		</tbody>	      
+	      </table>
+  	    </div>
+	  </div>
+	</div>
+	<div class="accordion-item">
+	  <h2 class="accordion-header" id="flush-headingTwo">
+	    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+	      Sequence alignment
+	    </button>
+	  </h2>
+	  <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+	    <div class="accordion-body">
+	      <table class="table table-striped table-light table-sm">
+		<thead>
+		  <tr>
+		    <th scope="col">Segments</th>
+		    <th scope="col">Template</th>
+		    <th scope="col">Alignment</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+		    <th scope="row">CDR1&alpha;</th>
+		    <td>{{ tj.acdr1_tmplt_id }}</td>
+		    <td>
+		      <ul class="list-inline font-monospace">
+			<li class="small list-inline-item">&nbsp;&nbsp;&nbsp;Input:</li>
+			<li class="t1ali aaseqali list-inline-item">{{ tj.acdr1_input_seq }}</li>
+			<BR>
+			<li class="small list-inline-item">Template:</li>
+			<li class="t2ali aaseqali list-inline-item">{{ tj.acdr1_tmplt_seq }}</li>
+			<BR>
+			<li class="small  list-inline-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+			<li class="ali list-inline-item">
+			  <span class="ast"></span>
+			</li>
+		      </ul>
+		    </td>
+		  </tr>
+		  <tr>
+		    <th scope="row">CDR2&alpha;</th>
+		    <td>{{ tj.acdr2hv4_tmplt_id }}</td>
+		    <td>
+		      <ul class="list-inline font-monospace">
+			<li class="small list-inline-item">&nbsp;&nbsp;&nbsp;Input:</li>
+			<li class="t1ali aaseqali list-inline-item">{{ tj.acdr2_input_seq }}</li>
+			<BR>
+			<li class="small list-inline-item">Template:</li>
+			<li class="t2ali aaseqali list-inline-item">{{ tj.acdr2_tmplt_seq }}</li>
+			<BR>
+			<li class="small  list-inline-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+			<li class="ali list-inline-item">
+			  <span class="ast"></span>
+			</li>
+		      </ul>
+		    </td>
+		  </tr>
+		  <tr>
+		    <th scope="row">CDR3&alpha;</th>
+		    <td>{{ tj.acdr3_tmplt_id }}</td>
+		    <td>
+		      <ul class="list-inline font-monospace">
+			<li class="small list-inline-item">&nbsp;&nbsp;&nbsp;Input:</li>
+			<li class="t1ali aaseqali list-inline-item">{{ tj.acdr3_input_seq }}</li>
+			<BR>
+			<li class="small list-inline-item">Template:</li>
+			<li class="t2ali aaseqali list-inline-item">{{ tj.acdr3_tmplt_seq }}</li>
+			<BR>
+			<li class="small  list-inline-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+			<li class="ali list-inline-item">
+			  <span class="ast"></span>
+			</li>
+		      </ul>
+		    </td>
+		  </tr>
+		  <tr>
+		    <th scope="row">CDR1&beta;</th>
+		    <td>{{ tj.bcdr1_tmplt_id }}</td>
+		    <td>
+		      <ul class="list-inline font-monospace">
+			<li class="small list-inline-item">&nbsp;&nbsp;&nbsp;Input:</li>
+			<li class="t1ali aaseqali list-inline-item">{{ tj.bcdr1_input_seq }}</li>
+			<BR>
+			<li class="small list-inline-item">Template:</li>
+			<li class="t2ali aaseqali list-inline-item">{{ tj.bcdr1_tmplt_seq }}</li>
+			<BR>
+			<li class="small  list-inline-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+			<li class="ali list-inline-item">
+			  <span class="ast"></span>
+			</li>
+		      </ul>
+		    </td>
+		  </tr>
+		  <tr>
+		    <th scope="row">CDR2&beta;</th>
+		    <td>{{ tj.bcdr2hv4_tmplt_id }}</td>
+		    <td>
+		      <ul class="list-inline font-monospace">
+			<li class="small list-inline-item">&nbsp;&nbsp;&nbsp;Input:</li>
+			<li class="t1ali aaseqali list-inline-item">{{ tj.bcdr2_input_seq }}</li>
+			<BR>
+			<li class="small list-inline-item">Template:</li>
+			  <li class="t2ali aaseqali list-inline-item">{{ tj.bcdr2_tmplt_seq }}</li>
+			  <BR>
+			<li class="small  list-inline-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+			<li class="ali list-inline-item">
+			  <span class="ast"></span>
+			</li>
+		      </ul>
+		    </td>
+		  </tr>
+		  <tr>
+		    <th scope="row">CDR3&beta;</th>
+		    <td>{{ tj.bcdr3_tmplt_id }}</td>
+		    <td>
+		      <ul class="list-inline font-monospace">
+			<li class="small list-inline-item">&nbsp;&nbsp;&nbsp;Input:</li>
+			<li class="t1ali aaseqali list-inline-item">{{ tj.bcdr3_input_seq }}</li>
+			<BR>
+			<li class="small list-inline-item">Template:</li>
+			<li class="t2ali aaseqali list-inline-item">{{ tj.bcdr3_tmplt_seq }}</li>
+			<BR>
+			<li class="small  list-inline-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+			<li class="ali list-inline-item">
+			  <span class="ast"></span>
+			</li>
+		      </ul>
+		    </td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Peptide</th>
+		    <td>{{ tj.tcrpmhc_tmplt_id }}</td>
+		    <td>
+		      <ul class="list-inline font-monospace">
+			<li class="small list-inline-item">&nbsp;&nbsp;&nbsp;Input:</li>
+			<li class="t1ali aaseqali list-inline-item">{{ tj.pep_input_seq }}</li>
+			<BR>
+			<li class="small list-inline-item">Template:</li>
+			<li class="t2ali aaseqali list-inline-item">{{ tj.pep_tmplt_seq }}</li>
+			<BR>
+			<li class="small  list-inline-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+			<li class="ali list-inline-item">
+			  <span class="ast"></span>
+			</li>
+		      </ul>
+		    </td>
+		  </tr>
+		</tbody>
+	      </table>
+	    </div>
+	  </div>
+	</div>
+	<div class="accordion-item">
+	  <h2 class="accordion-header" id="flush-headingThree">
+	    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+	      TCRpMHC segments
+	    </button>
+	  </h2>
+	  <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+	    <div class="accordion-body table-responsive">
+	      <table class="table table-striped table-light table-bordered text-nowrap">
+		<thead>
+		  <tr>
+		    <th>Name</th>
+		    <th>Sequence</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+		    <th scope="row">Tcr &alpha; V domain</th>
+		    <td>{{ tj.atruncdomain_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &alpha; framework</th>
+		    <td>{{ tj.afr_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &alpha; CDR1</th>
+		    <td>{{ tj.acdr1_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &alpha; CDR2-HV4</th>
+		    <td>{{ tj.acdr2_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &alpha; CDR3</th>
+		    <td>{{ tj.acdr3_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &beta; V domain</th>
+		    <td>{{ tj.btruncdomain_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &beta; framework</th>
+		    <td>{{ tj.bfr_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &beta; CDR1</th>
+		    <td>{{ tj.bcdr1_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &beta; CDR2-HV4</th>
+		    <td>{{ tj.bcdr2_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Tcr &beta; CDR3</th>
+		    <td>{{ tj.bcdr3_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">Peptide</th>
+		    <td>{{ tj.pep_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">MHC1 &alpha;</th>
+		    <td>{{ tj.mhc1a_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">MHC2 &alpha;</th>
+		    <td>{{ tj.mhc2a_input_seq }}</td>
+		  </tr>
+		  <tr>
+		    <th scope="row">MHC2 &beta;</th>
+		    <td>{{ tj.mhc2b_input_seq }}</td>
+		  </tr>
+		</tbody>	      
+	      </table>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+    <script>
+      var modelfname = {{ modelfname|tojson }}
+    </script>
+    <script src="{{ url_for('static', filename = '/js/tcrcomplex1_viewer.js')}}"></script>
+    <script src='https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js'></script>
+    
+{% endblock %}
+  

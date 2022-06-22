@@ -1,0 +1,777 @@
+    1.3e-59  204.3   0.0    8.3e-39  137.4   0.0    2.0  2  2p1y_A    mol:protein length:238  bispecific alpha/beta TCR
+    1.3e-59  204.3   0.0    8.3e-39  137.4   0.0    2.0  2  2p1y_C    mol:protein length:238  bispecific alpha/beta TCR
+    1.3e-59  204.3   0.0    8.3e-39  137.4   0.0    2.0  2  2p1y_E    mol:protein length:238  bispecific alpha/beta TCR
+    1.3e-59  204.3   0.0    8.3e-39  137.4   0.0    2.0  2  2p1y_G    mol:protein length:238  bispecific alpha/beta TCR
+    4.3e-59  202.7   0.0    3.6e-39  138.5   0.0    2.0  2  1bwm_A    mol:protein length:249  PROTEIN (ALPHA-BETA T CELL 
+    8.3e-54  185.6   0.9      1e-32  117.8   0.0    2.1  2  3tf7_C    mol:protein length:256  42F3 Mut7 scFv (42F3 alpha 
+    8.3e-54  185.6   0.9      1e-32  117.8   0.0    2.1  2  3tf7_G    mol:protein length:256  42F3 Mut7 scFv (42F3 alpha 
+    8.3e-54  185.6   0.9      1e-32  117.8   0.0    2.1  2  3tf7_I    mol:protein length:256  42F3 Mut7 scFv (42F3 alpha 
+    8.3e-54  185.6   0.9      1e-32  117.8   0.0    2.1  2  3tf7_K    mol:protein length:256  42F3 Mut7 scFv (42F3 alpha 
+    3.2e-45  158.0   2.2    9.5e-29  105.0   0.1    2.2  2  3omz_A    mol:protein length:259  human Vdelta1 gamma delta T
+    3.2e-45  158.0   2.2    9.5e-29  105.0   0.1    2.2  2  3omz_C    mol:protein length:259  human Vdelta1 gamma delta T
+    3.2e-45  158.0   2.2    9.5e-29  105.0   0.1    2.2  2  3omz_E    mol:protein length:259  human Vdelta1 gamma delta T
+    3.2e-45  158.0   2.2    9.5e-29  105.0   0.1    2.2  2  3omz_G    mol:protein length:259  human Vdelta1 gamma delta T
+    2.4e-44  155.2   1.6    1.1e-27  101.5   0.1    2.2  2  4mng_E    mol:protein length:262  TRA@ protein,TRA@ protein, 
+    2.4e-44  155.2   1.6    1.1e-27  101.5   0.1    2.2  2  4mng_F    mol:protein length:262  TRA@ protein,TRA@ protein, 
+    1.7e-40  142.8   0.1    4.6e-40  141.4   0.0    1.7  1  3rdt_A    mol:protein length:205  TCR 809.B5 alpha chain
+    3.9e-40  141.6   0.2      1e-39  140.3   0.0    1.7  1  5sws_D    mol:protein length:207  NP1-B17 TCR alpha chain
+    4.4e-40  141.5   0.1    1.2e-39  140.0   0.0    1.7  1  5hyj_D    mol:protein length:193  Human T-cell Receptor, Clas
+    4.4e-40  141.5   0.1    1.2e-39  140.0   0.0    1.7  1  5hyj_I    mol:protein length:193  Human T-cell Receptor, Clas
+    4.9e-40  141.3   0.1    1.3e-39  139.9   0.0    1.7  1  5c07_D    mol:protein length:199  1E6 TCR Alpha Chain
+    4.9e-40  141.3   0.1    1.3e-39  139.9   0.0    1.7  1  5c07_I    mol:protein length:199  1E6 TCR Alpha Chain
+      5e-40  141.3   0.1    1.4e-39  139.9   0.0    1.7  1  5c0c_D    mol:protein length:200  1E6 TCR Alpha Chain
+      5e-40  141.3   0.1    1.4e-39  139.9   0.0    1.7  1  5c0c_I    mol:protein length:200  1E6 TCR Alpha Chain
+    5.1e-40  141.3   0.1    1.4e-39  139.9   0.0    1.7  1  3utp_D    mol:protein length:201  1E6 TCR alpha chain
+    5.1e-40  141.3   0.1    1.4e-39  139.9   0.0    1.7  1  3utp_K    mol:protein length:201  1E6 TCR alpha chain
+    5.1e-40  141.3   0.1    1.4e-39  139.9   0.0    1.7  1  3uts_D    mol:protein length:201  1E6 TCR Alpha Chain
+    5.1e-40  141.3   0.1    1.4e-39  139.9   0.0    1.7  1  3uts_I    mol:protein length:201  1E6 TCR Alpha Chain
+    5.3e-40  141.2   0.1    1.5e-39  139.8   0.0    1.7  1  5c08_D    mol:protein length:191  1E6 TCR Alpha Chain
+    5.3e-40  141.2   0.1    1.5e-39  139.8   0.0    1.7  1  5c08_I    mol:protein length:191  1E6 TCR Alpha Chain
+    5.4e-40  141.2   0.0    1.2e-39  140.1   0.0    1.6  1  4p23_A    mol:protein length:199  J809.B5 TCR V alpha chain (
+    7.5e-40  140.7   0.0    8.2e-40  140.6   0.0    1.0  1  1d9k_A    mol:protein length:110  T-CELL RECEPTOR D10 (ALPHA 
+    7.5e-40  140.7   0.0    8.2e-40  140.6   0.0    1.0  1  1d9k_E    mol:protein length:110  T-CELL RECEPTOR D10 (ALPHA 
+    8.6e-40  140.5   0.1    2.4e-39  139.1   0.0    1.7  1  5c0a_D    mol:protein length:197  1E6 TCR Alpha Chain
+    8.6e-40  140.5   0.1    2.4e-39  139.1   0.0    1.7  1  5c0a_I    mol:protein length:197  1E6 TCR Alpha Chain
+    8.9e-40  140.5   0.1    2.5e-39  139.1   0.0    1.7  1  3utt_D    mol:protein length:199  1E6 TCR Alpha Chain
+    8.9e-40  140.5   0.1    2.5e-39  139.1   0.0    1.7  1  3utt_I    mol:protein length:199  1E6 TCR Alpha Chain
+    8.9e-40  140.5   0.1    2.5e-39  139.1   0.0    1.7  1  5c0b_D    mol:protein length:199  1E6 TCR Alpha Chain
+    8.9e-40  140.5   0.1    2.5e-39  139.1   0.0    1.7  1  5c0b_I    mol:protein length:199  1E6 TCR Alpha Chain
+    9.1e-40  140.5   0.1    2.5e-39  139.0   0.0    1.7  1  5c09_D    mol:protein length:200  1E6 TCR Alpha Chain
+    9.1e-40  140.5   0.1    2.5e-39  139.0   0.0    1.7  1  5c09_I    mol:protein length:200  1E6 TCR Alpha Chain
+    1.3e-39  140.0   0.1    3.7e-39  138.5   0.0    1.7  1  4p46_A    mol:protein length:199  J809.B5 TCR Y31A alpha chai
+    1.7e-39  139.6   0.0    1.9e-39  139.5   0.0    1.0  1  1kj2_A    mol:protein length:111  KB5-C20 T-Cell receptor alp
+    1.7e-39  139.6   0.0    1.9e-39  139.5   0.0    1.0  1  1kj2_D    mol:protein length:111  KB5-C20 T-Cell receptor alp
+    1.8e-39  139.5   0.1      5e-39  138.1   0.0    1.7  1  6mkd_A    mol:protein length:208  4699 TCR alpha chain
+      2e-39  139.4   0.0    2.2e-39  139.3   0.0    1.0  1  1kb5_A    mol:protein length:115  KB5-C20 T-CELL ANTIGEN RECE
+    2.3e-39  139.2   0.1    6.3e-39  137.8   0.0    1.7  1  6mno_A    mol:protein length:208  6235 TCR alpha chain
+    2.4e-39  139.1   0.2    6.4e-39  137.7   0.0    1.7  1  4p5t_A    mol:protein length:206  TRA protein
+    2.4e-39  139.1   0.2    6.4e-39  137.7   0.0    1.7  1  4p5t_E    mol:protein length:206  TRA protein
+    3.3e-39  138.6   0.3      8e-39  137.4   0.0    1.7  1  4x6b_A    mol:protein length:207  TCR alpha
+    3.3e-39  138.6   0.3      8e-39  137.4   0.0    1.7  1  4x6b_C    mol:protein length:207  TCR alpha
+    3.3e-39  138.6   0.3      8e-39  137.4   0.0    1.7  1  4x6c_E    mol:protein length:207  TCR alpha
+    3.3e-39  138.6   0.3      8e-39  137.4   0.0    1.7  1  4x6c_G    mol:protein length:207  TCR alpha
+    3.3e-39  138.6   0.3      8e-39  137.4   0.0    1.7  1  4x6d_E    mol:protein length:207  TCR alpha
+    3.3e-39  138.6   0.3      8e-39  137.4   0.0    1.7  1  4x6d_G    mol:protein length:207  TCR alpha
+    3.4e-39  138.6   0.1    9.5e-39  137.2   0.0    1.7  1  6mkr_A    mol:protein length:208  5287 TCR alpha chain
+    3.5e-39  138.6   0.1    9.6e-39  137.2   0.0    1.7  1  6mnm_A    mol:protein length:208  6256 TCR alpha chain
+      4e-39  138.4   0.0    4.4e-39  138.3   0.0    1.0  1  1b88_A    mol:protein length:114  T CELL RECEPTOR V-ALPHA DOM
+      4e-39  138.4   0.0    4.4e-39  138.3   0.0    1.0  1  1b88_B    mol:protein length:114  T CELL RECEPTOR V-ALPHA DOM
+    6.3e-39  137.8   0.2    1.6e-38  136.4   0.0    1.7  1  6vqo_D    mol:protein length:208  T-cell receptor 1a2, alfa c
+    6.3e-39  137.8   0.2    1.6e-38  136.4   0.0    1.7  1  6vqo_H    mol:protein length:208  T-cell receptor 1a2, alfa c
+    6.3e-39  137.8   0.2    1.6e-38  136.4   0.0    1.7  1  6vtc_A    mol:protein length:208  T-cell Receptor 1a2
+    6.6e-39  137.7   0.3    1.6e-38  136.5   0.0    1.7  1  5swz_D    mol:protein length:207  NP1-B17 TCR alpha chain
+    6.6e-39  137.7   0.3    1.6e-38  136.5   0.0    1.7  1  5swz_I    mol:protein length:207  NP1-B17 TCR alpha chain
+    6.6e-39  137.7   0.3    1.6e-38  136.5   0.0    1.7  1  5swz_N    mol:protein length:207  NP1-B17 TCR alpha chain
+    6.6e-39  137.7   0.3    1.6e-38  136.5   0.0    1.7  1  5swz_S    mol:protein length:207  NP1-B17 TCR alpha chain
+    6.6e-39  137.7   0.3    1.6e-38  136.5   0.0    1.7  1  7jwi_D    mol:protein length:207  B17.R2 TCR alpha chain
+    6.8e-39  137.7   0.4    1.4e-38  136.7   0.0    1.6  1  6jxr_m    mol:protein length:252  T cell receptor alpha varia
+    7.1e-39  137.6   0.1    2.1e-38  136.1   0.0    1.7  1  3mff_A    mol:protein length:200  T cell receptor alpha chain
+    7.1e-39  137.6   0.1    2.1e-38  136.1   0.0    1.7  1  3mff_C    mol:protein length:200  T cell receptor alpha chain
+    7.5e-39  137.5   0.1    2.1e-38  136.1   0.0    1.7  1  6mnn_A    mol:protein length:208  6236 TCR alpha chain
+      8e-39  137.4   0.4    1.9e-38  136.2   0.0    1.7  1  4wwk_A    mol:protein length:209  TCR Alpha Chain-TRAV12-3
+      1e-38  137.1   0.0    1.1e-38  136.9   0.0    1.0  1  1u3h_A    mol:protein length:110  T-cell receptor alpha-chain
+      1e-38  137.1   0.0    1.1e-38  136.9   0.0    1.0  1  1u3h_E    mol:protein length:110  T-cell receptor alpha-chain
+    1.5e-38  136.5   0.0    4.3e-38  135.1   0.0    1.7  1  6mng_A    mol:protein length:208  4738 TCR alpha chain
+    1.7e-38  136.3   0.0    2.7e-38  135.8   0.0    1.3  1  5ivx_E    mol:protein length:194  T-CELL RECEPTOR ALPHA CHAIN
+    1.7e-38  136.3   0.0    2.7e-38  135.8   0.0    1.3  1  5iw1_A    mol:protein length:194  T-CELL RECEPTOR ALPHA CHAIN
+    1.7e-38  136.3   0.0    2.7e-38  135.8   0.0    1.3  1  5iw1_C    mol:protein length:194  T-CELL RECEPTOR ALPHA CHAIN
+    1.7e-38  136.3   0.0    2.7e-38  135.8   0.0    1.3  1  5iw1_E    mol:protein length:194  T-CELL RECEPTOR ALPHA CHAIN
+    3.2e-38  135.5   0.1      9e-38  134.0   0.0    1.7  1  6am5_D    mol:protein length:189  DMF5 TCR alpha chain
+    3.7e-38  135.3   0.1      1e-37  133.9   0.0    1.7  1  3qdg_D    mol:protein length:199  DMF5 alpha chain
+    3.7e-38  135.3   0.1      1e-37  133.9   0.0    1.7  1  3qdj_D    mol:protein length:199  DMF5 alpha chain
+    3.9e-38  135.2   0.1    1.1e-37  133.8   0.0    1.7  1  3qeu_A    mol:protein length:202  DMF5 alpha chain
+    3.9e-38  135.2   0.1    1.1e-37  133.8   0.0    1.7  1  3qeu_D    mol:protein length:202  DMF5 alpha chain
+    5.6e-38  134.7   0.0    7.5e-38  134.3   0.0    1.2  1  5til_K    mol:protein length:160  Alpha chain of murine P14 T
+    6.4e-38  134.5   0.2    1.7e-37  133.2   0.0    1.7  1  4l3e_D    mol:protein length:199  DMF5 alpha chain
+    6.5e-38  134.5   0.2    1.7e-37  133.1   0.0    1.7  1  6d78_D    mol:protein length:200  DMF5 alpha chain,DMF5 alpha
+    6.6e-38  134.5   0.1    1.9e-37  133.0   0.0    1.7  1  6amu_D    mol:protein length:197  DMF5 TCR alpha chain
+    6.7e-38  134.5   0.3    1.7e-37  133.2   0.0    1.7  1  6vm9_D    mol:protein length:206  T4H2 T cell receptor alpha 
+    6.7e-38  134.5   0.3    1.7e-37  133.2   0.0    1.7  1  6vma_D    mol:protein length:206  T4H2 T cell receptor alpha 
+    6.7e-38  134.5   0.3    1.7e-37  133.2   0.0    1.7  1  6vmc_D    mol:protein length:206  T4H2 T cell receptor alpha 
+    7.2e-38  134.4   0.0    1.1e-37  133.8   0.0    1.3  1  3c6l_A    mol:protein length:185  TCR 2W20 alpha chain
+    7.2e-38  134.4   0.0    1.1e-37  133.8   0.0    1.3  1  3c6l_E    mol:protein length:185  TCR 2W20 alpha chain
+    7.9e-38  134.2   0.3    1.9e-37  133.0   0.0    1.7  1  3pl6_C    mol:protein length:206  T-cell receptor alpha chain
+    8.2e-38  134.2   0.3    1.9e-37  133.0   0.0    1.7  1  4grl_C    mol:protein length:209  TCR Hy.1B11 alpha chain
+    8.2e-38  134.2   0.3    1.9e-37  133.0   0.0    1.7  1  4may_C    mol:protein length:209  HY.1B11 TCR alpha chain
+    8.4e-38  134.1   0.1    2.4e-37  132.7   0.0    1.7  1  6xqp_E    mol:protein length:205  TRAV12-2 alpha chain
+    8.4e-38  134.1   0.1    2.4e-37  132.7   0.0    1.7  1  6xqp_G    mol:protein length:205  TRAV12-2 alpha chain
+    8.4e-38  134.1   0.1    2.4e-37  132.7   0.0    1.7  1  6xqq_A    mol:protein length:205  TRAV12-2 alpha chain
+    8.4e-38  134.1   0.1    2.4e-37  132.7   0.0    1.7  1  6xqq_C    mol:protein length:205  TRAV12-2 alpha chain
+    9.2e-38  134.0   0.0    1.5e-37  133.3   0.0    1.3  1  6g9q_G    mol:protein length:205  T cell receptor alpha varia
+    9.6e-38  134.0   0.0    1.5e-37  133.3   0.0    1.3  1  5m00_G    mol:protein length:205  Protein Trav14-1,Uncharacte
+    9.6e-38  134.0   0.0    1.5e-37  133.3   0.0    1.3  1  5m01_G    mol:protein length:205  Protein Trav14-1,T-cell rec
+    9.6e-38  134.0   0.0    1.5e-37  133.3   0.0    1.3  1  5m02_G    mol:protein length:205  Protein Trav14-1,T-cell rec
+    9.6e-38  134.0   0.0    1.5e-37  133.3   0.0    1.3  1  5til_G    mol:protein length:205  alpha chain of P14 T cell r
+    9.6e-38  134.0   0.0    1.5e-37  133.3   0.0    1.3  1  5tje_E    mol:protein length:205  ALPHA CHAIN OF MURINE T CEL
+    9.6e-38  134.0   0.0    1.5e-37  133.3   0.0    1.3  1  5tje_G    mol:protein length:205  ALPHA CHAIN OF MURINE T CEL
+    1.1e-37  133.7   0.3    2.8e-37  132.5   0.0    1.7  1  6ovo_A    mol:protein length:206  Alpha Chain T-Cell Receptor
+    1.3e-37  133.6   0.1    3.4e-37  132.2   0.0    1.7  1  6rp9_D    mol:protein length:206  T-cell receptor alpha chain
+    1.3e-37  133.6   0.1    3.4e-37  132.2   0.0    1.7  1  6rp9_I    mol:protein length:206  T-cell receptor alpha chain
+    1.3e-37  133.6   0.1    3.4e-37  132.2   0.0    1.7  1  6rp9_K    mol:protein length:206  T-cell receptor alpha chain
+    1.3e-37  133.6   0.1    3.5e-37  132.2   0.0    1.7  1  6dkp_D    mol:protein length:200  DMF5 T-cell Receptor Alpha 
+    1.6e-37  133.2   0.1    4.6e-37  131.8   0.0    1.7  1  5nht_A    mol:protein length:211  T-cell receptor alpha varia
+    1.9e-37  133.0   0.1    5.2e-37  131.6   0.0    1.7  1  6uon_G    mol:protein length:202  TCR-V-alpha-12-02*01
+    1.9e-37  133.0   0.1    5.2e-37  131.6   0.0    1.7  1  6uon_I    mol:protein length:202  TCR-V-alpha-12-02*01
+    2.2e-37  132.8   0.1    5.5e-37  131.5   0.0    1.7  1  1bd2_D    mol:protein length:204  T CELL RECEPTOR ALPHA
+    4.6e-37  131.8   0.1    1.2e-36  130.4   0.0    1.7  1  4eup_G    mol:protein length:206  JKF6 alpha chain
+    4.6e-37  131.8   0.1    1.2e-36  130.4   0.0    1.7  1  4eup_I    mol:protein length:206  JKF6 alpha chain
+    7.1e-37  131.2   0.1    2.1e-36  129.7   0.0    1.7  1  7n1d_A    mol:protein length:199  pYLQ7 T cell receptor alpha
+    7.6e-37  131.1   0.1    2.2e-36  129.6   0.0    1.7  1  7rtr_D    mol:protein length:203  YLQ-SG3 TCR alpha chain (TR
+    7.7e-37  131.0   0.1    2.2e-36  129.6   0.0    1.7  1  7n1f_D    mol:protein length:204  pYLQ7 T cell receptor alpha
+    8.1e-37  131.0   0.1    2.3e-36  129.5   0.0    1.7  1  6rpb_D    mol:protein length:206  T-cell receptor alpha chain
+    8.1e-37  131.0   0.1    2.3e-36  129.5   0.0    1.7  1  6rpb_I    mol:protein length:206  T-cell receptor alpha chain
+    8.1e-37  131.0   0.1    2.3e-36  129.5   0.0    1.7  1  6rpb_N    mol:protein length:206  T-cell receptor alpha chain
+    8.1e-37  131.0   0.1    2.3e-36  129.5   0.0    1.7  1  6rpb_S    mol:protein length:206  T-cell receptor alpha chain
+    9.7e-37  130.7   0.1    2.7e-36  129.3   0.0    1.7  1  5nqk_A    mol:protein length:211  T-cell receptor alpha varia
+      1e-36  130.7   0.4    2.3e-36  129.5   0.0    1.7  1  3qh3_A    mol:protein length:194  A6 alpha chain
+      1e-36  130.7   0.4    2.3e-36  129.5   0.0    1.7  1  3qh3_C    mol:protein length:194  A6 alpha chain
+      1e-36  130.7   0.4    2.3e-36  129.5   0.0    1.7  1  4grm_A    mol:protein length:194  A6 alpha chain
+      1e-36  130.7   0.4    2.3e-36  129.5   0.0    1.7  1  4grm_C    mol:protein length:194  A6 alpha chain
+      1e-36  130.6   0.3    2.6e-36  129.3   0.0    1.7  1  3hg1_D    mol:protein length:194  T-CELL RECEPTOR, ALPHA CHAI
+      1e-36  130.6   0.3    2.6e-36  129.3   0.0    1.7  1  4qok_D    mol:protein length:194  Mel5 TCR chain alpha
+      1e-36  130.6   0.3    2.6e-36  129.3   0.0    1.7  1  6eqa_D    mol:protein length:194  Mel5 TCR, alpha chain
+    1.2e-36  130.4   0.4    2.5e-36  129.4   0.0    1.7  1  1qse_D    mol:protein length:200  PROTEIN (human T-Cell recep
+    1.2e-36  130.4   0.4    2.5e-36  129.4   0.0    1.7  1  1qsf_D    mol:protein length:200  HUMAN T-CELL RECEPTOR
+    1.2e-36  130.4   0.4    2.5e-36  129.4   0.0    1.7  1  2gj6_D    mol:protein length:200  A6-Tcr
+    1.2e-36  130.4   0.4    2.5e-36  129.4   0.0    1.7  1  3d39_D    mol:protein length:200  A6 TCR alpha chain
+    1.2e-36  130.4   0.4    2.5e-36  129.4   0.0    1.7  1  3d3v_D    mol:protein length:200  A6 TCR alpha chain
+    1.2e-36  130.4   0.4    2.5e-36  129.4   0.0    1.7  1  3h9s_D    mol:protein length:200  A6 TCR alpha chain
+    1.2e-36  130.4   0.4    2.5e-36  129.4   0.0    1.7  1  3pwp_D    mol:protein length:200  A6 TCR alpha chain
+    1.2e-36  130.4   0.4    2.5e-36  129.4   0.0    1.7  1  3qfj_D    mol:protein length:200  A6 alpha chain
+    1.2e-36  130.4   0.4    2.5e-36  129.4   0.0    1.7  1  4ftv_D    mol:protein length:200  A6 alpha chain
+    1.3e-36  130.4   0.4    2.6e-36  129.3   0.0    1.7  1  1ao7_D    mol:protein length:204  T CELL RECEPTOR ALPHA
+    1.4e-36  130.2   0.0    2.5e-36  129.4   0.0    1.4  1  1qrn_D    mol:protein length:200  T-CELL RECEPTOR, ALPHA CHAI
+    1.5e-36  130.1   0.0    1.7e-36  130.0   0.0    1.0  1  6uz1_D    mol:protein length:110  T cell receptor, alpha chai
+    1.5e-36  130.1   0.0    1.7e-36  130.0   0.0    1.0  1  6uz1_I    mol:protein length:110  T cell receptor, alpha chai
+    1.8e-36  129.9   0.1      2e-36  129.7   0.1    1.0  1  5e9d_D    mol:protein length:129  A6-TCR Valpha
+    1.8e-36  129.9   0.1      2e-36  129.7   0.1    1.0  1  5e9d_I    mol:protein length:129  A6-TCR Valpha
+      2e-36  129.7   0.1    5.7e-36  128.2   0.0    1.7  1  3vxq_A    mol:protein length:205  H27-14 TCR alpha chain
+      2e-36  129.7   0.1    5.7e-36  128.2   0.0    1.7  1  3vxq_D    mol:protein length:205  H27-14 TCR alpha chain
+    2.1e-36  129.6   0.1    5.9e-36  128.2   0.0    1.7  1  3vxr_D    mol:protein length:207  H27-14 TCR alpha chain
+    2.1e-36  129.6   0.1    5.9e-36  128.2   0.0    1.7  1  3vxs_D    mol:protein length:207  H27-14 TCR alpha chain
+    2.1e-36  129.6   0.4    4.7e-36  128.5   0.0    1.7  1  5tez_I    mol:protein length:208  TCR F50 alpha chain
+    2.5e-36  129.4   0.2    6.5e-36  128.1   0.0    1.7  1  4y1a_D    mol:protein length:210  FS17_alpha
+    2.7e-36  129.3   0.3    6.8e-36  128.0   0.0    1.7  1  5nmd_A    mol:protein length:200  human T-cell Receptor alpha
+    2.7e-36  129.3   0.3    6.8e-36  128.0   0.0    1.7  1  5nmd_C    mol:protein length:200  human T-cell Receptor alpha
+    2.7e-36  129.3   0.3    6.8e-36  128.0   0.0    1.7  1  5nmf_D    mol:protein length:200  HUman T-cell receptor Alpha
+    2.7e-36  129.3   0.3    6.8e-36  128.0   0.0    1.7  1  5nmg_D    mol:protein length:200  Human T-cell receptor alpha
+    2.7e-36  129.3   0.3    6.8e-36  128.0   0.0    1.7  1  5nmg_I    mol:protein length:200  Human T-cell receptor alpha
+    2.7e-36  129.3   0.3    6.9e-36  128.0   0.0    1.7  1  5nme_D    mol:protein length:201  T-cell receptor Alpha chain
+    2.7e-36  129.3   0.3    6.9e-36  128.0   0.0    1.7  1  5nme_I    mol:protein length:201  T-cell receptor Alpha chain
+    2.7e-36  129.3   0.3    6.9e-36  128.0   0.0    1.7  1  5nmf_I    mol:protein length:201  HUman T-cell receptor Alpha
+      3e-36  129.1   0.3    7.2e-36  127.9   0.0    1.7  1  4zdh_A    mol:protein length:201  Alpha chain of A6 T-cell re
+    3.8e-36  128.8   0.2      1e-35  127.5   0.0    1.7  1  5eu6_D    mol:protein length:204  Human TCR Light Chain
+    3.8e-36  128.8   0.1    4.2e-36  128.7   0.1    1.0  1  1ac6_A    mol:protein length:110  T-CELL RECEPTOR ALPHA
+    3.8e-36  128.8   0.1    4.2e-36  128.7   0.1    1.0  1  1ac6_B    mol:protein length:110  T-CELL RECEPTOR ALPHA
+    4.4e-36  128.6   0.7    8.3e-36  127.7   0.1    1.7  1  4pjc_E    mol:protein length:205  TCR-alpha
+    4.4e-36  128.6   0.7    8.3e-36  127.7   0.1    1.7  1  4pjc_G    mol:protein length:205  TCR-alpha
+    4.4e-36  128.6   0.7    8.3e-36  127.7   0.1    1.7  1  4pjx_E    mol:protein length:205  TCR-alpha
+    4.4e-36  128.6   0.7    8.3e-36  127.7   0.1    1.7  1  4pjx_G    mol:protein length:205  TCR-alpha
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6puc_D    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6puc_G    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pud_D    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pud_G    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pue_D    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pue_G    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6puf_D    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6puf_G    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pug_D    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pug_G    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6puh_B    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6puh_D    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pui_B    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pui_D    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6puj_B    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6puj_D    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6puk_B    mol:protein length:204  TRA@ protein
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6puk_D    mol:protein length:204  TRA@ protein
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pul_B    mol:protein length:204  TRA@ protein
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pul_D    mol:protein length:204  TRA@ protein
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pum_D    mol:protein length:204  TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pum_G    mol:protein length:204  TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pvc_E    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pvc_G    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pvd_D    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6pvd_G    mol:protein length:204  Human TCR alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6w9u_D    mol:protein length:204  TCR-alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6w9u_G    mol:protein length:204  TCR-alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6w9v_D    mol:protein length:204  TCR-alpha chain
+    5.4e-36  128.3   0.9    9.2e-36  127.6   0.1    1.7  1  6w9v_G    mol:protein length:204  TCR-alpha chain
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4l4t_D    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4l4t_G    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4l4v_D    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4l4v_G    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4lcw_D    mol:protein length:203  MAIT T cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4lcw_G    mol:protein length:203  MAIT T cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4nqc_D    mol:protein length:203  TCR alpha chain
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4nqc_G    mol:protein length:203  TCR alpha chain
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4nqd_D    mol:protein length:203  TCR alpha chain
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4nqd_G    mol:protein length:203  TCR alpha chain
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4nqe_D    mol:protein length:203  TCR alpha
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4nqe_G    mol:protein length:203  TCR alpha
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4pj5_D    mol:protein length:203  TCR-alpha
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  4pj5_G    mol:protein length:203  TCR-alpha
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  5u16_E    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  5u16_G    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  5u17_B    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  5u17_D    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  5u1r_B    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  5u1r_D    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  5u2v_E    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  5u2v_G    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  5u6q_B    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  5u6q_D    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  5u72_B    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   1.0      9e-36  127.6   0.1    1.7  1  5u72_D    mol:protein length:203  MAIT T-cell receptor alpha 
+    5.5e-36  128.3   0.9    9.3e-36  127.6   0.1    1.7  1  4iiq_A    mol:protein length:205  Human Mucosal Associated In
+    5.7e-36  128.3   1.2    7.4e-36  127.9   0.2    1.7  1  2cde_A    mol:protein length:192  INKT-TCR
+    5.7e-36  128.3   1.2    7.4e-36  127.9   0.2    1.7  1  2cde_C    mol:protein length:192  INKT-TCR
+    5.7e-36  128.3   1.2    7.4e-36  127.9   0.2    1.7  1  2cde_E    mol:protein length:192  INKT-TCR
+    5.7e-36  128.2   0.9    9.6e-36  127.5   0.1    1.7  1  4lcc_A    mol:protein length:208  Human MAIT TCR alpha chain
+    6.5e-36  128.1   1.2    8.8e-36  127.6   0.2    1.7  1  2po6_C    mol:protein length:204  NKT15 alpha-chain
+    6.5e-36  128.1   1.2    8.8e-36  127.6   0.2    1.7  1  2po6_G    mol:protein length:204  NKT15 alpha-chain
+    6.5e-36  128.1   1.2    8.8e-36  127.6   0.2    1.7  1  3sdx_E    mol:protein length:204  NKT TCR Valpha24 chain
+    6.5e-36  128.1   1.2    8.8e-36  127.6   0.2    1.7  1  3sdx_G    mol:protein length:204  NKT TCR Valpha24 chain
+    6.6e-36  128.0   0.8    1.2e-35  127.2   0.1    1.7  1  5d5m_E    mol:protein length:204  M33.64 TCR Alpha Chain
+    6.6e-36  128.0   0.8    1.2e-35  127.2   0.1    1.7  1  5d5m_G    mol:protein length:204  M33.64 TCR Alpha Chain
+    6.6e-36  128.0   0.8    1.2e-35  127.2   0.1    1.7  1  5d7i_E    mol:protein length:204  M33.64 TCR Alpha Chain
+    6.6e-36  128.0   0.8    1.2e-35  127.2   0.1    1.7  1  5d7i_G    mol:protein length:204  M33.64 TCR Alpha Chain
+    6.7e-36  128.0   0.8    1.2e-35  127.2   0.1    1.7  1  4pj7_E    mol:protein length:203  TCR-alpha
+    6.7e-36  128.0   0.8    1.2e-35  127.2   0.1    1.7  1  4pj7_G    mol:protein length:203  TCR-alpha
+      7e-36  128.0   1.2    9.4e-36  127.6   0.2    1.7  1  3huj_E    mol:protein length:209  NKT15 T cell receptor alpha
+      7e-36  128.0   1.2    9.4e-36  127.6   0.2    1.7  1  3huj_G    mol:protein length:209  NKT15 T cell receptor alpha
+      7e-36  128.0   1.2    9.4e-36  127.6   0.2    1.7  1  3vwj_C    mol:protein length:209  NKT15 T cell receptor alpha
+      7e-36  128.0   1.2    9.4e-36  127.6   0.2    1.7  1  3vwk_C    mol:protein length:209  NKT15 T cell receptor alpha
+    7.1e-36  127.9   1.2    9.5e-36  127.5   0.2    1.7  1  2eyr_A    mol:protein length:210  NKT12
+    7.1e-36  127.9   1.2    9.5e-36  127.5   0.2    1.7  1  2eys_A    mol:protein length:210  NKT15
+    7.1e-36  127.9   1.2    9.5e-36  127.5   0.2    1.7  1  2eyt_A    mol:protein length:210  NKT15
+    7.1e-36  127.9   1.2    9.5e-36  127.5   0.2    1.7  1  2eyt_C    mol:protein length:210  NKT15
+    7.1e-36  127.9   1.2    9.5e-36  127.5   0.2    1.7  1  6v80_C    mol:protein length:210  T cell receptor alpha varia
+    7.1e-36  127.9   1.2    9.5e-36  127.5   0.2    1.7  1  6v80_H    mol:protein length:210  T cell receptor alpha varia
+    7.4e-36  127.9   1.2    9.9e-36  127.5   0.2    1.7  1  3tyf_A    mol:protein length:213  iNKT Cell Receptor Alpha Ch
+    7.4e-36  127.9   1.2    9.9e-36  127.5   0.2    1.7  1  3tyf_C    mol:protein length:213  iNKT Cell Receptor Alpha Ch
+    7.4e-36  127.9   1.2    9.9e-36  127.5   0.2    1.7  1  3tzv_A    mol:protein length:213  Invariant Natural Killer T 
+    7.4e-36  127.9   1.2    9.9e-36  127.5   0.2    1.7  1  3tzv_G    mol:protein length:213  Invariant Natural Killer T 
+    8.1e-36  127.8   0.1    2.3e-35  126.3   0.0    1.7  1  4jfd_D    mol:protein length:196  High Affinity TCR Alpha Cha
+    8.2e-36  127.7   0.1    2.3e-35  126.3   0.0    1.7  1  4jff_D    mol:protein length:197  High Affinity TCR Alpha Cha
+    8.2e-36  127.7   0.1    2.3e-35  126.3   0.0    1.7  1  6tmo_D    mol:protein length:197  Alpha chain of engineered h
+      9e-36  127.6   0.3    2.3e-35  126.3   0.0    1.7  1  3vxt_A    mol:protein length:205  T36-5 TCR alpha chain
+      9e-36  127.6   0.3    2.3e-35  126.3   0.0    1.7  1  3vxt_C    mol:protein length:205  T36-5 TCR alpha chain
+      9e-36  127.6   0.3    2.3e-35  126.3   0.0    1.7  1  3vxu_D    mol:protein length:205  T36-5 TCR alpha chain
+      9e-36  127.6   0.3    2.3e-35  126.3   0.0    1.7  1  3vxu_I    mol:protein length:205  T36-5 TCR alpha chain
+      9e-36  127.6   0.3    2.3e-35  126.3   0.0    1.7  1  3w0w_D    mol:protein length:205  T36-5 TCR alpha chain
+    1.1e-35  127.4   0.1      3e-35  125.9   0.0    1.7  1  6eqb_D    mol:protein length:196  High Affinity Mel5 TCR, alp
+    1.1e-35  127.4   0.1    3.1e-35  125.9   0.0    1.7  1  4jfe_D    mol:protein length:197  High Affinity TCR Alpha Cha
+    1.1e-35  127.3   0.3    2.7e-35  126.1   0.0    1.7  1  6eh5_A    mol:protein length:202  Human T Cell Receptor Alpha
+    1.1e-35  127.3   0.3    2.7e-35  126.1   0.0    1.7  1  6fr3_A    mol:protein length:202  003 TCR Alpha Chain
+    1.1e-35  127.3   0.3    2.7e-35  126.1   0.0    1.7  1  6fr4_A    mol:protein length:202  TCR 003 alpha chain
+    1.1e-35  127.3   0.3    2.7e-35  126.1   0.0    1.7  1  6fr5_A    mol:protein length:202  TCR HA1.7 specific for FLU 
+    1.1e-35  127.3   0.3    2.8e-35  126.0   0.0    1.7  1  6eh4_D    mol:protein length:204  Human T Cell Receptor Alpha
+    1.1e-35  127.3   0.1    3.2e-35  125.8   0.0    1.7  1  4jfh_D    mol:protein length:200  alpha24 TCR allele
+    1.2e-35  127.3   0.9      2e-35  126.5   0.1    1.7  1  4pjf_E    mol:protein length:205  TCR-alpha
+    1.2e-35  127.3   0.9      2e-35  126.5   0.1    1.7  1  4pjf_G    mol:protein length:205  TCR-alpha
+    1.2e-35  127.2   0.8    2.3e-35  126.3   0.1    1.7  1  4pjd_E    mol:protein length:205  TCR-alpha
+    1.2e-35  127.2   0.8    2.3e-35  126.3   0.1    1.7  1  4pjd_G    mol:protein length:205  TCR-alpha
+    1.2e-35  127.2   0.8    2.3e-35  126.3   0.1    1.7  1  4pji_E    mol:protein length:205  TCR-alpha
+    1.2e-35  127.2   0.8    2.3e-35  126.3   0.1    1.7  1  4pji_G    mol:protein length:205  TCR-alpha
+    1.4e-35  127.0   0.9    2.5e-35  126.2   0.1    1.7  1  4pjh_E    mol:protein length:205  TCR-alpha
+    1.4e-35  127.0   0.9    2.5e-35  126.2   0.1    1.7  1  4pjh_G    mol:protein length:205  TCR-alpha
+    1.4e-35  127.0   0.2    3.7e-35  125.6   0.0    1.7  1  4y19_D    mol:protein length:210  FS18_alpha
+    1.6e-35  126.8   0.0    4.6e-35  125.3   0.0    1.7  1  6c09_C    mol:protein length:205  3C8 T cell receptor alpha-c
+    1.6e-35  126.8   0.2      4e-35  125.5   0.0    1.7  1  4ei5_C    mol:protein length:208  Valpha1 XV19 Type II Natura
+    1.6e-35  126.8   0.2      4e-35  125.5   0.0    1.7  1  4ei5_G    mol:protein length:208  Valpha1 XV19 Type II Natura
+    1.6e-35  126.8   0.2      4e-35  125.5   0.0    1.7  1  4ei6_A    mol:protein length:208  Valpha1 XV19 Type II Natura
+    1.6e-35  126.8   0.2      4e-35  125.5   0.0    1.7  1  4ei6_C    mol:protein length:208  Valpha1 XV19 Type II Natura
+    1.6e-35  126.8   0.2      4e-35  125.5   0.0    1.7  1  4elk_A    mol:protein length:208  Hy19.3 TCR alpha chain (mou
+    1.6e-35  126.8   0.2      4e-35  125.5   0.0    1.7  1  4elk_C    mol:protein length:208  Hy19.3 TCR alpha chain (mou
+    1.6e-35  126.8   0.2      4e-35  125.5   0.0    1.7  1  4elm_E    mol:protein length:208  Hy19.3 TCR alpha chain (mou
+    1.6e-35  126.8   0.2      4e-35  125.5   0.0    1.7  1  4elm_G    mol:protein length:208  Hy19.3 TCR alpha chain (mou
+    1.8e-35  126.6   0.6    3.6e-35  125.7   0.1    1.7  1  6tro_D    mol:protein length:208  T-cell receptor alpha chain
+    1.8e-35  126.6   0.3    4.4e-35  125.4   0.0    1.7  1  6zkw_D    mol:protein length:199  T-cell receptor alpha chain
+    1.8e-35  126.6   0.3    4.4e-35  125.4   0.0    1.7  1  6zkx_D    mol:protein length:199  T-cell receptor alpha chain
+    1.8e-35  126.6   0.3    4.4e-35  125.4   0.0    1.7  1  6zky_D    mol:protein length:199  T-cell receptor alpha chain
+    1.8e-35  126.6   0.3    4.4e-35  125.4   0.0    1.7  1  6zkz_D    mol:protein length:199  T-cell receptor alpha chain
+    2.1e-35  126.4   0.9    3.6e-35  125.7   0.1    1.7  1  4dzb_A    mol:protein length:203  Valpha7.2-Jalpha33 (MAIT T 
+    2.1e-35  126.4   0.9    3.6e-35  125.7   0.1    1.7  1  4pj8_C    mol:protein length:203  TCR-alpha
+    2.2e-35  126.4   0.5      5e-35  125.2   0.0    1.7  1  4mji_D    mol:protein length:195  T-Cell Receptor Chain alpha
+    2.2e-35  126.4   0.5      5e-35  125.2   0.0    1.7  1  4mji_I    mol:protein length:195  T-Cell Receptor Chain alpha
+    2.8e-35  126.0   0.1    7.7e-35  124.6   0.0    1.7  1  4ww1_A    mol:protein length:207  TCR Alpha Chain-TRAV21-TRAJ
+    2.8e-35  126.0   0.1    7.7e-35  124.6   0.0    1.7  1  4ww2_A    mol:protein length:207  TCR Alpha Chain-TRAV21-TRAJ
+    3.1e-35  125.9   0.1    8.6e-35  124.5   0.0    1.7  1  6px6_D    mol:protein length:217  T-cell receptor, T1005.2.56
+    3.1e-35  125.9   1.2    4.4e-35  125.4   0.2    1.7  1  6v13_D    mol:protein length:206  G08 TCR alpha chain
+    3.1e-35  125.9   1.2    4.4e-35  125.4   0.2    1.7  1  6v15_D    mol:protein length:206  G08 TCR alpha chain
+    3.2e-35  125.8   1.0    5.3e-35  125.1   0.1    1.7  1  4l8s_A    mol:protein length:208  Muccosal Associated Invaria
+    3.8e-35  125.6   0.7    7.3e-35  124.7   0.1    1.7  1  4pja_E    mol:protein length:205  TCR-alpha
+    3.8e-35  125.6   0.7    7.3e-35  124.7   0.1    1.7  1  4pja_G    mol:protein length:205  TCR-alpha
+    3.8e-35  125.6   0.7    7.3e-35  124.7   0.1    1.7  1  4pje_E    mol:protein length:205  TCR-alpha
+    3.8e-35  125.6   0.7    7.3e-35  124.7   0.1    1.7  1  4pje_G    mol:protein length:205  TCR-alpha
+    3.8e-35  125.6   0.6    7.8e-35  124.6   0.1    1.7  1  5d7j_A    mol:protein length:204  M33.64 TCR Alpha Chain
+    3.8e-35  125.6   0.6    7.8e-35  124.6   0.1    1.7  1  5d7j_G    mol:protein length:204  M33.64 TCR Alpha Chain
+      4e-35  125.5   0.0    1.2e-34  124.0   0.0    1.7  1  2p5w_D    mol:protein length:192  T-CELL RECEPTOR, ALPHA CHAI
+    4.9e-35  125.3   1.0    7.1e-35  124.7   0.1    1.7  1  2wbj_C    mol:protein length:219  OB TCR
+    4.9e-35  125.3   1.0    7.1e-35  124.7   0.1    1.7  1  2wbj_G    mol:protein length:219  OB TCR
+    5.1e-35  125.2   1.0      8e-35  124.6   0.1    1.7  1  2ypl_D    mol:protein length:199  AGA T-CELL RECEPTOR ALPHA C
+    5.4e-35  125.1   0.0    1.6e-34  123.6   0.0    1.7  1  2pye_D    mol:protein length:195  T-Cell Receptor, Alpha Chai
+    6.1e-35  124.9   0.0    1.8e-34  123.5   0.0    1.7  1  2bnu_A    mol:protein length:203  T-CELL RECEPTOR ALPHA CHAIN
+    6.2e-35  124.9   0.0    1.8e-34  123.5   0.0    1.7  1  2bnq_D    mol:protein length:203  T-CELL RECEPTOR ALPHA CHAIN
+    6.2e-35  124.9   0.0    1.8e-34  123.5   0.0    1.7  1  2bnr_D    mol:protein length:203  T-CELL RECEPTOR ALPHA CHAIN
+    6.4e-35  124.9   0.0    1.9e-34  123.4   0.0    1.7  1  2pyf_A    mol:protein length:205  T-Cell Receptor, Alpha Chai
+    6.6e-35  124.8   0.0    1.9e-34  123.4   0.0    1.7  1  6q3s_D    mol:protein length:207  T cell receptor alpha varia
+      7e-35  124.8   0.8    1.2e-34  123.9   0.1    1.7  1  4pjb_E    mol:protein length:205  TCR-alpha
+      7e-35  124.8   0.8    1.2e-34  123.9   0.1    1.7  1  4pjb_G    mol:protein length:205  TCR-alpha
+      7e-35  124.8   0.8    1.2e-34  123.9   0.1    1.7  1  4pjg_E    mol:protein length:205  TCR-alpha
+      7e-35  124.8   0.8    1.2e-34  123.9   0.1    1.7  1  4pjg_G    mol:protein length:205  TCR-alpha
+    7.3e-35  124.7   0.0    2.2e-34  123.2   0.0    1.7  1  2p5e_D    mol:protein length:195  T-Cell Receptor, Alpha Chai
+    7.5e-35  124.6   0.7    1.4e-34  123.7   0.1    1.7  1  6dfx_G    mol:protein length:207  T1D3 alpha chain
+    7.5e-35  124.6   0.7    1.4e-34  123.7   0.1    1.7  1  6dfx_I    mol:protein length:207  T1D3 alpha chain
+    8.9e-35  124.4   0.1    9.8e-35  124.3   0.1    1.0  1  2z35_A    mol:protein length:112  T-cell receptor alpha-chain
+    9.9e-35  124.3   0.1    1.1e-34  124.1   0.1    1.0  1  2z31_A    mol:protein length:112  T-cell receptor alpha-chain
+      1e-34  124.2   0.0      3e-34  122.7   0.0    1.7  1  2f54_D    mol:protein length:206  T-cell receptor alpha chain
+      1e-34  124.2   0.0      3e-34  122.7   0.0    1.7  1  2f54_K    mol:protein length:206  T-cell receptor alpha chain
+    1.1e-34  124.2   0.1    1.2e-34  124.0   0.1    1.0  1  2pxy_A    mol:protein length:114  T cell receptor alpha chain
+    1.1e-34  124.1   0.5    2.5e-34  123.0   0.1    1.7  1  4l9l_A    mol:protein length:208  Human MAIT TCR alpha chain
+    1.3e-34  123.9   0.0    1.4e-34  123.8   0.0    1.0  1  2e7l_A    mol:protein length:113  Cytotoxic Tcell receptor
+    1.3e-34  123.9   0.0    1.4e-34  123.8   0.0    1.0  1  2e7l_B    mol:protein length:113  Cytotoxic Tcell receptor
+    1.3e-34  123.9   0.0    3.9e-34  122.3   0.0    1.7  1  2f53_D    mol:protein length:193  T-cell Receptor, alpha chai
+      2e-34  123.3   1.6    2.1e-34  123.2   0.2    1.7  1  1ymm_D    mol:protein length:207  T cell receptor alpha chain
+    2.1e-34  123.2   0.4    4.6e-34  122.1   0.0    1.7  1  6dfq_A    mol:protein length:210  TCR alpha chain
+    2.1e-34  123.2   0.4    4.6e-34  122.1   0.0    1.7  1  6dfq_C    mol:protein length:210  TCR alpha chain
+    2.1e-34  123.2   0.4    4.6e-34  122.1   0.0    1.7  1  6dfq_E    mol:protein length:210  TCR alpha chain
+    2.1e-34  123.2   0.4    4.6e-34  122.1   0.0    1.7  1  6dfq_G    mol:protein length:210  TCR alpha chain
+    2.1e-34  123.2   0.4    4.6e-34  122.1   0.0    1.7  1  6dfs_A    mol:protein length:210  mouse TCR alpha chain
+    2.1e-34  123.2   0.1    5.7e-34  121.8   0.0    1.7  1  6dfv_A    mol:protein length:210  TCR alpha chain
+    2.1e-34  123.2   0.1    5.7e-34  121.8   0.0    1.7  1  6dfv_C    mol:protein length:210  TCR alpha chain
+    2.1e-34  123.2   0.1    5.7e-34  121.8   0.0    1.7  1  6dfw_E    mol:protein length:210  8F10 alpha chain
+    2.1e-34  123.2   0.1    5.7e-34  121.8   0.0    1.7  1  6dfw_G    mol:protein length:210  8F10 alpha chain
+    2.2e-34  123.1   0.4    5.1e-34  122.0   0.0    1.7  1  6vrm_D    mol:protein length:205  T-cell receptor 12-6, alfa 
+    2.2e-34  123.1   0.4    5.1e-34  122.0   0.0    1.7  1  6vth_A    mol:protein length:205  T-cell Receptor 12-6, Alfa 
+    2.2e-34  123.1   0.4    5.1e-34  122.0   0.0    1.7  1  6vth_D    mol:protein length:205  T-cell Receptor 12-6, Alfa 
+    2.3e-34  123.1   0.0    2.6e-34  122.9   0.0    1.0  1  1i9e_A    mol:protein length:115  CYTOTOXIC TCELL VALPHA DOMA
+    2.5e-34  123.0   0.5      5e-34  122.0   0.1    1.7  1  4en3_A    mol:protein length:220  HUMAN NKT TCR ALPHA CHAIN
+    2.5e-34  123.0   0.0    2.8e-34  122.8   0.0    1.0  1  2oi9_B    mol:protein length:113  T cell receptor alpha chain
+    2.5e-34  123.0   0.5    5.6e-34  121.8   0.0    1.7  1  2nx5_D    mol:protein length:188  ELS4 TCR alpha chain
+    2.5e-34  123.0   0.5    5.6e-34  121.8   0.0    1.7  1  2nx5_I    mol:protein length:188  ELS4 TCR alpha chain
+    2.5e-34  123.0   0.5    5.6e-34  121.8   0.0    1.7  1  2nx5_N    mol:protein length:188  ELS4 TCR alpha chain
+    2.5e-34  123.0   0.5    5.6e-34  121.8   0.0    1.7  1  2nx5_T    mol:protein length:188  ELS4 TCR alpha chain
+    2.7e-34  122.8   1.1    4.3e-34  122.2   0.1    1.7  1  4pj9_C    mol:protein length:203  TCR-alpha
+      3e-34  122.7   0.1    8.3e-34  121.3   0.0    1.7  1  4pri_D    mol:protein length:202  TK3 TCR alpha chain
+    3.1e-34  122.7   0.5    6.6e-34  121.6   0.0    1.7  1  2nw2_A    mol:protein length:200  ELS4 TCR alpha chain
+    3.1e-34  122.7   1.2    3.1e-34  122.7   1.2    1.7  1  6p64_D    mol:protein length:208  302TIL TCR alpha chain
+    3.1e-34  122.7   1.2    3.1e-34  122.7   1.2    1.7  1  6p64_I    mol:protein length:208  302TIL TCR alpha chain
+    3.1e-34  122.7   1.2    3.1e-34  122.7   1.2    1.7  1  6uk2_D    mol:protein length:208  302 TIL T cell receptor alp
+    3.1e-34  122.7   1.2    3.1e-34  122.7   1.2    1.7  1  6uk4_D    mol:protein length:208  302 TIL T cell receptor alp
+    3.3e-34  122.6   0.6    6.6e-34  121.6   0.1    1.7  1  6py2_D    mol:protein length:206  T-cell receptor, T594, alph
+    3.3e-34  122.6   0.1      9e-34  121.2   0.0    1.7  1  4prh_D    mol:protein length:208  TK3 TCR alpha chain
+    3.4e-34  122.5   0.8    5.8e-34  121.8   0.1    1.7  1  6cug_D    mol:protein length:207  T-cell receptor alpha varia
+    3.4e-34  122.5   0.8    5.8e-34  121.8   0.1    1.7  1  6cuh_A    mol:protein length:207  T-cell Receptor alpha varia
+    3.6e-34  122.5   0.1    9.7e-34  121.1   0.0    1.7  1  7ea6_A    mol:protein length:201  T cell receptor 017 alpha c
+    3.6e-34  122.5   0.1    9.7e-34  121.1   0.0    1.7  1  7ea6_D    mol:protein length:201  T cell receptor 017 alpha c
+    3.7e-34  122.4   0.0    1.1e-33  120.9   0.0    1.7  1  5brz_D    mol:protein length:197  Protein TRAV21,T-cell recep
+    3.7e-34  122.4   0.0    1.1e-33  120.9   0.0    1.7  1  5bs0_D    mol:protein length:197  Protein TRAV21,T-cell recep
+      4e-34  122.3   0.2      9e-34  121.2   0.0    1.7  1  1zgl_M    mol:protein length:209  T cell receptor alpha chain
+      4e-34  122.3   0.2      9e-34  121.2   0.0    1.7  1  1zgl_Q    mol:protein length:209  T cell receptor alpha chain
+      4e-34  122.3   0.2      9e-34  121.2   0.0    1.7  1  1zgl_S    mol:protein length:209  T cell receptor alpha chain
+      4e-34  122.3   0.2      9e-34  121.2   0.0    1.7  1  1zgl_U    mol:protein length:209  T cell receptor alpha chain
+      4e-34  122.3   0.1    1.1e-33  120.9   0.0    1.7  1  5ksa_C    mol:protein length:206  Bel602 alpha TRAV20*01
+    4.2e-34  122.3   0.8    7.5e-34  121.4   0.1    1.7  1  7sg0_D    mol:protein length:208  T-cell receptor, w316, alph
+    4.5e-34  122.2   1.7    4.5e-34  122.2   1.7    1.7  1  6xc9_D    mol:protein length:208  T-CELL-RECEPTOR, A3.10-alph
+    4.5e-34  122.2   1.7    4.5e-34  122.2   1.7    1.7  1  6xc9_I    mol:protein length:208  T-CELL-RECEPTOR, A3.10-alph
+      5e-34  122.0   0.2    1.3e-33  120.7   0.0    1.7  1  4qrp_D    mol:protein length:206  DD31 TCR alpha chain
+      5e-34  122.0   0.2    1.3e-33  120.7   0.0    1.7  1  4qrp_J    mol:protein length:206  DD31 TCR alpha chain
+      5e-34  122.0   0.2    1.3e-33  120.7   0.0    1.7  1  4qrp_K    mol:protein length:206  DD31 TCR alpha chain
+    5.5e-34  121.9   0.1    1.5e-33  120.5   0.0    1.7  1  3mv7_D    mol:protein length:200  alpha chain of the TK3 TCR
+    5.5e-34  121.9   0.1    1.5e-33  120.5   0.0    1.7  1  3mv8_D    mol:protein length:200  alpha chain of the TK3 TCR
+    5.5e-34  121.9   0.1    1.5e-33  120.5   0.0    1.7  1  3mv9_D    mol:protein length:200  alpha chain of the TK3 TCR
+    5.5e-34  121.9   0.1    1.5e-33  120.5   0.0    1.7  1  4prp_D    mol:protein length:200  TK3 TCR alpha chain
+    6.7e-34  121.6   0.1    1.8e-33  120.2   0.0    1.7  1  3sjv_D    mol:protein length:203  RL42 T cell receptor, alpha
+    6.7e-34  121.6   0.1    1.8e-33  120.2   0.0    1.7  1  3sjv_I    mol:protein length:203  RL42 T cell receptor, alpha
+    6.7e-34  121.6   0.1    1.8e-33  120.2   0.0    1.7  1  3sjv_N    mol:protein length:203  RL42 T cell receptor, alpha
+    6.7e-34  121.6   0.1    1.8e-33  120.2   0.0    1.7  1  3sjv_S    mol:protein length:203  RL42 T cell receptor, alpha
+    6.7e-34  121.6   0.1    1.8e-33  120.2   0.0    1.7  1  3skn_A    mol:protein length:203  RL42 T cell receptor, alpha
+    6.7e-34  121.6   0.1    1.8e-33  120.2   0.0    1.7  1  3skn_C    mol:protein length:203  RL42 T cell receptor, alpha
+    6.7e-34  121.6   0.1    1.8e-33  120.2   0.0    1.7  1  3skn_E    mol:protein length:203  RL42 T cell receptor, alpha
+    6.7e-34  121.6   0.1    1.8e-33  120.2   0.0    1.7  1  3skn_G    mol:protein length:203  RL42 T cell receptor, alpha
+    8.6e-34  121.2   0.8    1.6e-33  120.4   0.1    1.7  1  4g8f_A    mol:protein length:204  alpha chain clone 42 TCR
+    8.6e-34  121.2   0.8    1.6e-33  120.4   0.1    1.7  1  5l2k_D    mol:protein length:204  GEM42 TCR alpha chain
+      1e-33  121.0   1.0    1.5e-33  120.4   0.1    1.7  1  6vmx_D    mol:protein length:203  HD14 alpha chain
+      1e-33  121.0   1.0    1.5e-33  120.4   0.1    1.7  1  6vmx_I    mol:protein length:203  HD14 alpha chain
+    1.1e-33  121.0   0.0    1.6e-33  120.3   0.0    1.3  1  1g6r_A    mol:protein length:202  ALPHA T CELL RECEPTOR
+    1.1e-33  121.0   0.0    1.6e-33  120.3   0.0    1.3  1  1g6r_C    mol:protein length:202  ALPHA T CELL RECEPTOR
+    1.1e-33  121.0   0.0    1.6e-33  120.3   0.0    1.3  1  1mwa_A    mol:protein length:202  2C T CELL RECEPTOR ALPHA CH
+    1.1e-33  121.0   0.0    1.6e-33  120.3   0.0    1.3  1  1mwa_C    mol:protein length:202  2C T CELL RECEPTOR ALPHA CH
+    1.1e-33  121.0   0.0    1.6e-33  120.3   0.0    1.3  1  1tcr_A    mol:protein length:202  ALPHA, BETA T-CELL RECEPTOR
+    1.1e-33  121.0   0.0    1.6e-33  120.3   0.0    1.3  1  2ckb_A    mol:protein length:202  ALPHA, BETA T CELL RECEPTOR
+    1.1e-33  121.0   0.0    1.6e-33  120.3   0.0    1.3  1  2ckb_C    mol:protein length:202  ALPHA, BETA T CELL RECEPTOR
+    1.1e-33  120.9   0.0    3.1e-33  119.4   0.0    1.7  1  5ksb_E    mol:protein length:206  T15 TCR alpha TRAV20*02
+    1.1e-33  120.9   0.0    3.1e-33  119.4   0.0    1.7  1  5ksb_G    mol:protein length:206  T15 TCR alpha TRAV20*02
+    1.2e-33  120.8   0.0    1.3e-33  120.7   0.0    1.0  1  2icw_I    mol:protein length:110  T-cell receptor alpha chain
+    1.2e-33  120.8   0.0    1.3e-33  120.7   0.0    1.0  1  2icw_K    mol:protein length:110  T-cell receptor alpha chain
+    1.5e-33  120.5   1.0    2.4e-33  119.8   0.1    1.7  1  4p4k_C    mol:protein length:209  hTCRav22 alpha chain
+    1.5e-33  120.5   1.0    2.4e-33  119.8   0.1    1.7  1  4p4k_G    mol:protein length:209  hTCRav22 alpha chain
+    1.6e-33  120.3   0.0    2.8e-33  119.6   0.0    1.4  1  2q86_A    mol:protein length:229  Valpha14 TCR
+    1.6e-33  120.3   0.0    2.8e-33  119.6   0.0    1.4  1  2q86_C    mol:protein length:229  Valpha14 TCR
+    1.9e-33  120.1   1.7    1.9e-33  120.1   1.7    1.7  1  6vrn_D    mol:protein length:212  T-cell receptor 38-10, alfa
+    2.4e-33  119.8   0.1    4.5e-33  118.9   0.1    1.4  1  5isz_D    mol:protein length:200  TCRalpha chain
+    2.7e-33  119.6   0.2    7.2e-33  118.3   0.0    1.7  1  7n6e_G    mol:protein length:202  TRAV12-1 TCR-alpha
+    2.7e-33  119.6   0.2    7.2e-33  118.3   0.0    1.7  1  7n6e_I    mol:protein length:202  TRAV12-1 TCR-alpha
+    2.8e-33  119.6   0.4    6.3e-33  118.4   0.0    1.7  1  3c5z_A    mol:protein length:202  TCR B3K506 Alpha Chain
+    2.8e-33  119.6   0.4    6.3e-33  118.4   0.0    1.7  1  3c5z_E    mol:protein length:202  TCR B3K506 Alpha Chain
+    2.8e-33  119.6   0.8    5.1e-33  118.8   0.1    1.7  1  4g8e_A    mol:protein length:201  alpha chain clone 18 TCR
+    2.9e-33  119.6   0.6    5.5e-33  118.6   0.1    1.7  1  3tpu_A    mol:protein length:211  42F3 alpha
+    2.9e-33  119.6   0.6    5.5e-33  118.6   0.1    1.7  1  3tpu_C    mol:protein length:211  42F3 alpha
+    2.9e-33  119.6   0.6    5.5e-33  118.6   0.1    1.7  1  3tpu_G    mol:protein length:211  42F3 alpha
+    2.9e-33  119.6   0.6    5.5e-33  118.6   0.1    1.7  1  3tpu_M    mol:protein length:211  42F3 alpha
+    2.9e-33  119.5   0.6    5.6e-33  118.6   0.1    1.7  1  3tfk_C    mol:protein length:212  42F3 alpha
+    2.9e-33  119.5   0.6    5.6e-33  118.6   0.1    1.7  1  4ms8_C    mol:protein length:212  42F3 alpha
+    2.9e-33  119.5   0.6    5.6e-33  118.6   0.1    1.7  1  4mvb_C    mol:protein length:212  42F3 alpha VmCh
+    2.9e-33  119.5   0.6    5.6e-33  118.6   0.1    1.7  1  4mxq_C    mol:protein length:212  42F3 alpha VmVh chimera
+    2.9e-33  119.5   0.6    5.6e-33  118.6   0.1    1.7  1  4n0c_C    mol:protein length:212  42F3 VmCh alpha
+    2.9e-33  119.5   0.6    5.6e-33  118.6   0.1    1.7  1  4n0c_G    mol:protein length:212  42F3 VmCh alpha
+    2.9e-33  119.5   0.6    5.6e-33  118.6   0.1    1.7  1  4n5e_C    mol:protein length:212  42F3 alpha VmCh
+    3.4e-33  119.3   0.2    8.4e-33  118.1   0.0    1.7  1  4nhu_A    mol:protein length:219  2C m33 alpha VmCh chimera
+    3.4e-33  119.3   0.2    8.4e-33  118.1   0.0    1.7  1  4nhu_C    mol:protein length:219  2C m33 alpha VmCh chimera
+    3.4e-33  119.3   0.5    6.6e-33  118.4   0.1    1.7  1  3tjh_C    mol:protein length:226  42F3 alpha
+    4.3e-33  119.0   0.2    1.1e-32  117.7   0.0    1.7  1  4e41_D    mol:protein length:203  T cell receptor G4 alpha ch
+    4.3e-33  119.0   0.2    1.1e-32  117.7   0.0    1.7  1  4e41_I    mol:protein length:203  T cell receptor G4 alpha ch
+    4.3e-33  119.0   0.2    1.1e-32  117.7   0.0    1.7  1  4e42_A    mol:protein length:203  T cell receptor G4 alpha ch
+    4.3e-33  119.0   0.2    1.1e-32  117.7   0.0    1.7  1  4e42_C    mol:protein length:203  T cell receptor G4 alpha ch
+    4.6e-33  118.9   0.3    1.2e-32  117.6   0.0    1.7  1  7rm4_E    mol:protein length:206  6-11 T cell receptor alpha 
+    4.6e-33  118.9   0.3    1.2e-32  117.6   0.0    1.7  1  7rm4_J    mol:protein length:206  6-11 T cell receptor alpha 
+    4.6e-33  118.9   0.3    1.2e-32  117.6   0.0    1.7  1  7rm4_O    mol:protein length:206  6-11 T cell receptor alpha 
+    4.6e-33  118.9   0.3    1.2e-32  117.6   0.0    1.7  1  7rm4_T    mol:protein length:206  6-11 T cell receptor alpha 
+    5.1e-33  118.8   0.0    1.4e-32  117.3   0.0    1.7  1  5ks9_E    mol:protein length:207  Bel502 TCR alpha TRAV20*01
+    5.1e-33  118.8   0.0    1.4e-32  117.3   0.0    1.7  1  5ks9_G    mol:protein length:207  Bel502 TCR alpha TRAV20*01
+      6e-33  118.5   0.6    1.2e-32  117.5   0.1    1.7  1  6ovn_A    mol:protein length:207  Alpha chain Clone 2 TCR
+    6.8e-33  118.3   0.4    1.6e-32  117.2   0.0    1.7  1  2ial_A    mol:protein length:202  CD4+ T cell receptor E8 alp
+    6.8e-33  118.3   0.4    1.6e-32  117.2   0.0    1.7  1  2ial_C    mol:protein length:202  CD4+ T cell receptor E8 alp
+    6.8e-33  118.3   0.4    1.6e-32  117.2   0.0    1.7  1  2iam_C    mol:protein length:202  CD4+ T cell receptor E8 alp
+    6.8e-33  118.3   0.4    1.6e-32  117.2   0.0    1.7  1  2ian_D    mol:protein length:202  CD4+ T cell receptor E8 alp
+    6.8e-33  118.3   0.4    1.6e-32  117.2   0.0    1.7  1  2ian_I    mol:protein length:202  CD4+ T cell receptor E8 alp
+    6.8e-33  118.3   0.4    1.6e-32  117.2   0.0    1.7  1  2ian_N    mol:protein length:202  CD4+ T cell receptor E8 alp
+    6.8e-33  118.3   0.4    1.6e-32  117.2   0.0    1.7  1  2ian_S    mol:protein length:202  CD4+ T cell receptor E8 alp
+    7.4e-33  118.2   0.1    2.1e-32  116.8   0.0    1.7  1  6xco_D    mol:protein length:205  T-CELL-RECEPTOR, A1.9-alpha
+    7.7e-33  118.2   0.4    1.7e-32  117.0   0.0    1.7  1  6cph_D    mol:protein length:205  TCR alpha chain
+    7.7e-33  118.2   0.4    1.7e-32  117.0   0.0    1.7  1  6cql_D    mol:protein length:205  F24 alpha chain
+    7.7e-33  118.2   0.4    1.7e-32  117.0   0.0    1.7  1  6cqn_D    mol:protein length:205  F5 alpha chain
+    7.7e-33  118.2   0.4    1.7e-32  117.0   0.0    1.7  1  6cqq_D    mol:protein length:205  F24 alpha chain
+    7.7e-33  118.2   0.4    1.7e-32  117.0   0.0    1.7  1  6cqq_I    mol:protein length:205  F24 alpha chain
+    7.7e-33  118.2   0.4    1.7e-32  117.0   0.0    1.7  1  6cqr_D    mol:protein length:205  F24 alpha chain
+    7.7e-33  118.2   0.4    1.7e-32  117.0   0.0    1.7  1  6cqr_I    mol:protein length:205  F24 alpha chain
+    7.7e-33  118.2   0.8    1.4e-32  117.3   0.1    1.7  1  5men_D    mol:protein length:200  Protein TRAV22,Human nkt tc
+    8.4e-33  118.1   0.8    1.5e-32  117.2   0.1    1.7  1  4c56_A    mol:protein length:206  T CELL RECEPTOR ALPHA CHAIN
+    8.4e-33  118.1   0.8    1.5e-32  117.2   0.1    1.7  1  4c56_G    mol:protein length:206  T CELL RECEPTOR ALPHA CHAIN
+    8.4e-33  118.1   0.8    1.5e-32  117.2   0.1    1.7  1  4udt_A    mol:protein length:206  T CELL RECEPTOR ALPHA CHAIN
+    8.4e-33  118.1   0.8    1.5e-32  117.2   0.1    1.7  1  4udu_A    mol:protein length:206  T CELL RECEPTOR ALPHA CHAIN
+    8.4e-33  118.1   0.8    1.5e-32  117.2   0.1    1.7  1  5fk9_A    mol:protein length:206  T CELL RECEPTOR ALPHA CHAIN
+    8.4e-33  118.1   0.8    1.5e-32  117.2   0.1    1.7  1  5fka_A    mol:protein length:206  T CELL RECEPTOR ALPHA CHAIN
+    1.1e-32  117.6   1.3    1.5e-32  117.2   0.2    1.7  1  3ffc_D    mol:protein length:202  CF34 alpha chain
+    1.1e-32  117.6   1.3    1.5e-32  117.2   0.2    1.7  1  3ffc_I    mol:protein length:202  CF34 alpha chain
+    1.3e-32  117.5   0.0    1.4e-32  117.3   0.0    1.0  1  3e2h_B    mol:protein length:109  T-cell receptor alpha chain
+    1.3e-32  117.4   0.2    3.4e-32  116.1   0.0    1.7  1  6cw9_C    mol:protein length:203  Chimeric T cell antigen rec
+    1.3e-32  117.4   0.9    1.6e-32  117.1   0.1    1.5  1  3gsn_A    mol:protein length:199  RA14 TCR alpha chain (TRAV2
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  3o8x_C    mol:protein length:209  Valpha14 chimera (Mouse var
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  3o9w_C    mol:protein length:209  Valpha14 chimera (Mouse var
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  3qux_C    mol:protein length:209  Valpha14 (mouse variable do
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  3quy_C    mol:protein length:209  Valpha14 (mouse variable do
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  3quz_C    mol:protein length:209  Valpha14 (mouse variable do
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  3rtq_C    mol:protein length:209  Valpha14 (mouse variable do
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  3rzc_C    mol:protein length:209  Valpha14
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  3ta3_C    mol:protein length:209  Valpha14 chimera (mouse var
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  3tvm_C    mol:protein length:209  Valpha14 (mouse variable do
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  3tvm_G    mol:protein length:209  Valpha14 (mouse variable do
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  4irj_C    mol:protein length:209  Valpha14 (mouse variable do
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  4irs_C    mol:protein length:209  Valpha14 (mouse variable do
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  4y16_C    mol:protein length:209  Chimeric TCR Valpha14/Jalph
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  4y2d_C    mol:protein length:209  Chimeric TCR Valpha14/Jalph
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  4y2d_G    mol:protein length:209  Chimeric TCR Valpha14/Jalph
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  4y4f_C    mol:protein length:209  Chimeric TCR Valpha14/Jalph
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  4y4f_G    mol:protein length:209  Chimeric TCR Valpha14/Jalph
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  4y4h_C    mol:protein length:209  Chimeric TCR Valpha14/Jalph
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  4y4h_G    mol:protein length:209  Chimeric TCR Valpha14/Jalph
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  4y4k_C    mol:protein length:209  chimeric TCR Valpha14Jalpha
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  4zak_C    mol:protein length:209  Protein Trav11,Va14Ja18/Vb8
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  5vcj_C    mol:protein length:209  Chimeric TCR Valpha14/Jalph
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6cw6_C    mol:protein length:209  Chimeric T cell antigen rec
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6cwb_C    mol:protein length:209  Chimeric T cell antigen rec
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6cwe_C    mol:protein length:209  Chimeric T cell antigen rec
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6cx5_C    mol:protein length:209  Chimeric T cell antigen rec
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6cx7_C    mol:protein length:209  Chimeric T cell antigen rec
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6cx9_C    mol:protein length:209  Chimeric T cell antigen rec
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6cxa_C    mol:protein length:209  Chimeric T cell antigen rec
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6cxe_C    mol:protein length:209  Chimeric T cell antigen rec
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6cxf_C    mol:protein length:209  Chimeric T cell antigen rec
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6miv_C    mol:protein length:209  T cell receptor alpha varia
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6miy_C    mol:protein length:209  T cell receptor alpha varia
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6miy_G    mol:protein length:209  T cell receptor alpha varia
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6mj4_C    mol:protein length:209  T cell receptor alpha varia
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6mj6_C    mol:protein length:209  T cell receptor alpha varia
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6mja_C    mol:protein length:209  T cell receptor alpha varia
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6mji_C    mol:protein length:209  T cell receptor alpha varia
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6mjj_C    mol:protein length:209  T cell receptor alpha varia
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6mjq_C    mol:protein length:209  T cell receptor alpha varia
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6mjq_G    mol:protein length:209  T cell receptor alpha varia
+    1.4e-32  117.3   0.2    3.7e-32  116.0   0.0    1.7  1  6omg_C    mol:protein length:209  CHIMERIC T CELL ANTIGEN REC
+    1.5e-32  117.3   0.0    2.5e-32  116.5   0.0    1.4  1  3mbe_C    mol:protein length:229  TCR 21.3 alpha chain
+    1.5e-32  117.3   0.0    2.5e-32  116.5   0.0    1.4  1  3mbe_G    mol:protein length:229  TCR 21.3 alpha chain
+    1.6e-32  117.1   0.0    1.8e-32  117.0   0.0    1.0  1  4h1l_G    mol:protein length:113  Ani2.3 TCR A chain
+    1.6e-32  117.1   0.0    1.8e-32  117.0   0.0    1.0  1  4h1l_I    mol:protein length:113  Ani2.3 TCR A chain
+    1.8e-32  117.0   0.0      2e-32  116.9   0.0    1.0  1  3e3q_C    mol:protein length:109  T-cell receptor alpha chain
+    1.8e-32  117.0   0.0      2e-32  116.9   0.0    1.0  1  3e3q_D    mol:protein length:109  T-cell receptor alpha chain
+    1.8e-32  117.0   0.0      2e-32  116.9   0.0    1.0  1  3e3q_I    mol:protein length:109  T-cell receptor alpha chain
+    1.8e-32  117.0   0.0      2e-32  116.9   0.0    1.0  1  3e3q_M    mol:protein length:109  T-cell receptor alpha chain
+    1.8e-32  117.0   0.0      2e-32  116.9   0.0    1.0  1  3e3q_R    mol:protein length:109  T-cell receptor alpha chain
+    1.8e-32  117.0   0.0      2e-32  116.9   0.0    1.0  1  3e3q_V    mol:protein length:109  T-cell receptor alpha chain
+    1.8e-32  117.0   0.0      2e-32  116.9   0.0    1.0  1  3e3q_Z    mol:protein length:109  T-cell receptor alpha chain
+    1.8e-32  117.0   0.0      2e-32  116.9   0.0    1.0  1  3e3q_d    mol:protein length:109  T-cell receptor alpha chain
+    1.9e-32  116.9   0.6    1.9e-32  116.9   0.6    1.7  1  5yxn_A    mol:protein length:192  T cell receptor alpha chain
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3arb_C    mol:protein length:207  NKT Valpha14-Jalpha18,NKT V
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3ard_C    mol:protein length:207  NKT Valpha14-Jalpha18,NKT V
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3are_C    mol:protein length:207  NKT Valpha14-Jalpha18,NKT V
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3arf_C    mol:protein length:207  NKT Valpha14-Jalpha18,NKT V
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3arg_C    mol:protein length:207  NKT Valpha14-Jalpha18,NKT V
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3he6_C    mol:protein length:207  Valpha14(mouse variable dom
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3he7_C    mol:protein length:207  Valpha14(mouse variable dom
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3qi9_C    mol:protein length:207  NKT TCR V alpha 14
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3scm_C    mol:protein length:207  NKT TCR Valpha14 chain
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3sda_C    mol:protein length:207  NKT TCR Valpha14 chain
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3sdc_C    mol:protein length:207  NKT TCR Valpha14 chain
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3sdd_C    mol:protein length:207  NKT TCR Valpha14 chain
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  3tn0_C    mol:protein length:207  mouse NKT Valpha14 (MOUSE V
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  4apq_C    mol:protein length:207  MOUSE NKT TCR VALPHA14, HUM
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  6bnk_C    mol:protein length:207  NKT Valpha14 (MOUSE) - 2C12
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  6bnk_G    mol:protein length:207  NKT Valpha14 (MOUSE) - 2C12
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  6bnl_C    mol:protein length:207  NKT Valpha14 (MOUSE) - 2C12
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  6bnl_G    mol:protein length:207  NKT Valpha14 (MOUSE) - 2C12
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  6xng_C    mol:protein length:207  NKT Valpha14 (Mouse)-2C12 T
+    1.9e-32  116.9   0.2      5e-32  115.6   0.0    1.7  1  7m72_C    mol:protein length:207  NKT Valpha14 (Mouse)-2C12 T
+    2.1e-32  116.8   0.2    5.3e-32  115.5   0.0    1.7  1  6eh8_A    mol:protein length:201  Human T Cell Receptor Alpha
+    2.1e-32  116.8   0.2    5.6e-32  115.4   0.0    1.7  1  6r2l_D    mol:protein length:194  T cell receptor alpha varia
+    2.1e-32  116.8   0.2    5.3e-32  115.5   0.0    1.7  1  4gkz_A    mol:protein length:202  Alpha chain of Class II TCR
+    2.1e-32  116.8   0.2    5.3e-32  115.5   0.0    1.7  1  6eh9_A    mol:protein length:202  Human T Cell Receptor Alpha
+    2.1e-32  116.8   0.2    5.3e-32  115.5   0.0    1.7  1  6fr6_A    mol:protein length:202  Human T-Cell Receptor Alpha
+    2.1e-32  116.8   0.2    5.3e-32  115.5   0.0    1.7  1  6fr8_A    mol:protein length:202  T-Cell Receptor HA1.7 alpha
+    2.1e-32  116.8   0.2    5.4e-32  115.4   0.0    1.7  1  6fr7_A    mol:protein length:203  T-Cell Receptor alpha chain
+    2.3e-32  116.7   0.2    5.3e-32  115.5   0.0    1.7  1  3to4_C    mol:protein length:212  NKT Valpha14 (MOUSE VARIABL
+    2.3e-32  116.7   0.4    5.6e-32  115.4   0.0    1.7  1  2cdg_A    mol:protein length:184  TCR 5E
+    2.3e-32  116.7   0.9    3.8e-32  116.0   0.1    1.7  1  5d2l_E    mol:protein length:205  C7 TCR alpha chain
+    2.3e-32  116.7   0.9    3.8e-32  116.0   0.1    1.7  1  5d2l_I    mol:protein length:205  C7 TCR alpha chain
+    2.3e-32  116.7   0.9    3.8e-32  116.0   0.1    1.7  1  5d2l_K    mol:protein length:205  C7 TCR alpha chain
+    2.3e-32  116.7   0.9    3.8e-32  116.0   0.1    1.7  1  5d2l_O    mol:protein length:205  C7 TCR alpha chain
+    2.4e-32  116.6   0.6    2.4e-32  116.6   0.6    1.7  1  5jzi_D    mol:protein length:211  HCV1406 TCR alpha chain
+    2.4e-32  116.6   0.6    2.4e-32  116.6   0.6    1.7  1  5jzi_I    mol:protein length:211  HCV1406 TCR alpha chain
+    2.5e-32  116.5   0.4      6e-32  115.3   0.0    1.7  1  6mra_A    mol:protein length:203  TCR alpha chain
+    2.5e-32  116.5   0.4      6e-32  115.3   0.0    1.7  1  6mss_A    mol:protein length:203  A11B8.2 NKT TCR alpha-chain
+    2.6e-32  116.5   0.2    6.1e-32  115.3   0.0    1.7  1  1fyt_D    mol:protein length:212  T-CELL RECEPTOR ALPHA CHAIN
+    2.6e-32  116.5   0.2    6.1e-32  115.3   0.0    1.7  1  1j8h_D    mol:protein length:212  T-CELL RECEPTOR ALPHA CHAIN
+    3.2e-32  116.2   0.7      6e-32  115.3   0.1    1.7  1  3qib_C    mol:protein length:207  T-cell receptor alpha chain
+    3.2e-32  116.2   0.7      6e-32  115.3   0.1    1.7  1  3qjf_A    mol:protein length:207  2B4 alpha chain
+    3.2e-32  116.2   0.7      6e-32  115.3   0.1    1.7  1  3qjf_C    mol:protein length:207  2B4 alpha chain
+    3.6e-32  116.0   0.9    5.7e-32  115.4   0.9    1.3  1  1nfd_A    mol:protein length:203  N15 ALPHA-BETA T-CELL RECEP
+    3.6e-32  116.0   0.9    5.7e-32  115.4   0.9    1.3  1  1nfd_C    mol:protein length:203  N15 ALPHA-BETA T-CELL RECEP
+    3.7e-32  116.0   1.0    3.7e-32  116.0   1.0    1.7  1  5jhd_D    mol:protein length:213  TCRalpha chain
+    3.7e-32  116.0   1.0    3.7e-32  116.0   1.0    1.7  1  5jhd_I    mol:protein length:213  TCRalpha chain
+    3.8e-32  115.9   0.7    7.1e-32  115.1   0.1    1.7  1  4p2o_C    mol:protein length:220  2B4 T-cell receptor alpha c
+    3.8e-32  115.9   0.7    7.1e-32  115.1   0.1    1.7  1  6bga_C    mol:protein length:220  T cell receptor 2B4 alpha c
+    3.9e-32  115.9   0.4      9e-32  114.7   0.0    1.7  1  3qjh_A    mol:protein length:205  5c.c7 alpha chain
+    3.9e-32  115.9   0.4      9e-32  114.7   0.0    1.7  1  3qjh_C    mol:protein length:205  5c.c7 alpha chain
+    3.9e-32  115.9   0.4      9e-32  114.7   0.0    1.7  1  4p2q_D    mol:protein length:205  5cc7 T-cell receptor alpha 
+    3.9e-32  115.9   0.4      9e-32  114.7   0.0    1.7  1  4p2q_I    mol:protein length:205  5cc7 T-cell receptor alpha 
+    3.9e-32  115.9   0.4      9e-32  114.7   0.0    1.7  1  4p2q_N    mol:protein length:205  5cc7 T-cell receptor alpha 
+    3.9e-32  115.9   0.4      9e-32  114.7   0.0    1.7  1  4p2q_S    mol:protein length:205  5cc7 T-cell receptor alpha 
+    3.9e-32  115.9   0.4      9e-32  114.7   0.0    1.7  1  4p2r_D    mol:protein length:205  5cc7 T-cell receptor alpha 
+    3.9e-32  115.9   0.4      9e-32  114.7   0.0    1.7  1  4p2r_I    mol:protein length:205  5cc7 T-cell receptor alpha 
+    3.9e-32  115.9   0.4      9e-32  114.7   0.0    1.7  1  4p2r_N    mol:protein length:205  5cc7 T-cell receptor alpha 
+    3.9e-32  115.9   0.4      9e-32  114.7   0.0    1.7  1  4p2r_S    mol:protein length:205  5cc7 T-cell receptor alpha 
+      4e-32  115.9   0.4      4e-32  115.9   0.4    1.7  1  4jrx_D    mol:protein length:204  CA5 TCR alpha chain
+    4.2e-32  115.8   0.9    7.2e-32  115.1   0.1    1.7  1  3o4l_D    mol:protein length:195  T-CELL RECEPTOR, ALPHA CHAI
+    4.2e-32  115.8   0.3    4.2e-32  115.8   0.3    1.7  1  3kxf_D    mol:protein length:204  SB27 T cell receptor alpha 
+    4.2e-32  115.8   0.3    4.2e-32  115.8   0.3    1.7  1  3kxf_G    mol:protein length:204  SB27 T cell receptor alpha 
+    4.2e-32  115.8   0.3    4.2e-32  115.8   0.3    1.7  1  3kxf_M    mol:protein length:204  SB27 T cell receptor alpha 
+    4.2e-32  115.8   0.3    4.2e-32  115.8   0.3    1.7  1  3kxf_N    mol:protein length:204  SB27 T cell receptor alpha 
+    4.4e-32  115.7   0.4    4.4e-32  115.7   0.4    1.7  1  2ak4_D    mol:protein length:211  SB27 T cell receptor alpha 
+    4.4e-32  115.7   0.4    4.4e-32  115.7   0.4    1.7  1  2ak4_I    mol:protein length:211  SB27 T cell receptor alpha 
+    4.4e-32  115.7   0.4    4.4e-32  115.7   0.4    1.7  1  2ak4_N    mol:protein length:211  SB27 T cell receptor alpha 
+    4.4e-32  115.7   0.4    4.4e-32  115.7   0.4    1.7  1  2ak4_T    mol:protein length:211  SB27 T cell receptor alpha 
+    4.5e-32  115.7   0.3    4.5e-32  115.7   0.3    1.7  1  4g8g_D    mol:protein length:204  alpha chain C12C TCR
+    4.5e-32  115.7   0.3    4.5e-32  115.7   0.3    1.7  1  4g9f_D    mol:protein length:204  alpha chain C12C TCR
+    4.7e-32  115.6   0.5    4.7e-32  115.6   0.5    1.7  1  6bj2_D    mol:protein length:206  TCR 589 alpha chain
+    4.7e-32  115.6   1.7    4.8e-32  115.6   0.3    1.7  1  6v0y_D    mol:protein length:209  M141 TCR alpha chain
+    4.7e-32  115.6   1.7    4.8e-32  115.6   0.3    1.7  1  6v18_D    mol:protein length:209  M141 TCR alpha chain
+    5.3e-32  115.5   0.4    5.3e-32  115.5   0.4    1.7  1  6v19_D    mol:protein length:209  M134 TCR alpha chain
+    5.3e-32  115.5   0.4    5.3e-32  115.5   0.4    1.7  1  6v1a_D    mol:protein length:209  M134 TCR alpha chain
+    5.7e-32  115.4   0.1    1.5e-31  114.0   0.0    1.7  1  4z7w_E    mol:protein length:206  T-CELL RECEPTOR, T316 ALPHA
+    5.7e-32  115.4   0.1    1.5e-31  114.0   0.0    1.7  1  4z7w_G    mol:protein length:206  T-CELL RECEPTOR, T316 ALPHA
+      6e-32  115.3   0.4      6e-32  115.3   0.4    1.7  1  5yxu_A    mol:protein length:191  T cell receptor alpha chain
+      6e-32  115.3   0.4      6e-32  115.3   0.4    1.7  1  5yxu_F    mol:protein length:191  T cell receptor alpha chain
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6eh6_A    mol:protein length:202  Human T Cell Receptor Alpha
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6eh7_A    mol:protein length:202  Human T Cell Receptor Alpha
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6fr9_A    mol:protein length:202  T-Cell Receptor F11 alpha c
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6frb_A    mol:protein length:202  Human T-Cell Receptor F11 a
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6frc_A    mol:protein length:202  Human T-Cell Receptor F11 a
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6fum_A    mol:protein length:202  Human F11 T-Cell Receptor a
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6fun_A    mol:protein length:202  Human F11 T-Cell Receptor a
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6fuo_A    mol:protein length:202  Human F11 T-Cell Receptor a
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6fup_A    mol:protein length:202  Human F11 T-cell Receptor a
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6fuq_A    mol:protein length:202  Human F11 T-Cell Receptor
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6fur_A    mol:protein length:202  Human F11 T-Cell Receptor a
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6fur_C    mol:protein length:202  Human F11 T-Cell Receptor a
+    6.2e-32  115.3   0.2    1.6e-31  113.9   0.0    1.7  1  6r0e_DDD  mol:protein length:202  F11-TCR Alpha Chain
+    6.6e-32  115.2   0.3    1.5e-31  114.0   0.0    1.7  1  6rpa_D    mol:protein length:212  T-cell receptor alpha chain
+    7.4e-32  115.0   0.2    1.9e-31  113.7   0.0    1.7  1  4mnq_D    mol:protein length:200  Uncharacterized protein, T-
+    7.8e-32  114.9   0.1    8.6e-32  114.8   0.1    1.0  1  1h5b_B    mol:protein length:113  MURINE T CELL RECEPTOR (TCR
+    7.8e-32  114.9   0.1    8.6e-32  114.8   0.1    1.0  1  1h5b_D    mol:protein length:113  MURINE T CELL RECEPTOR (TCR
+      8e-32  114.9   0.1    8.8e-32  114.8   0.1    1.0  1  1h5b_C    mol:protein length:113  MURINE T CELL RECEPTOR (TCR
+    8.6e-32  114.8   0.1    2.3e-31  113.4   0.0    1.7  1  6u3n_D    mol:protein length:206  T-CELL RECEPTOR, LS2.8/3.15
+    1.4e-31  114.1   0.4    3.3e-31  112.9   0.0    1.7  1  5d7l_D    mol:protein length:203  MAV36 TCR Alpha Chain
+    1.4e-31  114.1   0.4    3.3e-31  112.9   0.0    1.7  1  5d7l_G    mol:protein length:203  MAV36 TCR Alpha Chain
+    1.4e-31  114.1   0.4    3.3e-31  112.9   0.0    1.7  1  5d7k_D    mol:protein length:204  MAV36 TCR Alpha Chain
+    1.7e-31  113.9   0.3    4.2e-31  112.6   0.0    1.7  1  4jry_D    mol:protein length:201  SB47 TCR alpha chain
+    2.3e-31  113.4   0.1    2.5e-31  113.3   0.1    1.0  1  1h5b_A    mol:protein length:113  MURINE T CELL RECEPTOR (TCR
+    2.3e-31  113.4   0.1    6.5e-31  112.0   0.0    1.7  1  3rev_A    mol:protein length:203  TCR NB20 ALPHA CHAIN
+    2.6e-31  113.3   0.1    6.8e-31  111.9   0.0    1.7  1  3vxm_D    mol:protein length:211  C1-28 TCR alpha chain
+    2.7e-31  113.2   0.5      3e-31  113.0   0.5    1.0  1  1fo0_A    mol:protein length:116  PROTEIN (BM3.3 T CELL RECEP
+    2.7e-31  113.2   0.5      3e-31  113.0   0.5    1.0  1  1nam_A    mol:protein length:116  BM3.3 T Cell Receptor alpha
+    3.9e-31  112.7   0.1    1.1e-30  111.2   0.0    1.7  1  2cdf_A    mol:protein length:191  TCR 5E
+    5.2e-31  112.3   0.1    1.5e-30  110.8   0.0    1.7  1  5hho_D    mol:protein length:199  JM22 TCR alpha chain
+    5.3e-31  112.3   0.2    1.4e-30  111.0   0.0    1.7  1  4onh_A    mol:protein length:205  T-cell receptor beta
+    5.3e-31  112.3   1.3    6.8e-31  111.9   0.2    1.7  1  3rug_E    mol:protein length:204  Valpha10(mouse variable dom
+    5.3e-31  112.3   1.3    6.8e-31  111.9   0.2    1.7  1  3rug_G    mol:protein length:204  Valpha10(mouse variable dom
+    5.3e-31  112.3   0.5    6.5e-31  112.0   0.5    1.1  1  2ol3_A    mol:protein length:142  BM3.3 T-CELL RECEPTOR ALPHA
+    5.6e-31  112.2   0.1    1.6e-30  110.7   0.0    1.7  1  2xn9_A    mol:protein length:204  T CELL RECEPTOR ALPHA CHAIN
+    5.6e-31  112.2   0.1    1.6e-30  110.7   0.0    1.7  1  2xna_A    mol:protein length:204  T CELL RECEPTOR ALPHA CHAIN
+    5.7e-31  112.1   0.1    1.5e-30  110.8   0.0    1.7  1  5hhm_D    mol:protein length:200  JM22 TCR alpha chain
+    5.7e-31  112.1   0.1    1.5e-30  110.8   0.0    1.7  1  5hhm_I    mol:protein length:200  JM22 TCR alpha chain
+    5.8e-31  112.1   0.1    1.5e-30  110.8   0.0    1.7  1  2vlj_D    mol:protein length:201  JM22 TCR ALPHA CHAIN
+    5.8e-31  112.1   0.1    1.5e-30  110.8   0.0    1.7  1  2vlk_D    mol:protein length:201  JM22 TCR ALPHA CHAIN
+    5.8e-31  112.1   0.1    1.5e-30  110.8   0.0    1.7  1  2vlm_D    mol:protein length:201  JM22 TCR ALPHA CHAIN
+    5.8e-31  112.1   0.1    1.5e-30  110.8   0.0    1.7  1  2vlr_D    mol:protein length:201  JM22 TCR ALPHA CHAIN
+    5.8e-31  112.1   0.1    1.5e-30  110.8   0.0    1.7  1  2vlr_I    mol:protein length:201  JM22 TCR ALPHA CHAIN
+    6.7e-31  111.9   1.2    6.7e-31  111.9   1.2    1.7  1  3c60_A    mol:protein length:199  TCR YAe62 alpha chain
+    6.7e-31  111.9   1.2    6.7e-31  111.9   1.2    1.7  1  3c60_E    mol:protein length:199  TCR YAe62 alpha chain
+    6.8e-31  111.9   1.2    6.8e-31  111.9   1.2    1.7  1  3rgv_A    mol:protein length:200  Yae62 TCR a chain
+    7.1e-31  111.9   0.1    1.8e-30  110.6   0.0    1.7  1  1oga_D    mol:protein length:215  T-CELL RECEPTOR ALPHA CHAIN
+    7.3e-31  111.8   0.5    1.6e-30  110.7   0.0    1.7  1  7jwj_D    mol:protein length:204  B17.C1 TCR alpha chain
+    7.6e-31  111.8   0.5    1.6e-30  110.7   0.1    1.7  1  3dx9_A    mol:protein length:198  DM1 T cell receptor alpha c
+    7.6e-31  111.8   0.5    1.6e-30  110.7   0.1    1.7  1  3dx9_C    mol:protein length:198  DM1 T cell receptor alpha c
+    7.7e-31  111.7   0.5    1.7e-30  110.7   0.1    1.7  1  3dxa_D    mol:protein length:199  DM1 T cell receptor alpha c
+    7.7e-31  111.7   0.5    1.7e-30  110.7   0.1    1.7  1  3dxa_I    mol:protein length:199  DM1 T cell receptor alpha c
+    7.7e-31  111.7   0.5    1.7e-30  110.7   0.1    1.7  1  3dxa_N    mol:protein length:199  DM1 T cell receptor alpha c
+    8.3e-31  111.6   1.8    8.4e-31  111.6   0.3    1.7  1  6bj3_D    mol:protein length:204  TCR 55 alpha chain
+    8.3e-31  111.6   1.8    8.4e-31  111.6   0.3    1.7  1  6bj8_D    mol:protein length:204  TCR 55 alpha chain
+    8.3e-31  111.6   1.8    8.4e-31  111.6   0.3    1.7  1  5xot_D    mol:protein length:204  The Delta chain of TU55 TCR
+    8.7e-31  111.6   0.1    1.3e-30  111.0   0.1    1.3  1  1lp9_E    mol:protein length:194  T-cell Receptor alpha chain
+    8.7e-31  111.6   0.1    1.3e-30  111.0   0.1    1.3  1  1lp9_L    mol:protein length:194  T-cell Receptor alpha chain
+    8.7e-31  111.6   0.1    1.3e-30  111.0   0.1    1.3  1  2j8u_E    mol:protein length:194  AHIII TCR ALPHA CHAIN
+    8.7e-31  111.6   0.1    1.3e-30  111.0   0.1    1.3  1  2j8u_L    mol:protein length:194  AHIII TCR ALPHA CHAIN
+    8.7e-31  111.6   0.1    1.3e-30  111.0   0.1    1.3  1  2jcc_E    mol:protein length:194  TCR ALPHA
+    8.7e-31  111.6   0.1    1.3e-30  111.0   0.1    1.3  1  2jcc_L    mol:protein length:194  TCR ALPHA
+    8.7e-31  111.6   0.1    1.3e-30  111.0   0.1    1.3  1  2uwe_E    mol:protein length:194  AHIII TCR ALPHA CHAIN
+    8.7e-31  111.6   0.1    1.3e-30  111.0   0.1    1.3  1  2uwe_L    mol:protein length:194  AHIII TCR ALPHA CHAIN
+    8.8e-31  111.6   0.2    2.4e-30  110.2   0.0    1.7  1  7ndt_DDD  mol:protein length:198  T cell receptor alpha varia
+    8.8e-31  111.6   0.2    2.4e-30  110.2   0.0    1.7  1  7ndt_III  mol:protein length:198  T cell receptor alpha varia
+    1.1e-30  111.2   0.5    2.5e-30  110.1   0.0    1.7  1  3qiu_C    mol:protein length:205  TCR 226 alpha chain
+    1.1e-30  111.2   0.5    2.5e-30  110.1   0.0    1.7  1  3qiw_C    mol:protein length:205  TCR 226 alpha chain
+    1.1e-30  111.2   1.1    1.8e-30  110.6   0.1    1.7  1  3axl_A    mol:protein length:198  Valpha 10
+    1.1e-30  111.2   1.1    1.8e-30  110.6   0.1    1.7  1  3axl_G    mol:protein length:198  Valpha 10
+    1.6e-30  110.8   0.2    3.9e-30  109.5   0.0    1.7  1  4ozf_G    mol:protein length:202  T-CELL RECEPTOR, JR5.1 ALPH
+    1.6e-30  110.8   0.2    3.9e-30  109.5   0.0    1.7  1  6u3o_A    mol:protein length:202  T-CELL RECEPTOR, JR5.1 alph
+    1.6e-30  110.8   0.2    3.9e-30  109.5   0.0    1.7  1  6u3o_G    mol:protein length:202  T-CELL RECEPTOR, JR5.1 alph
+    1.7e-30  110.7   0.3    4.1e-30  109.4   0.0    1.7  1  5wjo_A    mol:protein length:204  PG90 TCR alpha chain
+    1.7e-30  110.7   0.3    4.1e-30  109.4   0.0    1.7  1  5wjo_C    mol:protein length:204  PG90 TCR alpha chain
+    1.7e-30  110.7   0.3    4.1e-30  109.4   0.0    1.7  1  5wki_D    mol:protein length:204  T-cell receptor alpha varia
+    2.2e-30  110.3   0.4    2.2e-30  110.3   0.4    1.7  1  6c68_A    mol:protein length:206  T-cell receptor alpha chain
+    2.2e-30  110.3   0.4    2.2e-30  110.3   0.4    1.7  1  6c68_C    mol:protein length:206  T-cell receptor alpha chain
+    2.3e-30  110.2   0.3    5.9e-30  108.9   0.0    1.7  1  6fra_A    mol:protein length:201  Human T-Cell Receptor F11 a
+    2.6e-30  110.1   0.3    6.3e-30  108.8   0.0    1.7  1  2esv_D    mol:protein length:199  KK50.4 T cell receptor alph
+    4.3e-30  109.3   0.0    1.2e-29  107.9   0.0    1.7  1  5euo_E    mol:protein length:208  PF6 TCR alpha chain
+    4.3e-30  109.3   0.0    1.2e-29  107.9   0.0    1.7  1  5euo_G    mol:protein length:208  PF6 TCR alpha chain
+    5.1e-30  109.1   0.1    1.4e-29  107.7   0.0    1.7  1  4ozh_E    mol:protein length:203  T-cell receptor, s16, alpha
+    5.1e-30  109.1   0.1    1.4e-29  107.7   0.0    1.7  1  4ozh_G    mol:protein length:203  T-cell receptor, s16, alpha
+    7.3e-30  108.6   0.6    1.4e-29  107.7   0.1    1.7  1  6c61_A    mol:protein length:207  T-cell receptor alpha  chai
+    7.9e-30  108.5   0.8    1.5e-29  107.6   0.1    1.7  1  5wlg_D    mol:protein length:182  T cell receptor alpha varia
+    7.9e-30  108.5   0.8    1.5e-29  107.6   0.1    1.7  1  5wlg_I    mol:protein length:182  T cell receptor alpha varia
+    8.6e-30  108.4   0.1    2.4e-29  106.9   0.0    1.7  1  6xcp_D    mol:protein length:203  T-CELL-RECEPTOR, A2.13-alph
+    9.2e-30  108.3   0.1    2.5e-29  106.9   0.0    1.7  1  5e6i_A    mol:protein length:208  TCR alpha chain,Human nkt t
+    9.2e-30  108.3   0.1    2.5e-29  106.9   0.0    1.7  1  5e6i_F    mol:protein length:208  TCR alpha chain,Human nkt t
+    9.2e-30  108.3   0.1    2.5e-29  106.9   0.0    1.7  1  5e6i_G    mol:protein length:208  TCR alpha chain,Human nkt t
+    9.2e-30  108.3   0.1    2.5e-29  106.9   0.0    1.7  1  5e6i_P    mol:protein length:208  TCR alpha chain,Human nkt t
+    9.4e-30  108.2   0.1    2.7e-29  106.8   0.0    1.7  1  4z7v_E    mol:protein length:204  T-CELL RECEPTOR, L3-12 ALPH
+    9.4e-30  108.2   0.1    2.7e-29  106.8   0.0    1.7  1  4z7v_G    mol:protein length:204  T-CELL RECEPTOR, L3-12 ALPH
+      1e-29  108.1   0.1      3e-29  106.6   0.0    1.7  1  4z7u_E    mol:protein length:203  T-CELL RECEPTOR, S13 ALPHA 
+      1e-29  108.1   0.1      3e-29  106.6   0.0    1.7  1  4z7u_G    mol:protein length:203  T-CELL RECEPTOR, S13 ALPHA 
+    1.4e-29  107.7   0.1    3.8e-29  106.3   0.0    1.7  1  5w1v_D    mol:protein length:207  GF4 T cell receptor alpha c
+    1.4e-29  107.7   0.1    3.8e-29  106.3   0.0    1.7  1  5w1v_I    mol:protein length:207  GF4 T cell receptor alpha c
+    1.4e-29  107.7   0.1    3.8e-29  106.3   0.0    1.7  1  5w1v_N    mol:protein length:207  GF4 T cell receptor alpha c
+    1.4e-29  107.7   0.1    3.8e-29  106.3   0.0    1.7  1  5w1v_S    mol:protein length:207  GF4 T cell receptor alpha c
+    1.4e-29  107.7   0.1    3.8e-29  106.3   0.0    1.7  1  5w1w_D    mol:protein length:207  GF4 T cell receptor alpha c
+    1.4e-29  107.7   0.1    3.8e-29  106.3   0.0    1.7  1  5w1w_I    mol:protein length:207  GF4 T cell receptor alpha c
+    1.4e-29  107.7   0.1    3.8e-29  106.3   0.0    1.7  1  5w1w_N    mol:protein length:207  GF4 T cell receptor alpha c
+    1.4e-29  107.7   0.1    3.8e-29  106.3   0.0    1.7  1  5w1w_S    mol:protein length:207  GF4 T cell receptor alpha c
+    1.6e-29  107.5   0.4    1.6e-29  107.5   0.4    1.7  1  5xov_G    mol:protein length:207  V-delta chain of T cell rec
+    1.6e-29  107.5   0.4    1.6e-29  107.5   0.4    1.7  1  5xov_I    mol:protein length:207  V-delta chain of T cell rec
+    1.9e-29  107.3   0.1    5.3e-29  105.8   0.0    1.7  1  4ozg_E    mol:protein length:202  T-cell receptor, d2, alpha 
+    1.9e-29  107.3   0.1    5.3e-29  105.8   0.0    1.7  1  4ozg_G    mol:protein length:202  T-cell receptor, d2, alpha 
+    1.9e-29  107.2   0.4    3.3e-29  106.5   0.1    1.5  1  4lfh_D    mol:protein length:236  9C2 TCR delta chain
+    1.9e-29  107.2   0.4    3.3e-29  106.5   0.1    1.5  1  4lhu_D    mol:protein length:236  9C2 TCR delta chain
+    2.1e-29  107.1   0.7      3e-29  106.6   0.2    1.5  1  6d7g_D    mol:protein length:229  TRA@ protein
+    2.5e-29  106.9   0.4    2.5e-29  106.9   0.4    1.7  1  4wnq_A    mol:protein length:207  TCR Variable Delta 1 chain 
+    2.5e-29  106.9   0.4    2.5e-29  106.9   0.4    1.7  1  4wnq_C    mol:protein length:207  TCR Variable Delta 1 chain 
+    2.5e-29  106.9   0.4    2.5e-29  106.9   0.4    1.7  1  4wo4_C    mol:protein length:207  TCR variable DELTA 1 CHAIN 
+    3.5e-29  106.4   0.1      1e-28  104.9   0.0    1.7  1  3qeq_D    mol:protein length:194  DMF4 alpha chain
+    3.6e-29  106.4   0.1      1e-28  104.9   0.0    1.7  1  3qdm_D    mol:protein length:195  DMF4 alpha chain
+    5.4e-29  105.8   0.4    9.2e-29  105.1   0.1    1.5  1  1ypz_E    mol:protein length:207  T cell receptor delta
+    5.4e-29  105.8   0.4    9.2e-29  105.1   0.1    1.5  1  1ypz_G    mol:protein length:207  T cell receptor delta
+    7.6e-29  105.3   0.1    2.2e-28  103.8   0.0    1.7  1  7dzn_E    mol:protein length:204  alpha chain T18A TCR
+      8e-29  105.2   0.1    2.3e-28  103.8   0.0    1.7  1  7dzm_E    mol:protein length:207  alpha chain T18A TCR
+    1.1e-28  104.8   1.5    1.3e-28  104.6   0.2    1.7  1  4ndm_B    mol:protein length:235  Human nkt tcr alpha chain
+    1.5e-28  104.4   0.1    3.9e-28  103.0   0.0    1.7  1  3o6f_C    mol:protein length:206  T-cell receptor alpha chain
+    1.5e-28  104.4   0.1    3.9e-28  103.0   0.0    1.7  1  3o6f_G    mol:protein length:206  T-cell receptor alpha chain
+    1.5e-28  104.4   0.1    3.9e-28  103.0   0.0    1.7  1  3t0e_C    mol:protein length:206  T-cell receptor alpha chain
+    1.6e-28  104.3   0.2    4.4e-28  102.9   0.0    1.7  1  6rsy_D    mol:protein length:208  a7b2 ALPHA CHAIN
+    1.6e-28  104.3   0.2    4.4e-28  102.9   0.0    1.7  1  6rsy_I    mol:protein length:208  a7b2 ALPHA CHAIN
+    2.2e-28  103.8   1.1      3e-28  103.4   0.2    1.7  1  4qrr_D    mol:protein length:206  clone12 TCR beta chain
+    3.8e-28  103.1   0.0    1.1e-27  101.5   0.0    1.7  1  5d2n_C    mol:protein length:203  C25 alpha
+    3.8e-28  103.1   0.0    1.1e-27  101.5   0.0    1.7  1  5d2n_D    mol:protein length:203  C25 alpha
+    4.8e-28  102.7   0.9    7.9e-28  102.1   0.1    1.7  1  4mnh_B    mol:protein length:226  Human nkt tcr alpha chain
+    4.8e-28  102.7   0.9    7.9e-28  102.1   0.1    1.7  1  4mnh_D    mol:protein length:226  Human nkt tcr alpha chain
+    5.7e-28  102.5   0.0    1.7e-27  101.0   0.0    1.7  1  4gg6_E    mol:protein length:207  T-CELL RECEPTOR, SP3.4 ALPH
+    5.7e-28  102.5   0.0    1.7e-27  101.0   0.0    1.7  1  4gg6_G    mol:protein length:207  T-CELL RECEPTOR, SP3.4 ALPH
+    5.7e-28  102.5   0.0    1.7e-27  101.0   0.0    1.7  1  4gg8_A    mol:protein length:207  T-CELL RECEPTOR, SP3.4 ALPH
+    5.7e-28  102.5   0.0    1.7e-27  101.0   0.0    1.7  1  4gg8_E    mol:protein length:207  T-CELL RECEPTOR, SP3.4 ALPH
+      2e-27  100.7   0.1    5.4e-27   99.4   0.0    1.7  1  7n1c_D    mol:protein length:204  pRLQ3 T cell receptor alpha
+      2e-27  100.7   0.1    5.4e-27   99.4   0.0    1.7  1  7n1e_D    mol:protein length:204  pRLQ3 T cell receptor alpha
+    2.2e-27  100.6   0.0    5.8e-27   99.3   0.0    1.7  1  1kgc_D    mol:protein length:206  T-cell receptor alpha chain
+    2.2e-27  100.6   0.3    5.6e-27   99.3   0.0    1.7  1  3pqy_D    mol:protein length:195  T cell receptor alpha varia
+    2.2e-27  100.6   0.3    5.6e-27   99.3   0.0    1.7  1  3pqy_I    mol:protein length:195  T cell receptor alpha varia
+    2.2e-27  100.6   0.3    5.6e-27   99.3   0.0    1.7  1  3pqy_N    mol:protein length:195  T cell receptor alpha varia
+    2.2e-27  100.6   0.3    5.6e-27   99.3   0.0    1.7  1  3pqy_S    mol:protein length:195  T cell receptor alpha varia
+    2.5e-27  100.4   0.1    6.8e-27   99.0   0.0    1.7  1  6vm7_D    mol:protein length:208  SILv44 T cell receptor alph
+    2.5e-27  100.4   0.1    6.8e-27   99.0   0.0    1.7  1  6vm8_D    mol:protein length:208  SILv44 T cell receptor alph
+    2.8e-27  100.3   0.0    7.4e-27   98.9   0.0    1.7  1  1mi5_D    mol:protein length:201  TcR alpha chain
+    2.8e-27  100.3   0.0    7.4e-27   98.9   0.0    1.7  1  3kpr_D    mol:protein length:201  LC13 TCR alpha chain
+    2.8e-27  100.3   0.0    7.4e-27   98.9   0.0    1.7  1  3kpr_I    mol:protein length:201  LC13 TCR alpha chain
+    2.8e-27  100.3   0.0    7.4e-27   98.9   0.0    1.7  1  3kps_D    mol:protein length:201  LC13 TCR alpha chain
+    3.3e-27  100.1   0.3    6.1e-27   99.2   0.1    1.6  1  6mwr_D    mol:protein length:236  Delta chain of T cell recep
+    3.8e-27   99.9   0.5    8.4e-27   98.7   0.0    1.7  1  7ndq_DDD  mol:protein length:199  TCR Gag:02-alpha,TCR Gag:02
+    3.8e-27   99.9   0.5    8.4e-27   98.7   0.0    1.7  1  7ndu_DDD  mol:protein length:199  T cell receptor alpha varia
+    4.9e-27   99.5   0.6    8.7e-27   98.7   0.1    1.6  1  6mtm_D    mol:protein length:193  EM2 TCR alpha chain
+    1.1e-26   98.3   0.2    3.1e-26   96.9   0.0    1.7  1  5wkh_D    mol:protein length:198  T-cell receptor alpha varia
+    1.1e-26   98.3   0.2    3.1e-26   96.9   0.0    1.7  1  5wkh_I    mol:protein length:198  T-cell receptor alpha varia
+    1.5e-26   98.0   0.2      4e-26   96.6   0.0    1.7  1  5wkf_D    mol:protein length:198  T-cell receptor alpha varia
+    1.5e-26   98.0   0.2      4e-26   96.6   0.0    1.7  1  5wkf_I    mol:protein length:198  T-cell receptor alpha varia
+    1.7e-26   97.7   0.1    4.6e-26   96.4   0.0    1.7  1  4ozi_E    mol:protein length:207  T-cell receptor, s2, alpha 
+    1.7e-26   97.7   0.1    4.6e-26   96.4   0.0    1.7  1  4ozi_G    mol:protein length:207  T-cell receptor, s2, alpha 
+    2.1e-26   97.5   0.0    3.7e-26   96.7   0.0    1.4  1  7byd_D    mol:protein length:198  SN45 T cell receptor alpha 
+    2.1e-26   97.5   0.0    3.7e-26   96.7   0.0    1.4  1  7byd_I    mol:protein length:198  SN45 T cell receptor alpha 
+    2.1e-26   97.4   0.4    4.9e-26   96.3   0.0    1.7  1  6l9l_C    mol:protein length:198  T Cell Receptor
+    2.1e-26   97.4   0.4    4.9e-26   96.3   0.0    1.7  1  6l9l_G    mol:protein length:198  T Cell Receptor
+    2.3e-26   97.4   0.1    6.2e-26   95.9   0.0    1.7  1  7sg1_D    mol:protein length:203  T-cell receptor, xpa5, alph
+    2.3e-26   97.4   0.1    6.2e-26   95.9   0.0    1.7  1  7sg1_I    mol:protein length:203  T-cell receptor, xpa5, alph
+    2.3e-26   97.4   0.1    6.2e-26   95.9   0.0    1.7  1  7sg2_D    mol:protein length:203  T-cell receptor, xpa5, alph
+    2.3e-26   97.4   0.1    6.2e-26   95.9   0.0    1.7  1  7sg2_I    mol:protein length:203  T-cell receptor, xpa5, alph
+    3.3e-26   96.9   0.4    7.3e-26   95.7   0.0    1.7  1  6avf_A    mol:protein length:207  T-cell receptor alpha varia
+    3.3e-26   96.8   0.4    7.4e-26   95.7   0.0    1.7  1  6at6_A    mol:protein length:208  T-cell receptor alpha varia
+    4.6e-26   96.4   0.3    1.1e-25   95.1   0.0    1.7  1  6avg_B    mol:protein length:202  T-cell receptor alpha varia
+    4.6e-26   96.4   0.3    1.1e-25   95.1   0.0    1.7  1  6avg_C    mol:protein length:202  T-cell receptor alpha varia
+    3.5e-25   93.5   0.5    7.8e-25   92.4   0.0    1.7  1  6uln_D    mol:protein length:206  TCR-V-alpha-4*01
+    3.5e-25   93.5   0.5    7.8e-25   92.4   0.0    1.7  1  6ulr_D    mol:protein length:206  TCR-V-alpha 4*01

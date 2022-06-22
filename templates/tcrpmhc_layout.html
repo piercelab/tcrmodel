@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      window.jQuery || document.write('<script src="{{
+						    url_for('static', filename='js/jquery-3.6.0.js') }}">\x3C/script>')
+      </script>
+      <script type=text/javascript>
+	$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+      </script>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+      <title>{% block title %}TCRmodel Server{% endblock %}</title>
+      {% block head %}{% endblock %}
+  </head>
+  <body class="d-flex flex-column h-100">
+    <header class="navbar navbar-light flex-md-nowrap p-1 bg-success bg-opacity-10">
+      <div class="p-0 mx-auto text-center">
+        <h1 class="display-6 fw-bolder text-primary">TCRmodel</h1>
+        <p class="fs-5  text-primary">Automated high resolution modeling of T cell receptors</p>
+      </div>
+    </header>
+    <main class="flex-shrink-0">    
+      <div class="container">
+	<div class="row">
+	  <nav id="sidebarMenu" class="col-md-4 col-lg-2 p-1 d-md-block bg-white sidebar collapse">
+            <div class="position-sticky">
+              <ul class="nav flex-column fs-4">
+		<li class="nav-item align-self-center">
+		  <a class="nav-link py-3" href="#">
+                <img src="{{ url_for('static', filename='image/tcr_model_logo.png') }}" class="img-fluid" alt="TCRmodel Logo">
+		  </a>
+		</li>
+		<li class="nav-item align-self-center">
+		  <a class="nav-link py-3" href="{{ url_for('tcrpmhc') }}">
+                    Home
+		  </a>
+		</li>
+		<li class="nav-item align-self-center">
+		  <a class="nav-link py-3" href="{{ url_for('tcrmodel') }}">
+                    TCR model
+		  </a>
+		</li>
+		<li class="nav-item align-self-center">
+		  <a class="nav-link py-3" href="{{ url_for('about') }}">
+                    About
+              </a>
+		</li>
+		<li class="nav-item align-self-center">
+		  <a class="nav-link py-3" href="{{ url_for('help') }}">
+                    Help
+		  </a>
+		</li>
+		<li class="nav-item align-self-center">
+		  <a class="nav-link py-3" href="{{ url_for('links') }}">
+                Links
+              </a>
+		</li>
+              </ul>
+            </div>
+	  </nav>
+	  <nav class="col-md-9 ms-sm-auto col-lg-10 p-3 bg-light bg-gradient">
+	    <article>{% block article %}{% endblock %}</article>
+	  </nav>
+	</div>
+      </div>
+    </main>
+
+    <footer class="footer mt-auto py-1 p-1 text-dark bg-success bg-opacity-10">
+      <div class="container">
+	<center>
+	  <span class="text-muted">Template database last updated: 03/10/2021</span>
+	  <BR>
+	  <a href="http://www.rosettacommons.org" target="_blank">
+            <img src="{{ url_for('static', filename='image/rosettacommons_logo.png') }}"  alt="RosLogo" style="width:150px;">
+	  </a>
+	  &nbsp&nbsp&nbsp&nbsp&nbsp
+	  <a href="http://www.ibbr.umd.edu" target="_blank">
+            <img src="{{ url_for('static', filename='image/ibbr_logo.png') }}"  alt="Logo" style="width:200px;">
+	  </a>
+	</center>
+      </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  </body>
+</html>

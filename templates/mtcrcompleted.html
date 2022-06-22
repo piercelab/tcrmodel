@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+<style>
+bli{
+    max-width:400px;
+    word-wrap:break-word;
+    display: block;
+    font-size: 0.67em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: normal;
+}
+.mtcrtable {
+    border:1px solid #dddddd;
+    table-layout: auto;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-collapse: collapse;
+    border-spacing: 20px;
+}
+.mtcrtable td {
+    border: 1px solid #dddddd;
+    padding: 20px;
+}
+
+.mtcrtable th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 20px;
+}
+</style>
+{% endblock %}
+{% block title %}TCR Modeling Server{% endblock %}
+{% block article %}
+<h4>Status : Modeling completed</h4>
+<h4>Job ID : <a href="{{ url_for('mtcr', jobid=mtcrjobid) }}">{{ mtcrjobid }}</a></h4>
+<h4>Download : <a href={{rundir_spath}}/{{mtcrjobid}}/{{mtcrjobid}}.zip download>All output files</a></h4>
+
+<table class="mtcrtable">
+  <tr>
+    <th>Sl.No</th>
+    <th>Name</th>
+    <th>Sequences</th>
+    <th>Status</th>
+    <th>Models</th>
+    <th>Viewer</th>
+  </tr>
+{% for val in tj.tcrmodel %}
+  <tr>
+    <td style="text-align:center">{{ val.prefixnum }}</td>
+    <td style="text-align:center">{{ val.prefixtag }}</td>
+    <td>
+      <bli><strong>TCR &alpha; chain:</strong><br>{{ val.aseq_vdomain }}</bli>
+      <bli><strong>TCR &beta; chain:</strong><br>{{ val.bseq_vdomain }}</bli>
+    </td>
+    <td style="text-align:center">{{ val.status }}</td>
+    <td style="text-align:center"><a href={{rundir_spath}}/{{mtcrjobid}}/{{val.prefixtag}}/{{val.prefixtag}}_tcrmodel.pdb download>Download PDB file</a></td>
+    <td style="text-align:center"><a href="{{ url_for('mviewmodel', jobid=mtcrjobid, prefixtag=val.prefixtag) }}"><h4>View Model</h4></a></td>
+  </tr>
+  
+  {% endfor %}
+</table>
+{% endblock %}

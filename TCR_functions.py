@@ -9,7 +9,7 @@ io = PDBIO()
 ppb = CaPPBuilder()
 from subprocess import Popen, PIPE
 from Bio.PDB.Polypeptide import three_to_one
-
+from shutil import copyfile
 import scoring_matrices
 
 PAM30 = ([6,-7,-4,-3,-6,-4,-2,-2,-7,-5,-6,-7,-5,-8,-2,0,-1,-13,-8,-2],
@@ -56,6 +56,28 @@ aa_map = {
     'Y' : '18',
     'V' : '19'
     }
+
+
+def seq_by_id_from_fasta_files_list(inp_id, fasta_files_list):
+    for fasta_file in fasta_files_list:
+        for rec in SeqIO.parse(fasta_file, "fasta"):
+            if rec.id == inp_id:
+                return rec.seq
+
+def pdbchain_to_fasta(inpdb, chainid):
+    letters = {'ALA':'A','ARG':'R','ASN':'N','ASP':'D','CYS':'C','GLU':'E','GLN':'Q','GLY':'G','HIS':'H',
+               'ILE':'I','LEU':'L','LYS':'K','MET':'M','PHE':'F','PRO':'P','SER':'S','THR':'T','TRP':'W',
+               'TYR':'Y','VAL':'V'}
+    pdbseq = ''
+    prev = '-1'
+    input_file = open(inpdb)
+    for line in input_file:
+        if line[:4] != 'ATOM': continue
+        if line[21:22] != chainid: continue
+        if line[22:27]!= prev:
+            pdbseq += letters[line[17:20]]
+        prev = line[22:27]
+    return pdbseq
 
 def pdb_to_fasta(inpdb):
     letters = {'ALA':'A','ARG':'R','ASN':'N','ASP':'D','CYS':'C','GLU':'E','GLN':'Q','GLY':'G','HIS':'H',
@@ -170,6 +192,24 @@ def assign_CDRs_using_REGEX_webserver_version(seq, tag):
     if not gotMatch:        
         return None
 
+def get_vdomain_using_regex(seq, tag):
+    tcra_regex = "^[A-Z]*(([A-Z]{19}[C][A-Z]{1,19}[W][A-Z]{1,70}[Y][A-Z][C])[A-Z]{1,32}([F|W][A-Z]{2}[G][A-Z]{6}))[A-Z]*"
+    tcra_regexList = [tcra_regex]
+    tcrb_regex = "^[A-Z]*(([A-Z]{19}[C][A-Z]{1,19}[W][A-Z]{1,70}[Y][A-Z][C])[A-Z]{1,32}([F|W][A-Z]{2}[G][A-Z]{6}))[A-Z]*"
+    tcrb_regexList = [tcrb_regex]
+    if tag == 'A': tcr_regexList = tcra_regexList;
+    if tag == 'B': tcr_regexList = tcrb_regexList;
+    gotMatch = False
+    for tcr_regex in tcr_regexList:
+        res = re.search(tcr_regex, str(seq))
+        if res:
+            trunc = re.search(tcr_regex, str(res.group(1)))
+            gotMatch = True
+            return trunc
+    if not gotMatch:        
+        return None
+        
+
 def assign_CDRs_using_REGEX_webserver_2version(seq, tag):
     import re
     tcra_regex_1 = "^[A-Z]*(([A-Z]{19}C)([A-Z]{1,19})(W[A-Z]{11}[L|I|V])([A-Z]{1,36})([L|I|F][A-Z]{12}Y[A-Z])([C|W][A-Z]{1,32}[F|W])(G[A-Z]G[A-Z]{6}))[A-Z]*"
@@ -193,20 +233,18 @@ def assign_CDRs_using_REGEX_webserver_2version(seq, tag):
         return None
 
 
-#make_pdb("pdb4mji.ent", "DE", "hello.pdb")
-
-def run_anarci(query, anarci_program=None, outfile=None):
+def run_anarci(query, anarci_program=None, outfile=None, restrict=None):
     if anarci_program is None:
         anarci_program = "ANARCI"
     if outfile is None:
         outfile = "anarci.out"
     if os.path.isfile(outfile):
         os.remove(outfile)
-    process = Popen([anarci_program, "-i" , str(query), "-o" , str(outfile) ,  "-s" , "a" , "-r", "tr" ], stdout=PIPE, stderr=PIPE)
+    if restrict is None:
+        process = Popen([anarci_program, "-i" , str(query), "-o" , str(outfile) ,  "-s" , "a" ], stdout=PIPE, stderr=PIPE)
+    else:
+        process = Popen([anarci_program, "-i" , str(query), "-o" , str(outfile) ,  "-s" , "a" , "-r", str(restrict)], stdout=PIPE, stderr=PIPE)
     stdout, stderr = process.communicate()
-    #print(stdout)
-    #print(stderr)
-
 
 def get_seq_from_pdb(inpdb):
     ppb = PPBuilder()# Using C-N
@@ -229,8 +267,7 @@ def get_tcr_vdomain(record, TAG):
     #inseq = get_seq_from_pdb(pdbfile)
     #pdbseq = inseq[0] 
     pdbseq = pdb_to_fasta(pdbfile)
-    #print pdbseq
-    run_anarci(pdbseq,None,anarci_out_file)
+    run_anarci(pdbseq,None,anarci_out_file,None)
     ahooutfile = record.id + "." + TAG + ".aho.pdb"
     parse_anarci_output(anarci_out_file, pdbfile, pdbseq, TAG, ahooutfile)
 
@@ -286,7 +323,7 @@ def renumber_pdbfile_to_aho(pdbfile, TAG=None, ahooutfile=None, extend=False):
     pdbseq = pdb_to_fasta(pdbfile)
     filetag = os.path.basename(pdbfile)
     anarci_out_file = filetag+"_anarci.out"
-    run_anarci(pdbseq,"ANARCI",anarci_out_file)
+    run_anarci(pdbseq,"ANARCI",anarci_out_file,None)
     aho_begin = ''
     aho_end = ''
     dom = "~!@#$%^&*()_+"#just random initialization 
@@ -305,7 +342,7 @@ def renumber_pdbfile_to_aho(pdbfile, TAG=None, ahooutfile=None, extend=False):
                 FoundDomain = True
                 break
         if not FoundDomain:
-            print "Failed to identify TCR domain: ", pdbfile
+            print "Failed to identify TCR domain with ANARCI program: ", pdbfile
             return None
             
     with open(anarci_out_file) as f:
@@ -370,7 +407,7 @@ def renumber_pdbfile_to_aho(pdbfile, TAG=None, ahooutfile=None, extend=False):
 
 def check_tcr_alpha_beta_domain(inseq):
     anarci_out_file = "anarci.out"
-    run_anarci(inseq,"ANARCI",anarci_out_file)
+    run_anarci(inseq,ANARCI,anarci_out_file,None)
     a_regex = "\#\|.*\|(A)\|.*\|.*\|([0-9]+)\|([0-9]+)\|"
     b_regex = "\#\|.*\|(B)\|.*\|.*\|([0-9]+)\|([0-9]+)\|"
     Found_A = False
@@ -391,7 +428,7 @@ def check_tcr_alpha_beta_domain(inseq):
 
 def get_tcr_domain_seq(inseq, TAG):
     anarci_out_file = "anarci.out"
-    run_anarci(inseq,"ANARCI",anarci_out_file)
+    run_anarci(inseq,ANARCI,anarci_out_file,None)
     regex_for_header = "\#\|.*\|("+TAG+")\|.*\|.*\|([0-9]+)\|([0-9]+)\|"
     with open(anarci_out_file) as f:
         for line in f:
@@ -501,6 +538,26 @@ def score_alignment(inseq, dbseq, inp_sc_mat=None):
         score += pssm[int(aa_map[inseq[x:x+1]])][int(aa_map[dbseq[x:x+1]])]
     return score
 
+def seq_match_from_fasta_files_list(inseq, fasta_files_list, pdb_blacklist=None):
+    for fasta_file in fasta_files_list:
+        curr_record = seq_match_from_fasta_file(inseq, fasta_file, pdb_blacklist=pdb_blacklist)
+        if curr_record is not None:
+            return curr_record
+    return curr_record
+
+def seq_match_from_fasta_file(inseq, fasta_file, pdb_blacklist=None):
+    best_record = None
+    handle = open(fasta_file, "rU")
+    for record in SeqIO.parse(handle, "fasta") :
+        if ( len(inseq) != len(record.seq) ): continue
+        if pdb_blacklist:
+            pdb_ignorelist = [x.lower() for x in pdb_blacklist]
+            if (record.id[:4].lower() in pdb_ignorelist): continue
+        if (str(inseq) == str(record.seq)):
+            best_record = record
+            break
+    return best_record
+
 
 def calculate_identity_score( query, content):
     if (len(query) != len(content)): return -99999
@@ -511,10 +568,14 @@ def calculate_identity_score( query, content):
     percent_identity = ( num_simi_res / float(len(query)) ) * 100;
     return percent_identity;
 
-def get_cdr_from_seq_by_aho_num(inseq, TAG=None):
+def get_cdr_from_seq_by_aho_num(inseq, TAG=None, extend=None):
+    if TAG == "A":
+        cdr_aho_num = [24,42,56,71,107,138,81,90,56,90]
+    elif TAG == "B":
+        cdr_aho_num = [24,42,56,70,107,138,81,90,56,90]
     inseq = str(inseq.rstrip())
     anarci_out_file = "cdranarci.out"
-    run_anarci(inseq, None, anarci_out_file)
+    run_anarci(inseq, None, anarci_out_file,None)
     ahonumlist = []
     count = 0
     #alpha                                                                                                          
@@ -528,23 +589,21 @@ def get_cdr_from_seq_by_aho_num(inseq, TAG=None):
     hv4_end_pos = None
     cdr2hv4_begin_pos = None
     cdr2hv4_end_pos = None
-
-
-    if TAG is None:
-        TAG = "[A-Z]"
+    dom = ''
+    aho_begin = ''
+    aho_end = ''
+    anytag = "[A-Z]"
+    #if TAG is None:
+        #TAG = "[A-Z]"
     with open(anarci_out_file) as f:
-        regex_for_header = "\#\|.*\|("+TAG+")\|.*\|.*\|([0-9]+)\|([0-9]+)\|"
+        regex_for_header = "\#\|.*\|("+anytag+")\|.*\|.*\|([0-9]+)\|([0-9]+)\|"
         for line in f:
             res = re.search(regex_for_header, line)
             if res:
                 dom = res.groups()[0]
-                TAG = dom
+                aho_begin = res.groups()[1]
+                aho_end = res.groups()[2]
                 break
-
-    if TAG == "A":
-        cdr_aho_num = [24,42,56,71,107,138,81,90,56,90]
-    elif TAG == "B":
-        cdr_aho_num = [24,42,56,70,107,138,81,90,56,90]
 
     anarcilist = []
     count = 0
@@ -567,13 +626,59 @@ def get_cdr_from_seq_by_aho_num(inseq, TAG=None):
                 if int(values[1].strip()) == cdr_aho_num[5]: cdr3_end_pos = count
                 count += 1
                 anarcilist.append(values)
-
+            else:
+                return None
+    if extend is True:
+        cdr1_begin_pos += int(aho_begin)
+        cdr1_end_pos += int(aho_begin)
+        cdr2_begin_pos += int(aho_begin)
+        cdr2_end_pos += int(aho_begin)
+        cdr3_begin_pos += int(aho_begin)
+        cdr3_end_pos += int(aho_begin)
+        hv4_begin_pos += int(aho_begin)
+        hv4_end_pos += int(aho_begin)
+        cdr2hv4_begin_pos += int(aho_begin)
+        cdr2hv4_end_pos += int(aho_begin)
+    
+        counter = int(aho_begin)
+        while (counter > 0):
+            counter -= 1
+            aacode = inseq[counter]
+            aanum = int(anarcilist[0][1].strip()) - 1
+            values = [TAG,str(aanum)," ",aacode]      
+            anarcilist.insert(0, values)
+        counter = int(aho_end)
+        while (counter < (len(inseq)-1)):
+            counter += 1
+            aacode = inseq[counter]
+            aanum = int(anarcilist[-1][1].strip()) + 1
+            values = [TAG,str(aanum)," ",aacode]      
+            anarcilist.append(values)
 
     cdr1 = ''
     cdr2 = ''
     cdr2hv4 = ''
     hv4 = ''
     cdr3 = ''
+    fw = ''
+    cdr3_extnd = ''
+    fw1 = ''
+    fw2 = ''
+    fw3 = ''
+    fw4 = ''
+
+    for item in anarcilist[:cdr1_begin_pos:]:
+        fw1 += item[3].rstrip()
+        fw += item[3].rstrip()
+    for item in anarcilist[cdr1_end_pos+1:cdr2hv4_begin_pos]:
+        fw2 += item[3].rstrip()
+        fw += item[3].rstrip()
+    for item in anarcilist[cdr2hv4_end_pos+1:cdr3_begin_pos]:
+        fw3 += item[3].rstrip()
+        fw += item[3].rstrip()
+    for item in anarcilist[cdr3_end_pos+1:]:
+        fw4 += item[3].rstrip()
+        fw += item[3].rstrip()
 
     for item in anarcilist[cdr1_begin_pos:cdr1_end_pos+1]:
         cdr1 += item[3].rstrip()
@@ -585,8 +690,9 @@ def get_cdr_from_seq_by_aho_num(inseq, TAG=None):
         hv4 += item[3].rstrip()
     for item in anarcilist[cdr3_begin_pos:cdr3_end_pos+1]:
         cdr3 += item[3].rstrip()
-
-    return cdr1,cdr2,cdr2hv4,hv4,cdr3
+    for item in anarcilist[cdr3_begin_pos-1:cdr3_end_pos+1+1]:
+        cdr3_extnd += item[3].rstrip()
+    return cdr1,cdr2,cdr2hv4,hv4,cdr3,fw,cdr3_extnd,fw1,fw2,fw3,fw4
 
 
 def extract_deposition_date_from_pdb(record_id):
@@ -621,7 +727,7 @@ def extract_resolution_from_pdb(record_id):
         return None
 
 
-def find_orientation_template(seqa, seqb, orientation_template_file, inp_sc_mat=None):
+def find_orientation_template(seqa, seqb, orientation_template_file, inp_sc_mat=None, pdb_blacklist=None):
     identity_cutoff = 100
     best_score = -9999999
     best_alpha_tag = ''
@@ -629,12 +735,15 @@ def find_orientation_template(seqa, seqb, orientation_template_file, inp_sc_mat=
     #print seqa, seqb
     with open(orientation_template_file, 'r') as f:
         for line in f:
-            #print line
+            if not line.strip(): continue
             linelist = line.split()
             #if ( (seqa == linelist[2]) and (seqb == linelist[3]) ): continue
             if ( (len(seqa) == len(linelist[2])) and (len(seqb) == len(linelist[3])) ):
+                if pdb_blacklist:
+                    pdb_ignorelist = [x.lower() for x in pdb_blacklist]
+                    if (linelist[0][:4].lower() in pdb_ignorelist): continue
+                    if (linelist[1][:4].lower() in pdb_ignorelist): continue
                 identity_score = ( calculate_identity_score( str(seqa+seqb), str(linelist[2]+linelist[3]) ) )
-                #print "HI", linelist[2], linelist[3], identity_score
                 if (calculate_identity_score( str(seqa+seqb), str(linelist[2]+linelist[3]) ) > identity_cutoff ): continue
                 score = score_alignment(seqa,linelist[2],inp_sc_mat) + score_alignment(seqb,linelist[3],inp_sc_mat)
                 if (score > best_score):
@@ -642,3 +751,124 @@ def find_orientation_template(seqa, seqb, orientation_template_file, inp_sc_mat=
                     best_alpha_tag = linelist[0]
                     best_beta_tag = linelist[1]
     return best_alpha_tag,best_beta_tag
+
+
+def rename_pdb_chains(cur_chains, new_chains, infile, outfile=None):
+    assert len(cur_chains) == len(new_chains), "No, of current/new chains do not match."
+    tmpoutfile = "chain_rename_tmp.pdb"
+    IN = open(infile)
+    OUT = open(tmpoutfile, 'w+')
+    for line in IN.readlines():
+        if line[0:4] == 'ATOM' or line[0:4] == 'HETATM':            
+            newline = line
+            for count, value in enumerate(cur_chains):
+                if line[21:22] == cur_chains[count]:
+                    newline  = line[:21] + new_chains[count] + line[22:]
+                    break
+            OUT.write(newline)
+        else:
+            OUT.write(line)
+    IN.close()
+    OUT.close()
+    if outfile is None:
+        copyfile(tmpoutfile, infile)
+    else:
+        copyfile(tmpoutfile, outfile)
+    os.remove(tmpoutfile)
+    return
+
+def renumber_pdbchain_to_aho(pdbfile, chainid=None, TAG=None, ahooutfile=None, extend=False):
+    if chainid is None:
+        pdbseq = pdb_to_fasta(pdbfile)
+    else:
+        pdbseq = pdbchain_to_fasta(pdbfile,chainid)
+
+    filetag = os.path.basename(pdbfile)
+    anarci_out_file = filetag+"_anarci.out"
+    run_anarci(pdbseq,"ANARCI",anarci_out_file,None)
+    aho_begin = ''
+    aho_end = ''
+    dom = "~!@#$%^&*()_+"#just random initialization 
+    anarcilist = []
+    FoundDomain = None
+    if TAG is None:
+        TAG = "[A-Z]"
+    with open(anarci_out_file) as f:
+        regex_for_header = "\#\|.*\|("+TAG+")\|.*\|.*\|([0-9]+)\|([0-9]+)\|"
+        for line in f:
+            res = re.search(regex_for_header, line)
+            if res:
+                dom = res.groups()[0]
+                aho_begin = res.groups()[1]
+                aho_end = res.groups()[2]
+                FoundDomain = True
+                break
+        if not FoundDomain:
+            print "Failed to identify TCR domain using ANARCI program: ", pdbfile
+            return None
+    #Kappa and lambda are considered together in ANARCI
+    if dom == "K":
+        dom = "L"
+
+    with open(anarci_out_file) as f:
+        for line in f:
+            if line.startswith("#"):continue
+            if line.startswith("//"):continue
+            if line.startswith(dom):
+                if line[10] == "-":continue
+                values = [line[0],line[2:7],line[8],line[10]]
+                anarcilist.append(values)
+    #print dom
+    #print anarcilist
+    #print anarcilist[0][1], anarcilist[-1][1]
+
+    st = parser.get_structure('PDB', pdbfile)
+    if chainid is None:
+        chain = st[0][0]#first chain
+    else:
+        chain = st[0][chainid]
+
+    if extend is True:
+        counter = int(aho_begin)
+        while (counter > 0):
+            counter -= 1
+            aacode = pdbseq[counter]
+            aanum = int(anarcilist[0][1].strip()) - 1
+            values = [TAG,str(aanum)," ",aacode]      
+            anarcilist.insert(0, values)
+        counter = int(aho_end)
+        while (counter < (len(pdbseq)-1)):
+            counter += 1
+            aacode = pdbseq[counter]
+            aanum = int(anarcilist[-1][1].strip()) + 1
+            values = [TAG,str(aanum)," ",aacode]      
+            anarcilist.append(values)
+        j = 0#anarci_counter
+        #for chain in st[0]:
+        for residue in list(chain):
+            #print i, j, three_to_one(residue.resname), anarcilist[j], residue, residue.resname, three_to_one(residue.resname)
+            assert (three_to_one(residue.resname) == anarcilist[j][3]), "Residues does not match %r %r %r" %(j, three_to_one(residue.resname), anarcilist[j][3])
+            residue.id = (' ',int(anarcilist[j][1].strip()), anarcilist[j][2])
+            j += 1
+
+    if extend is False:
+        i = 0#pdb_counter
+        j = 0#anarci_counter
+        #for chain in st[0]:
+        for residue in list(chain):
+            if (i < int(aho_begin)) or (i > int(aho_end)):
+                chain.detach_child(residue.id)
+                i += 1
+                continue
+            else:
+                print i, j, three_to_one(residue.resname), anarcilist[j], residue, residue.resname, three_to_one(residue.resname)
+                assert (three_to_one(residue.resname) == anarcilist[j][3]), "Residues does not match %r %r %r" %(j, three_to_one(residue.resname), anarcilist[j][3])
+                residue.id = (' ',int(anarcilist[j][1].strip()), anarcilist[j][2])
+                i += 1
+                j += 1
+
+    io.set_structure(st)
+    if ahooutfile is None:
+        ahooutfile = filetag+".aho.pdb"
+    io.save(ahooutfile)
+    return ahooutfile

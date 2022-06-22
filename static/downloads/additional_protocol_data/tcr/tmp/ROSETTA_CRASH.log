@@ -1,0 +1,696 @@
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -out:file:renumber_pdb -out:file:per_chain_renumbering -run:ignore_zero_occupancy=false -tcrmodel:tcr_template_db_path=/Users/ragul/Rosetta/main/database/additional_protocol_data/tcr/ -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x0000000115dc7421 backtrace_string(int) + 81
+1   libutility.dylib                    0x0000000115dc734e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x0000000115e797b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x0000000115e796d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x000000010cd819c3 protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 2579
+5   libprotocols.7.dylib                0x000000010cd5f205 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 1013
+6   libprotocols.7.dylib                0x000000010cd58ea4 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x000000010bf338a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+9   ???                                 0x000000000000000c 0x0 + 12
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 127
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -out:file:renumber_pdb -out:file:per_chain_renumbering -run:ignore_zero_occupancy=false -tcrmodel:tcr_template_db_path=/Users/ragul/Rosetta/main/database/additional_protocol_data/tcr/ -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x000000010a31d421 backtrace_string(int) + 81
+1   libutility.dylib                    0x000000010a31d34e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x000000010a3cf7b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x000000010a3cf6d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x00000001011c89c3 protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 2579
+5   libprotocols.7.dylib                0x00000001011a6205 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 1013
+6   libprotocols.7.dylib                0x000000010119fea4 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x000000010037a8a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+9   ???                                 0x000000000000000c 0x0 + 12
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 127
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x000000010b82d421 backtrace_string(int) + 81
+1   libutility.dylib                    0x000000010b82d34e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x000000010b8df7b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x000000010b8df6d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   tcr_complex_model.macosclangrelease 0x00000001019b5c46 main + 33094
+5   libdyld.dylib                       0x00007fff6eac0015 start + 1
+6   ???                                 0x0000000000000001 0x0 + 1
+
+[END_BACKTRACE]
+
+[FILE]: src/apps/public/tcr/tcr_complex_model.cc
+[LINE]: 77
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Error reading input tcr sequences.
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x00000001103d2421 backtrace_string(int) + 81
+1   libutility.dylib                    0x00000001103d234e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x00000001104847b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x00000001104846d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   tcr_complex_model.macosclangrelease 0x0000000106598c46 main + 33094
+5   libdyld.dylib                       0x00007fff6eac0015 start + 1
+6   ???                                 0x0000000000000003 0x0 + 3
+
+[END_BACKTRACE]
+
+[FILE]: src/apps/public/tcr/tcr_complex_model.cc
+[LINE]: 77
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Error reading input tcr sequences.
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -alpha=MDSVTQTEGLVTLTEGLPVMLNCTYQSTYSPFLFWYVQHLNEAPKLLLKSFTDNKRPEHQGFHATLHKSSSSFHLQKSSAQLSDSALYYCALFLASSSFSKLVFGQGTSLSVVPNIQNPEPAVYQLKDPRSQDSTLCLFTDFDSQINVPKTMESGTFITDKTVLDMKAMDSKSNGAIAWSNQTSFTCQDIFKET -beta=MEAAVTQSPRSKVAVTGGKVTLSCHQTNNHDYMYWYRQDTGHGLRLIHYSYVADSTEKGDIPDGYKASRPSQENFSLILELASLSQTAVYFCASSDWVSYEQYFGPGTRLTVLEDLRNVTPPKVSLFEPSKAEIANKQKATLVCLARGFFPDHVELSWWVNGKEVHSGVSTDPQAYKESNYSYALSSRLRVSATFWHNPRNHFRCQVQFHGLSEEDKWPEGSPKPVTQNISAEAWGRA -mhc1=GSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGACVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWE -peptide=ALWGFFPVL
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x000000011548e421 backtrace_string(int) + 81
+1   libutility.dylib                    0x000000011548e34e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x00000001155407b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x00000001155406d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x000000010c569da4 protocols::tcr::match_template_and_target_sequence(core::pose::Pose const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, core::pose::Pose&) + 1332
+5   libprotocols.7.dylib                0x000000010c546b45 protocols::tcr::TCRmodel::build_graft_model() + 8629
+6   libprotocols.7.dylib                0x000000010c541e9c protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1292
+7   tcr_complex_model.macosclangrelease 0x000000010b71b8a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 78
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Error template and target sequence lengths are not same.
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -run:ignore_zero_occupancy=false -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x0000000114f41421 backtrace_string(int) + 81
+1   libutility.dylib                    0x0000000114f4134e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x0000000114ff37b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x0000000114ff36d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x000000010c0129c3 protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 2579
+5   libprotocols.7.dylib                0x000000010bff0205 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 1013
+6   libprotocols.7.dylib                0x000000010bfe9ea4 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x000000010b1c68a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 127
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -run:ignore_zero_occupancy=false -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x000000010c274421 backtrace_string(int) + 81
+1   libutility.dylib                    0x000000010c27434e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x000000010c3267b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x000000010c3266d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x00000001031e79c3 protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 2579
+5   libprotocols.7.dylib                0x00000001031c5205 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 1013
+6   libprotocols.7.dylib                0x00000001031beea4 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x000000010239a8a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+9   ???                                 0x0000000000000009 0x0 + 9
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 127
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -run:ignore_zero_occupancy=false -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x0000000113f69421 backtrace_string(int) + 81
+1   libutility.dylib                    0x0000000113f6934e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x000000011401b7b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x000000011401b6d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x000000010af9a9c3 protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 2579
+5   libprotocols.7.dylib                0x000000010af78205 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 1013
+6   libprotocols.7.dylib                0x000000010af71ea4 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x000000010a1468a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+9   ???                                 0x0000000000000009 0x0 + 9
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 127
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -run:ignore_zero_occupancy=false -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x00000001105d5421 backtrace_string(int) + 81
+1   libutility.dylib                    0x00000001105d534e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x00000001106877b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x00000001106876d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x00000001076b090e protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 3102
+5   libprotocols.7.dylib                0x000000010768df45 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 1013
+6   libprotocols.7.dylib                0x0000000107687be4 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x000000010685d8a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+9   ???                                 0x0000000000000009 0x0 + 9
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 135
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -run:ignore_zero_occupancy=false -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x000000010f679421 backtrace_string(int) + 81
+1   libutility.dylib                    0x000000010f67934e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x000000010f72b7b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x000000010f72b6d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x000000010673d8ee protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 3102
+5   libprotocols.7.dylib                0x000000010671af28 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 1096
+6   libprotocols.7.dylib                0x0000000106714b74 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x00000001058f38a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+9   ???                                 0x0000000000000009 0x0 + 9
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 135
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -run:ignore_zero_occupancy=false -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x000000010cdd1421 backtrace_string(int) + 81
+1   libutility.dylib                    0x000000010cdd134e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x000000010ce837b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x000000010ce836d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x00000001041058ee protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 3102
+5   libprotocols.7.dylib                0x00000001040e2f28 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 1096
+6   libprotocols.7.dylib                0x00000001040dcb74 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x00000001030058a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+9   ???                                 0x0000000000000009 0x0 + 9
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 135
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -run:ignore_zero_occupancy=false -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x0000000118f49421 backtrace_string(int) + 81
+1   libutility.dylib                    0x0000000118f4934e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x0000000118ffb7b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x0000000118ffb6d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x000000010fb448ee protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 3102
+5   libprotocols.7.dylib                0x000000010fb21f28 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 1096
+6   libprotocols.7.dylib                0x000000010fb1bb74 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x000000010ecf18a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+9   ???                                 0x0000000000000009 0x0 + 9
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 135
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -run:ignore_zero_occupancy=false -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x000000011082d421 backtrace_string(int) + 81
+1   libutility.dylib                    0x000000011082d34e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x00000001108df7b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x00000001108df6d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x000000010787b8ee protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 3102
+5   libprotocols.7.dylib                0x0000000107858f28 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 1096
+6   libprotocols.7.dylib                0x0000000107852b74 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x0000000106a2e8a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+9   ???                                 0x0000000000000009 0x0 + 9
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 135
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -run:ignore_zero_occupancy=false -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x00000001194cc421 backtrace_string(int) + 81
+1   libutility.dylib                    0x00000001194cc34e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x000000011957e7b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x000000011957e6d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x000000011059e8ee protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 3102
+5   libprotocols.7.dylib                0x000000011057bf28 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 1096
+6   libprotocols.7.dylib                0x0000000110575b74 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x000000010f74f8a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+9   ???                                 0x0000000000000009 0x0 + 9
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 135
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -run:ignore_zero_occupancy=false -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x00000001195a3421 backtrace_string(int) + 81
+1   libutility.dylib                    0x00000001195a334e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x00000001196557b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x00000001196556d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x000000011065096e protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 3102
+5   libprotocols.7.dylib                0x000000011062e0b4 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 756
+6   libprotocols.7.dylib                0x0000000110627e54 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x000000010f80a8a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+9   ???                                 0x0000000000000009 0x0 + 9
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 135
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. 
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2019.45.post.dev+165.bioragul.tcrcomplexmodeling.8e5845c7633
+[COMMIT_DATE]: 2021-02-08T20:37:37
+[APPLICATION]: /Users/ragul/Rosetta/main/source/bin/tcr_complex_model.macosclangrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: Apple Mac OS X
+[COMPILER]: Clang version "10.0.0 (clang-1000.10.44.4)"
+[STDLIB]: libc++ version 6000
+[START_OPTIONS]
+ -in:path:database=/Users/ragul/Rosetta/main/database/ -run:ignore_zero_occupancy=false -alpha=VEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVGGSQGNLIFGKGTRVSTSP -beta=VTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASSIRSSYEQYFGQGTRLTVV -mhc1=MAVMAPRTLVLLLSGALALTQTWAGSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEPSSQPTIPIVGIIAGLVLFGAVITGAVVAAVMWRRKSSDRKGGSYSQAASSDSAQGSDVSLTACKV -peptide=LLFGYPVYV
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+0   libutility.dylib                    0x000000010b8f3421 backtrace_string(int) + 81
+1   libutility.dylib                    0x000000010b8f334e utility::excn::Exception::Exception(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 206
+2   libutility.dylib                    0x000000010b9a57b0 utility::UtilityExitException::UtilityExitException(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 112
+3   libutility.dylib                    0x000000010b9a56d7 utility::exit(char const*, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, int) + 55
+4   libprotocols.7.dylib                0x00000001029ce94e protocols::tcr::orient_tcr(core::pose::Pose&, core::pose::Pose const&, protocols::tcr::TCRseqInfo::tcrposi const&, protocols::tcr::TCRseqInfo::tcrposi const&) + 3102
+5   libprotocols.7.dylib                0x00000001029ac0c1 protocols::tcr::TCRmodel::assemble_tcrpmhc_chains() + 801
+6   libprotocols.7.dylib                0x00000001029a5e34 protocols::tcr::TCRmodel::TCRmodel(std::__1::shared_ptr<protocols::tcr::TCRseqInfo>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) + 1300
+7   tcr_complex_model.macosclangrelease 0x0000000101b838a5 main + 3493
+8   libdyld.dylib                       0x00007fff6eac0015 start + 1
+9   ???                                 0x0000000000000009 0x0 + 9
+
+[END_BACKTRACE]
+
+[FILE]: src/protocols/tcr/modeling_util.cc
+[LINE]: 135
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Orientation template segment does not match with framework template
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+

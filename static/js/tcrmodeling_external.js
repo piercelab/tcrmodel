@@ -15,6 +15,7 @@ function openCity(evt, cityName) {
 
 $(document).ready(function(){
 
+
 var travfile;
 var trajfile;
 var trbvfile;
@@ -67,7 +68,6 @@ function AGeneSelection() {
 		});
 }
 
-
 document.getElementById("bspecies").onchange = function() {BGeneSelection()};
 function BGeneSelection() {
     var y = document.getElementById("bspecies").value;
@@ -113,7 +113,9 @@ function BGeneSelection() {
 		});
 }
 
-$("#loadbtn").click(function () {
+
+
+    $("#loadbtn").click(function () {
 	var a_trav = document.getElementById("trav").value;
 	var a_traj = document.getElementById("traj").value;
 	var a_cdr3 = (document.getElementById("acdr").value).toUpperCase();
@@ -128,14 +130,15 @@ $("#loadbtn").click(function () {
 	$("#betachain").val(bseq);
     });
 
-
-
 document.getElementById("defaultOpen").click();
 $("#flip").click(function(){
 	$("#panel").slideToggle("slow");
     });
 $("#flip2").click(function(){
 	$("#panel2").slideToggle("slow");
+    });
+$("#flip3").click(function(){
+	$("#panel3").slideToggle("slow");
     });
 
 $("#btn1").click(function () {
@@ -149,31 +152,36 @@ $("#btn2").click(function () {
 	$("#bspecies").prop('selectedIndex', 1);
 	$("#acdr").val("CAVGGSQGNLIF");
 	$("#bcdr").val("CASSIRSSYEQYF");
-	$('select#trav option:contains("TRAV8-6*01")').prop('selected',true);
-	$('select#traj option:contains("TRAJ42*01")').prop('selected',true);
-	$('select#trbv option:contains("TRBV19*01")').prop('selected',true);
-	$('select#trbj option:contains("TRBJ2-7*01")').prop('selected',true);
+        $('select#trav option:contains("TRAV8-6*01")').prop('selected',true);
+        $('select#traj option:contains("TRAJ42*01")').prop('selected',true);
+        $('select#trbv option:contains("TRBV19*01")').prop('selected',true);
+        $('select#trbj option:contains("TRBJ2-7*01")').prop('selected',true);
 	$("#loadbtn").click();
     });
 
+
 $("#achain").keyup(function() {
-	var x = document.getElementById("achain").value;
-	x = x.replace(/(\r\n|\n|\s|\r)/gm,"");
-	var found = 0;
-        travfile = $SCRIPT_ROOT + '/static/genemapdata/TRAV_HUMAN.json';
-        $.getJSON(travfile, function (data) {
-            $.each(data, function (key, entry) {
-                    var re = new RegExp(entry.seq.substring(3))
-		    if (re.test(x))
-			{
-				document.getElementById("trav_id").innerHTML = "Human " + entry.name + " gene identified";
-				found = 1;
-				return true;
-			}
-                })
-                });		
-	if (found == 0) {  document.getElementById("trav_id").innerHTML = ""; }
-	});
+    var x = document.getElementById("achain").value;
+    x = x.replace(/(\r\n|\n|\s|\r)/gm,"");
+    var found = 0;
+    travfile = $SCRIPT_ROOT + '/static/genemapdata/TRAV_HUMAN.json';
+    $.getJSON(travfile, function (data) {
+        $.each(data, function (key, entry) {
+            var re = new RegExp(entry.seq.substring(3))
+	    if (re.test(x))
+	    {
+		document.getElementById("trav_id").innerHTML = "Human " + entry.name + " gene identified";
+		document.getElementsByClassName("trav_id").innerHTML = "Human " + entry.name + " gene identified";
+		found = 1;
+		return true;
+	    }
+        })
+            });		
+    if (found == 0) {  
+	document.getElementById("trav_id").innerHTML = "";
+	document.getElementByClassName("trav_id").innerHTML = "";
+    }
+});
     
 $("#bchain").keyup(function() {
         var x = document.getElementById("bchain").value;
@@ -196,6 +204,9 @@ $("#bchain").keyup(function() {
 
 $("#reset1").click(function () {
 	document.getElementById("trav_id").innerHTML = "";
+	document.getElementByClassName("trav_id").innerHTML = "";
 	document.getElementById("trbv_id").innerHTML = "";
 	});
+
 });
+

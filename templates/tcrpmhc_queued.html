@@ -1,0 +1,22 @@
+{% extends "test_layout.html" %}
+{% block head %}
+{{ super() }}
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+{% endblock %}
+{% block article %}
+<div class="p-3 m-3">
+<div class="text-left">
+  <h4><span><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i> Your job is submitted</span></h4>
+  <BR>
+  <h5>Job ID : <a href="{{ url_for('res_tcrpmhc', jobid=jobid) }}">{{ jobid }}</a></h5>
+  <h6>Please wait for the results to appear in this browser window.</h6>
+  <BR>
+  <p class="text-muted">
+    You may reload or refresh the browser at any time.<BR>
+    You may bookmark this page to view your results later if you wish.
+  </p>
+</div>
+</div>
+<meta http-equiv=refresh content="20">
+
+{% endblock  %}

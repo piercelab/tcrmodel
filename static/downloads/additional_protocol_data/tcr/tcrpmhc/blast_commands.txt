@@ -1,0 +1,9 @@
+rm MHC1a.*.pin MHC1a.*.phr MHC1a.*.psq
+
+makeblastdb -in MHC1a.P4.fasta -dbtype 'prot' -title MHC1a.P4 -out MHC1a.P4
+makeblastdb -in MHC1a.P8.fasta -dbtype 'prot' -title MHC1a.P8 -out MHC1a.P8
+makeblastdb -in MHC1a.P9.fasta -dbtype 'prot' -title MHC1a.P9 -out MHC1a.P9
+makeblastdb -in MHC1a.P10.fasta -dbtype 'prot' -title MHC1a.P10 -out MHC1a.P10
+makeblastdb -in MHC1a.P11.fasta -dbtype 'prot' -title MHC1a.P11 -out MHC1a.P11
+makeblastdb -in MHC1a.P12.fasta -dbtype 'prot' -title MHC1a.P12 -out MHC1a.P12
+makeblastdb -in MHC1a.P13.fasta -dbtype 'prot' -title MHC1a.P13 -out MHC1a.P13

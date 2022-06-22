@@ -45,7 +45,10 @@ $(document).ready(function() {
 		$this = $(this);
 		$this.empty();
 		$.each(characters, function (i, el) {
-			$this.append("<span class=\""+el+"\">" + el + "</span");
+		    //alert("<span class=\""+el+"\">" + el + "</span");
+		    //$this.append("<span class=\""+el+"\">" + el + "</span");
+		    //$this.append("<span class='T'>T</span>");
+		    $this.append("<span class=\'" + el + "\'>" + el +"</span>");
 		    });
 	    });
 	

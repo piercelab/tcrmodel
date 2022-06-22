@@ -112,7 +112,7 @@
       </td>
       <td class="noborder" style="text-align:left">
 	<p class="ali inptcr">
-	  <span class="t1ali aaseqali">{{ tj.aseq_cdr3 }}</span>
+	  <span class="t1ali aaseqali">{{ tj.aseq_cdr3_extnd }}</span>
 	  <br>
 	  <span class="t2ali aaseqali">{{ tj.acdr3_tmplt_seq }}</span>
 	  <br>
@@ -172,7 +172,7 @@
       </td>
       <td class="noborder" style="text-align:left">
 	<p class="ali inptcr">
-	  <span class="t1ali aaseqali">{{ tj.bseq_cdr3 }}</span>
+	  <span class="t1ali aaseqali">{{ tj.bseq_cdr3_extnd }}</span>
 	  <br>
 	  <span class="t2ali aaseqali">{{ tj.bcdr3_tmplt_seq }}</span>
 	<br>
@@ -196,11 +196,11 @@
 <div class="tcrcontainer">
   <h3>TCR segments</h3>
   <span class="inptcr">
-    TCR &alpha; chain sequence : {{ tj.aseq_vdomain }}
+    Input TCR &alpha; chain sequence : {{ tj.aseq_vdomain }}
     <br>
     <div style="line-height:2px;"><br></div>
 
-    TCR &beta; chain sequence :
+    Input TCR &beta; chain sequence :
     {{ tj.bseq_vdomain }}
     <br>
     <div style="line-height:2px;"><br></div>
@@ -241,10 +241,10 @@
     <br>
     <div style="line-height:2px;"><br></div>
 
-    CDR3&alpha; : {{ tj.aseq_cdr3 }}
+    CDR3&alpha; : {{ tj.aseq_cdr3_extnd }}
     <br>
     <div style="line-height:2px;"><br></div>
-    CDR3&beta; : {{ tj.bseq_cdr3 }}
+    CDR3&beta; : {{ tj.bseq_cdr3_extnd }}
   </span>
   <br>
   <h3>TCR templates</h3>
