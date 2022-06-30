@@ -1013,6 +1013,8 @@ def searchid():
          return redirect(url_for('rtcrex', jobid=jobid))
       else:
          return redirect(url_for('rtcr', jobid=jobid))
+   elif (jobid[:3] == "MHC"):
+         return redirect(url_for('res_tcrpmhc', jobid=jobid))
    else:
       return render_template("error.html", errormsg="Job ID not found")
 
