@@ -713,13 +713,13 @@ $("#tachain").keyup(function() {
                     var re = new RegExp(entry.seq.substring(3))
 		    if (re.test(x))
 			{
-				document.getElementById("trav_id").innerHTML = "Human " + entry.name + " gene identified";
+				document.getElementById("F1_trav_id").innerHTML = "Human " + entry.name + " gene identified";
 				found = 1;
 				return true;
 			}
                 })
                 });		
-	if (found == 0) {  document.getElementById("trav_id").innerHTML = ""; }
+	if (found == 0) {  document.getElementById("F1_trav_id").innerHTML = ""; }
 	});
     
 $("#tbchain").keyup(function() {
@@ -732,18 +732,18 @@ $("#tbchain").keyup(function() {
                     var re = new RegExp(entry.seq.substring(3))
                     if (re.test(x))
                         {
-                                document.getElementById("trbv_id").innerHTML = "Human " + entry.name + " gene identified";
+                                document.getElementById("F1_trbv_id").innerHTML = "Human " + entry.name + " gene identified";
                                 found = 1;
                                 return true;
                         }
                 })
                 });
-        if (found == 0) {  document.getElementById("trbv_id").innerHTML = ""; }
+        if (found == 0) {  document.getElementById("F1_trbv_id").innerHTML = ""; }
         });
 
-$("#reset1").click(function () {
-	document.getElementById("trav_id").innerHTML = "";
-	document.getElementById("trbv_id").innerHTML = "";
+$("#reset1, #reset2").click(function () {
+	document.getElementById("F1_trav_id").innerHTML = "";
+	document.getElementById("F1_trbv_id").innerHTML = "";
 	});
 
 

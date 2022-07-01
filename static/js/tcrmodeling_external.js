@@ -130,7 +130,7 @@ function BGeneSelection() {
 	$("#betachain").val(bseq);
     });
 
-document.getElementById("defaultOpen").click();
+//document.getElementById("defaultOpen").click();
 $("#flip").click(function(){
 	$("#panel").slideToggle("slow");
     });
@@ -160,7 +160,7 @@ $("#btn2").click(function () {
     });
 
 
-$("#achain").keyup(function() {
+$("#achain").keyup(function() { 
     var x = document.getElementById("achain").value;
     x = x.replace(/(\r\n|\n|\s|\r)/gm,"");
     var found = 0;
@@ -170,8 +170,7 @@ $("#achain").keyup(function() {
             var re = new RegExp(entry.seq.substring(3))
 	    if (re.test(x))
 	    {
-		document.getElementById("trav_id").innerHTML = "Human " + entry.name + " gene identified";
-		document.getElementsByClassName("trav_id").innerHTML = "Human " + entry.name + " gene identified";
+		document.getElementById("trav_id").innerHTML = "Human " + entry.name + " gene identified";	
 		found = 1;
 		return true;
 	    }
@@ -179,7 +178,6 @@ $("#achain").keyup(function() {
             });		
     if (found == 0) {  
 	document.getElementById("trav_id").innerHTML = "";
-	document.getElementByClassName("trav_id").innerHTML = "";
     }
 });
     
@@ -202,9 +200,8 @@ $("#bchain").keyup(function() {
         if (found == 0) {  document.getElementById("trbv_id").innerHTML = ""; }
         });
 
-$("#reset1").click(function () {
+$("#reset3").click(function () {	
 	document.getElementById("trav_id").innerHTML = "";
-	document.getElementByClassName("trav_id").innerHTML = "";
 	document.getElementById("trbv_id").innerHTML = "";
 	});
 
