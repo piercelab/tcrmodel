@@ -1014,7 +1014,7 @@ def searchid():
       else:
          return redirect(url_for('rtcr', jobid=jobid))
    elif (jobid[:3] == "MHC"):
-         return redirect(url_for('res_tcrpmhc', jobid=jobid))
+      return redirect(url_for('res_tcrpmhc', jobid=jobid))
    else:
       return render_template("error.html", errormsg="Job ID not found")
 
@@ -1241,7 +1241,7 @@ def send_batchjob_to_ibbr_cluster(afile,bfile,loopref_checked,pdb_blacklist,uniq
                'aseq_vdomain': aregexres.groups()[0],
                'bseq_vdomain': bregexres.groups()[0],
                'status': ''
-               })
+         })
          rtcrcommand = "-mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s "  % (arecord.seq,brecord.seq) 
          #rtcrcommand = "-blastp_identity_cutoff 90 -mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s "  % (arecord.seq,brecord.seq) 
          rtcrcommand += " -out:prefix " + prefixtag + "_ "
@@ -1307,7 +1307,7 @@ def send_batchjob_to_local_server(afile,bfile,loopref_checked,pdb_blacklist,uniq
                'bseq_user': str(brecord.seq.strip()),
                'aseq_vdomain': aregexres.groups()[0],
                'bseq_vdomain': bregexres.groups()[0]
-               })
+         })
          subdir = os.path.join(outdir,str(prefixnum))
          lcl_file.write('mkdir -p '+subdir+'\n')
          lcl_file.write('cd '+subdir+'\n')
