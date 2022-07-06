@@ -278,6 +278,8 @@ $(document).ready(function(){
         $("#tachain").val("KEVEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVTTDSWGKLQFGAGTQVVVTP");
         $("#tbchain").val("NAGVTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASRPGLAGGRPEQYFGPGTRLTVTE");
         $("#pchain").val("LLFGYPVYV");
+	$("#tachain").keyup();
+	$("#tbchain").keyup();
         $('select#F1mhc1a option:contains("HLA-A*02:01")').prop('selected',true);
         F1MHC1GeneSelection();
         //clear other forms
@@ -290,7 +292,9 @@ $(document).ready(function(){
     $("#F1ExC2").click(function () {
         $("#tachain").val("MDAKTTQPNSMESNEEEPVHLPCNHSTISGTDYIHWYRQLPSQGPEYVIHGLTSNVNNRMASLAIAEDRKSSTLILHRATLRDAAVYYCILRDGRGGADGLTFGKGTHLIIQPYIQNP");
         $("#tbchain").val("DSGVTQTPKHLITATGQRVTLRCSPRSGDLSVYWYQQSLDQGLQFLIQYYNGEERAKGNILERFSAQQFPDLHSELNLSSLELGDSALYFCASSVAVSAGTYEQYFGPGTRLTVTEDLKNVFP");
-        $("#pchain").val("QQYPSGEGSFQPSQENPQ");
+	$("#pchain").val("QQYPSGEGSFQPSQENPQ");
+	$("#tachain").keyup();
+	$("#tbchain").keyup();
         $('select#F1mhc2a option:contains("HLA-DQA1*03:01")').prop('selected',true);
         $('select#F1mhc2b option:contains("HLA-DQB1*03:02")').prop('selected',true);
         F1MHC2GeneSelection();

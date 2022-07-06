@@ -146,10 +146,10 @@ $(document).ready(function(){
     	$("#bspecies").prop('selectedIndex', 1);
     	$("#sele_tacdrseq").val("CAVGGSQGNLIF");
     	$("#sele_tbcdrseq").val("CASSIRSSYEQYF");
-        $('select#trav option:contains("TRAV8-6*01")').prop('selected',true);
-        $('select#traj option:contains("TRAJ42*01")').prop('selected',true);
-        $('select#trbv option:contains("TRBV19*01")').prop('selected',true);
-        $('select#trbj option:contains("TRBJ2-7*01")').prop('selected',true);
+        $('select#sele_trav option:contains("TRAV8-6*01")').prop('selected',true);
+        $('select#sele_traj option:contains("TRAJ42*01")').prop('selected',true);
+        $('select#sele_trbv option:contains("TRBV19*01")').prop('selected',true);
+        $('select#sele_trbj option:contains("TRBJ2-7*01")').prop('selected',true);
     	$("#sele_loadbtntcra").click();
         $("#sele_loadbtntcrb").click();
     });
