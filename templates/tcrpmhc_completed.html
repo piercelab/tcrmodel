@@ -10,10 +10,10 @@
 <div class="p-3 m-3">
   <div class="row px-3">
     <div class="container">
-      <div class="row">
-	<div class="col-8">
+      <div class="row d-flex justify-content-center">
+	<div class="col-5">
 	  <div class="border border-success">
-	    <span class="text-primary fs-6 lh-lg">TCRpMHC model viewer </span>
+	    <span class="text-primary p-2 fs-6 lh-lg">TCRpMHC model viewer </span>
 	    <div class="float-end">
 	      <button type="button" class="btn btn-outline-primary" onclick="nglCenter()">Center</button>
 	      <div class="btn-group">
@@ -31,7 +31,7 @@
 	    <div style="height: 275px;" class="w-100" id="nglviewport"></div>
 	  </div>
 	</div>
-	<div class="col-4 py-3">
+	<div class="col-3 py-3">
 	  <p class = "text-start">
 	    Job ID : <a href="{{ url_for('res_tcrpmhc', jobid=jobid) }}">{{ jobid }}</a>
 	    <BR>
@@ -357,11 +357,12 @@
     </div>
   </div>
 </div>
-    <script>
-      var modelfname = {{ modelfname|tojson }}
-    </script>
-    <script src="{{ url_for('static', filename = '/js/tcrcomplex1_viewer.js')}}"></script>
-    <script src='https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js'></script>
+ 
+<script>
+  var modelfname = {{ modelfname|tojson }}
+</script>
+<script src="{{ url_for('static', filename = '/js/tcrcomplex1_viewer.js')}}"></script>
+<script src='https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js'></script>
     
 {% endblock %}
   
