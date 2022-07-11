@@ -287,16 +287,15 @@ def processjob(aseq,bseq,loopref_checked,pdb_blacklist):
  
    a_regexp_res = get_vdomain_using_regex(aseq,"A") 
    if (not a_regexp_res):
-      errormsg = "No TCR Variable domain sequence identified from the Alpha chain input"
+      errormsg = "No TCR Variable domain sequence identified from the Alpha chain input! If you used 'Select from gene', the CDR3 sequence was invalid."
       return render_template("error.html", errormsg=errormsg)
    a_vd_seq = a_regexp_res.groups()[0]
    a_gm_seq = a_regexp_res.groups()[1]+a_regexp_res.groups()[2]
 
    b_regexp_res = get_vdomain_using_regex(bseq,"B") 
    if (not b_regexp_res):
-      errormsg = "No TCR variable domain sequence identified from the Beta chain input"
+      errormsg = "No TCR Variable domain sequence identified from the Beta chain input! If you used 'Select from gene', the CDR3 sequence was invalid."
       return render_template("error.html", errormsg=errormsg)
-
    b_vd_seq = b_regexp_res.groups()[0]
    b_gm_seq = b_regexp_res.groups()[1]+b_regexp_res.groups()[2]
 
@@ -456,14 +455,14 @@ def process_tcrpmhc_job(aseq,bseq,pseq,mhc1aseq,mhc2aseq,mhc2bseq,loopref_checke
 
    a_regexp_res = get_vdomain_using_regex(aseq,"A") 
    if (not a_regexp_res):
-      errormsg = "No TCR Variable domain sequence identified from the Alpha chain input"
+      errormsg = "No TCR Variable domain sequence identified from the Alpha chain input! If you used 'Select from gene', the CDR3 sequence was invalid."
       return render_template("error.html", errormsg=errormsg)
    a_vd_seq = a_regexp_res.groups()[0]
    a_gm_seq = a_regexp_res.groups()[1]+a_regexp_res.groups()[2]
 
    b_regexp_res = get_vdomain_using_regex(bseq,"B") 
    if (not b_regexp_res):
-      errormsg = "No TCR variable domain sequence identified from the Beta chain input"
+      errormsg = "No TCR variable domain sequence identified from the Beta chain input! If you used 'Select from gene', the CDR3 sequence was invalid."
       return render_template("error.html", errormsg=errormsg)
    b_vd_seq = b_regexp_res.groups()[0]
    b_gm_seq = b_regexp_res.groups()[1]+b_regexp_res.groups()[2]
@@ -484,7 +483,7 @@ def process_tcrpmhc_job(aseq,bseq,pseq,mhc1aseq,mhc2aseq,mhc2bseq,loopref_checke
       tcrdata['trunc_pep'] = core_pseq
       tcrdata['mhc2a'] = mhc2aseq
       tcrdata['mhc2b'] = mhc2bseq
-      rtcrcommand = "-blastp_path /www/cgi-bin/ncbi-blast-2.12.0+/bin/blastp -mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s -peptide %s -mhc2_alpha %s -mhc2_beta %s "  % (aseq, bseq, core_pseq, mhc2aseq, mhc2bseq) 
+      rtcrcommand = "-blastp_path /www/cgi-bin/ncbi-blast-2.12.0+/bin/blastp -mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s -peptide %s -mhc2_alpha %s -mhc2_beta %s "  % (aseq, bseq, core_pseq, mhc2aseq, mhc2bseq)  
 
    tcrdata['jobid'] = uniquedirname
    if pdb_blacklist:
@@ -887,14 +886,14 @@ def res_tcrpmhc(jobid):
       print("Current Time =", current_time)
       return render_template("tcrpmhc_completed.html", jobid = jobid, modelfname=outpdb_spath, tj=tcrjsondata)   
    elif os.path.isfile(errorfile):
-      return render_template("error.html", jobid=jobid, errormsg="Modeling not completed!")   
+      return render_template("error.html", jobid=jobid, errormsg="Modeling could not complete!")   
    elif os.path.isfile(errorfile2):
-      errormsg = ""
+      errormsg = "Modeling could not complete!"
       with open(errorfile2) as fh:
          for line in fh:
             if line.startswith("ERROR:"):
-               errormsg = line
-               break
+               errormsg = line[7:] 
+               break 
       return render_template("error.html", jobid=jobid, errormsg=errormsg)   
    else:
       return render_template("tcrpmhc_queued.html", jobid=jobid)
@@ -1016,10 +1015,10 @@ def tcrmodel_submitjob1():
    aseq = request.form['alphachain']
    bseq = request.form['betachain']
    if not aseq:
-      return render_template("error.html", errormsg="TCR alpha sequence not entered!")   
+      return render_template("error.html", errormsg="TCR alpha sequence not entered!")
    if not bseq:
       return render_template("error.html", errormsg="TCR beta sequence not entered!")
-   
+ 
    #simil_cutoff = request.form.get('simcutoff')
    pdb_blacklist = request.form.get('pdbblacklist')
    loopref_checked = "yes" if (request.form.get("lr"))else "no"
@@ -1030,34 +1029,34 @@ def tcrmodel_submitjob1():
 @app.route('/tcrmodel_submitjob2', methods=['POST', 'GET'])
 def tcrmodel_submitjob2():
    aspecies = request.form.get('sele_aspecies')
-   bspecies = request.form.get('sele_bspecies')   
    trav = request.form.get('sele_trav')
    traj = request.form.get('sele_traj')
+   acdr = request.form['sele_acdr']
+   bspecies = request.form.get('sele_bspecies')   
    trbv = request.form.get('sele_trbv')
    trbj = request.form.get('sele_trbj')
-   acdr = request.form['sele_acdr']
    bcdr = request.form['sele_bcdr']
    if not aspecies:
       return render_template("error.html", errormsg="Species for alpha chain not selected!")
-   if not bspecies:
-      return render_template("error.html", errormsg="Species for beta chain not selected!")
    if not trav:
       return render_template("error.html", errormsg="TRAV gene not selected!")
    if not traj:
       return render_template("error.html", errormsg="TRAJ gene not selected!")
+   if not acdr:
+      return render_template("error.html", errormsg="CDR3 sequence for alpha chain not entered!")
+   if not bspecies:
+      return render_template("error.html", errormsg="Species for beta chain not selected!")
    if not trbv:
       return render_template("error.html", errormsg="TRBV gene not selected!")
    if not trbj:
       return render_template("error.html", errormsg="TRBJ gene not selected!")
-   if not acdr:
-      return render_template("error.html", errormsg="CDR3 sequence for alpha chain not entered!")
    if not bcdr:
       return render_template("error.html", errormsg="CDR3 sequence for beta chain not entered!")
    
-   pdb_blacklist = request.form.get('pdbblacklist')
-   loopref_checked = "yes" if (request.form.get("lr"))else "no"
    aseq =  trav+acdr.upper()+traj
    bseq =  trbv+bcdr.upper()+trbj
+   pdb_blacklist = request.form.get('pdbblacklist')
+   loopref_checked = "yes" if (request.form.get("lr"))else "no"
    return redirect(url_for('processjob', aseq=aseq,bseq=bseq,loopref_checked=loopref_checked,pdb_blacklist=pdb_blacklist))
 
 @app.route('/tcrpmhc_submitjob1', methods=['POST', 'GET'])
@@ -1068,22 +1067,26 @@ def tcrpmhc_submitjob1():
    print("Current Time =", current_time)
    aseq = request.form['alphachain']
    bseq = request.form['betachain']
-   mhc1aseq = request.form['mhc1aseq']
-   pseq = request.form['pepchain']
-   mhc2aseq = request.form['mhc2aseq']
-   mhc2bseq = request.form['mhc2bseq']
    if not aseq:
       return render_template("error.html", errormsg="TCR alpha sequence not entered!")
    if not bseq:
       return render_template("error.html", errormsg="TCR beta sequence not entered!")
+   
+   pseq = request.form['pepchain']
+   mhc1aseq = request.form['mhc1aseq']
+   mhc2aseq = request.form['mhc2aseq']
+   mhc2bseq = request.form['mhc2bseq']
    if not pseq:
       return render_template("error.html", errormsg="Peptide sequence not entered!")
    if not mhc1aseq and not mhc2aseq and not mhc2bseq:
       return render_template("error.html", errormsg="Enter either MHC I or MHC II sequence(s)!")
+   if mhc1aseq and len(pseq) < 8:
+      return render_template("error.html", errormsg="Currently MHC I complex modeling supports only 8-mer peptides!")
    if (mhc2aseq and not mhc2bseq) or (mhc2bseq and not mhc2aseq):   
       return render_template("error.html", errormsg="Enter both alpha and beta sequences for MHC II!")
    if mhc2aseq and mhc2bseq and len(pseq) < 9:
       return render_template("error.html", errormsg="Currently MHC II complex modeling supports only 9-mer peptides!")
+   
    if not mhc1aseq:
       mhc1aseq = 'NA'
    if not mhc2aseq:
@@ -1101,32 +1104,30 @@ def tcrpmhc_submitjob1():
 @app.route('/tcrpmhc_submitjob2', methods=['POST', 'GET'])
 def tcrpmhc_submitjob2():
    aspecies = request.form.get('aspecies')
-   bspecies = request.form.get('bspecies')
    trav = request.form.get('trav')
    traj = request.form.get('traj')
+   acdr = request.form.get('acdr')
+   bspecies = request.form.get('bspecies')
    trbv = request.form.get('trbv')
    trbj = request.form.get('trbj')
-   acdr = request.form.get('acdr')
    bcdr = request.form.get('bcdr')
    if not aspecies:
       return render_template("error.html", errormsg="Species for alpha chain not selected!")
-   if not bspecies:
-      return render_template("error.html", errormsg="Species for beta chain not selected!")
    if not trav:
       return render_template("error.html", errormsg="TRAV gene not selected!")
    if not traj:
       return render_template("error.html", errormsg="TRAJ gene not selected!")
+   if not acdr:
+      return render_template("error.html", errormsg="CDR3 sequence for alpha chain not entered!")
+   if not bspecies:
+      return render_template("error.html", errormsg="Species for beta chain not selected!")
    if not trbv:
       return render_template("error.html", errormsg="TRBV gene not selected!")
    if not trbj:
       return render_template("error.html", errormsg="TRBJ gene not selected!")
-   if not acdr:
-      return render_template("error.html", errormsg="CDR3 sequence for alpha chain not entered!")
    if not bcdr:
       return render_template("error.html", errormsg="CDR3 sequence for beta chain not entered!")
 
-   aseq =  trav+acdr.upper()+traj
-   bseq =  trbv+bcdr.upper()+trbj
    pseq = request.form['pepchain']
    mhc1aseq = request.form['mhc1aseq']
    mhc2aseq = request.form['mhc2aseq']
@@ -1135,10 +1136,13 @@ def tcrpmhc_submitjob2():
       return render_template("error.html", errormsg="Peptide sequence not entered!")
    if not mhc1aseq and not mhc2aseq and not mhc2bseq:
       return render_template("error.html", errormsg="Enter either MHC I or MHC II sequence(s)!")
+   if mhc1aseq and len(pseq) < 8:
+      return render_template("error.html", errormsg="Currently MHC I complex modeling supports only 8-mer peptides!")
    if (mhc2aseq and not mhc2bseq) or (mhc2bseq and not mhc2aseq):   
       return render_template("error.html", errormsg="Enter both alpha and beta sequences for MHC II!")
    if mhc2aseq and mhc2bseq and len(pseq) < 9:
       return render_template("error.html", errormsg="Currently MHC II complex modeling supports only 9-mer peptides!")
+   
    if not mhc1aseq:
       mhc1aseq = 'NA'
    if not mhc2aseq:
@@ -1146,6 +1150,8 @@ def tcrpmhc_submitjob2():
    if not mhc2bseq:
       mhc2bseq = 'NA'
    
+   aseq =  trav+acdr.upper()+traj
+   bseq =  trbv+bcdr.upper()+trbj
    #simil_cutoff = request.form.get('simcutoff')
    pdb_blacklist = request.form.get('pdbblacklist')
    loopref_checked = "yes" if (request.form.get("lr"))else "no"
