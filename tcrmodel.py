@@ -14,6 +14,7 @@ from TCR_functions import *
 import sys
 import pwd
 import grp
+import re
 
 app = Flask(__name__)
 
@@ -1017,7 +1018,7 @@ def tcrmodel_submitjob1():
    if not aseq:
       return render_template("error.html", errormsg="TCR alpha sequence not entered!")
    if not bseq:
-      return render_template("error.html", errormsg="TCR beta sequence not entered!")
+      return render_template("error.html", errormsg="TCR beta sequence not entered!") 
  
    #simil_cutoff = request.form.get('simcutoff')
    pdb_blacklist = request.form.get('pdbblacklist')
@@ -1086,13 +1087,19 @@ def tcrpmhc_submitjob1():
       return render_template("error.html", errormsg="Enter both alpha and beta sequences for MHC II!")
    if mhc2aseq and mhc2bseq and len(pseq) < 9:
       return render_template("error.html", errormsg="Currently MHC II complex modeling supports only 9-mer peptides!")
-   
+
    if not mhc1aseq:
       mhc1aseq = 'NA'
    if not mhc2aseq:
       mhc2aseq = 'NA'
    if not mhc2bseq:
       mhc2bseq = 'NA'
+
+   fields = [pseq, mhc1aseq, mhc2aseq, mhc2bseq]
+   seq_names = ["Peptide", "MHC I", "MHC II alpha", "MHC II beta"]
+   for i in range(len(fields)):
+      if not re.search("^[ARNDCEQGHILKMFPSTWYV]+$", fields[i]):
+         return render_template("error.html", errormsg=seq_names[i]+" sequence can only contain standard amino acids!") 
 
    #simil_cutoff = request.form.get('simcutoff')
    pdb_blacklist = request.form.get('pdbblacklist')
@@ -1149,6 +1156,12 @@ def tcrpmhc_submitjob2():
       mhc2aseq = 'NA'
    if not mhc2bseq:
       mhc2bseq = 'NA'
+
+   fields = [pseq, mhc1aseq, mhc2aseq, mhc2bseq]
+   seq_names = ["Peptide", "MHC I", "MHC II alpha", "MHC II beta"]
+   for i in range(len(fields)):
+      if not re.search("^[ARNDCEQGHILKMFPSTWYV]+$", fields[i]):
+         return render_template("error.html", errormsg=seq_names[i]+" sequence can only contain standard amino acids!") 
    
    aseq =  trav+acdr.upper()+traj
    bseq =  trbv+bcdr.upper()+trbj
