@@ -128,27 +128,6 @@ def submit_batchjob_on_cluster(uniquejobid,jobscriptfile,ig_file):
    ssh_stdin, ssh_stdout, ssh_stderr = ssh_client.exec_command(command)
    return
 
-@app.route('/layout')
-def layout():
-   return render_template("layout.html")
-
-@app.route('/tcrpmhc_layout')
-def tcrpmhc_layout():
-   return render_template("tcrpmhc_layout.html")
-
-@app.route('/test_layout')
-def test_layout():
-   return render_template("test_layout.html")
-
-@app.route('/')
-@app.route('/index')
-def index():
-   return render_template("index.html")
-
-@app.route('/test')
-def test():
-   return render_template("test.html")
-
 def get_seq_from_genename(gene, trfile):
 
    #(cleanup genenames: Ex. TRBV06-05 to TRBV6-5)
@@ -254,26 +233,25 @@ def external_submit(genelist):
 @app.route('/external_submit1/<trav>/<traj>/<cdr3a>/<trbv>/<trbj>/<cdr3b>')
 def external_submit1(trav,traj,cdr3a,trbv,trbj,cdr3b):
    return render_template("external_submit.html",trav=trav,traj=traj,cdr3a=cdr3a,trbv=trbv,trbj=trbj,cdr3b=cdr3b)
+
+'''
+@app.route('/test')
+def test():
+   return render_template("test.html")
+'''
+
+@app.route('/')
+@app.route('/index')
+def index():
+   return render_template("index.html")
    
 @app.route('/about')
 def about():
    return render_template("about.html")
 
-@app.route('/tcrpmhc')
-def tcrpmhc():
-   return render_template("tcrpmhc.html")
-
-@app.route('/tcrmodel')
-def tcrmodel():
-   return render_template("tcrmodel.html")
-
 @app.route('/help')
 def help():
    return render_template("help.html")
-
-@app.route('/help2')
-def help2():
-   return render_template("help2.html")
 
 @app.route('/links')
 def links():
@@ -1381,10 +1359,12 @@ def disulfidize_results(jobid):
    else:
       outfname = os.path.join(rundir_spath,str(jobid),'res.out')
       return render_template("disulfidize_failed.html", outfname=outfname)
-            
+
+'''            
 @app.route('/disulfidize')
 def disulfidize():
    return render_template("disulfidize.html")
+'''
 
 @app.route('/run_disulfidize', methods=['POST', 'GET'])
 def run_disulfidize():
