@@ -3,6 +3,7 @@
 {{ super() }}
 <script type="text/javascript" src="{{ url_for('static', filename='js/tcrpmhcmodeling_external2.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/tcrmodeling_external1.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/form_validation.js') }}"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-26223249-3"></script>
 <script>
@@ -100,7 +101,7 @@
 	    
 	    <div class="tab-pane fade show active" id="nav-F1c1" role="tabpanel" aria-labelledby="nav-F1c1-tab">
 	      <div style="line-height:2px;"><br></div>
-	      <select name="mhc1speciestype" id="F1mhc1speciestype" onchange="F1MHC1SpeciesSelection()">
+	      <select name="mhc1speciestype" id="F1mhc1speciestype" onchange="F1MHC1SpeciesSelection()" required>
 		<option value="" disabled >Species</option>
 		<option value="human" selected >Human</option>
 	      </select> 
@@ -134,7 +135,7 @@
 		</div>
 	      </div>
 	      <div style="line-height:5px;"><br></div>
-	      <input class="btn btn-secondary" type="submit" value="Submit" class="buttonfont">
+	      <input class="btn btn-secondary" type="submit" value="Submit" id="submit1" class="buttonfont">
 	      <input class="btn btn-secondary" type="reset" value="Reset" id="reset1" class="buttonfont buttonclear">
 	      <BR><BR>
 	      <a href="#" id="F1ExC1">Example input: A6 TCR / HLA-A*02 - TAX Peptide complex</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/8906788">(reference)</a>
@@ -145,7 +146,7 @@
 
 	    <div class="tab-pane fade" id="nav-F1c2" role="tabpanel" aria-labelledby="nav-F1c2-tab">
 	      <div style="line-height:2px;"><br></div>
-	      <select name="mhc2speciestype" id="F1mhc2speciestype" onchange="F1MHC2SpeciesSelection()">
+	      <select name="mhc2speciestype" id="F1mhc2speciestype" onchange="F1MHC2SpeciesSelection()" required>
 		<option value="" disabled >Species</option>
 		<option value="human" selected >Human</option>
 	      </select> 
@@ -184,7 +185,7 @@
 	      <div style="line-height:5px;"><br></div>
 	      
 
-	      <input class="btn btn-secondary" type="submit" value="Submit" class="buttonfont">
+	      <input class="btn btn-secondary" type="submit" value="Submit" id="submit2" class="buttonfont">
 	      <input class="btn btn-secondary" type="reset" value="Reset" id="reset2" class="buttonfont buttonclear">
 	      <BR><BR>
 	      <a href="#" id="F1ExC2">Example input: SP3.4 TCR - DQ8/gliadin peptide</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/23063329">(reference)</a>
@@ -205,13 +206,13 @@
       <form name="tcrpmhc_submitjob2" action="{{ url_for('tcrpmhc_submitjob2') }}" method="post" id="formid2">
 	<br><div style="line-height:5px;"><br></div>
 	<p class="text-muted fw-bold my-0">TCR &alpha; chain. <span class="text-muted fw-light">Select sequence from gene:</span></p>
-	<select class="form-select form-select-sm bg-light form-control d-inline-block" name="aspecies" id="aspecies" onchange="AGeneSelection()" style="width:100px;">
+	<select class="form-select form-select-sm bg-light form-control d-inline-block" name="aspecies" id="aspecies" onchange="AGeneSelection()" style="width:100px;" required>
 	  <option value="" disabled>Species</option>
 	  <option value="human" selected>Human</option>
 	  <option value="mouse">Mouse</option>
 	</select>
-	<select class="form-select form-select-sm bg-light form-control d-inline-block" name="trav" id="trav" style="width:150px;"></select>
-	<select class="form-select form-select-sm bg-light form-control d-inline-block" name="traj" id="traj" style="width:150px;"></select>
+	<select class="form-select form-select-sm bg-light form-control d-inline-block" name="trav" id="trav" style="width:150px;" required></select>
+	<select class="form-select form-select-sm bg-light form-control d-inline-block" name="traj" id="traj" style="width:150px;" required></select>
 	<input class="form-control form-control-sm d-inline-block" type="text" placeholder="Enter CDR3 sequence..." name="acdr" id="tacdrseq" style="width:200px;">
 	<button type="button" class="btn btn-outline-secondary btn-sm" id="F2load_tcra">Generate sequence</button>
 	<br><div style="line-height:3px;"><br></div>
@@ -219,13 +220,13 @@
 	<span id="F2_trav_id" class="text-primary fw-light"></span>
 	<br><div style="line-height:5px;"><br></div>
 	<p class="text-muted fw-bold my-0">TCR &beta; chain. <span class="text-muted fw-light">Select sequence from gene:</span></p>
-	<select class="form-select form-select-sm bg-light form-control d-inline-block" name="bspecies" id="bspecies" onchange="BGeneSelection()" style="width:100px;">
+	<select class="form-select form-select-sm bg-light form-control d-inline-block" name="bspecies" id="bspecies" onchange="BGeneSelection()" style="width:100px;" required>
 	  <option value="" disabled>Species</option>
 	  <option value="human" selected>Human</option>
 	  <option value="mouse">Mouse</option>
 	</select>
-	<select class="form-select form-select-sm bg-light form-control d-inline-block" name="trbv" id="trbv" style="width:150px;"></select>
-	<select class="form-select form-select-sm bg-light form-control d-inline-block" name="trbj" id="trbj" style="width:150px;"></select>
+	<select class="form-select form-select-sm bg-light form-control d-inline-block" name="trbv" id="trbv" style="width:150px;" required></select>
+	<select class="form-select form-select-sm bg-light form-control d-inline-block" name="trbj" id="trbj" style="width:150px;" required></select>
 	<input class="form-control form-control-sm d-inline-block" type="text" placeholder="Enter CDR3 sequence..." name="bcdr" id="tbcdrseq" style="width:200px;">
 	<button type="button" class="btn btn-outline-secondary btn-sm" id="F2load_tcrb">Generate sequence</button>
 	<br><div style="line-height:3px;"><br></div>
@@ -248,7 +249,7 @@
 	<div class="tab-content" id="nav-tabContent">
 	  <div class="tab-pane fade show active" id="nav2-mhc1" role="tabpanel" aria-labelledby="nav-one-tab">
 	    <div style="line-height:2px;"><br></div>
-	    <select name="mhc1speciestype" id="mhc1speciestype" onchange="MHC1SpeciesSelection()">
+	    <select name="mhc1speciestype" id="mhc1speciestype" onchange="MHC1SpeciesSelection()" required>
 	      <option value="" disabled >Species</option>
 	      <option value="human" selected >Human</option>
 	    </select> 
@@ -282,7 +283,7 @@
 	      </div>
 	    </div>
 	    <div style="line-height:5px;"><br></div>
-	    <input class="btn btn-secondary" type="submit" value="Submit" class="buttonfont">
+	    <input class="btn btn-secondary" type="submit" value="Submit" id="submit3" class="buttonfont">
 	    <input class="btn btn-secondary" type="reset" value="Reset" class="buttonfont buttonclear">
 	    <BR><BR>
 	    <a href="#" id="F2ExC1">Example input: A6 TCR / HLA-A*02 - TAX Peptide complex</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/8906788">(reference)</a>
@@ -291,7 +292,7 @@
 	  </div>
 	  <div class="tab-pane fade" id="nav2-mhc2" role="tabpanel" aria-labelledby="nav-two-tab">
 	    <div style="line-height:2px;"><br></div>
-	    <select name="mhc2speciestype" id="mhc2speciestype" onchange="MHC2SpeciesSelection()">
+	    <select name="mhc2speciestype" id="mhc2speciestype" onchange="MHC2SpeciesSelection()" required>
 	      <option value="" disabled >Species</option>
 	      <option value="human" selected >Human</option>
 	    </select> 
@@ -327,7 +328,7 @@
 	      </div>
 	    </div>
 	    <div style="line-height:5px;"><br></div>
-	    <input class="btn btn-secondary" type="submit" value="Submit" class="buttonfont">
+	    <input class="btn btn-secondary" type="submit" value="Submit" id="submit4" class="buttonfont">
 	    <input class="btn btn-secondary" type="reset" value="Reset" class="buttonfont buttonclear">
 	    <BR><BR>
 	    <a href="#" id="F2ExC2">Example input: SP3.4 TCR - DQ8/gliadin peptide</a> <a href="https://www.ncbi.nlm.nih.gov/pubmed/23063329">(reference)</a>
@@ -396,7 +397,7 @@
 	      </div>
 	    </div>
 	    <BR>
-	    <input class="btn btn-secondary" type="submit" value="Submit" class="buttonfont">
+	    <input class="btn btn-secondary" type="submit" value="Submit" id="submit5" class="buttonfont">
 	    <input class="btn btn-secondary" type="reset" id="reset3" value="Reset" class="buttonfont buttonclear">
 	  </form>  
 	  <BR>
@@ -410,13 +411,13 @@
 	<div class="tab-pane fade p-3" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 	  <form name"=tcrmodel_submitjob2" action="{{ url_for('tcrmodel_submitjob2') }}" method="post" id="formid3">
 	    <p class="text-muted fw-bold m-1">Select TCR &alpha; sequence from gene</p>
-	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_aspecies" id="sele_aspecies" onchange="sele_AGeneSelection()" style="width:100px;">
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_aspecies" id="sele_aspecies" onchange="sele_AGeneSelection()" style="width:100px;" required>
 	      <option value="" disabled>Species</option>
 	      <option value="human" selected>Human</option>
 	      <option value="mouse">Mouse</option>
 	    </select>
-	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_trav" id="sele_trav" style="width:150px;"></select>
-	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_traj" id="sele_traj" style="width:150px;"></select>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_trav" id="sele_trav" style="width:150px;" required></select>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_traj" id="sele_traj" style="width:150px;" required></select>
 	    <input class="form-control form-control-sm d-inline-block" type="text" placeholder="Enter CDR3 sequence..." name="sele_acdr" id="sele_tacdrseq" style="width:200px;">
 	    <button type="button" class="btn btn-secondary btn-sm" id="sele_loadbtntcra">Generate sequence</button>
 	    <br><div style="line-height:5px;"><br></div>
@@ -426,13 +427,13 @@
 	    <span id="sele_trav_id" class="text-primary fw-light"></span>
 	    <br><div style="line-height:5px;"><br></div>
 	    <p class="text-muted fw-bold m-1">Select TCR &beta; sequence from gene</p>
-	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_bspecies" id="sele_bspecies" onchange="sele_BGeneSelection()" style="width:100px;">
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_bspecies" id="sele_bspecies" onchange="sele_BGeneSelection()" style="width:100px;" required>
 	      <option value="" disabled>Species</option>
 	      <option value="human" selected>Human</option>
 	      <option value="mouse">Mouse</option>
 	    </select>
-	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_trbv" id="sele_trbv" style="width:150px;"></select>
-	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_trbj" id="sele_trbj" style="width:150px;"></select>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_trbv" id="sele_trbv" style="width:150px;" required></select>
+	    <select class="form-select form-select-sm bg-light form-control d-inline-block" name="sele_trbj" id="sele_trbj" style="width:150px;" required></select>
 	    <input class="form-control form-control-sm d-inline-block" type="text" placeholder="Enter CDR3 sequence..." name="sele_bcdr" id="sele_tbcdrseq" style="width:200px;">
 	    <button type="button" class="btn btn-secondary btn-sm" id="sele_loadbtntcrb">Generate sequence</button>
 	    <br><div style="line-height:5px;"><br></div>
@@ -462,7 +463,7 @@
 	      </div>
 	    </div>
 	    <BR>
-	    <input class="btn btn-secondary" type="submit" value="Submit" id="submitid2" class="buttonfont">
+	    <input class="btn btn-secondary" type="submit" value="Submit" id="submit6" class="buttonfont">
 	    <input class="btn btn-secondary" type="reset" value="Reset" class="buttonfont buttonclear">
 	    <BR><BR>
 	    

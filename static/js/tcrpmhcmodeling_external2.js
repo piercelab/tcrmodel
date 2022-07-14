@@ -32,7 +32,7 @@ $(document).ready(function(){
 	
     	let travdropdown = $('#trav');
     	travdropdown.empty();
-    	travdropdown.append('<option selected="true" disabled value="None">Choose TRAV</option>');
+    	travdropdown.append('<option selected="true" disabled value="">Choose TRAV</option>');
     	travdropdown.prop('selectedIndex', 1);
     	$.getJSON(travfile, function (data) {
     	    $.each(data, function (key, entry) {
@@ -77,7 +77,7 @@ $(document).ready(function(){
     	
     	let trbvdropdown = $('#trbv');
     	trbvdropdown.empty();
-    	trbvdropdown.append('<option selected="true" disabled value="None">Choose TRBV</option>');
+    	trbvdropdown.append('<option selected="true" disabled value="">Choose TRBV</option>');
     	trbvdropdown.prop('selectedIndex', 1);
     	$.getJSON(trbvfile, function (data) {
     	    $.each(data, function (key, entry) {
