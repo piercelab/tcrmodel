@@ -11,23 +11,35 @@
   <div class="row px-3">
     <div class="container">
       <div class="row d-flex justify-content-center">
+        <div class="col-2 border bg-light">
+          <p class="mt-2 mb-1">Show as:</p>
+          <select class="form-select form-select-sm" id="reprsdd">
+            <option selected="">cartoon</option>
+            <option>spacefill</option>
+            <option>licorice</option>
+            <option>surface</option>
+          </select>
+          <p class="mt-4 mb-1">Show:</p>
+          <input type="checkbox" class="form-check-input" id="ligand-checkbox">
+          <label class="form-check-label" for="ligand-checkbox">ligand</label>
+          <BR>
+          <input type="checkbox" class="form-check-input" id="water-ion-checkbox">
+          <label class="form-check-label" for="water-ion-checkbox">water+ion</label>              
+          <p class="mt-4 mb-1">Color by:</p>
+          <select class="form-select form-select-sm mt-0 mb-4" id="colorsdd">
+            <option value="chainname" selected="">chain name</option>
+            <option value="residueindex">residue index</option>
+            <option value="element">element</option>
+            <option value="bfactor">bfactor</option>
+            <option value="uniform">light grey</option>
+          </select>
+          <input type="checkbox" class="form-check-input" id="spin-checkbox">
+          <label for="spin-checkbox" class="form-check-label">Spin</label>
+        </div>
 	<div class="col-5">
 	  <div class="border border-success">
 	    <span class="text-primary p-2 fs-6 lh-lg">TCRpMHC model viewer </span>
-	    <div class="float-end">
-	      <button type="button" class="btn btn-outline-primary" onclick="nglCenter()">Center</button>
-	      <div class="btn-group">
-		<button type="button" id="ddpri" class="btn btn-outline-primary dropdown-toggle float-end" data-bs-toggle="dropdown" aria-expanded="false">
-		  Cartoon
-		</button>
-		<ul class="dropdown-menu" id="ddsec">
-		  <li><a class="dropdown-item" href="#">Cartoon</a></li>
-		  <li><a class="dropdown-item" href="#">Spacefill</a></li>
-		  <li><a class="dropdown-item" href="#">Licorice</a></li>
-		  <li><a class="dropdown-item" href="#">Surface</a></li>
-		</ul>
-	      </div>
-	    </div>
+	    <button type="button" class="btn btn-outline-primary btn-sm m-1 float-end" id="centerbtn">Center</button>
 	    <div style="height: 275px;" class="w-100" id="nglviewport"></div>
 	  </div>
 	</div>
@@ -361,7 +373,7 @@
 <script>
   var modelfname = {{ modelfname|tojson }}
 </script>
-<script src="{{ url_for('static', filename = '/js/tcrcomplex1_viewer.js')}}"></script>
+<script src="{{ url_for('static', filename = '/js/tcrcomplex2_viewer.js')}}"></script>
 <script src='https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js'></script>
     
 {% endblock %}
