@@ -192,8 +192,13 @@ $(document).ready(function(){
     });
 
 
-    $("#reset3").click(function () {	
+    $("#reset5").click(function () {	
     	document.getElementById("trav_id").innerHTML = "";
     	document.getElementById("trbv_id").innerHTML = "";
+    });
+
+    $("#reset6").click(function () {	
+    	document.getElementById("sele_trav_id").innerHTML = "";
+    	document.getElementById("sele_trbv_id").innerHTML = "";
     });
 });

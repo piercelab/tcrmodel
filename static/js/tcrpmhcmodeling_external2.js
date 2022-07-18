@@ -386,4 +386,9 @@ $(document).ready(function(){
     	document.getElementById("F1_trav_id").innerHTML = "";
     	document.getElementById("F1_trbv_id").innerHTML = "";
     });
+
+    $("#reset3, #reset4").click(function () {
+    	document.getElementById("F2_trav_id").innerHTML = "";
+    	document.getElementById("F2_trbv_id").innerHTML = "";
+    });
 });
