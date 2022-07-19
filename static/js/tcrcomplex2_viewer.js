@@ -16,17 +16,6 @@ function loadStructure(input) {
       name: "polymer",
       colorScheme: $("#colorsdd :selected").val()
     });
-    o.addRepresentation("ball+stick", {
-      name: "ligand",
-      visible: $("#ligand-checkbox").checked,
-      sele: "not ( polymer or water or ion )"
-    });
-    o.addRepresentation("spacefill", {
-      name: "waterIon",
-      visible: $("#water-ion-checkbox").checked,
-      sele: "water or ion",
-      scale: 0.25
-    });
   });
 }
 
@@ -34,8 +23,8 @@ function polymerRender(e) {
   stage.getRepresentationsByName("polymer").dispose()
   stage.eachComponent(function(o) {
     var selRepr = o.addRepresentation(e, {
-      sele: "polymer",
       name: "polymer",
+      sele: "polymer"
     });
     $("#colorsdd").val(selRepr.repr.colorScheme);
   });
@@ -44,16 +33,6 @@ function polymerRender(e) {
 $("#reprsdd").change(function() {
   var selRepr = $(this).val();
   polymerRender(selRepr);
-});
-
-$("#ligand-checkbox").click(function() {
-  var isChecked = $(this).checked;
-  stage.getRepresentationsByName("ligand").setVisibility(isChecked);
-});
-
-$("#water-ion-checkbox").click(function() {
-  var isChecked = $(this).checked;
-  stage.getRepresentationsByName("waterIon").setVisibility(isChecked);
 });
 
 $("#colorsdd").change(function() {
@@ -65,9 +44,14 @@ $("#spin-checkbox").click(function() {
   stage.toggleSpin();
 });
 
-$("#centerbtn").click(function(e) {
-  e.preventDefault();
+$("#centerbtn").click(function() {
   stage.autoView(1000);
+});
+
+$("#alignbtn").click(function() {
+  var repr = stage.getRepresentationsByName("polymer").list[0];
+  var axes = repr.repr.structure.getPrincipalAxes();
+  stage.animationControls.rotate(axes.getRotationQuaternion(), 1500);
 });
 
 loadStructure(modelfname);

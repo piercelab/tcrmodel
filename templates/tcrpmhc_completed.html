@@ -12,26 +12,21 @@
     <div class="container">
       <div class="row d-flex justify-content-center">
         <div class="col-2 border bg-light">
-          <p class="mt-2 mb-1">Show as:</p>
+          <p class="mt-2 mb-1">Display as:</p>
           <select class="form-select form-select-sm" id="reprsdd">
             <option selected="">cartoon</option>
             <option>spacefill</option>
             <option>licorice</option>
             <option>surface</option>
           </select>
-          <p class="mt-4 mb-1">Show:</p>
-          <input type="checkbox" class="form-check-input" id="ligand-checkbox">
-          <label class="form-check-label" for="ligand-checkbox">ligand</label>
-          <BR>
-          <input type="checkbox" class="form-check-input" id="water-ion-checkbox">
-          <label class="form-check-label" for="water-ion-checkbox">water+ion</label>              
           <p class="mt-4 mb-1">Color by:</p>
           <select class="form-select form-select-sm mt-0 mb-4" id="colorsdd">
+            <option value="uniform">light grey</option>
             <option value="chainname" selected="">chain name</option>
             <option value="residueindex">residue index</option>
+            <option value="sstruc">secondary structure</option>
             <option value="element">element</option>
             <option value="bfactor">bfactor</option>
-            <option value="uniform">light grey</option>
           </select>
           <input type="checkbox" class="form-check-input" id="spin-checkbox">
           <label for="spin-checkbox" class="form-check-label">Spin</label>
@@ -39,7 +34,10 @@
 	<div class="col-5">
 	  <div class="border border-success">
 	    <span class="text-primary p-2 fs-6 lh-lg">TCRpMHC model viewer </span>
-	    <button type="button" class="btn btn-outline-primary btn-sm m-1 float-end" id="centerbtn">Center</button>
+            <div class="float-end m-1">
+	      <button type="button" class="btn btn-outline-primary btn-sm" id="centerbtn">Center</button>
+	      <button type="button" class="btn btn-outline-primary btn-sm" id="alignbtn">Align</button>
+            </div>
 	    <div style="height: 275px;" class="w-100" id="nglviewport"></div>
 	  </div>
 	</div>
