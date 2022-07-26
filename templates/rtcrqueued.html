@@ -4,24 +4,26 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='table-style.css') }}">
 <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 {% endblock %}
-
 {% block title %}TCR Modeling Server{% endblock %}
+
 {% block article %}
-
-
 <div class="p-3 m-3">
-  <div class="text-left">
-    <h4><span><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i> Your job is submitted</span></h4>
-    <BR>
-    <h5>Job ID : <a href="{{ url_for('res_tcrpmhc', jobid=jobid) }}">{{ jobid }}</a></h5>
-    <h6>Please wait for the results to appear in this browser window.</h6>
-    <BR>
-    <p class="text-muted">
-      You may reload or refresh the browser at any time.<BR>
-      You may bookmark this page to view your results later if you wish.
-    </p>
+  <h4><span><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i> Your job is submitted</span></h4>
+  <br>
+  <h5>Job ID : <a href="{{ url_for('rtcr', jobid=jobid) }}">{{ jobid }}</a></h5>
+  <h6>Please wait for the results to appear in this browser window. Your job should take about a minute to complete.</h6>
+  <br>
+  <p class="text-muted">
+    You may reload or refresh the browser at any time.<br>
+    You may bookmark this page to view your results later if you wish.
+  </p>
+  <br>
+  <h6 class="mb-3">Job processing log:</h6>
+  <div class="bg-light border py-3 px-4 lh-lg" style="height: 12.25em">
+    {% for s in steps %}
+      {{ s }}<br>
+    {% endfor %}
   </div>
 </div>
-<meta http-equiv=refresh content="10">
-
+<meta http-equiv="refresh" content="10">
 {% endblock %}

@@ -821,7 +821,14 @@ def rtcr(jobid):
    elif os.path.isfile(errorfile2):
       return render_template("rtcrfailed.html", rtcrjobid = jobid)   
    else:
-      return render_template("rtcrqueued.html", jobid=jobid, tj=tcrjsondata)   
+      steps = ["Job started!", "Selecting templates..."]
+      if os.path.isfile("ignore_list.txt"):
+         steps.append("Running Rosetta...")
+      if os.path.isfile(str(jobid)+".json"):
+         steps.append("Grafting model...")
+      if os.path.isfile("tcrgraftmodel.pdb"):
+         steps.append("Orienting templates and refining structure...")
+      return render_template("rtcrqueued.html", jobid=jobid, steps=steps)
 
 @app.route('/res_tcrpmhc/<jobid>')
 def res_tcrpmhc(jobid):
@@ -875,7 +882,16 @@ def res_tcrpmhc(jobid):
                break 
       return render_template("error.html", jobid=jobid, errormsg=errormsg)   
    else:
-      return render_template("tcrpmhc_queued.html", jobid=jobid)
+      steps = ["Job started!", "Selecting templates..."]
+      if os.path.isfile("ignore_list.txt"):
+         steps.append("Running Rosetta...")
+      if os.path.isfile(str(jobid)+".json"):
+         steps.append("Querying MHC...")
+      if os.path.isfile("mhc1a_blastp.out") or os.path.isfile("mhc2b_blastp.out"):
+         steps.append("Grafting model...")
+      if os.path.isfile("tcrgraftmodel.pdb"):
+         steps.append("Orienting templates and refining structure...")
+      return render_template("tcrpmhc_queued.html", jobid=jobid, steps=steps)
 
 @app.route('/mtcr/<jobid>')
 def mtcr(jobid):
