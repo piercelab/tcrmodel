@@ -13,19 +13,19 @@ $(document).ready(function(){
     	    travfile = $SCRIPT_ROOT + '/static/genemapdata/TRAV_HUMAN.json';
     	    trajfile = $SCRIPT_ROOT + '/static/genemapdata/TRAJ_HUMAN.json';
     	}
-    	if (x == "mouse"){
+    	else if (x == "mouse"){
     	    travfile = $SCRIPT_ROOT + '/static/genemapdata/TRAV_MOUSE.json';
     	    trajfile = $SCRIPT_ROOT + '/static/genemapdata/TRAJ_MOUSE.json';
     	}
-    	if (x == "dog"){
+    	else if (x == "dog"){
     	    travfile = $SCRIPT_ROOT + '/static/genemapdata/TRAV_DOG.json';
     	    trajfile = $SCRIPT_ROOT + '/static/genemapdata/TRAJ_DOG.json';
     	}
-    	if (x == "zebrafish"){
+    	else if (x == "zebrafish"){
     	    travfile = $SCRIPT_ROOT + '/static/genemapdata/TRAV_ZEBRAFISH.json';
     	    trajfile = $SCRIPT_ROOT + '/static/genemapdata/TRAJ_ZEBRAFISH.json';
     	}
-    	if (x == "sheep"){
+    	else if (x == "sheep"){
     	    travfile = $SCRIPT_ROOT + '/static/genemapdata/TRAV_SHEEP.json';
     	    trajfile = $SCRIPT_ROOT + '/static/genemapdata/TRAJ_SHEEP.json';
     	}
@@ -58,19 +58,19 @@ $(document).ready(function(){
     	    trbvfile = $SCRIPT_ROOT + '/static/genemapdata/TRBV_HUMAN.json';
     	    trbjfile = $SCRIPT_ROOT + '/static/genemapdata/TRBJ_HUMAN.json';
     	}
-    	if (y == "mouse"){
+    	else if (y == "mouse"){
     	    trbvfile = $SCRIPT_ROOT + '/static/genemapdata/TRBV_MOUSE.json';
     	    trbjfile = $SCRIPT_ROOT + '/static/genemapdata/TRBJ_MOUSE.json';
     	}
-    	if (y == "dog"){
+    	else if (y == "dog"){
     	    trbvfile = $SCRIPT_ROOT + '/static/genemapdata/TRBV_DOG.json';
     	    trbjfile = $SCRIPT_ROOT + '/static/genemapdata/TRBJ_DOG.json';
     	}
-    	if (y == "trout"){
+    	else if (y == "trout"){
     	    trbvfile = $SCRIPT_ROOT + '/static/genemapdata/TRBV_RAINBOW_TROUT.json';
     	    trbjfile = $SCRIPT_ROOT + '/static/genemapdata/TRBJ_RAINBOW_TROUT.json';
     	}
-    	if (y == "monkey"){
+    	else if (y == "monkey"){
     	    trbvfile = $SCRIPT_ROOT + '/static/genemapdata/TRBV_RHESUS_MONKEY.json';
     	    trbjfile = $SCRIPT_ROOT + '/static/genemapdata/TRBJ_RHESUS_MONKEY.json';
     	}
@@ -105,6 +105,9 @@ $(document).ready(function(){
     	if (x == "human"){
             mhc1afile = $SCRIPT_ROOT + '/static/genemapdata/hla_ref_set_class_i.json';
     	}
+        else if (x == "mouse"){
+            mhc1afile = $SCRIPT_ROOT + '/static/genemapdata/h2_ref_set_class_i.json';
+        }
     	let mhc1adropdown = $('#F1mhc1a');
     	mhc1adropdown.empty();
     	mhc1adropdown.append('<option selected="true" disabled value="">Choose MHC class I</option>');
@@ -134,6 +137,10 @@ $(document).ready(function(){
             mhc2afile = $SCRIPT_ROOT + '/static/genemapdata/hla_ref_set_class_iiA.json';
             mhc2bfile = $SCRIPT_ROOT + '/static/genemapdata/hla_ref_set_class_iiB.json';
     	}
+        else if (x == "mouse"){
+            mhc2afile = $SCRIPT_ROOT + '/static/genemapdata/h2_ref_set_class_iiA.json';
+            mhc2bfile = $SCRIPT_ROOT + '/static/genemapdata/h2_ref_set_class_iiB.json';
+        }
     	let mhc2adropdown = $('#F1mhc2a');
     	mhc2adropdown.empty();
     	mhc2adropdown.append('<option selected="true" disabled value="">Choose MHC II α</option>');
@@ -175,6 +182,9 @@ $(document).ready(function(){
     	if (x == "human"){
             mhc1afile = $SCRIPT_ROOT + '/static/genemapdata/hla_ref_set_class_i.json';
 	}
+        else if (x == "mouse"){
+            mhc1afile = $SCRIPT_ROOT + '/static/genemapdata/h2_ref_set_class_i.json';
+        }
     	let mhc1adropdown = $('#mhc1a');
     	mhc1adropdown.empty();
     	mhc1adropdown.append('<option selected="true" disabled value="">Choose MHC class I</option>');
@@ -204,6 +214,10 @@ $(document).ready(function(){
             mhc2afile = $SCRIPT_ROOT + '/static/genemapdata/hla_ref_set_class_iiA.json';
             mhc2bfile = $SCRIPT_ROOT + '/static/genemapdata/hla_ref_set_class_iiB.json';
     	}
+        else if (x == "mouse"){
+            mhc2afile = $SCRIPT_ROOT + '/static/genemapdata/h2_ref_set_class_iiA.json';
+            mhc2bfile = $SCRIPT_ROOT + '/static/genemapdata/h2_ref_set_class_iiB.json';
+        }
     	let mhc2adropdown = $('#mhc2a');
     	mhc2adropdown.empty();
     	mhc2adropdown.append('<option selected="true" disabled value="">Choose MHC II α</option>');
