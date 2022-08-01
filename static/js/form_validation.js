@@ -1,44 +1,49 @@
 $(document).ready(function() {
 
     $("#submit1").click(function() {
-        isNotEmptyValid("tachain");
-        isNotEmptyValid("tbchain");
+        isValidSeq("tachain");
+        isValidSeq("tbchain");
         checkPep("pchain", "I", 8);
-        checkMhc1("F1mhc1a", "F1mhc2a", "F1mhc2b", "F1m1aseq", "F1mhc1area");
+        checkMhc1("F1mhc1speciestype", "F1mhc1a", "F1mhc2a", "F1mhc2b", "F1m1aseq");
     });
 
     $("#submit2").click(function() {
-        isNotEmptyValid("tachain");
-        isNotEmptyValid("tbchain");
+        isValidSeq("tachain");
+        isValidSeq("tbchain");
         checkPep("pchain", "II", 9);
-        checkMhc2("F1mhc1a", "F1mhc2a", "F1mhc2b", "F1m2aseq", "F1m2bseq", "F1mhc2area");
+        checkMhc2("F1mhc2speciestype", "F1mhc1a", "F1mhc2a", "F1mhc2b", "F1m2aseq", "F1m2bseq");
     });
 
     $("#submit3").click(function() {
-        isNotEmptyValid("tacdrseq");
-        isNotEmptyValid("tbcdrseq");
+        isValidSeq("tacdrseq");
+        isValidSeq("tbcdrseq");
         checkPep("pseq", "I", 8);
-        checkMhc1("mhc1a", "mhc2a", "mhc2b", "m1aseq", "mhc1area");
+        checkMhc1("mhc1speciestype", "mhc1a", "mhc2a", "mhc2b", "m1aseq");
     });
 
     $("#submit4").click(function() {
-        isNotEmptyValid("tacdrseq");
-        isNotEmptyValid("tbcdrseq");
+        isValidSeq("tacdrseq");
+        isValidSeq("tbcdrseq");
         checkPep("pseq", "II", 9);
-        checkMhc2("mhc1a", "mhc2a", "mhc2b", "m2aseq", "m2bseq", "mhc2area");
+        checkMhc2("mhc2speciestype", "mhc1a", "mhc2a", "mhc2b", "m2aseq", "m2bseq");
     });
 
     $("#submit5").click(function() {
-        isNotEmptyValid("achain");
-        isNotEmptyValid("bchain");
+        isValidSeq("achain");
+        isValidSeq("bchain");
     });
 
     $("#submit6").click(function() {
-        isNotEmptyValid("sele_tacdrseq");
-        isNotEmptyValid("sele_tbcdrseq");
+        isValidSeq("sele_tacdrseq");
+        isValidSeq("sele_tbcdrseq");
     });
 
-    function isValidSeq(field) {
+    function isValidSeq(id) {
+        var field = document.getElementById(id);
+        if (!field.value) {
+            field.setCustomValidity("Please enter the sequence.");
+            return false;
+        }
         if (!/^[ARNDCEQGHILKMFPSTWYV]+$/.exec(field.value)) {
             field.setCustomValidity("Sequence can only contain standard amino acids.");
             return false;
@@ -47,17 +52,8 @@ $(document).ready(function() {
         return true;
     }
 
-    function isNotEmptyValid(id) {
-        var field = document.getElementById(id);
-        if (!field.value) {
-            field.setCustomValidity("Please enter the sequence.");
-            return false;
-        }
-        return isValidSeq(field);
-    }
-
     function checkPep(id, mhcClass, min) {
-        if (isNotEmptyValid(id)) {
+        if (isValidSeq(id)) {
             var pep = document.getElementById(id);
             if (pep.value.length < min) {
                 var msg = "Currently MHC " + mhcClass + " complex modeling supports only " + min + "-mer peptides.";
@@ -65,6 +61,16 @@ $(document).ready(function() {
             }
         }
     }
+
+    function isSpeciesPicked(id) {
+        var species = document.getElementById(id);
+        if (!species.value) {
+            species.setCustomValidity("Please select the species.");
+            return false;
+        }
+        species.setCustomValidity("");
+        return true;
+    } 
 
     function setMhcErrorMsgs(fieldIds, shouldSetMsgs) {
         for (var i = 0; i < fieldIds.length; i++) {
@@ -75,18 +81,19 @@ $(document).ready(function() {
         }
     }
 
-    function checkMhc1(menu1, menu2a, menu2b, id, collapseArea) {
+    function checkMhc1(species, menu1, menu2a, menu2b, id) {
+        if (!isSpeciesPicked(species))
+            return;
         var mhc1 = document.getElementById(id);
         if (!mhc1.value)
             setMhcErrorMsgs([menu1, menu2a, menu2b], [true, false, false]);
-        else {
+        else
             setMhcErrorMsgs([menu1, menu2a, menu2b], [false, false, false]);
-            if (!isValidSeq(mhc1))
-                $("#"+collapseArea).prop("class", "px-0 collapse show");
-        }
     }
 
-    function checkMhc2(menu1, menu2a, menu2b, id2a, id2b, collapseArea) {
+    function checkMhc2(species, menu1, menu2a, menu2b, id2a, id2b) {
+        if (!isSpeciesPicked(species))
+            return;
         var mhc2a = document.getElementById(id2a);
         var mhc2b = document.getElementById(id2b);
         if (!mhc2a.value && !mhc2b.value)
@@ -95,10 +102,7 @@ $(document).ready(function() {
             setMhcErrorMsgs([menu1, menu2a, menu2b], [false, true, false]);
         else if (!mhc2b.value)
             setMhcErrorMsgs([menu1, menu2a, menu2b], [false, false, true]);
-        else {
+        else
             setMhcErrorMsgs([menu1, menu2a, menu2b], [false, false, false]);
-            if (!isValidSeq(mhc2a) || !isValidSeq(mhc2b))
-                $("#"+collapseArea).prop("class", "px-0 collapse show");
-        }
     }
 });
