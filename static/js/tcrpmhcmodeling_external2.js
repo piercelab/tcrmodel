@@ -394,14 +394,32 @@ $(document).ready(function(){
         });
         if (found == 0) { document.getElementById("F1_trbv_id").innerHTML = ""; }
     });
-    
-    
-    $("#reset1, #reset2").click(function () {
+     
+     
+    $("#reset1").click(function() {
+        $("#F1mhc1speciestype option:contains('Human')").prop("selected", true).change();
+    });
+     
+    $("#reset2").click(function() {
+        $("#F1mhc2speciestype option:contains('Human')").prop("selected", true).change();
+    });
+         
+    $("#reset1, #reset2").click(function() {
     	document.getElementById("F1_trav_id").innerHTML = "";
     	document.getElementById("F1_trbv_id").innerHTML = "";
     });
-
-    $("#reset3, #reset4").click(function () {
+     
+    $("#reset3").click(function() {
+        $("#mhc1speciestype option:contains('Human')").prop("selected", true).change();
+    });
+     
+    $("#reset4").click(function() {
+        $("#mhc2speciestype option:contains('Human')").prop("selected", true).change();
+    });
+     
+    $("#reset3, #reset4").click(function() {
+        $("#aspecies option:contains('Human')").prop("selected", true).change();
+        $("#bspecies option:contains('Human')").prop("selected", true).change();
     	document.getElementById("F2_trav_id").innerHTML = "";
     	document.getElementById("F2_trbv_id").innerHTML = "";
     });

@@ -200,5 +200,7 @@ $(document).ready(function(){
     $("#reset6").click(function () {	
     	document.getElementById("sele_trav_id").innerHTML = "";
     	document.getElementById("sele_trbv_id").innerHTML = "";
+        $("#sele_aspecies option:contains('Human')").prop("selected", true).change();
+        $("#sele_bspecies option:contains('Human')").prop("selected", true).change();
     });
 });
