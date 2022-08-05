@@ -71,67 +71,163 @@
 		<tbody>
 		  <tr>
 		    <th scope="row">Tcr &alpha; CDR1</th>
-		    <td>{{ tj.acdr1_tmplt_id }}</td>
+		    <td>
+                      {% if tj.acdr1_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.acdr1_tmplt_id[:4] }}">{{ tj.acdr1_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &alpha; CDR2-HV4</th>
-		    <td>{{ tj.acdr2hv4_tmplt_id }}</td>
+		    <td>
+                      {% if tj.acdr2hv4_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.acdr2hv4_tmplt_id[:4] }}">{{ tj.acdr2hv4_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &alpha; CDR3</th>
-		    <td>{{ tj.acdr3_tmplt_id }}</td>
+		    <td>
+                      {% if tj.acdr3_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.acdr3_tmplt_id[:4] }}">{{ tj.acdr3_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &alpha; framework</th>
-		    <td>{{ tj.afr_tmplt_id }}</td>
+		    <td>
+                      {% if tj.afr_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.afr_tmplt_id[:4] }}">{{ tj.afr_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &alpha; germline</th>
-		    <td>{{ tj.agm_tmplt_id }}</td>
+		    <td>
+                      {% if tj.agm_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.agm_tmplt_id[:4] }}">{{ tj.agm_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &beta; CDR1</th>
-		    <td>{{ tj.bcdr1_tmplt_id }}</td>
+		    <td>
+                      {% if tj.bcdr1_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bcdr1_tmplt_id[:4] }}">{{ tj.bcdr1_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &beta; CDR2-HV4</th>
-		    <td>{{ tj.bcdr2hv4_tmplt_id }}</td>
+		    <td>
+                      {% if tj.bcdr2hv4_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bcdr2hv4_tmplt_id[:4] }}">{{ tj.bcdr2hv4_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &beta; CDR3</th>
-		    <td>{{ tj.bcdr3_tmplt_id }}</td>
+		    <td>
+                      {% if tj.bcdr3_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bcdr3_tmplt_id[:4] }}">{{ tj.bcdr3_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &beta; framework</th>
-		    <td>{{ tj.bfr_tmplt_id }}</td>
+		    <td>
+                      {% if tj.bfr_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bfr_tmplt_id[:4] }}">{{ tj.bfr_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &beta; germline</th>
-		    <td>{{ tj.bgm_tmplt_id }}</td>
+		    <td>
+                      {% if tj.bgm_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bgm_tmplt_id[:4] }}">{{ tj.bgm_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Peptide</th>
-		    <td>{{ tj.pep_tmplt_id }}</td>
+		    <td>
+                      {% if tj.pep_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.pep_tmplt_id }}">{{ tj.pep_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">MHC I</th>
-		    <td>{{ tj.mhc1_tmplt_id }}</td>
+		    <td>
+                      {% if tj.mhc1_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.mhc1_tmplt_id }}">{{ tj.mhc1_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">MHC II</th>
-		    <td>{{ tj.mhc2_tmplt_id }}</td>
+		    <td>
+                      {% if tj.mhc2_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.mhc2_tmplt_id }}">{{ tj.mhc2_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">TCR orientation</th>
-		      <td>{{ tj.aori_tmplt_id }}</td>
+		    <td>
+                      {% if tj.aori_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.aori_tmplt_id }}">{{ tj.aori_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">pMHC orientation</th>
-		    <td>{{ tj.pmhc_tmplt_id }}</td>
+		    <td>
+                      {% if tj.pmhc_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.pmhc_tmplt_id }}">{{ tj.pmhc_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">TCRpMHC orientation</th>
-		    <td>{{ tj.tcrpmhc_tmplt_id }}</td>
+		    <td>
+                      {% if tj.tcrpmhc_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.tcrpmhc_tmplt_id }}">{{ tj.tcrpmhc_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		</tbody>	      
 	      </table>

@@ -73,31 +73,73 @@
 	    	<tbody>
 	      	  <tr>
 		    <th scope="row">Tcr &alpha; CDR1</th>
-		    <td>{{ tj.acdr1_tmplt_pdb }}</td>
+		    <td>
+                      {% if tj.acdr1_tmplt_pdb != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.acdr1_tmplt_pdbid }}">{{ tj.acdr1_tmplt_pdb }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 	      	  </tr>
 	      	  <tr>
 		    <th scope="row">Tcr &alpha; CDR2-HV4</th>
-		    <td>{{ tj.acdr2hv4_tmplt_pdb }}</td>
+		    <td>
+                      {% if tj.acdr2hv4_tmplt_pdb != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.acdr2hv4_tmplt_pdbid }}">{{ tj.acdr2hv4_tmplt_pdb }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 	      	  </tr>
 	      	  <tr>
 		    <th scope="row">Tcr &alpha; CDR3</th>
-		    <td>{{ tj.acdr3_tmplt_pdb }}</td>
+		    <td>
+                      {% if tj.acdr3_tmplt_pdb != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.acdr3_tmplt_pdbid }}">{{ tj.acdr3_tmplt_pdb }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 	      	  </tr>
 	      	  <tr>
 		    <th scope="row">Tcr &beta; CDR1</th>
-		    <td>{{ tj.bcdr1_tmplt_pdb }}</td>
+		    <td>
+                      {% if tj.bcdr1_tmplt_pdb != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bcdr1_tmplt_pdbid }}">{{ tj.bcdr1_tmplt_pdb }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 	      	  </tr>
 	      	  <tr>
 		    <th scope="row">Tcr &beta; CDR2-HV4</th>
-		    <td>{{ tj.bcdr2hv4_tmplt_pdb }}</td>
+		    <td>
+                      {% if tj.bcdr2hv4_tmplt_pdb != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bcdr2hv4_tmplt_pdbid }}">{{ tj.bcdr2hv4_tmplt_pdb }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 	      	  </tr>
 	      	  <tr>
 		    <th scope="row">Tcr &beta; CDR3</th>
-		    <td>{{ tj.bcdr3_tmplt_pdb }}</td>
+		    <td>
+                      {% if tj.bcdr3_tmplt_pdb != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bcdr3_tmplt_pdbid }}">{{ tj.bcdr3_tmplt_pdb }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 	      	  </tr>
 	      	  <tr>
 		    <th scope="row">Tcr orientation</th>
-		    <td>{{ tj.ori_tmplt }}</td>
+		    <td>
+                      {% if tj.ori_tmplt != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.ori_tmplt }}">{{ tj.ori_tmplt }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 	      	  </tr>
 	    	</tbody>      
 	      </table>
