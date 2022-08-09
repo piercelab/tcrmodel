@@ -290,18 +290,22 @@ def processjob(aseq,bseq,loopref_checked,pdb_blacklist):
          for ignorepdb in pdb_blacklist:
             ignore_list_file.write(ignorepdb+'\n')
             rtcrcommand += "-ignore_list ignore_list.txt "
-
+    
+   tcrdata['loop_ref'] = loopref_checked
    looprem_checked = "no";
    if (looprem_checked == "yes"):
       rtcrcommand += "-remodel_tcr_cdr3_loops "
    if (loopref_checked == "yes"):
       rtcrcommand += "-refine_tcr_cdr3_loops -loops::max_inner_cycles 50 "
+   send_job_to_local_server(uniquedirname,rtcrcommand)
+   """
    if ( (loopref_checked == "yes") or (looprem_checked == "yes") ):
       send_job_to_ibbr_cluster(uniquedirname,rtcrcommand)
       #send_job_to_local_server(uniquedirname,rtcrcommand)
    else:
       #send_job_to_ibbr_cluster(uniquedirname,rtcrcommand)
       send_job_to_local_server(uniquedirname,rtcrcommand)
+   """
 
    #find template for rendering in html
    #create tcr json file with template and sequence details
@@ -474,18 +478,22 @@ def process_tcrpmhc_job(aseq,bseq,pseq,mhc1aseq,mhc2aseq,mhc2bseq,loopref_checke
    #use -include_list include_list.txt flag to model on specific template
    #create a file with specific template name
    #rtcrcommand += "-include_list include_list.txt "
-
+    
+   tcrdata['loop_ref'] = loopref_checked 
    looprem_checked = "no";
    if (looprem_checked == "yes"):
       rtcrcommand += "-remodel_tcr_cdr3_loops "
    if (loopref_checked == "yes"):
       rtcrcommand += "-refine_tcr_cdr3_loops -loops::max_inner_cycles 50 "
+   send_tcrpmhc_job_to_local_server(uniquedirname,rtcrcommand)
+   """
    if ( (loopref_checked == "yes") or (looprem_checked == "yes") ):
       #send_job_to_ibbr_cluster(uniquedirname,rtcrcommand)
       send_tcrpmhc_job_to_local_server(uniquedirname,rtcrcommand)
    else:
       #send_job_to_ibbr_cluster(uniquedirname,rtcrcommand)
       send_tcrpmhc_job_to_local_server(uniquedirname,rtcrcommand)
+   """
 
    #find template for rendering in html
    #create tcr json file with template and sequence details
@@ -825,10 +833,17 @@ def rtcr(jobid):
       if os.path.isfile("ignore_list.txt"):
          steps.append("Running Rosetta...")
       if os.path.isfile(str(jobid)+".json"):
-         steps.append("Grafting model...")
+         if tcrdata['loop_ref'] == "yes":
+            steps.append("Grafting model + refining CDR loops...")
+         else:
+            steps.append("Grafting model...")
       if os.path.isfile("tcrgraftmodel.pdb"):
          steps.append("Orienting templates and refining structure...")
-      return render_template("rtcrqueued.html", jobid=jobid, steps=steps)
+      if tcrdata['loop_ref'] == "yes":
+         approx_time = "5 or 6 minutes"
+      else:
+         approx_time = "1 minute"
+      return render_template("rtcrqueued.html", jobid=jobid, approx_time=approx_time, steps=steps)
 
 @app.route('/res_tcrpmhc/<jobid>')
 def res_tcrpmhc(jobid):

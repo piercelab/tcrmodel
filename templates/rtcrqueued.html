@@ -11,7 +11,7 @@
   <h4><span><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i> Your job is submitted</span></h4>
   <br>
   <h5>Job ID : <a href="{{ url_for('rtcr', jobid=jobid) }}">{{ jobid }}</a></h5>
-  <h6>Please wait for the results to appear in this browser window. Your job should take about a minute to complete.</h6>
+  <h6>Please wait for the results to appear in this browser window. Your job should take about {{ approx_time }} to complete.</h6>
   <br>
   <p class="text-muted">
     You may reload or refresh the browser at any time.<br>
