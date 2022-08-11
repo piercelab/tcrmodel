@@ -15,6 +15,7 @@ import sys
 import pwd
 import grp
 import re
+import gzip
 
 app = Flask(__name__)
 
@@ -30,6 +31,7 @@ rundir_spath = "/"+rundir
 #template db path for pdb and seq
 tmplt_db_pdb = "/www/cgi-bin/rosetta/Rosetta/main/database/additional_protocol_data/tcr/pdb/"
 tmplt_db_seq = "/www/cgi-bin/rosetta/Rosetta/main/database/additional_protocol_data/tcr/seq/"
+tmplt_db_tcrpmhc = "/www/cgi-bin/rosetta/Rosetta/main/database/additional_protocol_data/tcr/tcrpmhc/"
 
 tcrdata['rundir_spath'] = rundir_spath
 
@@ -290,7 +292,7 @@ def processjob(aseq,bseq,loopref_checked,pdb_blacklist):
          for ignorepdb in pdb_blacklist:
             ignore_list_file.write(ignorepdb+'\n')
             rtcrcommand += "-ignore_list ignore_list.txt "
-    
+
    tcrdata['loop_ref'] = loopref_checked
    looprem_checked = "no";
    if (looprem_checked == "yes"):
@@ -479,7 +481,7 @@ def process_tcrpmhc_job(aseq,bseq,pseq,mhc1aseq,mhc2aseq,mhc2bseq,loopref_checke
    #create a file with specific template name
    #rtcrcommand += "-include_list include_list.txt "
     
-   tcrdata['loop_ref'] = loopref_checked 
+   tcrdata['loop_ref'] = loopref_checked
    looprem_checked = "no";
    if (looprem_checked == "yes"):
       rtcrcommand += "-remodel_tcr_cdr3_loops "
@@ -494,7 +496,7 @@ def process_tcrpmhc_job(aseq,bseq,pseq,mhc1aseq,mhc2aseq,mhc2bseq,loopref_checke
       #send_job_to_ibbr_cluster(uniquedirname,rtcrcommand)
       send_tcrpmhc_job_to_local_server(uniquedirname,rtcrcommand)
    """
-
+    
    #find template for rendering in html
    #create tcr json file with template and sequence details
    a_segs = get_cdr_from_seq_by_aho_num(a_vd_seq, "A", True)
@@ -805,6 +807,76 @@ def get_pdb_templates(tcrjsondata):
    '''      
    return
 
+def run_tmalign(tmplt, model, outfile, unzipped):
+   if not os.path.isfile(outfile):
+      if tmplt[-3:] == ".gz":
+         with gzip.open(tmplt) as f:
+            contents = f.read()
+         with open(unzipped, "w") as f:
+            f.write(contents)
+      else:
+         unzipped = tmplt
+      tmalign_program = "../../cgi-bin/TMalign/TMalign"
+      cmd = subprocess.Popen([tmalign_program, unzipped, model, "-o", outfile], stdout=subprocess.PIPE)
+
+def get_tcrpmhc_templates(tcrjsondata):
+   model = "tcrmodel.pdb"
+   tmplt_db_tcrpmhc = "/www/cgi-bin/rosetta/Rosetta/main/database/additional_protocol_data/tcr/tcrpmhc/"
+   #cdr1a
+   pdb_id = tcrjsondata['acdr1_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")
+   outfile = tcrjsondata['acdr1_tmplt_id'] + "_Acdr1_tmplt.sup"
+   acdr1_pdb = outfile[7:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, acdr1_pdb)
+   #cdr2a
+   pdb_id = tcrjsondata['acdr2hv4_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")
+   outfile = tcrjsondata['acdr2hv4_tmplt_id'] + "_Acdr2hv4_tmplt.sup"
+   acdr2hv4_pdb = outfile[7:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, acdr2hv4_pdb)
+   #cdr3a
+   pdb_id = tcrjsondata['acdr3_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")
+   outfile = tcrjsondata['acdr3_tmplt_id'] + "_Acdr3_tmplt.sup"
+   acdr3_pdb = outfile[7:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, acdr3_pdb)
+   #cdr1b
+   pdb_id = tcrjsondata['bcdr1_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")[0]
+   outfile = tcrjsondata['bcdr1_tmplt_id'] + "_Bcdr1_tmplt.sup"
+   bcdr1_pdb = outfile[7:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, bcdr1_pdb)
+   #cdr2b
+   pdb_id = tcrjsondata['bcdr2hv4_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")[0]
+   outfile = tcrjsondata['bcdr2hv4_tmplt_id'] + "_Bcdr2hv4_tmplt.sup"
+   bcdr2hv4_pdb = outfile[7:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, bcdr2hv4_pdb)
+   #cdr3b
+   pdb_id = tcrjsondata['bcdr3_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")[0]
+   outfile = tcrjsondata['bcdr3_tmplt_id'] + "_Bcdr3_tmplt.sup"
+   bcdr3_pdb = outfile[7:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, bcdr3_pdb)
+   #orientation - chains not specified in json so oriA and oriB are same
+   pdb_id = tcrjsondata['aori_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")[0]
+   outfile = tcrjsondata['aori_tmplt_id'] + "_ori_tmplt.sup"
+   ori_pdb = outfile[5:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, ori_pdb)
+   #remove unzipped files used for tmalign
+   files = [acdr1_pdb, acdr2hv4_pdb, acdr3_pdb, bcdr1_pdb, bcdr2hv4_pdb, bcdr3_pdb, ori_pdb]
+   for f in files:
+      if os.path.isfile(f):
+          os.remove(f)
+
 @app.route('/rtcr/<jobid>')
 def rtcr(jobid):
    outdir = os.path.join(rundir_path,str(jobid))
@@ -880,12 +952,12 @@ def res_tcrpmhc(jobid):
          for key in tcrjsondata:
             if not tcrjsondata[key]:
                tcrjsondata[key] = 'NA';
-
+      stdout = get_tcrpmhc_templates(tcrjsondata)
       from datetime import datetime
       now = datetime.now()
       current_time = now.strftime("%H:%M:%S")
       print("Current Time =", current_time)
-      return render_template("tcrpmhc_completed.html", jobid = jobid, modelfname=outpdb_spath, tj=tcrjsondata)   
+      return render_template("tcrpmhc_completed.html", jobid=jobid, modelfname=outpdb_spath, tj=tcrjsondata)   
    elif os.path.isfile(errorfile):
       return render_template("error.html", jobid=jobid, errormsg="Modeling could not complete!")   
    elif os.path.isfile(errorfile2):
@@ -980,13 +1052,22 @@ def rtcrex(jobid):
       tcrjsondata = json.load(json_data)
    return render_template("tcrmodel_completed.html", rtcrjobid = jobid, modelfname=outpdb_spath, tj=tcrjsondata)   
 
-@app.route('/viewmodel/<jobid>')
-def viewmodel(jobid):
-   modelfname = os.path.join(rundir_spath,str(jobid),'tcrmodel.pdb')
+@app.route('/rtcr_viewmodel/<jobid>')
+def rtcr_viewmodel(jobid):
+   outpdb_spath = os.path.join(rundir_spath,str(jobid),"tcrmodel.pdb")
    tcrjsonfile = os.path.join(rundir_path,str(jobid),str(jobid)+'.json')
    with open(tcrjsonfile) as json_data:
       tcrjsondata = json.load(json_data)
-   return render_template("view.html", jobid=jobid, modelfname=modelfname, tj=tcrjsondata)
+   return render_template("rtcr_fullviewer.html", jobid=jobid, modelfname=outpdb_spath, tj=tcrjsondata)
+
+@app.route('/tcrpmhc_viewmodel/<jobid>')
+def tcrpmhc_viewmodel(jobid):
+   outpdb_spath = os.path.join(rundir_spath,str(jobid),"tcrpmhc_model.pdb")
+   tcrjsonfile = os.path.join(rundir_path,str(jobid),"tcr_template_info.json")
+   with open(tcrjsonfile) as json_data:
+      tcrjsondata = json.load(json_data)
+   tcrjsondata['rundir_spath'] = rundir_spath
+   return render_template("tcrpmhc_fullviewer.html", jobid=jobid, modelfname=outpdb_spath, tj=tcrjsondata)
 
 @app.route('/mviewmodel/<jobid>/<prefixtag>')
 def mviewmodel(jobid,prefixtag):
