@@ -14,6 +14,8 @@ from TCR_functions import *
 import sys
 import pwd
 import grp
+import re
+import gzip
 
 app = Flask(__name__)
 
@@ -29,6 +31,7 @@ rundir_spath = "/"+rundir
 #template db path for pdb and seq
 tmplt_db_pdb = "/www/cgi-bin/rosetta/Rosetta/main/database/additional_protocol_data/tcr/pdb/"
 tmplt_db_seq = "/www/cgi-bin/rosetta/Rosetta/main/database/additional_protocol_data/tcr/seq/"
+tmplt_db_tcrpmhc = "/www/cgi-bin/rosetta/Rosetta/main/database/additional_protocol_data/tcr/tcrpmhc/"
 
 tcrdata['rundir_spath'] = rundir_spath
 
@@ -126,27 +129,6 @@ def submit_batchjob_on_cluster(uniquejobid,jobscriptfile,ig_file):
    command = "cd %s && csh %s" % (remote_location, jobscriptfile)
    ssh_stdin, ssh_stdout, ssh_stderr = ssh_client.exec_command(command)
    return
-
-@app.route('/layout')
-def layout():
-   return render_template("layout.html")
-
-@app.route('/tcrpmhc_layout')
-def tcrpmhc_layout():
-   return render_template("tcrpmhc_layout.html")
-
-@app.route('/test_layout')
-def test_layout():
-   return render_template("test_layout.html")
-
-@app.route('/')
-@app.route('/index')
-def index():
-   return render_template("index.html")
-
-@app.route('/test')
-def test():
-   return render_template("test.html")
 
 def get_seq_from_genename(gene, trfile):
 
@@ -253,26 +235,25 @@ def external_submit(genelist):
 @app.route('/external_submit1/<trav>/<traj>/<cdr3a>/<trbv>/<trbj>/<cdr3b>')
 def external_submit1(trav,traj,cdr3a,trbv,trbj,cdr3b):
    return render_template("external_submit.html",trav=trav,traj=traj,cdr3a=cdr3a,trbv=trbv,trbj=trbj,cdr3b=cdr3b)
+
+'''
+@app.route('/test')
+def test():
+   return render_template("test.html")
+'''
+
+@app.route('/')
+@app.route('/index')
+def index():
+   return render_template("index.html")
    
 @app.route('/about')
 def about():
    return render_template("about.html")
 
-@app.route('/tcrpmhc')
-def tcrpmhc():
-   return render_template("tcrpmhc.html")
-
-@app.route('/tcrmodel')
-def tcrmodel():
-   return render_template("tcrmodel.html")
-
 @app.route('/help')
 def help():
    return render_template("help.html")
-
-@app.route('/help2')
-def help2():
-   return render_template("help2.html")
 
 @app.route('/links')
 def links():
@@ -280,29 +261,22 @@ def links():
 
 @app.route('/processjob/<aseq>/<bseq>/<loopref_checked>/<pdb_blacklist>')
 def processjob(aseq,bseq,loopref_checked,pdb_blacklist):
-   if (aseq and bseq):
-    #remove everying but characters from input string
-      aseq=''.join(i for i in aseq if i.isalpha())
-      bseq=''.join(i for i in bseq if i.isalpha())
-      tcrdata['aseq_user']=aseq
-      tcrdata['bseq_user']=bseq
-   else:
-      errormsg = "No input TCR sequence"
-      return render_template("error.html", errormsg=errormsg)
-
-   
+   aseq=''.join(i for i in aseq if i.isalpha())
+   bseq=''.join(i for i in bseq if i.isalpha())
+   tcrdata['aseq_user']=aseq
+   tcrdata['bseq_user']=bseq
+ 
    a_regexp_res = get_vdomain_using_regex(aseq,"A") 
    if (not a_regexp_res):
-      errormsg = "No TCR Variable domain sequence identified from the Alpha chain input"
+      errormsg = "No TCR Variable domain sequence identified from the Alpha chain input! If you used 'Select from gene', the CDR3 sequence was invalid."
       return render_template("error.html", errormsg=errormsg)
    a_vd_seq = a_regexp_res.groups()[0]
    a_gm_seq = a_regexp_res.groups()[1]+a_regexp_res.groups()[2]
 
    b_regexp_res = get_vdomain_using_regex(bseq,"B") 
    if (not b_regexp_res):
-      errormsg = "No TCR variable domain sequence identified from the Beta chain input"
+      errormsg = "No TCR Variable domain sequence identified from the Beta chain input! If you used 'Select from gene', the CDR3 sequence was invalid."
       return render_template("error.html", errormsg=errormsg)
-
    b_vd_seq = b_regexp_res.groups()[0]
    b_gm_seq = b_regexp_res.groups()[1]+b_regexp_res.groups()[2]
 
@@ -319,17 +293,21 @@ def processjob(aseq,bseq,loopref_checked,pdb_blacklist):
             ignore_list_file.write(ignorepdb+'\n')
             rtcrcommand += "-ignore_list ignore_list.txt "
 
+   tcrdata['loop_ref'] = loopref_checked
    looprem_checked = "no";
    if (looprem_checked == "yes"):
       rtcrcommand += "-remodel_tcr_cdr3_loops "
    if (loopref_checked == "yes"):
       rtcrcommand += "-refine_tcr_cdr3_loops -loops::max_inner_cycles 50 "
+   send_job_to_local_server(uniquedirname,rtcrcommand)
+   """
    if ( (loopref_checked == "yes") or (looprem_checked == "yes") ):
       send_job_to_ibbr_cluster(uniquedirname,rtcrcommand)
       #send_job_to_local_server(uniquedirname,rtcrcommand)
    else:
       #send_job_to_ibbr_cluster(uniquedirname,rtcrcommand)
       send_job_to_local_server(uniquedirname,rtcrcommand)
+   """
 
    #find template for rendering in html
    #create tcr json file with template and sequence details
@@ -455,30 +433,21 @@ def processjob(aseq,bseq,loopref_checked,pdb_blacklist):
 
 @app.route('/process_tcrpmhc_job/<aseq>/<bseq>/<pseq>/<mhc1aseq>/<mhc2aseq>/<mhc2bseq>/<loopref_checked>/<pdb_blacklist>')
 def process_tcrpmhc_job(aseq,bseq,pseq,mhc1aseq,mhc2aseq,mhc2bseq,loopref_checked,pdb_blacklist):
-   if (aseq and bseq and pseq and mhc1aseq):
-    #remove everying but characters from input string
-      aseq=''.join(i for i in aseq if i.isalpha())
-      bseq=''.join(i for i in bseq if i.isalpha())
-      pseq=''.join(i for i in pseq if i.isalpha())
-      mhc1aseq=''.join(i for i in mhc1aseq if i.isalpha())
-      tcrdata['aseq_user']=aseq
-      tcrdata['bseq_user']=bseq
-      tcrdata['pep'] = pseq
-      tcrdata['mhc1a'] = mhc1aseq
-   else:
-      errormsg = "No input sequences!"
-      return render_template("error.html", errormsg=errormsg)
+   aseq=''.join(i for i in aseq if i.isalpha())
+   bseq=''.join(i for i in bseq if i.isalpha())
+   tcrdata['aseq_user']=aseq
+   tcrdata['bseq_user']=bseq
 
    a_regexp_res = get_vdomain_using_regex(aseq,"A") 
    if (not a_regexp_res):
-      errormsg = "No TCR Variable domain sequence identified from the Alpha chain input"
+      errormsg = "No TCR Variable domain sequence identified from the Alpha chain input! If you used 'Select from gene', the CDR3 sequence was invalid."
       return render_template("error.html", errormsg=errormsg)
    a_vd_seq = a_regexp_res.groups()[0]
    a_gm_seq = a_regexp_res.groups()[1]+a_regexp_res.groups()[2]
 
    b_regexp_res = get_vdomain_using_regex(bseq,"B") 
    if (not b_regexp_res):
-      errormsg = "No TCR variable domain sequence identified from the Beta chain input"
+      errormsg = "No TCR variable domain sequence identified from the Beta chain input! If you used 'Select from gene', the CDR3 sequence was invalid."
       return render_template("error.html", errormsg=errormsg)
    b_vd_seq = b_regexp_res.groups()[0]
    b_gm_seq = b_regexp_res.groups()[1]+b_regexp_res.groups()[2]
@@ -486,12 +455,20 @@ def process_tcrpmhc_job(aseq,bseq,pseq,mhc1aseq,mhc2aseq,mhc2bseq,loopref_checke
    #we use uniquedirname to differentiate mhc1 and mhc2 complexes in res_tcrpmhc function
    if (not mhc1aseq == 'NA'):
       uniquedirname = create_and_cd_to_unique_dir("MHC1")#TCRC for tcr-p-mhc complex
+      pseq=''.join(i for i in pseq if i.isalpha())
+      mhc1aseq=''.join(i for i in mhc1aseq if i.isalpha())
+      tcrdata['pep'] = pseq
+      tcrdata['mhc1a'] = mhc1aseq
       rtcrcommand = "-blastp_path /www/cgi-bin/ncbi-blast-2.12.0+/bin/blastp -mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s -peptide %s -mhc1_alpha %s "  % (aseq, bseq, pseq, mhc1aseq) 
-   if ( (not mhc2aseq == 'NA') and (not mhc2bseq == 'NA') ):
+   elif ( (not mhc2aseq == 'NA') and (not mhc2bseq == 'NA') ):
       uniquedirname = create_and_cd_to_unique_dir("MHC2")#TCRC for tcr-p-mhc complex
       core_pseq = get_core_binding_pepseq(pseq)
+      mhc2aseq=''.join(i for i in mhc2aseq if i.isalpha())
+      mhc2bseq=''.join(i for i in mhc2bseq if i.isalpha())
       tcrdata['trunc_pep'] = core_pseq
-      rtcrcommand = "-blastp_path /www/cgi-bin/ncbi-blast-2.12.0+/bin/blastp -mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s -peptide %s -mhc2_alpha %s -mhc2_beta %s "  % (aseq, bseq, core_pseq, mhc2aseq, mhc2bseq) 
+      tcrdata['mhc2a'] = mhc2aseq
+      tcrdata['mhc2b'] = mhc2bseq
+      rtcrcommand = "-blastp_path /www/cgi-bin/ncbi-blast-2.12.0+/bin/blastp -mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s -peptide %s -mhc2_alpha %s -mhc2_beta %s "  % (aseq, bseq, core_pseq, mhc2aseq, mhc2bseq)  
 
    tcrdata['jobid'] = uniquedirname
    if pdb_blacklist:
@@ -503,19 +480,23 @@ def process_tcrpmhc_job(aseq,bseq,pseq,mhc1aseq,mhc2aseq,mhc2bseq,loopref_checke
    #use -include_list include_list.txt flag to model on specific template
    #create a file with specific template name
    #rtcrcommand += "-include_list include_list.txt "
-
+    
+   tcrdata['loop_ref'] = loopref_checked
    looprem_checked = "no";
    if (looprem_checked == "yes"):
       rtcrcommand += "-remodel_tcr_cdr3_loops "
    if (loopref_checked == "yes"):
       rtcrcommand += "-refine_tcr_cdr3_loops -loops::max_inner_cycles 50 "
+   send_tcrpmhc_job_to_local_server(uniquedirname,rtcrcommand)
+   """
    if ( (loopref_checked == "yes") or (looprem_checked == "yes") ):
       #send_job_to_ibbr_cluster(uniquedirname,rtcrcommand)
       send_tcrpmhc_job_to_local_server(uniquedirname,rtcrcommand)
    else:
       #send_job_to_ibbr_cluster(uniquedirname,rtcrcommand)
       send_tcrpmhc_job_to_local_server(uniquedirname,rtcrcommand)
-
+   """
+    
    #find template for rendering in html
    #create tcr json file with template and sequence details
    a_segs = get_cdr_from_seq_by_aho_num(a_vd_seq, "A", True)
@@ -826,6 +807,76 @@ def get_pdb_templates(tcrjsondata):
    '''      
    return
 
+def run_tmalign(tmplt, model, outfile, unzipped):
+   if not os.path.isfile(outfile):
+      if tmplt[-3:] == ".gz":
+         with gzip.open(tmplt) as f:
+            contents = f.read()
+         with open(unzipped, "w") as f:
+            f.write(contents)
+      else:
+         unzipped = tmplt
+      tmalign_program = "../../cgi-bin/TMalign/TMalign"
+      cmd = subprocess.Popen([tmalign_program, unzipped, model, "-o", outfile], stdout=subprocess.PIPE)
+
+def get_tcrpmhc_templates(tcrjsondata):
+   model = "tcrmodel.pdb"
+   tmplt_db_tcrpmhc = "/www/cgi-bin/rosetta/Rosetta/main/database/additional_protocol_data/tcr/tcrpmhc/"
+   #cdr1a
+   pdb_id = tcrjsondata['acdr1_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")
+   outfile = tcrjsondata['acdr1_tmplt_id'] + "_Acdr1_tmplt.sup"
+   acdr1_pdb = outfile[7:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, acdr1_pdb)
+   #cdr2a
+   pdb_id = tcrjsondata['acdr2hv4_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")
+   outfile = tcrjsondata['acdr2hv4_tmplt_id'] + "_Acdr2hv4_tmplt.sup"
+   acdr2hv4_pdb = outfile[7:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, acdr2hv4_pdb)
+   #cdr3a
+   pdb_id = tcrjsondata['acdr3_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")
+   outfile = tcrjsondata['acdr3_tmplt_id'] + "_Acdr3_tmplt.sup"
+   acdr3_pdb = outfile[7:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, acdr3_pdb)
+   #cdr1b
+   pdb_id = tcrjsondata['bcdr1_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")[0]
+   outfile = tcrjsondata['bcdr1_tmplt_id'] + "_Bcdr1_tmplt.sup"
+   bcdr1_pdb = outfile[7:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, bcdr1_pdb)
+   #cdr2b
+   pdb_id = tcrjsondata['bcdr2hv4_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")[0]
+   outfile = tcrjsondata['bcdr2hv4_tmplt_id'] + "_Bcdr2hv4_tmplt.sup"
+   bcdr2hv4_pdb = outfile[7:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, bcdr2hv4_pdb)
+   #cdr3b
+   pdb_id = tcrjsondata['bcdr3_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")[0]
+   outfile = tcrjsondata['bcdr3_tmplt_id'] + "_Bcdr3_tmplt.sup"
+   bcdr3_pdb = outfile[7:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, bcdr3_pdb)
+   #orientation - chains not specified in json so oriA and oriB are same
+   pdb_id = tcrjsondata['aori_tmplt_id'][:4].lower()
+   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
+   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")[0]
+   outfile = tcrjsondata['aori_tmplt_id'] + "_ori_tmplt.sup"
+   ori_pdb = outfile[5:-4] + ".pdb"
+   run_tmalign(tmplt, model, outfile, ori_pdb)
+   #remove unzipped files used for tmalign
+   files = [acdr1_pdb, acdr2hv4_pdb, acdr3_pdb, bcdr1_pdb, bcdr2hv4_pdb, bcdr3_pdb, ori_pdb]
+   for f in files:
+      if os.path.isfile(f):
+          os.remove(f)
+
 @app.route('/rtcr/<jobid>')
 def rtcr(jobid):
    outdir = os.path.join(rundir_path,str(jobid))
@@ -850,7 +901,21 @@ def rtcr(jobid):
    elif os.path.isfile(errorfile2):
       return render_template("rtcrfailed.html", rtcrjobid = jobid)   
    else:
-      return render_template("rtcrqueued.html", jobid=jobid, tj=tcrjsondata)   
+      steps = ["Job started!", "Selecting templates..."]
+      if os.path.isfile("ignore_list.txt"):
+         steps.append("Running Rosetta...")
+      if os.path.isfile(str(jobid)+".json"):
+         if tcrdata['loop_ref'] == "yes":
+            steps.append("Grafting model + refining CDR loops...")
+         else:
+            steps.append("Grafting model...")
+      if os.path.isfile("tcrgraftmodel.pdb"):
+         steps.append("Orienting templates and refining structure...")
+      if tcrdata['loop_ref'] == "yes":
+         approx_time = "5 or 6 minutes"
+      else:
+         approx_time = "1 minute"
+      return render_template("rtcrqueued.html", jobid=jobid, approx_time=approx_time, steps=steps)
 
 @app.route('/res_tcrpmhc/<jobid>')
 def res_tcrpmhc(jobid):
@@ -887,24 +952,33 @@ def res_tcrpmhc(jobid):
          for key in tcrjsondata:
             if not tcrjsondata[key]:
                tcrjsondata[key] = 'NA';
-
+      stdout = get_tcrpmhc_templates(tcrjsondata)
       from datetime import datetime
       now = datetime.now()
       current_time = now.strftime("%H:%M:%S")
       print("Current Time =", current_time)
-      return render_template("tcrpmhc_completed.html", jobid = jobid, modelfname=outpdb_spath, tj=tcrjsondata)   
+      return render_template("tcrpmhc_completed.html", jobid=jobid, modelfname=outpdb_spath, tj=tcrjsondata)   
    elif os.path.isfile(errorfile):
-      return render_template("error.html", jobid=jobid, errormsg="Modeling not completed!")   
+      return render_template("error.html", jobid=jobid, errormsg="Modeling could not complete!")   
    elif os.path.isfile(errorfile2):
-      errormsg = ""
+      errormsg = "Modeling could not complete!"
       with open(errorfile2) as fh:
          for line in fh:
             if line.startswith("ERROR:"):
-               errormsg = line
-               break
+               errormsg = line[7:] 
+               break 
       return render_template("error.html", jobid=jobid, errormsg=errormsg)   
    else:
-      return render_template("tcrpmhc_queued.html", jobid=jobid)
+      steps = ["Job started!", "Selecting templates..."]
+      if os.path.isfile("ignore_list.txt"):
+         steps.append("Running Rosetta...")
+      if os.path.isfile(str(jobid)+".json"):
+         steps.append("Querying MHC...")
+      if os.path.isfile("mhc1a_blastp.out") or os.path.isfile("mhc2b_blastp.out"):
+         steps.append("Grafting model...")
+      if os.path.isfile("tcrgraftmodel.pdb"):
+         steps.append("Orienting templates and refining structure...")
+      return render_template("tcrpmhc_queued.html", jobid=jobid, steps=steps)
 
 @app.route('/mtcr/<jobid>')
 def mtcr(jobid):
@@ -978,13 +1052,22 @@ def rtcrex(jobid):
       tcrjsondata = json.load(json_data)
    return render_template("tcrmodel_completed.html", rtcrjobid = jobid, modelfname=outpdb_spath, tj=tcrjsondata)   
 
-@app.route('/viewmodel/<jobid>')
-def viewmodel(jobid):
-   modelfname = os.path.join(rundir_spath,str(jobid),'tcrmodel.pdb')
+@app.route('/rtcr_viewmodel/<jobid>')
+def rtcr_viewmodel(jobid):
+   outpdb_spath = os.path.join(rundir_spath,str(jobid),"tcrmodel.pdb")
    tcrjsonfile = os.path.join(rundir_path,str(jobid),str(jobid)+'.json')
    with open(tcrjsonfile) as json_data:
       tcrjsondata = json.load(json_data)
-   return render_template("view.html", jobid=jobid, modelfname=modelfname, tj=tcrjsondata)
+   return render_template("rtcr_fullviewer.html", jobid=jobid, modelfname=outpdb_spath, tj=tcrjsondata)
+
+@app.route('/tcrpmhc_viewmodel/<jobid>')
+def tcrpmhc_viewmodel(jobid):
+   outpdb_spath = os.path.join(rundir_spath,str(jobid),"tcrpmhc_model.pdb")
+   tcrjsonfile = os.path.join(rundir_path,str(jobid),"tcr_template_info.json")
+   with open(tcrjsonfile) as json_data:
+      tcrjsondata = json.load(json_data)
+   tcrjsondata['rundir_spath'] = rundir_spath
+   return render_template("tcrpmhc_fullviewer.html", jobid=jobid, modelfname=outpdb_spath, tj=tcrjsondata)
 
 @app.route('/mviewmodel/<jobid>/<prefixtag>')
 def mviewmodel(jobid,prefixtag):
@@ -1013,6 +1096,8 @@ def searchid():
          return redirect(url_for('rtcrex', jobid=jobid))
       else:
          return redirect(url_for('rtcr', jobid=jobid))
+   elif (jobid[:3] == "MHC"):
+      return redirect(url_for('res_tcrpmhc', jobid=jobid))
    else:
       return render_template("error.html", errormsg="Job ID not found")
 
@@ -1020,8 +1105,11 @@ def searchid():
 def tcrmodel_submitjob1():
    aseq = request.form['alphachain']
    bseq = request.form['betachain']
-   if not (aseq or bseq):
-      return render_template("error.html", errormsg="No TCR sequence entered!")
+   if not aseq:
+      return render_template("error.html", errormsg="TCR alpha sequence not entered!")
+   if not bseq:
+      return render_template("error.html", errormsg="TCR beta sequence not entered!") 
+ 
    #simil_cutoff = request.form.get('simcutoff')
    pdb_blacklist = request.form.get('pdbblacklist')
    loopref_checked = "yes" if (request.form.get("lr"))else "no"
@@ -1031,42 +1119,35 @@ def tcrmodel_submitjob1():
 
 @app.route('/tcrmodel_submitjob2', methods=['POST', 'GET'])
 def tcrmodel_submitjob2():
-   if request.form.get("sele_aspecies"):
-      aspecies = request.form['sele_aspecies']
-   else:
-      return render_template("error.html", errormsg="Species not selected!")
-   if request.form.get("sele_bspecies"):
-      bspecies = request.form['sele_bspecies']
-   else:
-      return render_template("error.html", errormsg="Species not selected!")
-   if request.form.get("sele_trav"):
-      trav = request.form['sele_trav']
-   else:
+   aspecies = request.form.get('sele_aspecies')
+   trav = request.form.get('sele_trav')
+   traj = request.form.get('sele_traj')
+   acdr = request.form['sele_acdr']
+   bspecies = request.form.get('sele_bspecies')   
+   trbv = request.form.get('sele_trbv')
+   trbj = request.form.get('sele_trbj')
+   bcdr = request.form['sele_bcdr']
+   if not aspecies:
+      return render_template("error.html", errormsg="Species for alpha chain not selected!")
+   if not trav:
       return render_template("error.html", errormsg="TRAV gene not selected!")
-   if request.form.get("sele_traj"):
-      traj = request.form['sele_traj']
-   else:
+   if not traj:
       return render_template("error.html", errormsg="TRAJ gene not selected!")
-   if request.form.get("sele_trbv"):
-      trbv = request.form['sele_trbv']
-   else:
-      return render_template("error.html", errormsg="TRBV gene not selected!")
-   if request.form.get("sele_trbj"):
-      trbj = request.form['sele_trbj']
-   else:
-      return render_template("error.html", errormsg="TRBJ gene not selected!")
-   if request.form.get("sele_acdr"):
-      acdr = request.form['sele_acdr']
-   else:
+   if not acdr:
       return render_template("error.html", errormsg="CDR3 sequence for alpha chain not entered!")
-   if request.form.get("sele_bcdr"):
-      bcdr = request.form['sele_bcdr']
-   else:
+   if not bspecies:
+      return render_template("error.html", errormsg="Species for beta chain not selected!")
+   if not trbv:
+      return render_template("error.html", errormsg="TRBV gene not selected!")
+   if not trbj:
+      return render_template("error.html", errormsg="TRBJ gene not selected!")
+   if not bcdr:
       return render_template("error.html", errormsg="CDR3 sequence for beta chain not entered!")
-   pdb_blacklist = request.form.get('pdbblacklist')
-   loopref_checked = "yes" if (request.form.get("lr"))else "no"
+   
    aseq =  trav+acdr.upper()+traj
    bseq =  trbv+bcdr.upper()+trbj
+   pdb_blacklist = request.form.get('pdbblacklist')
+   loopref_checked = "yes" if (request.form.get("lr"))else "no"
    return redirect(url_for('processjob', aseq=aseq,bseq=bseq,loopref_checked=loopref_checked,pdb_blacklist=pdb_blacklist))
 
 @app.route('/tcrpmhc_submitjob1', methods=['POST', 'GET'])
@@ -1077,23 +1158,39 @@ def tcrpmhc_submitjob1():
    print("Current Time =", current_time)
    aseq = request.form['alphachain']
    bseq = request.form['betachain']
-   mhc1aseq = request.form['mhc1aseq']
+   if not aseq:
+      return render_template("error.html", errormsg="TCR alpha sequence not entered!")
+   if not bseq:
+      return render_template("error.html", errormsg="TCR beta sequence not entered!")
+   
    pseq = request.form['pepchain']
+   mhc1aseq = request.form['mhc1aseq']
    mhc2aseq = request.form['mhc2aseq']
    mhc2bseq = request.form['mhc2bseq']
-   if ( (not aseq or not bseq or not pseq or not mhc1aseq) and (not aseq or not bseq or not pseq or not mhc2aseq or not mhc2bseq) ):
-      return render_template("error.html", errormsg="Enter all the input sequences!")
-   if (mhc1aseq and mhc2aseq and mhc2bseq):
-      return render_template("error.html", errormsg="Enter either MHC I or MHC II sequence!")
-   if (mhc2aseq and mhc2bseq):
-      if (len(pseq) < 9):
-         return render_template("error.html", errormsg="Currently MHC II complex modeling supports only 9-mer peptides!")
+   if not pseq:
+      return render_template("error.html", errormsg="Peptide sequence not entered!")
+   if not mhc1aseq and not mhc2aseq and not mhc2bseq:
+      return render_template("error.html", errormsg="Enter either MHC I or MHC II sequence(s)!")
+   if mhc1aseq and len(pseq) < 8:
+      return render_template("error.html", errormsg="Currently MHC I complex modeling supports only 8-mer peptides!")
+   if (mhc2aseq and not mhc2bseq) or (mhc2bseq and not mhc2aseq):   
+      return render_template("error.html", errormsg="Enter both alpha and beta sequences for MHC II!")
+   if mhc2aseq and mhc2bseq and len(pseq) < 9:
+      return render_template("error.html", errormsg="Currently MHC II complex modeling supports only 9-mer peptides!")
+
    if not mhc1aseq:
       mhc1aseq = 'NA'
    if not mhc2aseq:
       mhc2aseq = 'NA'
    if not mhc2bseq:
       mhc2bseq = 'NA'
+
+   fields = [pseq, mhc1aseq, mhc2aseq, mhc2bseq]
+   seq_names = ["Peptide", "MHC I", "MHC II alpha", "MHC II beta"]
+   for i in range(len(fields)):
+      if not re.search("^[ARNDCEQGHILKMFPSTWYV]+$", fields[i]):
+         return render_template("error.html", errormsg=seq_names[i]+" sequence can only contain standard amino acids!") 
+
    #simil_cutoff = request.form.get('simcutoff')
    pdb_blacklist = request.form.get('pdbblacklist')
    loopref_checked = "yes" if (request.form.get("lr"))else "no"
@@ -1103,62 +1200,61 @@ def tcrpmhc_submitjob1():
 
 @app.route('/tcrpmhc_submitjob2', methods=['POST', 'GET'])
 def tcrpmhc_submitjob2():
-   if request.form.get("aspecies"):
-      aspecies = request.form['aspecies']
-   else:
-      return render_template("error.html", errormsg="Species not selected!")
-   if request.form.get("bspecies"):
-      bspecies = request.form['bspecies']
-   else:
-      return render_template("error.html", errormsg="Species not selected!")
-   if request.form.get("trav"):
-      trav = request.form['trav']
-   else:
+   aspecies = request.form.get('aspecies')
+   trav = request.form.get('trav')
+   traj = request.form.get('traj')
+   acdr = request.form.get('acdr')
+   bspecies = request.form.get('bspecies')
+   trbv = request.form.get('trbv')
+   trbj = request.form.get('trbj')
+   bcdr = request.form.get('bcdr')
+   if not aspecies:
+      return render_template("error.html", errormsg="Species for alpha chain not selected!")
+   if not trav:
       return render_template("error.html", errormsg="TRAV gene not selected!")
-   if request.form.get("traj"):
-      traj = request.form['traj']
-   else:
+   if not traj:
       return render_template("error.html", errormsg="TRAJ gene not selected!")
-   if request.form.get("trbv"):
-      trbv = request.form['trbv']
-   else:
-      return render_template("error.html", errormsg="TRBV gene not selected!")
-   if request.form.get("trbj"):
-      trbj = request.form['trbj']
-   else:
-      return render_template("error.html", errormsg="TRBJ gene not selected!")
-   if request.form.get("acdr"):
-      acdr = request.form['acdr']
-   else:
+   if not acdr:
       return render_template("error.html", errormsg="CDR3 sequence for alpha chain not entered!")
-   if request.form.get("bcdr"):
-      bcdr = request.form['bcdr']
-   else:
+   if not bspecies:
+      return render_template("error.html", errormsg="Species for beta chain not selected!")
+   if not trbv:
+      return render_template("error.html", errormsg="TRBV gene not selected!")
+   if not trbj:
+      return render_template("error.html", errormsg="TRBJ gene not selected!")
+   if not bcdr:
       return render_template("error.html", errormsg="CDR3 sequence for beta chain not entered!")
-   if request.form.get("pepchain"):
-      pseq = request.form['pepchain']
-   else:
-      return render_template("error.html", errormsg="Peptide sequence not entered!")
 
-   aseq =  trav+acdr.upper()+traj
-   bseq =  trbv+bcdr.upper()+trbj
+   pseq = request.form['pepchain']
    mhc1aseq = request.form['mhc1aseq']
    mhc2aseq = request.form['mhc2aseq']
    mhc2bseq = request.form['mhc2bseq']
-
-   if ( (not aseq or not bseq or not pseq or not mhc1aseq) and (not aseq or not bseq or not pseq or not mhc2aseq or not mhc2bseq) ):
-      return render_template("error.html", errormsg="Enter all the input sequences!")
-   if (mhc1aseq and mhc2aseq and mhc2bseq):
-      return render_template("error.html", errormsg="Enter either MHC I or MHC II sequence!")
-   if (mhc2aseq and mhc2bseq):
-      if (len(pseq) < 10):
-         return render_template("error.html", errormsg="Currently MHC II complex modeling supports only 10-mer peptides!")
+   if not pseq:
+      return render_template("error.html", errormsg="Peptide sequence not entered!")
+   if not mhc1aseq and not mhc2aseq and not mhc2bseq:
+      return render_template("error.html", errormsg="Enter either MHC I or MHC II sequence(s)!")
+   if mhc1aseq and len(pseq) < 8:
+      return render_template("error.html", errormsg="Currently MHC I complex modeling supports only 8-mer peptides!")
+   if (mhc2aseq and not mhc2bseq) or (mhc2bseq and not mhc2aseq):   
+      return render_template("error.html", errormsg="Enter both alpha and beta sequences for MHC II!")
+   if mhc2aseq and mhc2bseq and len(pseq) < 9:
+      return render_template("error.html", errormsg="Currently MHC II complex modeling supports only 9-mer peptides!")
+   
    if not mhc1aseq:
       mhc1aseq = 'NA'
    if not mhc2aseq:
       mhc2aseq = 'NA'
    if not mhc2bseq:
       mhc2bseq = 'NA'
+
+   fields = [pseq, mhc1aseq, mhc2aseq, mhc2bseq]
+   seq_names = ["Peptide", "MHC I", "MHC II alpha", "MHC II beta"]
+   for i in range(len(fields)):
+      if not re.search("^[ARNDCEQGHILKMFPSTWYV]+$", fields[i]):
+         return render_template("error.html", errormsg=seq_names[i]+" sequence can only contain standard amino acids!") 
+   
+   aseq =  trav+acdr.upper()+traj
+   bseq =  trbv+bcdr.upper()+trbj
    #simil_cutoff = request.form.get('simcutoff')
    pdb_blacklist = request.form.get('pdbblacklist')
    loopref_checked = "yes" if (request.form.get("lr"))else "no"
@@ -1239,7 +1335,7 @@ def send_batchjob_to_ibbr_cluster(afile,bfile,loopref_checked,pdb_blacklist,uniq
                'aseq_vdomain': aregexres.groups()[0],
                'bseq_vdomain': bregexres.groups()[0],
                'status': ''
-               })
+         })
          rtcrcommand = "-mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s "  % (arecord.seq,brecord.seq) 
          #rtcrcommand = "-blastp_identity_cutoff 90 -mute all -ignore_zero_occupancy false -renumber_pdb -per_chain_renumbering -alpha %s -beta %s "  % (arecord.seq,brecord.seq) 
          rtcrcommand += " -out:prefix " + prefixtag + "_ "
@@ -1305,7 +1401,7 @@ def send_batchjob_to_local_server(afile,bfile,loopref_checked,pdb_blacklist,uniq
                'bseq_user': str(brecord.seq.strip()),
                'aseq_vdomain': aregexres.groups()[0],
                'bseq_vdomain': bregexres.groups()[0]
-               })
+         })
          subdir = os.path.join(outdir,str(prefixnum))
          lcl_file.write('mkdir -p '+subdir+'\n')
          lcl_file.write('cd '+subdir+'\n')
@@ -1375,10 +1471,12 @@ def disulfidize_results(jobid):
    else:
       outfname = os.path.join(rundir_spath,str(jobid),'res.out')
       return render_template("disulfidize_failed.html", outfname=outfname)
-            
+
+'''            
 @app.route('/disulfidize')
 def disulfidize():
    return render_template("disulfidize.html")
+'''
 
 @app.route('/run_disulfidize', methods=['POST', 'GET'])
 def run_disulfidize():

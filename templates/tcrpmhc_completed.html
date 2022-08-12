@@ -5,38 +5,50 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/aa_funcs.js') }}"></script>
 <script src='https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js'></script>
 {% endblock %}
-{% block title %}TCRpMHC model{% endblock %}
+{% block title %}TCRpMHC Model{% endblock %}
 {% block article %}
 <div class="p-3 m-3">
   <div class="row px-3">
     <div class="container">
-      <div class="row">
-	<div class="col-8">
-	  <div style="height: 300px;" class="w-70 border border-success" id="nglviewport">
-	    <span class="text-primary fs-6 lh-lg">TCRpMHC model viewer </span>
-	    <div class="float-end">
-	      <button type="button" class="btn btn-outline-primary" onclick="nglCenter()">Center</button>
-	      <div class="btn-group">
-		<button type="button" id="ddpri" class="btn btn-outline-primary dropdown-toggle float-end" data-bs-toggle="dropdown" aria-expanded="false">
-		  Cartoon
-		</button>
-		<ul class="dropdown-menu" id="ddsec">
-		  <li><a class="dropdown-item" href="#">Cartoon</a></li>
-		  <li><a class="dropdown-item" href="#">Spacefill</a></li>
-		  <li><a class="dropdown-item" href="#">Licorice</a></li>
-		  <li><a class="dropdown-item" href="#">Surface</a></li>
-		</ul>
-	      </div>
-	    </div>
+      <div class="row d-flex justify-content-center">
+        <div class="col-2 border bg-light">
+          <p class="mt-2 mb-1">Display as:</p>
+          <select class="form-select form-select-sm" id="reprsdd">
+            <option selected="">cartoon</option>
+            <option>spacefill</option>
+            <option>licorice</option>
+            <option>surface</option>
+          </select>
+          <p class="mt-4 mb-1">Color by:</p>
+          <select class="form-select form-select-sm mt-0 mb-4" id="colorsdd">
+            <option value="uniform">light grey</option>
+            <option value="chainname" selected="">chain name</option>
+            <option value="residueindex">residue index</option>
+            <option value="sstruc">secondary structure</option>
+            <option value="element">element</option>
+            <option value="bfactor">bfactor</option>
+          </select>
+          <input type="checkbox" class="form-check-input" id="spin-checkbox">
+          <label for="spin-checkbox" class="form-check-label">Spin</label>
+        </div>
+	<div class="col-5">
+	  <div class="border border-success">
+	    <span class="text-primary p-2 fs-6 lh-lg">TCRpMHC model viewer </span>
+            <div class="float-end m-1">
+	      <button type="button" class="btn btn-outline-primary btn-sm" id="centerbtn">Center</button>
+	      <button type="button" class="btn btn-outline-primary btn-sm" id="alignbtn">Align</button>
+            </div>
+	    <div style="height: 275px;" class="w-100" id="nglviewport"></div>
 	  </div>
 	</div>
-	<div class="col-4 py-3">
+	<div class="col-3 py-3">
 	  <p class = "text-start">
 	    Job ID : <a href="{{ url_for('res_tcrpmhc', jobid=jobid) }}">{{ jobid }}</a>
 	    <BR>
 	    Status : Modeling completed
 	  </p>
 	  <h6><a href={{ modelfname }} download>Download PDB file</a></h6>
+	  <h6><a href="{{ url_for('tcrpmhc_viewmodel', jobid=jobid) }}">View model templates (beta)</a></h6>
 	</div>
       </div>
     </div>
@@ -60,67 +72,163 @@
 		<tbody>
 		  <tr>
 		    <th scope="row">Tcr &alpha; CDR1</th>
-		    <td>{{ tj.acdr1_tmplt_id }}</td>
+		    <td>
+                      {% if tj.acdr1_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.acdr1_tmplt_id[:4] }}">{{ tj.acdr1_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &alpha; CDR2-HV4</th>
-		    <td>{{ tj.acdr2hv4_tmplt_id }}</td>
+		    <td>
+                      {% if tj.acdr2hv4_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.acdr2hv4_tmplt_id[:4] }}">{{ tj.acdr2hv4_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &alpha; CDR3</th>
-		    <td>{{ tj.acdr3_tmplt_id }}</td>
+		    <td>
+                      {% if tj.acdr3_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.acdr3_tmplt_id[:4] }}">{{ tj.acdr3_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &alpha; framework</th>
-		    <td>{{ tj.afr_tmplt_id }}</td>
+		    <td>
+                      {% if tj.afr_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.afr_tmplt_id[:4] }}">{{ tj.afr_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &alpha; germline</th>
-		    <td>{{ tj.agm_tmplt_id }}</td>
+		    <td>
+                      {% if tj.agm_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.agm_tmplt_id[:4] }}">{{ tj.agm_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &beta; CDR1</th>
-		    <td>{{ tj.bcdr1_tmplt_id }}</td>
+		    <td>
+                      {% if tj.bcdr1_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bcdr1_tmplt_id[:4] }}">{{ tj.bcdr1_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &beta; CDR2-HV4</th>
-		    <td>{{ tj.bcdr2hv4_tmplt_id }}</td>
+		    <td>
+                      {% if tj.bcdr2hv4_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bcdr2hv4_tmplt_id[:4] }}">{{ tj.bcdr2hv4_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &beta; CDR3</th>
-		    <td>{{ tj.bcdr3_tmplt_id }}</td>
+		    <td>
+                      {% if tj.bcdr3_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bcdr3_tmplt_id[:4] }}">{{ tj.bcdr3_tmplt_id }}</a>
+                      {% else %}
+                        NA
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &beta; framework</th>
-		    <td>{{ tj.bfr_tmplt_id }}</td>
+		    <td>
+                      {% if tj.bfr_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bfr_tmplt_id[:4] }}">{{ tj.bfr_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Tcr &beta; germline</th>
-		    <td>{{ tj.bgm_tmplt_id }}</td>
+		    <td>
+                      {% if tj.bgm_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.bgm_tmplt_id[:4] }}">{{ tj.bgm_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">Peptide</th>
-		    <td>{{ tj.pep_tmplt_id }}</td>
+		    <td>
+                      {% if tj.pep_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.pep_tmplt_id }}">{{ tj.pep_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">MHC I</th>
-		    <td>{{ tj.mhc1_tmplt_id }}</td>
+		    <td>
+                      {% if tj.mhc1_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.mhc1_tmplt_id }}">{{ tj.mhc1_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">MHC II</th>
-		    <td>{{ tj.mhc2_tmplt_id }}</td>
+		    <td>
+                      {% if tj.mhc2_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.mhc2_tmplt_id }}">{{ tj.mhc2_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">TCR orientation</th>
-		      <td>{{ tj.aori_tmplt_id }}</td>
+		    <td>
+                      {% if tj.aori_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.aori_tmplt_id }}">{{ tj.aori_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">pMHC orientation</th>
-		    <td>{{ tj.pmhc_tmplt_id }}</td>
+		    <td>
+                      {% if tj.pmhc_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.pmhc_tmplt_id }}">{{ tj.pmhc_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		  <tr>
 		    <th scope="row">TCRpMHC orientation</th>
-		    <td>{{ tj.tcrpmhc_tmplt_id }}</td>
+		    <td>
+                      {% if tj.tcrpmhc_tmplt_id != "NA" %}
+                        <a href="https://www.rcsb.org/structure/{{ tj.tcrpmhc_tmplt_id }}">{{ tj.tcrpmhc_tmplt_id }}</a>
+                      {% else %}
+                        NA 
+                      {% endif %}
+                    </td>
 		  </tr>
 		</tbody>	      
 	      </table>
@@ -356,11 +464,12 @@
     </div>
   </div>
 </div>
-    <script>
-      var modelfname = {{ modelfname|tojson }}
-    </script>
-    <script src="{{ url_for('static', filename = '/js/tcrcomplex1_viewer.js')}}"></script>
-    <script src='https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js'></script>
+ 
+<script>
+  var modelfname = {{ modelfname|tojson }}
+</script>
+<script src="{{ url_for('static', filename = '/js/tcrcomplex2_viewer.js')}}"></script>
+<script src='https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js'></script>
     
 {% endblock %}
   

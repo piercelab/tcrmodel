@@ -1,0 +1,61 @@
+{% block article %}
+<head>
+  <title>TCR Model Viewer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> 
+  <style>
+    #vwr {
+      position: fixed;
+      bottom: 0px;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+    }
+    #selector {
+      box-shadow: 2px 2px 5px #888888;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="vwr"></div>
+  <div class="bg-light border rounded position-absolute p-3 m-3" id="selector">
+    <h5>Job ID : <a href="{{ url_for('rtcrex', jobid=jobid) }}">{{ jobid }}</a></h5>
+    <h6 class="mt-3">Load Templates</h6>
+    <input type="checkbox" class="form-check-input" id="acdr1">
+    <label for="acdr1" class="form-check-label">CDR1&alpha; : {{ tj.acdr1_tmplt_pdb }}</label>
+    <br>
+    <input type="checkbox" class="form-check-input" id="acdr2">
+    <label for="acdr2" class="form-check-label">CDR2&alpha; : {{ tj.acdr2hv4_tmplt_pdb }}</label>
+    <br>
+    <input type="checkbox" class="form-check-input" id="acdr3">
+    <label for="acdr3" class="form-check-label">CDR3&alpha; : {{ tj.acdr3_tmplt_pdb }}</label>
+    <br>
+    <input type="checkbox" class="form-check-input" id="bcdr1">
+    <label for="bcdr1" class="form-check-label">CDR1&beta; : {{ tj.bcdr1_tmplt_pdb }}</label>
+    <br>
+    <input type="checkbox" class="form-check-input" id="bcdr2">
+    <label for="bcdr2" class="form-check-label">CDR2&beta; : {{ tj.bcdr2hv4_tmplt_pdb }}</label>
+    <br>
+    <input type="checkbox" class="form-check-input" id="bcdr3">
+    <label for="bcdr3" class="form-check-label">CDR3&beta; : {{ tj.bcdr3_tmplt_pdb }}</label>
+    <br>
+    <input type="checkbox" class="form-check-input" id="orient">
+    <label for="orient" class="form-check-label">V&alpha;-V&beta; Orientation : {{ tj.ori_tmplt }}</label>
+    <br>  
+    <button type="button" class="btn btn-secondary btn-sm mt-4" id="centerbtn">Center</button>
+    <button type="button" class="btn btn-secondary btn-sm mt-4" id="alignbtn">Align</button>
+  </div>
+</body>
+
+<script>
+var modelfname = {{ modelfname|tojson }}
+var tj = JSON.parse('{{ tj | tojson | safe}}');
+var jobid = {{ jobid|tojson }}
+</script>
+<script src='https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js'></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/rtcr_fullviewer.js') }}"></script>
+{% endblock %}
+
