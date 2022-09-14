@@ -8,7 +8,11 @@
 <div class="text-left">
   <h4>Job status : Failed</h4>
   {% if jobid %}
-  <h5>Job ID : <a href="{{ url_for('res_tcrpmhc', jobid=jobid) }}">{{ jobid }}</a></h5>
+    {% if jobid[:3] == "MHC" %}
+      <h5>Job ID : <a href="{{ url_for('res_tcrpmhc', jobid=jobid) }}">{{ jobid }}</a></h5>
+    {% else %}
+      <h5>Job ID : <a href="{{ url_for('rtcr', jobid=jobid) }}">{{ jobid }}</a></h5>
+    {% endif %}
   {% endif %}
   <BR>
     <span class="fs-5">ERROR:</span>

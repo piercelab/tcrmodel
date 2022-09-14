@@ -883,13 +883,13 @@ def rtcr(jobid):
    if not os.path.exists(outdir):
       return render_template("error.html", errormsg="Job ID not found")
    os.chdir(outdir)
-   tcrjsonfile = os.path.join(rundir_path,str(jobid),str(jobid)+'.json')
+   tcrjsonfile = os.path.join(outdir,str(jobid)+'.json')
    tcrjsonfile_spath = os.path.join(rundir_spath,str(jobid),str(jobid)+'.json')
    with open(tcrjsonfile) as json_data:
       tcrjsondata = json.load(json_data)
-   outpdb = os.path.join(rundir_path,str(jobid),'tcrmodel.pdb')
-   errorfile = os.path.join(rundir_path,str(jobid),'tcr.fail')
-   errorfile2 = os.path.join(rundir_path,str(jobid),'ROSETTA_CRASH.log')
+   outpdb = os.path.join(outdir,'tcrmodel.pdb')
+   errorfile = os.path.join(outdir,'tcr.fail')
+   errorfile2 = os.path.join(outdir,'ROSETTA_CRASH.log')
    if os.path.isfile(outpdb):
       renumber_tcrpdb_by_aho_number(outpdb)
       add_ss_header_to_pdbfile(outpdb)
@@ -897,9 +897,15 @@ def rtcr(jobid):
       stdout = get_pdb_templates(tcrjsondata)
       return render_template("tcrmodel_completed.html", rtcrjobid = jobid, modelfname=outpdb_spath, tj=tcrjsondata)   
    elif os.path.isfile(errorfile):
-      return render_template("rtcrfailed.html", rtcrjobid = jobid)   
+      return render_template("error.html", jobid=jobid, errormsg="Modeling could not complete!")   
    elif os.path.isfile(errorfile2):
-      return render_template("rtcrfailed.html", rtcrjobid = jobid)   
+      errormsg = "Modeling could not complete!"
+      with open(errorfile2) as fh:
+         for line in fh:
+            if line.startswith("ERROR:"):
+               errormsg = line[7:]
+               break
+      return render_template("error.html", jobid=jobid, errormsg=errormsg)
    else:
       steps = ["Job started!", "Selecting templates..."]
       if os.path.isfile("ignore_list.txt"):
@@ -923,9 +929,9 @@ def res_tcrpmhc(jobid):
    if not os.path.exists(outdir):
       return render_template("error.html", errormsg="Job ID not found")
    os.chdir(outdir)
-   modelpdb = os.path.join(rundir_path,str(jobid),'tcrpmhc_model.pdb')
-   errorfile = os.path.join(rundir_path,str(jobid),'tcr.fail')
-   errorfile2 = os.path.join(rundir_path,str(jobid),'ROSETTA_CRASH.log')
+   modelpdb = os.path.join(outdir,'tcrpmhc_model.pdb')
+   errorfile = os.path.join(outdir,'tcr.fail')
+   errorfile2 = os.path.join(outdir,'ROSETTA_CRASH.log')
    if os.path.isfile(modelpdb):
       #run model delsection here?
       renamed_chain_file = "renamed_chain.pdb"
@@ -946,7 +952,7 @@ def res_tcrpmhc(jobid):
       outpdb_spath = os.path.join(rundir_spath,str(jobid),'tcrpmhc_model.pdb')
       #stdout = get_pdb_templates(tcrjsondata)
       #Read Json file and change empty '' values to 'NA' values
-      tcrjsonfile = os.path.join(rundir_path,str(jobid),"tcr_template_info.json")
+      tcrjsonfile = os.path.join(outdir,"tcr_template_info.json")
       with open(tcrjsonfile) as json_data:
          tcrjsondata = json.load(json_data)
          for key in tcrjsondata:
@@ -986,7 +992,7 @@ def mtcr(jobid):
    if not os.path.exists(outdir):
       return render_template("error.html", errormsg="Job ID not found")
    os.chdir(outdir)
-   tcrjsonfile = os.path.join(rundir_path,str(jobid),str(jobid)+'.json')
+   tcrjsonfile = os.path.join(outdir,str(jobid)+'.json')
    with open(tcrjsonfile) as json_data:
       tcrjsondata = json.load(json_data)
    subdirs = next(os.walk('.'))[1]
@@ -994,14 +1000,14 @@ def mtcr(jobid):
    alljobsdone = True
    i = 0
    for subdir in subdirs:
-      outpdb = os.path.join(rundir_path,str(jobid),subdir,str(subdir)+"_tcrmodel.pdb")
-      outfail = os.path.join(rundir_path,str(jobid),subdir,"tcr.fail")
+      outpdb = os.path.join(outdir,subdir,str(subdir)+"_tcrmodel.pdb")
+      outfail = os.path.join(outdir,subdir,"tcr.fail")
       if os.path.isfile(outpdb):
          currstatus = "Completed"
-         clean_outpdb = os.path.join(rundir_path,str(jobid),subdir,str(subdir)+"_tcrmodel.clean.pdb")
+         clean_outpdb = os.path.join(outdir,subdir,str(subdir)+"_tcrmodel.clean.pdb")
          if not os.path.isfile(clean_outpdb):
             #change to subdir and add aho num and secondary structure info
-            os.chdir(os.path.join(rundir_path,str(jobid),subdir))
+            os.chdir(os.path.join(outdir,subdir))
             shutil.copyfile(outpdb, clean_outpdb)
             print "aho", outpdb
             renumber_tcrpdb_by_aho_number(clean_outpdb)
@@ -1022,7 +1028,7 @@ def mtcr(jobid):
       zipf = zipfile.ZipFile(str(jobid)+'.zip', 'w', zipfile.ZIP_DEFLATED)#zip files
       pdblist = glob.glob("*/*_tcrmodel.pdb")
       for pdbfile in pdblist:
-         outpdb = os.path.join(rundir_path,str(jobid),pdbfile)
+         outpdb = os.path.join(outdir,pdbfile)
          #renumber_tcrpdb_by_aho_number(outpdb)
          #add_ss_header_to_pdbfile(outpdb)
          zipf.write(pdbfile)
@@ -1038,7 +1044,7 @@ def mtcrex(jobid):
    if not os.path.exists(outdir):
       return render_template("error.html", errormsg="Job ID not found")
    os.chdir(outdir)
-   tcrjsonfile = os.path.join(rundir_path,str(jobid),str(jobid)+'.json')
+   tcrjsonfile = os.path.join(outdir,str(jobid)+'.json')
    with open(tcrjsonfile) as json_data:
       tcrjsondata = json.load(json_data)
    return render_template("mtcrcompleted.html", mtcrjobid = jobid, tj=tcrjsondata,rundir_spath=rundir_spath)
@@ -1046,7 +1052,9 @@ def mtcrex(jobid):
 @app.route('/rtcrex/<jobid>')
 def rtcrex(jobid):
    outdir = os.path.join(rundir_path,str(jobid))
-   tcrjsonfile = os.path.join(rundir_path,str(jobid),str(jobid)+'.json')
+   if not os.path.exists(outdir):
+      return render_template("error.html", errormsg="Job ID not found")
+   tcrjsonfile = os.path.join(outdir,str(jobid)+'.json')
    outpdb_spath = os.path.join(rundir_spath,str(jobid),'tcrmodel.pdb')
    with open(tcrjsonfile) as json_data:
       tcrjsondata = json.load(json_data)
@@ -1054,16 +1062,22 @@ def rtcrex(jobid):
 
 @app.route('/rtcr_viewmodel/<jobid>')
 def rtcr_viewmodel(jobid):
+   outdir = os.path.join(rundir_path,str(jobid))
+   if not os.path.exists(outdir):
+      return render_template("error.html", errormsg="Job ID not found")
    outpdb_spath = os.path.join(rundir_spath,str(jobid),"tcrmodel.pdb")
-   tcrjsonfile = os.path.join(rundir_path,str(jobid),str(jobid)+'.json')
+   tcrjsonfile = os.path.join(outdir,str(jobid)+'.json')
    with open(tcrjsonfile) as json_data:
       tcrjsondata = json.load(json_data)
    return render_template("rtcr_fullviewer.html", jobid=jobid, modelfname=outpdb_spath, tj=tcrjsondata)
 
 @app.route('/tcrpmhc_viewmodel/<jobid>')
 def tcrpmhc_viewmodel(jobid):
+   outdir = os.path.join(rundir_path,str(jobid))
+   if not os.path.exists(outdir):
+      return render_template("error.html", errormsg="Job ID not found")
    outpdb_spath = os.path.join(rundir_spath,str(jobid),"tcrpmhc_model.pdb")
-   tcrjsonfile = os.path.join(rundir_path,str(jobid),"tcr_template_info.json")
+   tcrjsonfile = os.path.join(outdir,"tcr_template_info.json")
    with open(tcrjsonfile) as json_data:
       tcrjsondata = json.load(json_data)
    tcrjsondata['rundir_spath'] = rundir_spath
@@ -1461,7 +1475,7 @@ def disulfidize_results(jobid):
    resfiles = glob.glob("*_*.pdb")
    if resfiles:
       scorefname = os.path.join(rundir_spath,str(jobid),'score.fasc')
-      scorefile = os.path.join(rundir_path,str(jobid),'score.fasc')
+      scorefile = os.path.join(outdir,'score.fasc')
       commandline = "grep -v total_score " + scorefile + " | grep -v SEQUENCE | sort -nrk2 | tail -1"
       p = subprocess.Popen(commandline, shell=True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
       out,err = p.communicate()
