@@ -1,3 +1,5 @@
+const DIR = tj.rundir_spath + "/" + jobid + "/";
+
 var stage = new NGL.Stage("vwr");
 stage.setParameters({backgroundColor: "white"});
 
@@ -6,7 +8,7 @@ window.addEventListener("resize", function(event) {
 }, false);
 
 stage.loadFile(modelfname).then(function(o) {
-    o.autoView();
+    o.autoView(1000);
     o.addRepresentation("cartoon", {
         name: "model",
         sele: "polymer",
@@ -15,7 +17,7 @@ stage.loadFile(modelfname).then(function(o) {
 });
 
 function loadCdrTmplt(file, name, resRange, chain) {
-    var path = tj.rundir_spath + "/" + jobid + "/" + file;
+    var path = DIR + file;
     stage.loadFile(path).then(function(o) {
         o.autoView();
         o.addRepresentation("cartoon", {
@@ -34,13 +36,13 @@ loadCdrTmplt(tj.bcdr1_tmplt_id + "_Bcdr1_tmplt.sup.pdb", "bcdr1", "24-43", tj.bc
 loadCdrTmplt(tj.bcdr2hv4_tmplt_id + "_Bcdr2hv4_tmplt.sup.pdb", "bcdr2", "56-91", tj.bcdr2hv4_tmplt_id.slice(5,6));
 loadCdrTmplt(tj.bcdr3_tmplt_id + "_Bcdr3_tmplt.sup.pdb", "bcdr3", "107-139", tj.bcdr3_tmplt_id.slice(5,6));
 
-var path = tj.rundir_spath + "/" + jobid + "/" + tj.aori_tmplt_id + "_ori_tmplt.sup.pdb";
+var path = DIR + tj.aori_tmplt_id + "_ori_tmplt.sup.pdb";
 stage.loadFile(path).then(function(o) {
     o.autoView();
     o.addRepresentation("cartoon", {
         name: "orient",
         sele: "polymer",
-        color: "magenta",
+        color: "pink",
         visible: $("#orient").prop("checked")
     });
 });

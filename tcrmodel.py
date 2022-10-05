@@ -618,7 +618,8 @@ def process_tcrpmhc_job(aseq,bseq,pseq,mhc1aseq,mhc2aseq,mhc2bseq,loopref_checke
    return redirect(url_for('res_tcrpmhc', jobid=uniquedirname))
 
 def send_job_to_local_server(uniquedirname,rtcrcommand):
-   rtcrcommand +=   " -tcr_template_db_path /www/tcrmodel/static/downloads/additional_protocol_data/tcr/"
+   #rtcrcommand +=   " -tcr_template_db_path /www/tcrmodel/static/downloads/additional_protocol_data/tcr/"
+   rtcrcommand +=   " -tcr_template_db_path /www/cgi-bin/rosetta/Rosetta/main/database/additional_protocol_data/tcr/"
    commandline = "/www/cgi-bin/rosetta/Rosetta/main/source/bin/tcrmodel.static.linuxgccrelease -database /www/cgi-bin/rosetta/Rosetta/main/database " + rtcrcommand +  " > res.out "
    p = subprocess.Popen(commandline, shell=True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
    #out,err = p.communicate()
@@ -626,7 +627,8 @@ def send_job_to_local_server(uniquedirname,rtcrcommand):
    return 
 
 def send_tcrpmhc_job_to_local_server(uniquedirname,rtcrcommand):
-   rtcrcommand +=   " -tcr_template_db_path /www/tcrmodel/static/downloads/additional_protocol_data/tcr/"
+   #rtcrcommand +=   " -tcr_template_db_path /www/tcrmodel/static/downloads/additional_protocol_data/tcr/"
+   rtcrcommand +=   " -tcr_template_db_path /www/cgi-bin/rosetta/Rosetta/main/database/additional_protocol_data/tcr/"
    commandline = "/www/cgi-bin/rosetta/Rosetta/main/source/bin/tcr_complex_model.static.linuxgccrelease -database /www/cgi-bin/rosetta/Rosetta/main/database " + rtcrcommand +  " > res.out "
    commandline2 = "echo " + commandline + " > ros_cmd.txt"
    p = subprocess.Popen(commandline, shell=True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -807,75 +809,77 @@ def get_pdb_templates(tcrjsondata):
    '''      
    return
 
-def run_tmalign(tmplt, model, outfile, unzipped):
+def unzip(gz, pdb):
+   if not os.path.isfile(pdb):
+      with gzip.open(gz) as f:
+         contents = f.read()
+      with open(pdb, "w") as f:
+         f.write(contents)
+
+def find_tmplt(pdb_id):
+   tmplt = glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")
+   tmplt = tmplt[0] if tmplt else glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")[0]
+   if tmplt[-3:] == ".gz":
+      unzipped = pdb_id + "_unzipped.pdb"
+      unzip(tmplt, unzipped)
+      tmplt = unzipped
+   return tmplt
+
+"""
+def grab_chain(infile, chain, outfile):
    if not os.path.isfile(outfile):
-      if tmplt[-3:] == ".gz":
-         with gzip.open(tmplt) as f:
-            contents = f.read()
-         with open(unzipped, "w") as f:
-            f.write(contents)
-      else:
-         unzipped = tmplt
+      perl_script = "../../cgi-bin/scripts/grab_chains.pl"
+      subprocess.Popen([perl_script, infile, chain, ">", outfile], stdout=subprocess.PIPE)
+"""
+def grab_chain(infile, chain, outfile):
+   if not os.path.isfile(outfile):
+      with open(infile) as f:
+         lines = f.read().split("\n")
+      with open(outfile, "w") as f:
+         for l in lines:
+            if l[:4] == "ATOM" or l[:6] == "HETATM":
+               ch = l[21]
+               if ch == chain:
+                  f.write(l + "\n")
+
+def run_tmalign(tmplt, model, outfile):
+   if not os.path.isfile(outfile):
       tmalign_program = "../../cgi-bin/TMalign/TMalign"
-      cmd = subprocess.Popen([tmalign_program, unzipped, model, "-o", outfile], stdout=subprocess.PIPE)
+      subprocess.Popen([tmalign_program, tmplt, model, "-o", outfile], stdout=subprocess.PIPE)
 
 def get_tcrpmhc_templates(tcrjsondata):
-   model = "tcrmodel.pdb"
-   tmplt_db_tcrpmhc = "/www/cgi-bin/rosetta/Rosetta/main/database/additional_protocol_data/tcr/tcrpmhc/"
-   #cdr1a
-   pdb_id = tcrjsondata['acdr1_tmplt_id'][:4].lower()
-   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
-   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")
-   outfile = tcrjsondata['acdr1_tmplt_id'] + "_Acdr1_tmplt.sup"
-   acdr1_pdb = outfile[7:-4] + ".pdb"
-   run_tmalign(tmplt, model, outfile, acdr1_pdb)
-   #cdr2a
-   pdb_id = tcrjsondata['acdr2hv4_tmplt_id'][:4].lower()
-   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
-   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")
-   outfile = tcrjsondata['acdr2hv4_tmplt_id'] + "_Acdr2hv4_tmplt.sup"
-   acdr2hv4_pdb = outfile[7:-4] + ".pdb"
-   run_tmalign(tmplt, model, outfile, acdr2hv4_pdb)
-   #cdr3a
-   pdb_id = tcrjsondata['acdr3_tmplt_id'][:4].lower()
-   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
-   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")
-   outfile = tcrjsondata['acdr3_tmplt_id'] + "_Acdr3_tmplt.sup"
-   acdr3_pdb = outfile[7:-4] + ".pdb"
-   run_tmalign(tmplt, model, outfile, acdr3_pdb)
-   #cdr1b
-   pdb_id = tcrjsondata['bcdr1_tmplt_id'][:4].lower()
-   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
-   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")[0]
-   outfile = tcrjsondata['bcdr1_tmplt_id'] + "_Bcdr1_tmplt.sup"
-   bcdr1_pdb = outfile[7:-4] + ".pdb"
-   run_tmalign(tmplt, model, outfile, bcdr1_pdb)
-   #cdr2b
-   pdb_id = tcrjsondata['bcdr2hv4_tmplt_id'][:4].lower()
-   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
-   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")[0]
-   outfile = tcrjsondata['bcdr2hv4_tmplt_id'] + "_Bcdr2hv4_tmplt.sup"
-   bcdr2hv4_pdb = outfile[7:-4] + ".pdb"
-   run_tmalign(tmplt, model, outfile, bcdr2hv4_pdb)
-   #cdr3b
-   pdb_id = tcrjsondata['bcdr3_tmplt_id'][:4].lower()
-   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
-   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")[0]
-   outfile = tcrjsondata['bcdr3_tmplt_id'] + "_Bcdr3_tmplt.sup"
-   bcdr3_pdb = outfile[7:-4] + ".pdb"
-   run_tmalign(tmplt, model, outfile, bcdr3_pdb)
-   #orientation - chains not specified in json so oriA and oriB are same
-   pdb_id = tcrjsondata['aori_tmplt_id'][:4].lower()
-   pdb_tmplt = glob.glob(tmplt_db_pdb + pdb_id + "_aho.pdb.gz")
-   tmplt = pdb_tmplt[0] if pdb_tmplt else glob.glob(tmplt_db_tcrpmhc + pdb_id + ".trunc.fit.pdb")[0]
-   outfile = tcrjsondata['aori_tmplt_id'] + "_ori_tmplt.sup"
-   ori_pdb = outfile[5:-4] + ".pdb"
-   run_tmalign(tmplt, model, outfile, ori_pdb)
-   #remove unzipped files used for tmalign
-   files = [acdr1_pdb, acdr2hv4_pdb, acdr3_pdb, bcdr1_pdb, bcdr2hv4_pdb, bcdr3_pdb, ori_pdb]
-   for f in files:
-      if os.path.isfile(f):
-          os.remove(f)
+   model = "tcrpmhc_model.pdb"
+   acdr_tmplts = ["acdr1", "acdr2hv4", "acdr3"]
+   bcdr_tmplts = ["bcdr1", "bcdr2hv4", "bcdr3"]
+   model_D = model[:-4] + "_D.pdb"
+   model_E = model[:-4] + "_E.pdb"
+   grab_chain(model, "D", model_D)
+   grab_chain(model, "E", model_E)
+   #cdr tmplts
+   for t in acdr_tmplts:
+      t += "_tmplt"
+      tmplt_id = tcrjsondata[t+"_id"]
+      pdb_id = tmplt_id[:4].lower()
+      tmplt = find_tmplt(pdb_id)
+      tmplt_D = pdb_id + "_D_chain.pdb"
+      grab_chain(tmplt, tmplt_id[-1], tmplt_D)
+      outfile = tmplt_id + "_" + t[0].upper() + t[1:] + ".sup"
+      run_tmalign(tmplt_D, model_D, outfile)
+   for t in bcdr_tmplts:
+      t += "_tmplt"
+      tmplt_id = tcrjsondata[t+"_id"]
+      pdb_id = tmplt_id[:4].lower()
+      tmplt = find_tmplt(pdb_id)
+      tmplt_E = pdb_id + "_E_chain.pdb"
+      grab_chain(tmplt, tmplt_id[-1], tmplt_E)
+      outfile = tmplt_id + "_" + t[0].upper() + t[1:] + ".sup"
+      run_tmalign(tmplt_E, model_E, outfile)
+   #ori tmplt
+   tmplt_id = tcrjsondata['aori_tmplt_id']
+   pdb_id = tmplt_id[:4].lower()
+   tmplt = find_tmplt(pdb_id) 
+   outfile = tmplt_id + "_ori_tmplt.sup"
+   run_tmalign(tmplt, model, outfile)
 
 @app.route('/rtcr/<jobid>')
 def rtcr(jobid):
@@ -950,7 +954,6 @@ def res_tcrpmhc(jobid):
       if not os.path.isfile(ss_header_file):
          add_ss_header_to_pdbfile(modelpdb)
       outpdb_spath = os.path.join(rundir_spath,str(jobid),'tcrpmhc_model.pdb')
-      #stdout = get_pdb_templates(tcrjsondata)
       #Read Json file and change empty '' values to 'NA' values
       tcrjsonfile = os.path.join(outdir,"tcr_template_info.json")
       with open(tcrjsonfile) as json_data:

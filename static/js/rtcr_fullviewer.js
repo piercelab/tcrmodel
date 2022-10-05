@@ -1,3 +1,5 @@
+const DIR = tj.rundir_spath + "/" + jobid + "/";
+
 var stage = new NGL.Stage("vwr");
 stage.setParameters({backgroundColor: "white"});
 
@@ -6,7 +8,7 @@ window.addEventListener("resize", function(event) {
 }, false);
 
 stage.loadFile(modelfname).then(function(o) {
-    o.autoView();
+    o.autoView(1000);
     o.addRepresentation("cartoon", {
         name: "model",
         sele: "polymer",
@@ -15,7 +17,7 @@ stage.loadFile(modelfname).then(function(o) {
 });
 
 function loadCdrTmplt(file, name, resRange, chain) {
-    var path = tj.rundir_spath + "/" + jobid + "/" + file;
+    var path = DIR + file;
     stage.loadFile(path).then(function(o) {
         o.autoView();
         o.addRepresentation("cartoon", {
@@ -34,25 +36,21 @@ loadCdrTmplt(tj.bcdr1_tmplt_pdb + "_Bcdr1_tmplt.pdb", "bcdr1", "24-43", tj.bcdr1
 loadCdrTmplt(tj.bcdr2hv4_tmplt_pdb + "_Bcdr2hv4_tmplt.pdb", "bcdr2", "56-91", tj.bcdr2hv4_tmplt_pdb_chain);
 loadCdrTmplt(tj.bcdr3_tmplt_pdb + "_Bcdr3_tmplt.pdb", "bcdr3", "107-139", tj.bcdr3_tmplt_pdb_chain);
 
-function loadOriTmplt(file) {
-    var path = tj.rundir_spath + "/" + jobid + "/" + file;
-    stage.loadFile(path).then(function(o) {
-        o.autoView();
-        o.addRepresentation("cartoon", {
-            name: "orient",
-            sele: "polymer",
-            color: "pink",
-            visible: $("#orient").prop("checked")
-        });
+var path = DIR + tj.ori_tmplt_Apdb + "_oriA_tmplt.pdb";
+stage.loadFile(path).then(function(o) {
+    o.autoView();
+    o.addRepresentation("cartoon", {
+        name: "orient",
+        sele: "polymer",
+        color: "pink",
+        visible: $("#orient").prop("checked")
     });
-}
-
-loadOriTmplt(tj.ori_tmplt_Apdb + "_oriA_tmplt.pdb");
-loadOriTmplt(tj.ori_tmplt_Bpdb + "_oriB_tmplt.pdb");
+});
 
 $("#acdr1, #acdr2, #acdr3, #bcdr1, #bcdr2, #bcdr3, #orient").click(function() {
     var isChecked = $(this).prop("checked");
-    stage.getRepresentationsByName($(this).prop("id")).setVisibility(isChecked);
+    var id = $(this).prop("id");
+    stage.getRepresentationsByName(id).setVisibility(isChecked);
 });
 
 $("#centerbtn").click(function() {

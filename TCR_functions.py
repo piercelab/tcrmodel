@@ -241,7 +241,7 @@ def run_anarci(query, anarci_program=None, outfile=None, restrict=None):
     if os.path.isfile(outfile):
         os.remove(outfile)
     if restrict is None:
-        process = Popen([anarci_program, "-i" , str(query), "-o" , str(outfile) ,  "-s" , "a" ], stdout=PIPE, stderr=PIPE)
+	process = Popen([anarci_program, "-i" , str(query), "-o" , str(outfile) ,  "-s" , "a" ], stdout=PIPE, stderr=PIPE)
     else:
         process = Popen([anarci_program, "-i" , str(query), "-o" , str(outfile) ,  "-s" , "a" , "-r", str(restrict)], stdout=PIPE, stderr=PIPE)
     stdout, stderr = process.communicate()
@@ -759,7 +759,7 @@ def rename_pdb_chains(cur_chains, new_chains, infile, outfile=None):
     IN = open(infile)
     OUT = open(tmpoutfile, 'w+')
     for line in IN.readlines():
-        if line[0:4] == 'ATOM' or line[0:4] == 'HETATM':            
+        if line[0:4] == 'ATOM' or line[0:6] == 'HETATM':            
             newline = line
             for count, value in enumerate(cur_chains):
                 if line[21:22] == cur_chains[count]:
