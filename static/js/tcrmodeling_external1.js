@@ -142,16 +142,18 @@ $(document).ready(function(){
     });
     
     $("#btn2").click(function () {
-    	$("#aspecies").prop('selectedIndex', 1);
-    	$("#bspecies").prop('selectedIndex', 1);
+        $("#sele_aspecies option:contains('Human')").prop("selected", true).change(); 
+        $("#sele_bspecies option:contains('Human')").prop("selected", true).change(); 
     	$("#sele_tacdrseq").val("CAVGGSQGNLIF");
     	$("#sele_tbcdrseq").val("CASSIRSSYEQYF");
-        $('select#sele_trav option:contains("TRAV8-6*01")').prop('selected',true);
-        $('select#sele_traj option:contains("TRAJ42*01")').prop('selected',true);
-        $('select#sele_trbv option:contains("TRBV19*01")').prop('selected',true);
-        $('select#sele_trbj option:contains("TRBJ2-7*01")').prop('selected',true);
-    	$("#sele_loadbtntcra").click();
-        $("#sele_loadbtntcrb").click();
+        setTimeout(function() {
+            $("#sele_trav option:contains('TRAV8-6*01')").prop("selected", true);
+            $("#sele_traj option:contains('TRAJ42*01')").prop("selected", true);
+            $("#sele_trbv option:contains('TRBV19*01')").prop("selected", true);
+            $("#sele_trbj option:contains('TRBJ2-7*01')").prop("selected", true);
+    	    $("#sele_loadbtntcra").click();
+            $("#sele_loadbtntcrb").click();
+        }, 100);
     });
     
     

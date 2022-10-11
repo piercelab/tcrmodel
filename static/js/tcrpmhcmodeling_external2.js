@@ -286,16 +286,18 @@ $(document).ready(function(){
     	    document.getElementById("F2_trbv_id").innerHTML = "&#9888; TRBV not selected!";
         }
     });
-    
-    
+     
+     
     $("#F1ExC1").click(function () {
         $("#tachain").val("KEVEQNSGPLSVPEGAIASLNCTYSDRGSQSFFWYRQYSGKSPELIMSIYSNGDKEDGRFTAQLNKASQYVSLLIRDSQPSDSATYLCAVTTDSWGKLQFGAGTQVVVTP");
         $("#tbchain").val("NAGVTQTPKFQVLKTGQSMTLQCAQDMNHEYMSWYRQDPGMGLRLIHYSVGAGITDQGEVPNGYNVSRSTTEDFPLRLLSAAPSQTSVYFCASRPGLAGGRPEQYFGPGTRLTVTE");
         $("#pchain").val("LLFGYPVYV");
 	$("#tachain").keyup();
 	$("#tbchain").keyup();
-        $('select#F1mhc1a option:contains("HLA-A*02:01")').prop('selected',true);
-        F1MHC1GeneSelection();
+        $("#F1mhc1speciestype option:contains('Human')").prop("selected", true).change();
+        setTimeout(function() {
+            $("#F1mhc1a option:contains('HLA-A*02:01')").prop("selected", true).change();
+        }, 100);
         //clear other forms
         $("#F1m2aseq").val("");
         $("#F1m2aseq").keyup();
@@ -309,28 +311,38 @@ $(document).ready(function(){
 	$("#pchain").val("QQYPSGEGSFQPSQENPQ");
 	$("#tachain").keyup();
 	$("#tbchain").keyup();
-        $('select#F1mhc2a option:contains("HLA-DQA1*03:01")').prop('selected',true);
-        $('select#F1mhc2b option:contains("HLA-DQB1*03:02")').prop('selected',true);
-        F1MHC2GeneSelection();
+        $("#F1mhc2speciestype option:contains('Human')").prop("selected", true).change();
+        setTimeout(function() {
+            $("#F1mhc2a option:contains('HLA-DQA1*03:01')").prop("selected", true).change();
+            $("#F1mhc2b option:contains('HLA-DQB1*03:02')").prop("selected", true).change();
+        }, 100);
         //clear other forms
         $("#F1m1aseq").val("");
         $("#F1m1aseq").keyup();
     });
 
     $("#F2ExC1").click(function () {
-        $("#aspecies").prop('selectedIndex', 1);
+        $("#aspecies option:contains('Human')").prop("selected", true).change();
         $("#tacdrseq").val("CAVGGSQGNLIF");
-        $('select#trav option:contains("TRAV12-2*02")').prop('selected',true);
-        $('select#traj option:contains("TRAJ1*01")').prop('selected',true);
-        $("#F2load_tcra").click();
-        $("#bspecies").prop('selectedIndex', 1);
+        setTimeout(function() {
+            $("#trav option:contains('TRAV12-2*02')").prop("selected", true);
+            $("#traj option:contains('TRAJ1*01')").prop("selected", true);
+            $("#F2load_tcra").click();
+        }, 100);
+        
+        $("#bspecies option:contains('Human')").prop("selected", true).change();
         $("#tbcdrseq").val("CASSIRSSYEQYF");
-        $('select#trbv option:contains("TRBV6-5*01")').prop('selected',true);
-        $('select#trbj option:contains("TRBJ1-1*01")').prop('selected',true);
-        $("#F2load_tcrb").click();
+        setTimeout(function() {
+            $("#trbv option:contains('TRBV6-5*01')").prop("selected", true);
+            $("#trbj option:contains('TRBJ1-1*01')").prop("selected", true);
+            $("#F2load_tcrb").click();
+        }, 100);
+        
         $("#pseq").val("LLFGYPVYV");
-        $('select#mhc1a option:contains("HLA-A*02:01")').prop('selected',true);
-        MHC1GeneSelection();
+        $("#mhc1speciestype option:contains('Human')").prop("selected", true).change();
+        setTimeout(function() {
+            $("#mhc1a option:contains('HLA-A*02:01')").prop("selected", true).change();
+        }, 100);
         //clear other forms
         $("#m2aseq").val("");
         $("#m2aseq").keyup();
@@ -339,20 +351,28 @@ $(document).ready(function(){
     });
 
     $("#F2ExC2").click(function () {
-        $("#aspecies").prop('selectedIndex', 1);
+        $("#aspecies option:contains('Human')").prop("selected", true).change();
         $("#tacdrseq").val("CILRDGRGGADGLTF");
-        $('select#trav option:contains("TRAV26-2*01")').prop('selected',true);
-        $('select#traj option:contains("TRAJ45*01")').prop('selected',true);
-        $("#F2load_tcra").click();
-        $("#bspecies").prop('selectedIndex', 1);
+        setTimeout(function() {
+            $("#trav option:contains('TRAV26-2*01')").prop("selected", true);
+            $("#traj option:contains('TRAJ45*01')").prop("selected", true);
+            $("#F2load_tcra").click();
+        }, 100);
+         
+        $("#bspecies option:contains('Human')").prop("selected", true).change();
         $("#tbcdrseq").val("CASSVAVSAGTYEQYF");
-        $('select#trbv option:contains("TRBV9*01")').prop('selected',true);
-        $('select#trbj option:contains("TRBJ2-7*01")').prop('selected',true);
-        $("#F2load_tcrb").click();
+        setTimeout(function() {
+            $("#trbv option:contains('TRBV9*01')").prop("selected", true);
+            $("#trbj option:contains('TRBJ2-7*01')").prop("selected", true);
+            $("#F2load_tcrb").click();
+        }, 100);
+         
         $("#pseq").val("QQYPSGEGSFQPSQENPQ");
-        $('select#mhc2a option:contains("HLA-DQA1*03:01")').prop('selected',true);
-        $('select#mhc2b option:contains("HLA-DQB1*03:02")').prop('selected',true);
-        MHC2GeneSelection();
+        $("#mhc2speciestype option:contains('Human')").prop("selected", true).change();
+        setTimeout(function() {
+            $("#mhc2a option:contains('HLA-DQA1*03:01')").prop("selected", true).change();
+            $("#mhc2b option:contains('HLA-DQB1*03:02')").prop("selected", true).change();
+        }, 100);
         //clear other forms
         $("#m1aseq").val("");
         $("#m1aseq").keyup();
